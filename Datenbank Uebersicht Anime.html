@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="de">
+	<head>
+	<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Home</title>
+		<link rel="stylesheet" href="Css.css">
+	</head>
+	<body>
+		<h1 class="startseiteH1">Anime/Manga</h1>
+		<section class="loginBox loginButton">
+			<table>
+				<tr>
+					<td><input type="text" id="suche" placeholder="Username"></td>
+					<td rowspan="2"><button>Login</button></td>
+				</tr>
+					<td><input type="text" id="suche" placeholder="Password"></td>	
+				</tr>
+			</table>
+		</section>
+		<section class="loginBox logoutButton">
+			<button>Logout</button>
+		</section>
+		<section class="navigationBox schatten">
+			<ul class="navigationList">
+				<li class="navigationButton navigationButtonTOP"><a href="Home.html" class="navigation">Startseite</a></li>
+				<li class="navigationButton navigationButtonTOP"><a href="Datenbank Uebersicht Anime.html" class="navigation">Animes</a></li>
+				<li class="navigationButton navigationButtonTOP"><a href="Datenbank Uebersicht Manga.html" class="navigation">Mangas</a></li>
+				<li class="navigationButton navigationButtonTOP"><a href="Registration.html" class="navigation">Registration</a></li>
+				<li><input type="text" id="suche" placeholder="Suche..."" class="searchBar"></li>
+			</ul>
+		</section>
+		<main class="mainBox">
+			<section class="filter">
+				<label class="labelSpaceRight">Genre: </label>
+				<select id="Genre" class="dropdownMenue">
+					<option value="0">---</option>
+					<option value="Action">Action</option>
+					<option value="Adventure">Adventure</option>
+					<option value="Comedy">Comedy</option>
+					<option value="Drama">Drama</option>
+					<option value="Ecchi">Ecchi</option>
+					<option value="Fantasy">Fantasy</option>
+					<option value="Horror">Horror</option>
+					<option value="Mahou Shoujo">Mahou Shoujo</option>
+					<option value="Mecha">Mecha</option>
+					<option value="Music">Music</option>
+					<option value="Mystery">Mystery</option>
+					<option value="Psychological">Psychological</option>
+					<option value="Romance">Romance</option>
+					<option value="Sci-Fi">Sci-Fi</option>
+					<option value="Slice of Life">Slice of Life</option>
+					<option value="Sport">Sport</option>
+					<option value="Supernatural">Supernatural</option>
+					<option value="Thriler">Thriler</option>
+				</select>
+				<label class="labelSpaceLeft labelSpaceRight">Season:</label>
+				<select id="Season" class="dropdownMenue">
+					<option value="0">---</option>
+					<option value="Winter">Winter</option>
+					<option value="Spring">Spring</option>
+					<option value="Summer">Summer</option>
+					<option value="Fall">Fall</option>
+				</select>
+				<label class="labelSpaceLeft labelSpaceRight">Jahr:</label>
+				<select id="Jahr" class="dropdownMenue">
+					<option value="0">---</option>
+					<option value="2023">2023</option>
+					<option value="2022">2022</option>
+					<option value="2021">2021</option>
+					<option value="2020">2020</option>
+					<option value="2019">2019</option>
+					<option value="2018">2018</option>
+					<option value="2017">2017</option>
+					<option value="2016">2016</option>
+					<option value="2015">2015</option>
+					<option value="2014">2014</option>
+					<option value="2013">2013</option>
+					<option value="2012">2012</option>
+					<option value="2011">2011</option>
+					<option value="2010">2010</option>
+					<option value="2009">2009</option>
+					<option value="2008">2008</option>
+					<option value="2007">2007</option>
+					<option value="2006">2006</option>
+					<option value="2005">2005</option>
+					<option value="2004">2004</option>
+					<option value="2003">2003</option>
+					<option value="2002">2002</option>
+					<option value="2001">2001</option>
+					<option value="2000">2000</option>
+					<option value="1999">1999</option>
+					<option value="1998">1998</option>
+				</select>
+				<label class="labelSpaceLeft labelSpaceRight">Format:</label>
+				<select id="Format" class="dropdownMenue">
+					<option value="0">---</option>
+					<option value="TV">TV</option>
+					<option value="TV Short">TV Short</option>
+					<option value="Movie">Movie</option>
+					<option value="OVA">OVA</option>
+					<option value="Special">Special</option>
+					<option value="ONA">ONA</option>
+					<option value="Music">Music</option>
+				</select>
+				<label class="labelSpaceLeft labelSpaceRight">Source:</label>
+				<select id="Source" class="dropdownMenue">
+					<option value="0">---</option>
+					<option value="Original">Original</option>
+					<option value="Manga">Manga</option>
+					<option value="Light Novel">Light Novel</option>
+					<option value="Web Novel">Web Novel</option>
+					<option value="Novel">Novel</option>
+					<option value="Video Game">Video Game</option>
+					<option value="">Visuel Novel</option>
+					<option value="Multi Media Projekt">Multi Media Projekt</option>
+					<option value="Other">Other</option>
+				</select>
+				<!--
+				<label class="labelSpaceLeft labelSpaceRight">:</label>
+				<select id="select" class="dropdownMenue">
+					<option value=""></option>
+				</select>
+				 -->
+			</section>
+			<section class="navigationBox2 schatten">
+				<ul class="navigationList">
+					<li class="navigationButton"><a href="Home.html" class="navigation">Impressum</a></li>
+					<li class="navigationButton navigationButton2"><a href="Admin Ansicht.html" class="navigation">Admin Ansicht</a></li>
+				</ul>
+			</section>
+		</main>
+	</body>
+</html>
