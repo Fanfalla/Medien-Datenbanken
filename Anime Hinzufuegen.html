@@ -37,8 +37,12 @@
 				</tr>
 				<tr>
 					<td class="tdHinzufuegen">Beschreibung</td>
+					<td class="tdHinzufuegen">Insgesamte Folgen Anzahl</td>
+					<td class="tdHinzufuegen">Folgen Länge in Minuten</td>
 				</tr>
 				<tr>
+					<td class="tdHinzufuegen"><input type="text" id="Folgen" placeholder="Anzahl der Folgen"></td>
+					<td class="tdHinzufuegen"><input type="text" id="Dauer" placeholder="Dauer der Folgen"></td>
 					<td class="tdHinzufuegen"><input type="text" id="Beschreibung" placeholder="Beschreibung"></input></td>
 				</tr>
 				<tr>
@@ -54,7 +58,6 @@
 					<td class="tdHinzufuegen">Season</td>
 					<td class="tdHinzufuegen">Start Datum</td>
 					<td class="tdHinzufuegen">End Datum</td>
-					<td class="tdHinzufuegen">Studio</td>
 				</tr>
 				<tr>
 					<td class="tdHinzufuegen">
@@ -81,14 +84,13 @@
 					<td class="tdHinzufuegen"><input type="date" id="StartDate" min="1998-01-01"></input></td>
 					<td class="tdHinzufuegen"><input type="date" id="EndDate" min="1998-01-01"></input></td>
 					<td class="tdHinzufuegen">
-						<select id="Studio" class="dropdownMenue">
-							<option value="0">---</option>
-						</select>
+						
 					</td class="tdHinzufuegen">
 				</tr>
 				<tr>
 					<td class="tdHinzufuegen">Genres</td>
-					<td class="tdHinzufuegen"Source</td>
+					<td class="tdHinzufuegen">Studio</td>
+					<td class="tdHinzufuegen">Source</td>
 				</tr>
 				<tr>
 					<td class="tdHinzufuegen">
@@ -112,6 +114,11 @@
 							<option value="Sport">Sport</option>
 							<option value="Supernatural">Supernatural</option>
 							<option value="Thriler">Thriler</option>
+						</select>
+					</td>
+					<td>
+						<select id="Studio" class="dropdownMenue">
+							<option value="0">---</option>
 						</select>
 					</td>
 					<td class="tdHinzufuegen">
@@ -141,11 +148,9 @@
 					<td></td>
 					<td></td>
 					<td></td>
-					<td></td>
 					<td class="tdHinzufuegen"><button>Submit</button></td>
 				</tr>
 			</table>
-		</main>
 			</section>
 		</main>
 	</body>

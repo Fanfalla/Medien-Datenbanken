@@ -3,6 +3,13 @@ body{
 	padding-bottom: 10px;
 	overflow-x: hidden;
 	font-family: Arial, sans-serif;
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+	overflow-y: scroll;
+}
+.body::-webkit-scrollbar {
+	display: none;
+}
 }
 
 .startseiteH1 {
@@ -204,7 +211,12 @@ body{
 
 	/* Admin */
 .adminBody {
-	overflow-y: hidden;
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+	overflow-y: scroll;
+}
+.adminBody::-webkit-scrollbar {
+	display: none;
 }
 
 .adminNavigation{
@@ -216,8 +228,8 @@ body{
 	padding-top: 5%;
 	background-color: #000000;
 }
-
 .adminBox{
+
 	position: absolute;
 	width: 17%;
 	height: 100%;
@@ -266,7 +278,6 @@ body{
 	
 .AnimeUebersichtBox {
 	position: absolute;
-	width: 70%;
 	top: 9%;
 	left: 20%;
 	background-color: #2E2E2E;
@@ -279,7 +290,7 @@ body{
 }
 
 .tableTDAnimeHinzufuegen {
-  width: 200px;
+	width: 200px;
   }
 
 .tableTDerw {
@@ -312,4 +323,14 @@ body{
 .impressum{
 	color: #FAFAFA;
 }
+.list_1 {
+  display: flex;
+  overflow-y: auto;
+  list-style: none;
+}
 
+.list_2 {
+  display: flex;
+  overflow-y: auto;
+  list-style: none;
+}
