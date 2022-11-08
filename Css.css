@@ -5,11 +5,11 @@ body{
 	font-family: Arial, sans-serif;
 }
 
-table, th, td {
+.table, th, td {
 	padding: 0.5%;
 }
 
-td {
+.td {
 	width: 250px;
 }
 
@@ -272,4 +272,12 @@ td {
 
 .impressum{
 	color: #FAFAFA;
+}
+.rot{
+	color: red;
+}
+.tablecenter{
+	margin-left: auto;
+	margin-right: auto;
+	width: 150px;
 }
