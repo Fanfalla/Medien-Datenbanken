@@ -334,9 +334,14 @@ body{
 }
 
 .list_2 {
-	
 	display: flex;
 	overflow-y: auto;
 	list-style: none;
 	margin-top: 0%
+}
+
+.list_2 {
+  display: flex;
+  overflow-y: auto;
+  list-style: none;
 }
