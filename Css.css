@@ -167,6 +167,24 @@ body{
 	width: 100px;
 }
 
+.pictureTable {
+	text-align: center;
+
+}
+
+.picture {
+	height:75%;
+	width: 70%;
+
+}
+
+.datenbankBox {
+	position: absolute;
+	top: 8%;
+	left: 2%;
+	right: 2%;
+}
+
 	/* Registration*/
 
 .tableRegistration {
@@ -294,3 +312,4 @@ body{
 .impressum{
 	color: #FAFAFA;
 }
+
