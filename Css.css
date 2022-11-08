@@ -3,10 +3,17 @@ body{
 	padding-bottom: 10px;
 	overflow-x: hidden;
 	font-family: Arial, sans-serif;
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+	overflow-y: scroll;
+}
+.body::-webkit-scrollbar {
+	display: none;
 }
 
 .startseiteH1 {
 	text-align: center;
+	color:rgb(143, 16, 16);
 	margin-top: 1%;
 }
 
@@ -37,12 +44,12 @@ body{
 
 .navigation{
 	display: block;
-	color: #FAFAFA;
+	color: #fafafaa9;
 	text-align: center;
 	text-decoration: none;
 	padding-bottom: 5%;
 	padding-top: 5%;
-	background-color: #000000;
+	background-color: rgb(143, 16, 16);
 }
 
 .navigationBox{
@@ -51,25 +58,27 @@ body{
 	top: 10%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-	background-color: #2E2E2E;
+	background-color: rgb(143, 16, 16);
 	border: 3px solid black;
 }
 
 .navigationBox2{
-	position: relative;
+	position: absolute;
 	width: 100%;
 	top: 103%;
 	left: 50%;
 	background-color: #2E2E2E;
 	transform: translate(-50%, -50%);
+	border: 3px solid black;
+	margin-top: 2%;
 }
 
 .navigationButton {
 	float: left;
 	width: 10%;
 	height: 100%;
-	padding-right: 5%;
-	padding-left: 5%;
+	padding-right: 3%;
+	padding-left: 3%;
 	font-size: 18px;
 }
 
@@ -84,8 +93,7 @@ body{
 }
 
 .navigation:hover{
-	background-color: #FAFAFA;
-	color: black;
+	color: #fafafaea;
 }
 
 .searchBar {
@@ -94,10 +102,9 @@ body{
 }
 	/* Home */
 	
-.mainBox{
+.mainBox {
 	position: Absolute;
 	width: 100%;
-	height: 77%;
 	top: 15%;
 	left: 50%;
 	transform: translate(-50%, 0%);
@@ -106,16 +113,21 @@ body{
 }
 
 .DiashowBild {
-	position: absolute;
+	position: relative;
 	left: 2.5%;
-	top: 5%;
-	bottom: 5%;
-	width: 50%;
-	height: 90%;
-	background-color: #676767;
+	width: 49%;
+	height: 89%;
 	border: 3px solid black;
-	border-right: 0px;
+	background-color: #676767;
 	padding-right: 0px;
+	padding-bottom 0px;
+	margin: 1%;
+	margin-left: 0%;
+}
+
+.pictureDia {
+	width: 100%;
+	height: 100%;
 }
 
 .DiashowExtra {
@@ -123,11 +135,10 @@ body{
 	right: 2.5%;
 	top: 5%;
 	bottom: 5%;
-	width: 50%;
+	width: 45%;
 	height: 90%;
 	background-color: #767676;
 	border: 3px solid black;
-	border-left: 0px;
 	padding-left: 0px;
 	font-size: 20px;
 }
@@ -158,8 +169,7 @@ body{
 }
 
 .filter {
-	position: absolute;
-	top: 10px;
+	margin: 1%;
 	left: 5%;
 }
 
@@ -169,19 +179,18 @@ body{
 
 .pictureTable {
 	text-align: center;
-
 }
 
 .picture {
 	height:75%;
 	width: 70%;
-
+	margin-top: 2%;
 }
 
 .datenbankBox {
 	position: absolute;
-	top: 8%;
-	left: 2%;
+	transform: translate(-50%, 0%);
+	top: 25%;
 	right: 2%;
 }
 
@@ -204,7 +213,12 @@ body{
 
 	/* Admin */
 .adminBody {
-	overflow-y: hidden;
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+	overflow-y: scroll;
+}
+.adminBody::-webkit-scrollbar {
+	display: none;
 }
 
 .adminNavigation{
@@ -216,8 +230,8 @@ body{
 	padding-top: 5%;
 	background-color: #000000;
 }
-
 .adminBox{
+
 	position: absolute;
 	width: 17%;
 	height: 100%;
@@ -266,7 +280,6 @@ body{
 	
 .AnimeUebersichtBox {
 	position: absolute;
-	width: 70%;
 	top: 9%;
 	left: 20%;
 	background-color: #2E2E2E;
@@ -279,12 +292,13 @@ body{
 }
 
 .tableTDAnimeHinzufuegen {
-  width: 200px;
+	width: 200px;
   }
 
 .tableTDerw {
 	text-align: center;
 }
+/*git hub will einen nur verarschen 1*/
 
 .tableTDerw2 {
 	font-size: 25px;
@@ -312,4 +326,17 @@ body{
 .impressum{
 	color: #FAFAFA;
 }
+.list_1 {
+  display: flex;
+  overflow-y: auto;
+  list-style: none;
+  margin-bottom: 0.5%;
+}
 
+.list_2 {
+	
+	display: flex;
+	overflow-y: auto;
+	list-style: none;
+	margin-top: 0%
+}
