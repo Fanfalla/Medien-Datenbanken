@@ -5,14 +5,6 @@ body{
 	font-family: Arial, sans-serif;
 }
 
-.table, th, td {
-	padding: 0.5%;
-}
-
-.td {
-	width: 250px;
-}
-
 .startseiteH1 {
 	text-align: center;
 	margin-top: 1%;
@@ -27,16 +19,15 @@ body{
 .loginBox {
 	position: absolute;
 	text-align: center;
-	width: 11%;
-	top: 37px;
 	right: -5%;
+	top: 37px;
 	background-color: #2E2E2E;
 	transform: translate(-50%, -50%);
 	border: 3px solid black;
 }
 
 .loginButton {
-	visibility: hidden;
+	visibility: visible;
 }
 
 .logoutButton {
@@ -174,6 +165,24 @@ body{
 .dropdownMenue {
 	width: 100px;
 }
+
+	/* Registration*/
+
+.tableRegistration {
+	text-align: center;	
+	margin-left: auto;
+	margin-right: auto;
+	width: 150px;
+}
+
+.rot{
+	color: red;
+}
+
+.a {
+	width: 500px;
+}
+
 	/* Admin */
 .adminBody {
 	overflow-y: hidden;
@@ -266,18 +275,21 @@ body{
 	font-size: 17px;
 }
 
+.tableHinzufuegen{
+	padding: 0.5%;
+}
+
+.tdHinzufuegen {
+	padding: 0.5%;
+	width: 250px;
+}
+
 .schatten{
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
 }
 
+	/*Impressum*/
+	
 .impressum{
 	color: #FAFAFA;
-}
-.rot{
-	color: red;
-}
-.tablecenter{
-	margin-left: auto;
-	margin-right: auto;
-	width: 150px;
 }
