@@ -18,60 +18,60 @@
 		<main>
 			<h1 class="startseiteH1">Manga Hinzuf&uuml;gen</h1>
 			<section class="AnimeUebersichtBox">
-			<table class="tableAnimeHinzufuegen tableTDerw3">
+			<table class="tableAnimeHinzufuegen tableTDerw3 tableHinzufuegen">
 				<tr class="tableTDerw2">
-					<td colspan="2"><b>Eintrag Hinzuf&uuml;gen</b></td>
+					<td colspan="2" class="tdHinzufuegen"><b>Eintrag Hinzuf&uuml;gen</b></td>
 				</tr>
 				<tr>
-					<td>Titel</td>
+					<td class="tdHinzufuegen">Titel</td>
 				</tr>
 				<tr>
-					<td>*Romaji</td>
-					<td>Englisch</td>
-					<td>Deutsch</td>
+					<td class="tdHinzufuegen">*Romaji</td>
+					<td class="tdHinzufuegen">Englisch</td>
+					<td class="tdHinzufuegen">Deutsch</td>
 				</tr>
 				<tr>
-					<td><input type="text" id="Romaji" placeholder="Romaji Titel"></input></td>
-					<td><input type="text" id="Englisch" placeholder="Englischer Titel"></td>
-					<td><input type="text" id="Deutsch" placeholder="Deutscher Titel"></td>
+					<td class="tdHinzufuegen"><input type="text" id="Romaji" placeholder="Romaji Titel"></input></td>
+					<td class="tdHinzufuegen"><input type="text" id="Englisch" placeholder="Englischer Titel"></td>
+					<td class="tdHinzufuegen"><input type="text" id="Deutsch" placeholder="Deutscher Titel"></td>
 				</tr>
 				<tr>
-					<td>*Beschreibung</td>
+					<td class="tdHinzufuegen">*Beschreibung</td>
 				</tr>
 				<tr>
-					<td><input type="text" id="Beschreibung" placeholder="Beschreibung"></input></td>
+					<td class="tdHinzufuegen"><input type="text" id="Beschreibung" placeholder="Beschreibung"></input></td>
 				</tr>
 				<tr>
-					<td>Chapter</td>
-					<td>Volume</td>
+					<td class="tdHinzufuegen">Chapter</td>
+					<td class="tdHinzufuegen">Volume</td>
 				</tr>
 				<tr>
-					<td><input type="text" id="Folgen" placeholder="Anzahl der Folgen"></td>
-					<td><input type="text" id="Dauer" placeholder="Dauer der Folgen"></td>
+					<td class="tdHinzufuegen"><input type="text" id="Folgen" placeholder="Anzahl der Folgen"></td>
+					<td class="tdHinzufuegen"><input type="text" id="Dauer" placeholder="Dauer der Folgen"></td>
 				</tr>
 				<tr>
-					<td>*Format</td>
-					<td>Start Datum</td>
-					<td>End Datum</td>
+					<td class="tdHinzufuegen">*Format</td>
+					<td class="tdHinzufuegen">Start Datum</td>
+					<td class="tdHinzufuegen">End Datum</td>
 				</tr>
 				<tr>
-					<td>
-				<select id="Format" class="dropdownMenue">
-					<option value="0">---</option>
-					<option value="Manga">Manga</option>
-					<option value="Light Novel">Light Novel</option>
-					<option value="One Shot">One Shot</option>
-				</select>
+					<td class="tdHinzufuegen">
+						<select id="Format" class="dropdownMenue">
+							<option value="0">---</option>
+							<option value="Manga">Manga</option>
+							<option value="Light Novel">Light Novel</option>
+							<option value="One Shot">One Shot</option>
+						</select>
 					</td>
-					<td><input type="date" id="StartDate" min="1998-01-01"></input></td>
-					<td><input type="date" id="EndDate" min="1998-01-01"></input></td>
+					<td class="tdHinzufuegen"><input type="date" id="StartDate" min="1998-01-01"></input></td>
+					<td class="tdHinzufuegen"><input type="date" id="EndDate" min="1998-01-01"></input></td>
 				</tr>
 				<tr>
-					<td>Genres</td>
-					<td>Source</td>
+					<td class="tdHinzufuegen">Genres</td>
+					<td class="tdHinzufuegen">Source</td>
 				</tr>
 				<tr>
-					<td>
+					<td class="tdHinzufuegen">
 						<select id="Genre" class="dropdownMenue">
 							<option value="0">---</option>
 							<option value="Action">Action</option>
@@ -94,7 +94,7 @@
 							<option value="Thriler">Thriler</option>
 						</select>
 					</td>
-					<td>
+					<td class="tdHinzufuegen">
 						<select id="Source" class="dropdownMenue">
 							<option value="0">---</option>
 							<option value="Original">Original</option>
@@ -110,18 +110,20 @@
 					</td>
 				</tr>
 				<tr>
-					<td colspan="2">Bild Cover</td>
-					<td colspan="2">Diashow Bild</td>
+					<td colspan="2" class="tdHinzufuegen">Bild Cover</td>
+					<td colspan="2" class="tdHinzufuegen">Diashow Bild</td>
 				</tr>
 				<tr>
-					<td colspan="2"><input type="url" id="Cover" pattern="*.jpg" placeholder="Cover"></input></td>
-					<td colspan="2"><input type="url" id="Diashow" pattern="*.jpg" placeholder="Diashow Bild f&uuml;r die Startseite"></input></td>
+					<td colspan="2" class="tdHinzufuegen"><input type="url" id="Cover" pattern="*.jpg" placeholder="Cover"></input></td>
+					<td colspan="2" class="tdHinzufuegen"><input type="url" id="Diashow" pattern="*.jpg" placeholder="Diashow Bild f&uuml;r die Startseite"></input></td>
 				</tr>
 				<tr class="tableTDerw">
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td><td><button>Submit</button></td></tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td class="tdHinzufuegen"><button>Submit</button></td>
+				</tr>
 			</table>
 	</body>
 </html>
