@@ -7,6 +7,7 @@ body{
 
 .startseiteH1 {
 	text-align: center;
+	color:rgb(143, 16, 16);
 	margin-top: 1%;
 }
 
@@ -37,12 +38,12 @@ body{
 
 .navigation{
 	display: block;
-	color: #FAFAFA;
+	color: #fafafaa9;
 	text-align: center;
 	text-decoration: none;
 	padding-bottom: 5%;
 	padding-top: 5%;
-	background-color: #000000;
+	background-color: rgb(143, 16, 16);
 }
 
 .navigationBox{
@@ -51,7 +52,7 @@ body{
 	top: 10%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-	background-color: #2E2E2E;
+	background-color: rgb(143, 16, 16);
 	border: 3px solid black;
 }
 
@@ -68,8 +69,8 @@ body{
 	float: left;
 	width: 10%;
 	height: 100%;
-	padding-right: 5%;
-	padding-left: 5%;
+	padding-right: 3%;
+	padding-left: 3%;
 	font-size: 18px;
 }
 
@@ -84,8 +85,7 @@ body{
 }
 
 .navigation:hover{
-	background-color: #FAFAFA;
-	color: black;
+	color: #fafafaea;
 }
 
 .searchBar {
