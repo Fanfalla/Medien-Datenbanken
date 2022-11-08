@@ -10,7 +10,6 @@ body{
 .body::-webkit-scrollbar {
 	display: none;
 }
-}
 
 .startseiteH1 {
 	text-align: center;
@@ -64,12 +63,14 @@ body{
 }
 
 .navigationBox2{
-	position: relative;
+	position: absolute;
 	width: 100%;
 	top: 103%;
 	left: 50%;
 	background-color: #2E2E2E;
 	transform: translate(-50%, -50%);
+	border: 3px solid black;
+	margin-top: 2%;
 }
 
 .navigationButton {
@@ -101,10 +102,9 @@ body{
 }
 	/* Home */
 	
-.mainBox{
+.mainBox {
 	position: Absolute;
 	width: 100%;
-	height: 77%;
 	top: 15%;
 	left: 50%;
 	transform: translate(-50%, 0%);
@@ -113,16 +113,21 @@ body{
 }
 
 .DiashowBild {
-	position: absolute;
+	position: relative;
 	left: 2.5%;
-	top: 5%;
-	bottom: 5%;
-	width: 50%;
-	height: 90%;
-	background-color: #676767;
+	width: 49%;
+	height: 89%;
 	border: 3px solid black;
-	border-right: 0px;
+	background-color: #676767;
 	padding-right: 0px;
+	padding-bottom 0px;
+	margin: 1%;
+	margin-left: 0%;
+}
+
+.pictureDia {
+	width: 100%;
+	height: 100%;
 }
 
 .DiashowExtra {
@@ -130,11 +135,10 @@ body{
 	right: 2.5%;
 	top: 5%;
 	bottom: 5%;
-	width: 50%;
+	width: 45%;
 	height: 90%;
 	background-color: #767676;
 	border: 3px solid black;
-	border-left: 0px;
 	padding-left: 0px;
 	font-size: 20px;
 }
@@ -165,8 +169,7 @@ body{
 }
 
 .filter {
-	position: absolute;
-	top: 10px;
+	margin: 1%;
 	left: 5%;
 }
 
@@ -176,19 +179,18 @@ body{
 
 .pictureTable {
 	text-align: center;
-
 }
 
 .picture {
 	height:75%;
 	width: 70%;
-
+	margin-top: 2%;
 }
 
 .datenbankBox {
 	position: absolute;
-	top: 8%;
-	left: 2%;
+	transform: translate(-50%, 0%);
+	top: 25%;
 	right: 2%;
 }
 
@@ -327,10 +329,13 @@ body{
   display: flex;
   overflow-y: auto;
   list-style: none;
+  margin-bottom: 0.5%;
 }
 
 .list_2 {
-  display: flex;
-  overflow-y: auto;
-  list-style: none;
+	
+	display: flex;
+	overflow-y: auto;
+	list-style: none;
+	margin-top: 0%
 }
