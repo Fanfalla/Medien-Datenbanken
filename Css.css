@@ -393,6 +393,11 @@ body{
 .tableTDerw {
 	text-align: center;
 }
+<<<<<<< HEAD
+=======
+/*git hub will einen nur verarschen*/
+/*git hub will einen nur verarschen 1*/
+>>>>>>> d40d20188f753792a2386c81daf98f4b96919011
 
 .tableTDerw2 {
 	font-size: 25px;
@@ -428,7 +433,13 @@ body{
 }
 
 .list_2 {
-	
+	display: flex;
+	overflow-y: auto;
+	list-style: none;
+	margin-top: 0%
+}
+
+.list_2 {
 	display: flex;
 	overflow-y: auto;
 	list-style: none;
