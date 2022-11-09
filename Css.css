@@ -27,7 +27,7 @@ body{
 	position: absolute;
 	text-align: center;
 	top: 37px;
-	right: -5%;
+	right: -4%;
 	top: 37px;
 	background-color: #2E2E2E;
 	transform: translate(-50%, -50%);
@@ -39,7 +39,8 @@ body{
 }
 
 .logoutButton {
-	visibility: visible;
+	visibility: hidden;
+	right: 0%;
 }
 
 .navigation{
@@ -160,6 +161,18 @@ body{
 
 	/* Datenbank Übersicht*/
 	
+.genreAuswahlBox {
+	position: relative;
+	left: 3%;
+	visibility: visible;
+}
+
+.genreAuswahl {
+	width: 70px;
+	height: 30px;
+	visibility: visible;
+}
+	
 .labelSpaceLeft {
 	margin-left: 20px;
 }
@@ -190,14 +203,14 @@ body{
 .datenbankBox {
 	position: absolute;
 	transform: translate(-50%, 0%);
-	top: 25%;
+	top: 27%;
 	right: 2%;
 }
 	/* Datenbank Eintrag */
 	
 .hinterGrundBox {
-	position: Absolute;
-	width: 110%;
+	position: fixed;
+	width: 102%;
 	height: 102%;
 	background-color: #000000;
 	transform: translate(-1%, -10%);
@@ -208,7 +221,7 @@ body{
 }
 	
 .eintragBox {
-	position: Absolute;
+	position: fixed;
 	width: 80%;
 	height: 90%;
 	top: 3%;
@@ -304,6 +317,40 @@ body{
 
 .groesse {
 	width: 265px;
+}
+
+	/* Liste */
+
+.filter2Box {
+	position: relative;
+	width: 10%;
+	height: 80%;
+	border: 3px solid black;
+	background-color: #676767;
+	left: 2%;
+	top: 1%;
+	margin-top: 1%;
+	margin-bottom: 1%;
+}
+
+.filter2 {
+	list-style: none;
+}
+
+.filterMargin {
+	margin-top: 10px;
+}
+
+.dropdownMenueListe {
+	width: 80%;
+}
+
+.filterAnime {
+	visibility: visible;
+}
+
+.filterManga {
+	visibility: visible;
 }
 
 	/* Admin */
