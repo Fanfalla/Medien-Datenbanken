@@ -164,7 +164,7 @@ body{
 .genreAuswahlBox {
 	position: relative;
 	left: 3%;
-	visibility: visible;
+	display: none;
 }
 
 .genreAuswahl {
@@ -328,9 +328,8 @@ body{
 	border: 3px solid black;
 	background-color: #676767;
 	left: 2%;
-	top: 1%;
+	top: 5px;
 	margin-top: 1%;
-	margin-bottom: 1%;
 }
 
 .filter2 {
@@ -342,18 +341,87 @@ body{
 }
 
 .dropdownMenueListe {
+	position: relative;
 	width: 80%;
 }
 
 .filterAnime {
-	visibility: visible;
+	display: block;
 }
 
 .filterManga {
-	visibility: visible;
+	position: relative;
+	display: none;
+}
+
+.genreAuswahlListe {
+	list-style: none;
+	width: 50px;
+	height: 22px;
+}
+
+.genreAuswahlListeV {
+	margin-top: 2px;;
+}
+
+.genreAuswahlListeV1 {
+	display: none;
+}
+
+.genreAuswahlListeV2 {
+	display: none;
+}
+
+.sammlungBoxP {
+	position: absolute;
+	
+}
+
+.sammlungWatching {
+	display: block;
+}
+
+.sammlungCompleted {
+	display: block;
+}
+
+.sammlungPaused {
+	display: none;
+}
+
+.sammlungDropped {
+	display: none;
+}
+
+.sammlungPlanning {
+	display: block;
+}
+
+.sammlungBox {
+	position: relative;
+	background-color: #676767;
+	border: 3px solid black;
+	left: 15%;
+	width: 80%
+}
+
+.sammlungTable {
+	text-align: left;
+	font-size: 30px;
+}
+
+.sammlungTableEX {
+	padding-left: 3%;
+	padding-top: 1%;
+	padding-bottom: 1%;
+}
+
+.sammlungTableTD {
+	width: 290px;
 }
 
 	/* Admin */
+	
 .adminBody {
 	-ms-overflow-style: none;
 	scrollbar-width: none;
@@ -440,11 +508,6 @@ body{
 .tableTDerw {
 	text-align: center;
 }
-<<<<<<< HEAD
-=======
-/*git hub will einen nur verarschen*/
-/*git hub will einen nur verarschen 1*/
->>>>>>> d40d20188f753792a2386c81daf98f4b96919011
 
 .tableTDerw2 {
 	font-size: 25px;
