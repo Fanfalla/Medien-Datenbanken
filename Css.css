@@ -26,9 +26,9 @@ body{
 .loginBox {
 	position: absolute;
 	text-align: center;
-	top: 37px;
-	right: -5%;
-	top: 37px;
+	margin-top: 20%;
+	margin-right: 50%;
+	margin-left: 50%;
 	background-color: #2E2E2E;
 	transform: translate(-50%, -50%);
 	border: 3px solid black;
@@ -39,7 +39,7 @@ body{
 }
 
 .logoutButton {
-	visibility: visible;
+	visibility: hidden;
 }
 
 .navigation{
@@ -55,7 +55,7 @@ body{
 .navigationBox{
 	position: absolute;
 	width: 100%;
-	top: 10%;
+	top: 5%;
 	left: 50%;
 	transform: translate(-50%, -50%);
 	background-color: rgb(143, 16, 16);
@@ -120,7 +120,7 @@ body{
 	border: 3px solid black;
 	background-color: #676767;
 	padding-right: 0px;
-	padding-bottom 0px;
+	padding-bottom: 0px;
 	margin: 1%;
 	margin-left: 0%;
 }
@@ -393,11 +393,6 @@ body{
 .tableTDerw {
 	text-align: center;
 }
-<<<<<<< HEAD
-=======
-/*git hub will einen nur verarschen*/
-/*git hub will einen nur verarschen 1*/
->>>>>>> d40d20188f753792a2386c81daf98f4b96919011
 
 .tableTDerw2 {
 	font-size: 25px;
