@@ -6,59 +6,67 @@
 		<title>Home</title>
 		<link rel="stylesheet" href="Css.css">
 	</head>
+	
 	<body>
-		<section class="loginBox loginButton">
-			<table>
-				<tr>
-					<td><input type="text" id="suche" placeholder="Username"></td>
-					<td rowspan="2"><button>Login</button></td>
-				</tr>
-					<td><input type="password" id="suche" placeholder="Password"></td>	
-				</tr>
-			</table>
-		</section>
-		<section class="loginBox logoutButton">
-			<button>Logout</button>
-		</section>
-		<section class="navigationBox schatten">
+	<header>
+		<h1 class="startseiteH1">Startseite</h1>
+		<nav class="navigationBox schatten">
 			<ul class="navigationList">
-				<li class="navigationButton navigationButtonTOP"><a href="Home.html" class="navigation">Startseite</a></li>
-				<li class="navigationButton navigationButtonTOP"><a href="Datenbank Uebersicht Anime.html" class="navigation">Animes</a></li>
-				<li class="navigationButton navigationButtonTOP"><a href="Datenbank Uebersicht Manga.html" class="navigation">Mangas</a></li>
-				<li class="navigationButton navigationButtonTOP"><a href="Registration.html" class="navigation">Registration</a></li>
-				<li class="navigationButton navigationButtonTOP"><a href="Login.html" class="navigation">Log in</a></li>
+				<li class="navigationButton"><a href="Home.html" class="navigation">Startseite</a></li>
+				<li class="navigationButton"><a href="Datenbank Uebersicht Anime.html" class="navigation">Animes</a></li>
+				<li class="navigationButton"><a href="Datenbank Uebersicht Manga.html" class="navigation">Mangas</a></li>
+				<li class="navigationButton"><a href="Registration.html" class="navigation">Registration</a></li>
+				<li class="navigationButton"><a href="Login.html" class="navigation">Log in</a></li>
 				<li><input type="text" id="suche" placeholder="Suche..." class="searchBar"></li>
 			</ul>
-		</section>
-		<main>
-		<section class="mainBox schatten">
-			<section class="DiashowBild">
-				<image src="Bilder/One Piece 8.jpg" class="pictureDia"></image>
-			</section>
-			<section class="DiashowExtra">
+		</nav>
+	</header>
+		<main class="mainBox row">
+		
+				<article class="">
+					<image src="Bilder/One Piece 8.jpg" class="pictureDia"></image>
+				</article>
+			
+				<td><aside class="DiashowExtra ">
 				<h2 class="startseiteH2 ">One Piece</h2>
-				<p class="labelSpaceLeft">Monkey D. Ruffy hat nur ein Ziel: Er will der König der Piraten werden! Gemeinsam mit seiner Crew – der berühmt-berüchtigten Strohhutbande –
-						begibt er sich auf die Suche nach dem legendärsten Schatz aller Zeiten: Dem sagenumwobenen One Piece! 
-						<br>
-						<br>
-						(Quelle: crunchyroll)
-				</p>
+				<p class="labelSpaceLeft">
+						Monkey D. Ruffy hat nur ein Ziel: Er will der König der Piraten werden! 
+						Gemeinsam mit seiner Crew – der berühmt-berüchtigten Strohhutbande –
+						begibt er sich auf die Suche nach dem legendärsten Schatz aller Zeiten: 
+						Dem sagenumwobenen One Piece!  </p>
+				
+				<p class="labelSpaceLeft">(Quelle: crunchyroll)</p>
 				<br>
-				<br>
-				<ul>
-					<li class="tableTDList"><table><td class="tableTD">Jahr:</td><td>1999</td></tr></table></li>
-					<li class="tableTDList"><table><td class="tableTD">Format:</td><td>TV</td></tr></table></li>
-					<li class="tableTDList"><table><td class="tableTD">Status:</td><td>Releasing</td></tr></table></li>
-					<li class="tableTDList"><table><td class="tableTD">Folgen:</td><td>1000+</td></tr></table></li>
-					<li class="tableTDList"><table><td class="tableTD">Studio:</td><td>Toei Animation</td></tr></table></li>
-				</ul>
-			</section>
-			<section class="navigationBox2 schatten">
+					<table class="padding">
+					<tr>
+						 <td class="tableTD tableTDList">Jahr:</td>
+						 <td>1999</td>
+					</tr>
+					<tr>
+						 <td class="tableTD tableTDList">Format:</td>
+						 <td>TV</td>
+					</tr>
+					<tr>
+						 <td class="tableTD tableTDList">Status:</td>
+						 <td>Releasing</td>
+					</tr>
+					<tr>
+						 <td class="tableTD tableTDList">Folgen:</td>
+						 <td>1000+</td>
+					</tr>
+					<tr>
+						 <td class="tableTD tableTDList">Studio:</td>
+						 <td>Toei Animation</td>
+					</tr>
+					</table>
+				</tr>
+		</main>
+		<footer class="navigationBox2 schatten">
 				<ul class="navigationList">
 					<li class="navigationButton"><a href="Impressum.html" class="navigation">Impressum</a></li>
 					<li class="navigationButton navigationButton2"><a href="Admin Ansicht.html" class="navigation">Admin Ansicht</a></li>
 				</ul>
-			</section>
-		</main>
+		</footer>
 	</body>
+	
 </html>
