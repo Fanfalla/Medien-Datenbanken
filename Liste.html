@@ -3,33 +3,28 @@
 	<head>
 	<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>Home</title>
+		<title>Meine Liste</title>
 		<link rel="stylesheet" href="Css.css">
 	</head>
+	
 	<body>
-		<h1 class="startseiteH1">Liste</h1>
-		<section class="loginBox">
-			<button>Logout</button>
-		</section>
-		<section class="navigationBox schatten">
+	<header>
+		<h1 class="startseiteH1">Meine Liste</h1>
+		<nav class="navigationBox schatten">
 			<ul class="navigationList">
-				<li class="navigationButton navigationButtonTOP"><a href="Home.html" class="navigation">Startseite</a></li>
-				<li class="navigationButton navigationButtonTOP"><a href="Datenbank Uebersicht Anime.html" class="navigation">Animes</a></li>
-				<li class="navigationButton navigationButtonTOP"><a href="Datenbank Uebersicht Manga.html" class="navigation">Mangas</a></li>
-				<li class="navigationButton navigationButtonTOP"><a href="Profil.html" class="navigation">Einstellungen</a></li>
-				<li class="navigationButton navigationButtonTOP"><a href="Liste.html" class="navigation">Meine Liste</a></li>
-				<li><input type="text" id="suche" placeholder="Suche..."" class="searchBar"></li>
+				<li class="navigationButton"><a href="Home.html" class="navigation">Startseite</a></li>
+				<li class="navigationButton"><a href="Datenbank Uebersicht Anime.html" class="navigation">Animes</a></li>
+				<li class="navigationButton"><a href="Datenbank Uebersicht Manga.html" class="navigation">Mangas</a></li>
+				<li class="navigationButton"><a href="Registration.html" class="navigation">Registration</a></li>
+				<li class="navigationButton"><a href="Login.html" class="navigation">Log in</a></li>
+				<li><input type="text" id="suche" placeholder="Suche..." class="searchBar"></li>
 			</ul>
-		</section>
-		<main class="mainBox">
-			<section class="navigationBox2 schatten">
-				<ul class="navigationList">
-					<li class="navigationButton"><a href="Home.html" class="navigation">Impressum</a></li>
-					<li class="navigationButton navigationButton2"><a href="Admin Ansicht.html" class="navigation">Admin Ansicht</a></li>
-				</ul>
-			</section>
-			<section class="filter2Box">
-				<ul class="filter2">
+		</nav>
+	</header>
+		
+		<main class="mainBox2">	
+			<article class="filter2Box">
+				<ul class="filter2 ">
 					<li class="filterMargin">Medium:</li>
 					<li>
 						<select id="Medium" class="dropdownMenue dropdownMenueListe">
@@ -172,8 +167,8 @@
 						</select>
 					</li>
 				</ul>
-			</section>
-			<section class="sammlungBox">
+			</article>
+			<article class="sammlungBox">
 				<section class="filterAnime">
 					<table id="watching" class="pictureTable sammlungWatching sammlungTableEX">
 						<tr>
@@ -240,10 +235,21 @@
 						</tr>
 						<tr class="pictureTableExtra">
 							<td class="sammlungTableTD"><image src="Bilder\Anime\Dr Stone 3.png" class="picture schatten"></image></td>
+							<td class="sammlungTableTD"><image src="Bilder\Anime\Dr Stone 3.png" class="picture schatten"></image></td>
+							<td class="sammlungTableTD"><image src="Bilder\Anime\Dr Stone 3.png" class="picture schatten"></image></td>
+							<td class="sammlungTableTD"><image src="Bilder\Anime\Dr Stone 3.png" class="picture schatten"></image></td>
+							<td class="sammlungTableTD"><image src="Bilder\Anime\Dr Stone 3.png" class="picture schatten"></image></td>
 						</tr>
 					</table>
 				</section>
-			</section>
+			</article>
+			
+			<footer class="navigationBox2 schatten">
+						<ul class="navigationList">
+							<li class="navigationButton"><a href="Home.html" class="navigation">Impressum</a></li>
+							<li class="navigationButton navigationButton2"><a href="Admin Ansicht.html" class="navigation">Admin Ansicht</a></li>
+						</ul>
+			</footer>	
 		</main>
 	</body>
 </html>

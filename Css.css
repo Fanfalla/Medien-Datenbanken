@@ -1,4 +1,3 @@
-
 body{
 	background-color: #151515;
 	padding-bottom: 10px;
@@ -7,15 +6,25 @@ body{
 	-ms-overflow-style: none;
 	scrollbar-width: none;
 	overflow-y: scroll;
+	display:flex;
 }
-.body::-webkit-scrollbar {
+body::-webkit-scrollbar {
 	display: none;
+}
+
+footer {
+	display: block;
+}
+
+nav {
+	display: block;
 }
 
 .startseiteH1 {
 	text-align: center;
 	color:rgb(143, 16, 16);
 	margin-top: 1%;
+	position: absolute;
 }
 
 .startseiteH2 {
@@ -24,26 +33,12 @@ body{
 	margin-top: 1%;
 }
 
-.loginBox {
-	position: absolute;
-	text-align: center;
-	top: 37px;
-	right: -4%;
-	top: 37px;
-	background-color: #2E2E2E;
-	transform: translate(-50%, -50%);
-	border: 3px solid black;
+.schatten{
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
 }
 
-.loginButton {
-	visibility: visible;
-}
-
-.logoutButton {
-	visibility: hidden;
-	right: 0%;
-}
-
+ /* Navigaion */
+ 
 .navigation{
 	display: block;
 	color: #fafafaa9;
@@ -92,11 +87,13 @@ body{
 	list-style: none;
 	margin-top: 0px;
 	margin-bottom: 0px;
+
 }
 
 .navigation:hover{
 	color: #fafafaea;
 }
+
 
 .searchBar {
 	margin-top: 0.4%;
@@ -113,36 +110,28 @@ body{
 	background-color: #2E2E2E;
 	border: 3px solid black;
 }
-
-.DiashowBild {
-	position: relative;
-	left: 2.5%;
-	width: 49%;
-	height: 89%;
-	border: 3px solid black;
-	background-color: #676767;
-	padding-right: 0px;
-	padding-bottom 0px;
-	margin: 1%;
-	margin-left: 0%;
-}
-
 .pictureDia {
 	width: 100%;
-	height: 100%;
+	border: 3px solid black;
+	float: left;
+	margin-bottom: 50px;
+	margin-left: 50px;
+	margin-top: 50px;
 }
 
 .DiashowExtra {
-	position: absolute;
-	right: 2.5%;
-	top: 5%;
-	bottom: 5%;
-	width: 45%;
-	height: 90%;
+	width: 100%;
 	background-color: #767676;
 	border: 3px solid black;
-	padding-left: 0px;
 	font-size: 20px;
+	float: right;
+	margin-bottom: 50px;
+	margin-right: 50px;
+	margin-top: 50px;
+	
+}
+.row{
+	display: flex;
 }
 
 .tableHome {
@@ -315,17 +304,36 @@ body{
 .rot{
 	color: red;
 }
-
 .groesse {
 	width: 265px;
+}
+
+/* Login */
+.loginBox {
+	position: absolute;
+	text-align: center;
+	margin-top: 20%;
+	margin-right: 50%;
+	margin-left: 50%;
+	background-color: #2E2E2E;
+	transform: translate(-50%, -50%);
+	border: 3px solid black;
+}
+
+.loginButton {
+	visibility: visible;
+}
+
+.logoutButton {
+	visibility: hidden;
+	right: 0%;
 }
 
 	/* Liste */
 
 .filter2Box {
-	position: relative;
+	position: fixed;
 	width: 10%;
-	height: 80%;
 	border: 3px solid black;
 	background-color: #676767;
 	left: 2%;
@@ -335,10 +343,15 @@ body{
 
 .filter2 {
 	list-style: none;
+	display: flex;
+	flex-direction: column;
+	flex: 1 1 auto;
+	overflow-y: auto;
 }
 
 .filterMargin {
 	margin-top: 10px;
+	display:flex;
 }
 
 .dropdownMenueListe {
@@ -362,7 +375,7 @@ body{
 }
 
 .genreAuswahlListeV {
-	margin-top: 2px;;
+	margin-top: 2px;
 }
 
 .genreAuswahlListeV1 {
@@ -374,7 +387,8 @@ body{
 }
 
 .sammlungBoxP {
-	position: absolute;
+	position: static;
+	display:relative;
 	
 }
 
@@ -422,15 +436,6 @@ body{
 }
 
 	/* Admin */
-	
-.adminBody {
-	-ms-overflow-style: none;
-	scrollbar-width: none;
-	overflow-y: scroll;
-}
-.adminBody::-webkit-scrollbar {
-	display: none;
-}
 
 .adminNavigation{
 	display: block;
@@ -442,29 +447,46 @@ body{
 	background-color: #000000;
 }
 .adminBox{
-
 	position: absolute;
-	width: 17%;
-	height: 100%;
+	width: 20%;
+	height: 75%;
+	margin-top: 5%;
 	background-color: #2E2E2E;
 	border: 3px solid black;
-	padding: 0px;
 }
 
+.adminBoxMain1 {
+	position: absolute;
+	width: 50%;
+	height: 75%;
+	margin-Top: 5%;
+	margin-left: 22%;
+	background-color: #767676;
+	border: 3px solid black;
+}
 .adminNavigationButton {
-	margin-top: 1%;
-	margin-bottom: 1%;
+	margin-top: 5%;
 	width: 100%;
 	height: 100%;
 	font-size: 18px;
 }
 
+
 .adminNavigationButton2 {
-	width: 20%;
+	width: 50%;
+	font-size: 15px;
+	text-align: center;
+	float:left;
+	
 }
 
 .adminNavigationButton3 {
-	float: left;
+	width: 50%;
+	font-size: 15px;
+	text-align: center;
+	float:left;
+
+	
 }
 
 .adminNavigationList {
@@ -472,7 +494,7 @@ body{
 	margin-top: 0px;
 	margin-left: 0px;
 	padding-left: 0px;
-	padding-top: 20%;
+	padding-top: 0%;
 }
 
 .adminNavigation:hover{
@@ -480,19 +502,19 @@ body{
 	color: black;
 }
 
-.adminBoxMain1 {
-	position: absolute;
+.list {
 	width: 70%;
-	background-color: #767676;
-	left: 20%;
+	height: 20%;
+	list-style: none;
 }
-
 	/* Anime/Manga Hinzufügen */
 	
 .AnimeUebersichtBox {
 	position: absolute;
-	top: 9%;
-	left: 20%;
+	width: 50%;
+	height: 75%;
+	margin-Top: 5%;
+	margin-left: 22%;
 	background-color: #2E2E2E;
 	border: 3px solid black;
 }
@@ -527,141 +549,19 @@ body{
 	width: 250px;
 }
 
-.schatten{
-	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
-}
 
 	/*Impressum*/
 	
 .impressum{
 	color: #FAFAFA;
-}
-.list_1 {
-  display: flex;
-  overflow-y: auto;
-  list-style: none;
-  margin-bottom: 0.5%;
-}
-
-.list_2 {
-	display: flex;
-	overflow-y: auto;
-	list-style: none;
-	margin-top: 0%
-}
-
-.list_2 {
-	display: flex;
-	overflow-y: auto;
-	list-style: none;
-	margin-top: 0%
-}
-
-body{
-	background-color: #151515;
-	padding-bottom: 10px;
-	overflow-x: hidden;
-	font-family: Arial, sans-serif;
-	-ms-overflow-style: none;
-	scrollbar-width: none;
-	overflow-y: scroll;
-}
-.body::-webkit-scrollbar {
-	display: none;
-}
-
-.startseiteH1 {
-	text-align: center;
-	color:rgb(143, 16, 16);
-	margin-top: 1%;
-}
-
-.startseiteH2 {
-	font-size: 50px;
-	text-align: center;
-	margin-top: 1%;
-}
-
-.loginBox {
-	position: absolute;
-	text-align: center;
-	margin-top: 20%;
-	margin-right: 50%;
-	margin-left: 50%;
-	background-color: #2E2E2E;
-	transform: translate(-50%, -50%);
-	border: 3px solid black;
-}
-
-.loginButton {
-	visibility: visible;
-}
-
-.logoutButton {
-	visibility: hidden;
-}
-
-.navigation{
-	display: block;
-	color: #fafafaa9;
-	text-align: center;
-	text-decoration: none;
-	padding-bottom: 5%;
-	padding-top: 5%;
-	background-color: rgb(143, 16, 16);
-}
-
-.navigationBox{
-	position: absolute;
+	position: Absolute;
 	width: 100%;
-	top: 5%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	background-color: rgb(143, 16, 16);
-	border: 3px solid black;
+	top: 15%;
+	left: 5%;
 }
 
-.navigationBox2{
-	position: absolute;
-	width: 100%;
-	top: 103%;
-	left: 50%;
-	background-color: #2E2E2E;
-	transform: translate(-50%, -50%);
-	border: 3px solid black;
-	margin-top: 2%;
-}
 
-.navigationButton {
-	float: left;
-	width: 10%;
-	height: 100%;
-	padding-right: 3%;
-	padding-left: 3%;
-	font-size: 18px;
-}
-
-.navigationButton2 {
-	float: right;
-	}
-
-.navigationList {
-	list-style: none;
-	margin-top: 0px;
-	margin-bottom: 0px;
-}
-
-.navigation:hover{
-	color: #fafafaea;
-}
-
-.searchBar {
-	margin-top: 0.4%;
-	margin-left: 5%;
-}
-	/* Home */
-	
-.mainBox {
+.mainBox2 {
 	position: Absolute;
 	width: 100%;
 	top: 15%;
@@ -669,334 +569,5 @@ body{
 	transform: translate(-50%, 0%);
 	background-color: #2E2E2E;
 	border: 3px solid black;
-}
-
-.DiashowBild {
-	position: relative;
-	left: 2.5%;
-	width: 49%;
-	height: 89%;
-	border: 3px solid black;
-	background-color: #676767;
-	padding-right: 0px;
-	padding-bottom: 0px;
-	margin: 1%;
-	margin-left: 0%;
-}
-
-.pictureDia {
-	width: 100%;
-	height: 100%;
-}
-
-.DiashowExtra {
-	position: absolute;
-	right: 2.5%;
-	top: 5%;
-	bottom: 5%;
-	width: 45%;
-	height: 90%;
-	background-color: #767676;
-	border: 3px solid black;
-	padding-left: 0px;
-	font-size: 20px;
-}
-
-.tableHome {
-	position: absolute;
-	text-align: center;
-	bottom: 5%;
-}
-
-.tableTDList {
-	list-style: none;
-	margin-right: 5px;
-}
-
-.tableTD {
-	width: 100px;
-}
-
-	/* Datenbank Übersicht*/
-	
-.labelSpaceLeft {
-	margin-left: 20px;
-}
-
-.labelSpaceRight {
-	margin-right: 7px;
-}
-
-.filter {
-	margin: 1%;
-	left: 5%;
-}
-
-.dropdownMenue {
-	width: 100px;
-}
-
-.pictureTable {
-	text-align: center;
-}
-
-.picture {
-	height:75%;
-	width: 70%;
-	margin-top: 2%;
-}
-
-.datenbankBox {
-	position: absolute;
-	transform: translate(-50%, 0%);
-	top: 25%;
-	right: 2%;
-}
-	/* Datenbank Eintrag */
-	
-.hinterGrundBox {
-	position: Absolute;
-	width: 110%;
-	height: 102%;
-	background-color: #000000;
-	transform: translate(-1%, -10%);
-	margin: 0px;
-	padding: 0px;
-	opacity: 40%;
-	visibility: hidden;
-}
-	
-.eintragBox {
-	position: Absolute;
-	width: 80%;
-	height: 90%;
-	top: 3%;
-	left: 11%;
-	background-color: #676767;
-	border: 5px solid black;
-	margin: 0px;
-	visibility: hidden;
-}
-
-.eintragBild{
-	width: 100%;
-	height: 100%;
-}
-
-.eintragBildBox {
-	position: absolute;
-	height: 350px;
-	width: 16%;
-	top: 30px;
-	left: 2%;
-	background-color: #767676;
-	border: 3px solid Black;
-}
-
-.eintragAuswahlBox {
-	position: absolute;
-	height: 5%;
-	width: 15%;
-	top: 400px;
-	left: 2.5%;
-	text-align: center;
-}
-
-.eintragLoeschen {
-	position: absolute;
-	height: 50px;
-	width: 120px;
-	bottom: 0px;
-	background-color: red;
-	border: 3px solid black;
-	text-align: center;
-	margin: 0.5%;
-}
-
-.eintragH1Box {
-	position: absolute;
-	top: 20px;
-	left: 47%;
-	font-size: 50px;
-	margin-top: 0px;
-}
-
-.eintragInfoBox {
-	position: absolute;
-	top: 80px;
-	left: 20%;
-}
-
-.eintragTable {
-	font-size: 20px;
-}
-
-.eintragTable2 {
-	margin-right: 2%;
-}
-
-.eintragTable2 {
-	font-size: 20px;
-	margin-top: 1%;
-}
-
-.eintragTableTD {
-	padding-right: 20px;
-}
-
-.eintragTableTD3 {
-	padding-bottom: 20%;
-}
-
-	/* Registration*/
-
-.tableRegistration {
-	text-align: center;
-	margin-left: auto;
-	margin-right: auto;
-	width: 150px;
-}
-
-.rot{
-	color: red;
-}
-
-.groesse {
-	width: 265px;
-}
-
-	/* Admin */
-.adminBody {
-	-ms-overflow-style: none;
-	scrollbar-width: none;
-	overflow-y: scroll;
-}
-.adminBody::-webkit-scrollbar {
-	display: none;
-}
-
-.adminNavigation{
-	display: block;
-	color: #FAFAFA;
-	text-align: center;
-	text-decoration: none;
-	padding-bottom: 5%;
-	padding-top: 5%;
-	background-color: #000000;
-}
-.adminBox{
-
-	position: absolute;
-	width: 17%;
-	height: 100%;
-	background-color: #2E2E2E;
-	border: 3px solid black;
-	padding: 0px;
-}
-
-.adminNavigationButton {
-	margin-top: 1%;
-	margin-bottom: 1%;
-	width: 100%;
-	height: 100%;
-	font-size: 18px;
-}
-
-.adminNavigationButton2 {
-	width: 20%;
-}
-
-.adminNavigationButton3 {
-	float: left;
-}
-
-.adminNavigationList {
-	list-style: none;
-	margin-top: 0px;
-	margin-left: 0px;
-	padding-left: 0px;
-	padding-top: 20%;
-}
-
-.adminNavigation:hover{
-	background-color: #FAFAFA;
-	color: black;
-}
-
-.adminBoxMain1 {
-	position: absolute;
-	width: 70%;
-	background-color: #767676;
-	left: 20%;
-}
-
-	/* Anime/Manga Hinzufügen */
-	
-.AnimeUebersichtBox {
-	position: absolute;
-	top: 9%;
-	left: 20%;
-	background-color: #2E2E2E;
-	border: 3px solid black;
-}
-
-.tableAnimeHinzufuegen {
-	margin: 3%;
-	border: 3px solid black;
-}
-
-.tableTDAnimeHinzufuegen {
-	width: 200px;
-  }
-
-.tableTDerw {
-	text-align: center;
-}
-
-.tableTDerw2 {
-	font-size: 25px;
-}
-
-.tableTDerw3 {
-	font-size: 17px;
-}
-
-.tableHinzufuegen{
-	padding: 0.5%;
-}
-
-.tdHinzufuegen {
-	padding: 0.5%;
-	width: 250px;
-}
-
-.schatten{
-	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
-}
-
-	/*Impressum*/
-	
-.impressum{
-	color: #FAFAFA;
-}
-.list_1 {
-  display: flex;
-  overflow-y: auto;
-  list-style: none;
-  margin-bottom: 0.5%;
-}
-
-.list_2 {
-	display: flex;
-	overflow-y: auto;
-	list-style: none;
-	margin-top: 0%
-}
-
-.list_2 {
-	display: flex;
-	overflow-y: auto;
-	list-style: none;
-	margin-top: 0%
 }
 

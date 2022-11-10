@@ -7,21 +7,21 @@
 		<link rel="stylesheet" href="Css.css">
 	</head>
 	<body>
-		<section class="loginBox logoutButton">
-			<button>Logout</button>
-		</section>
-		<section class="navigationBox schatten">
-			<ul class="navigationList">
-				<li class="navigationButton navigationButtonTOP"><a href="Home.html" class="navigation">Startseite</a></li>
-				<li class="navigationButton navigationButtonTOP"><a href="Datenbank Uebersicht Anime.html" class="navigation">Animes</a></li>
-				<li class="navigationButton navigationButtonTOP"><a href="Datenbank Uebersicht Manga.html" class="navigation">Mangas</a></li>
-				<li class="navigationButton navigationButtonTOP"><a href="Registration.html" class="navigation">Registration</a></li>
-				<li class="navigationButton navigationButtonTOP"><a href="Login.html" class="navigation">Log in</a></li>
-				<li><input type="text" id="suche" placeholder="Suche..."" class="searchBar"></li>
-			</ul>
-		</section>
+		<header>
+			<h1 class="startseiteH1">Animes</h1>
+			<nav class="navigationBox schatten">
+				<ul class="navigationList">
+					<li class="navigationButton"><a href="Home.html" class="navigation">Startseite</a></li>
+					<li class="navigationButton"><a href="Datenbank Uebersicht Anime.html" class="navigation">Animes</a></li>
+					<li class="navigationButton"><a href="Datenbank Uebersicht Manga.html" class="navigation">Mangas</a></li>
+					<li class="navigationButton"><a href="Registration.html" class="navigation">Registration</a></li>
+					<li class="navigationButton"><a href="Login.html" class="navigation">Log in</a></li>
+					<li><input type="text" id="suche" placeholder="Suche..." class="searchBar"></li>
+				</ul>
+			</nav>
+		</header>
 		<main>
-			<section class="mainBox">
+			<article class="mainBox">
 				<section class="filter">
 					<label class="labelSpaceRight">Genre: </label>
 					<select id="Genre" class="dropdownMenue">
@@ -118,8 +118,8 @@
 					<img src="Bilder\Genres\Action.png" class="genreAuswahl"></img>
 					<img src="Bilder\Genres\Adventure.png" class="genreAuswahl"></img>
 				</section>
-			</section>
-			<section class="mainBox datenbankBox">
+			</article>
+			<article class="mainBox datenbankBox">
 				<table class="pictureTable">
 					<tr class="pictureTableExtra"> 
 						<td class=""><image src="Bilder\Anime\Bleach.png" class="picture schatten"></image> </td> 
@@ -150,16 +150,10 @@
 						<td><image src="Bilder\Anime\Spy x Family 1.5.png" class="picture schatten"></image> </td>
 					</tr>
 				</table>
-				<section class="navigationBox2 schatten">
-					<ul class="navigationList">
-						<li class="navigationButton"><a href="Impressum.html" class="navigation">Impressum</a></li>
-						<li class="navigationButton navigationButton2"><a href="Admin Ansicht.html" class="navigation">Admin Ansicht</a></li>
-					</ul>
-				</section>
-			</section>
-		<section class="hinterGrundBox">
-		</section>
-			<section class="eintragBox schatten">
+			</article>
+		<article class="hinterGrundBox">
+		</article>
+			<article class="eintragBox schatten">
 				<section class="eintragBildBox schatten">
 					<img src="Bilder/Bleach.png" class="eintragBild"></img>
 				</section>
@@ -182,12 +176,12 @@
 				<section class="eintragInfoBox">
 					<table class="eintragTable">
 						<tr>
-							<td class="eintragTableTD"><b><label>Englischer Titel:<label></b></td>
-							<td><label>Bleach<label></td>
+							<td class="eintragTableTD"><b><label>Englischer Titel:</label></b></td>
+							<td><label>Bleach</label></td>
 						</tr>
 						<tr>
-							<td><b><label>Deutscher Titel:<label></b></td>
-							<td><label>Bleach<label></td>
+							<td><b><label>Deutscher Titel:</label></b></td>
+							<td><label>Bleach</label></td>
 						</tr>
 					</table>
 					<table class="eintragTable eintragTable2">
@@ -243,7 +237,13 @@
 						</tr>
 					</table>
 				</section>
-			</section>
+			</article>
 		</main>
+		<footer class="navigationBox2 schatten">
+				<ul class="navigationList">
+					<li class="navigationButton"><a href="Impressum.html" class="navigation">Impressum</a></li>
+					<li class="navigationButton navigationButton2"><a href="Admin Ansicht.html" class="navigation">Admin Ansicht</a></li>
+				</ul>
+		</footer>
 	</body>
 </html>
