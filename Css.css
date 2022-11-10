@@ -7,6 +7,7 @@ body{
 	scrollbar-width: none;
 	overflow-y: scroll;
 	display:flex;
+	
 }
 body::-webkit-scrollbar {
 	display: none;
@@ -571,3 +572,59 @@ nav {
 	border: 3px solid black;
 }
 
+/* Profil */
+
+.bildLinks{
+	border-bottom-right-radius: 25px;
+	border-top-right-radius: 25px;
+    height:auto;
+    padding: 70px;
+    top: 100px;
+    width: 250px;
+	position: fixed;
+	top: 15%;
+	background-color: #2E2E2E;
+	border: 3px solid black;
+	float:right;
+}
+
+
+.profil{
+    margin-bottom: 20px;
+    margin-top: -12px;
+   
+}
+
+.angabe{
+	position: fixed;
+	width: 30%;
+	height:auto;
+	margin-top: 7%;
+	margin-left: 25%;
+	background-color: #2E2E2E;
+	border: 3px solid black;
+	float:right;
+	border-radius: 25px;
+	padding: 50px;
+}
+.daten{
+	font-size:25px;
+	color: black;
+	padding-bottom:10px;
+	text-align:center;
+	
+}
+
+.tableProfil{
+	color: #FFFFFF;
+	width: 420px;
+	
+}
+.trPadding{
+	padding-bottom: 45px;
+}
+
+.trabgabe{
+	text-align:right;
+	padding-top: 25px;
+}
