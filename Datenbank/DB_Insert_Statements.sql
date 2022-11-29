@@ -7,7 +7,7 @@ INSERT INTO Anime (animeeintragid, genreid) VALUES (1, 6);
 
 --AnimeEintrag--
 INSERT INTO AnimeEintrag
-(romaji, englisch, deutsch, folgenanzahl, dauer, startdatum, enddatum, cover, beschreibung, formatid, seasonid, jahrid, sourceid, statusid)
+(romaji, englisch, deutsch, folgenanzahl, dauer, startdatum, enddatum, cover, beschreibung, formatid, seasonid, jahrid, sourceid, statusid, studioid)
 VALUES('ONE PIECE', 'ONE PIECE', 'ONE PIECE', 1042, 24, '1999-10-20', '', '', 'Gold Roger was known as the Pirate King, the strongest and most infamous being to have sailed 
 the Grand Line. The capture and death of Roger by the World Government brought a change throughout the world. His last words before his death revealed the location of the 
 greatest treasure in the world, One Piece. It was this revelation that brought about the Grand Age of Pirates, men who dreamed of finding One Piece (which promises an unlimited 
@@ -15,7 +15,7 @@ amount of riches and fame), and quite possibly the most coveted of titles for th
 defies your standard definition of a pirate. Rather than the popular persona of a wicked, hardened, toothless pirate who ransacks villages for fun, Luffy’s reason for being a 
 pirate is one of pure wonder; the thought of an exciting adventure and meeting new and intriguing people, along with finding One Piece, are his reasons of becoming a pirate. 
 Following in the footsteps of his childhood hero, Luffy and his crew travel across the Grand Line, experiencing crazy adventures, unveiling dark mysteries and battling 
-strong enemies, all in order to reach One Piece', 1, 4, 1, 1, 2);
+strong enemies, all in order to reach One Piece', 1, 4, 1, 1, 2, 4);
 
 --Format--
 INSERT INTO Format (format) VALUES('TV');
@@ -59,7 +59,7 @@ INSERT INTO Jahr (jahr) VALUES(2004);
 INSERT INTO Jahr (jahr) VALUES(2005);
 INSERT INTO Jahr (jahr) VALUES(2006);
 INSERT INTO Jahr (jahr) VALUES(2007);
-INSERT INTO Jahr (jahr) VALUES(2008;
+INSERT INTO Jahr (jahr) VALUES(2008);
 INSERT INTO Jahr (jahr) VALUES(2009);
 INSERT INTO Jahr (jahr) VALUES(2010);
 INSERT INTO Jahr (jahr) VALUES(2011);
@@ -115,3 +115,4 @@ INSERT INTO Status (status) VALUES('Not Yet Released');
 INSERT INTO Studio (studio) VALUES('MADHOUSE');
 INSERT INTO Studio (studio) VALUES('bones');
 INSERT INTO Studio (studio) VALUES('Studio Pierrot');
+INSERT INTO Studio (studio) VALUES('Toei Animation');

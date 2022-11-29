@@ -24,11 +24,13 @@ CREATE TABLE AnimeEintrag (
 	jahrid INTEGER,
 	sourceid INTEGER,
 	statusid INTEGER,
+	studioid INTEGER,
 	CONSTRAINT format FOREIGN KEY(formatid) REFERENCES Format(id),
 	CONSTRAINT season FOREIGN KEY(seasonid) REFERENCES Season(id),
 	CONSTRAINT jahr FOREIGN KEY(jahrid) REFERENCES Jahr(id),
 	CONSTRAINT "source" FOREIGN KEY(sourceid) REFERENCES "Source"(id),
-	CONSTRAINT status FOREIGN KEY(statusid) REFERENCES Status(id)
+	CONSTRAINT status FOREIGN KEY(statusid) REFERENCES Status(id),
+	CONSTRAINT studio FOREIGN KEY(studioid) REFERENCES Studio(id)
 );
 
 -- Format--
