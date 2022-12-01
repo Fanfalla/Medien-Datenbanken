@@ -52,6 +52,9 @@ try {
     // binding endpoints
     const TOPLEVELPATH = '/api';
     console.log('Binding enpoints, top level Path at ' + TOPLEVELPATH);
+
+    var serviceRouter = require('./services/Genre.js');
+    app.use(TOPLEVELPATH, serviceRouter);
     
     /*var serviceRouter = require('./services/land.js');
     app.use(TOPLEVELPATH, serviceRouter);
