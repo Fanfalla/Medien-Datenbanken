@@ -12,7 +12,7 @@ try {
     console.log('Connect database...');
     const Database = require('better-sqlite3');
     const dbOptions = { verbose: console.log };
-    const dbFile = './Datenbank/Datenbank.sqlite';
+    const dbFile = './Datenbank/Datenbank';
     const dbConnection = new Database(dbFile, dbOptions);
 
     // create server
@@ -56,10 +56,10 @@ try {
     var serviceRouter = require('./services/Genre.js');
     app.use(TOPLEVELPATH, serviceRouter);
     
-    /*var serviceRouter = require('./services/land.js');
+    var serviceRouter = require('./services/Season.js');
     app.use(TOPLEVELPATH, serviceRouter);
 
-    serviceRouter = require('./services/adresse.js');
+    /*serviceRouter = require('./services/adresse.js');
     app.use(TOPLEVELPATH, serviceRouter);
 
     serviceRouter = require('./services/person.js');

@@ -1,6 +1,6 @@
 const helper = require('../helper.js');
 
-class GenreDao {
+class JahrDao {
 
     constructor(dbConnection) {
         this._conn = dbConnection;
@@ -11,7 +11,7 @@ class GenreDao {
     }
 
     loadById(id) {
-        var sql = 'SELECT * FROM Genre WHERE id=?';
+        var sql = 'SELECT * FROM Jahr WHERE id=?';
         var statement = this._conn.prepare(sql);
         var result = statement.get(id);
 
@@ -22,7 +22,7 @@ class GenreDao {
     }
 
     loadAll() {
-        var sql = 'SELECT * FROM Genre';
+        var sql = 'SELECT * FROM Jahr';
         var statement = this._conn.prepare(sql);
         var result = statement.all();
 
@@ -33,7 +33,7 @@ class GenreDao {
     }
 
     exists(id) {
-        var sql = 'SELECT COUNT(id) AS cnt FROM Genre WHERE id=?';
+        var sql = 'SELECT COUNT(id) AS cnt FROM Jahr WHERE id=?';
         var statement = this._conn.prepare(sql);
         var result = statement.get(id);
 
@@ -43,10 +43,10 @@ class GenreDao {
         return false;
     }
 
-    create(genre = '') {
-        var sql = 'INSERT INTO Genre (gebre) VALUES (?)';
+    create(jahr = '') {
+        var sql = 'INSERT INTO Jahr (gebre) VALUES (?)';
         var statement = this._conn.prepare(sql);
-        var params = [genre];
+        var params = [jahr];
         var result = statement.run(params);
 
         if (result.changes != 1) 
@@ -55,10 +55,10 @@ class GenreDao {
         return this.loadById(result.lastInsertRowid);
     }
 
-    update(id, genre = '') {
-        var sql = 'UPDATE Genre SET genre=? WHERE id=?';
+    update(id, jahr = '') {
+        var sql = 'UPDATE Jahr SET jahr=? WHERE id=?';
         var statement = this._conn.prepare(sql);
-        var params = [genre, id];
+        var params = [jahr, id];
         var result = statement.run(params);
 
         if (result.changes != 1) 
@@ -69,7 +69,7 @@ class GenreDao {
 
     delete(id) {
         try {
-            var sql = 'DELETE FROM Genre WHERE id=?';
+            var sql = 'DELETE FROM Jahr WHERE id=?';
             var statement = this._conn.prepare(sql);
             var result = statement.run(id);
 
@@ -83,8 +83,8 @@ class GenreDao {
     }
 
     toString() {
-        console.log('GenreDao [_conn=' + this._conn + ']');
+        console.log('JahrDao [_conn=' + this._conn + ']');
     }
 }
 
-module.exports = GenreDao;
+module.exports = JahrDao;
