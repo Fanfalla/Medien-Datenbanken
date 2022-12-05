@@ -53,10 +53,20 @@ serviceRouter.post('/account', function(request, response) {
     console.log('Service Account: Client requested creation of new record');
 
     var errorMsgs=[];
-    if (helper.isUndefined(request.body.kennzeichnung)) 
-        errorMsgs.push('kennzeichnung fehlt');
-    if (helper.isUndefined(request.body.bezeichnung)) 
-        errorMsgs.push('bezeichnung fehlt');
+    if (helper.isUndefined(request.body.benutzername)) 
+        errorMsgs.push('benutzername fehlt');
+    if (helper.isUndefined(request.body.passwort)) 
+        errorMsgs.push('passwort fehlt');
+    if (helper.isUndefined(request.body.antwort)) 
+        errorMsgs.push('antwort fehlt');
+    if (helper.isUndefined(request.body.email)) 
+        errorMsgs.push('email fehlt');
+    if (helper.isUndefined(request.body.profilbild)) 
+        errorMsgs.push('profilbild fehlt');
+    if (helper.isUndefined(request.body.sicherheitsfrageid)) 
+        errorMsgs.push('sicherheitsfrage fehlt');
+    if (helper.isUndefined(request.body.adminid)) 
+        errorMsgs.push('adminid fehlt');
     
     if (errorMsgs.length > 0) {
         console.log('Service Account: Creation not possible, data missing');
@@ -66,7 +76,7 @@ serviceRouter.post('/account', function(request, response) {
 
     const accountDao = new AccountDao(request.app.locals.dbConnection);
     try {
-        var obj = accountDao.create(request.body.kennzeichnung, request.body.bezeichnung);
+        var obj = accountDao.create(request.body.benutzername, request.body.passwort, request.body.antwort, request.body.email, request.body.profilbild, request.body.sicherheitsfrageid, request.body.adminid);
         console.log('Service Account: Record inserted');
         response.status(200).json(obj);
     } catch (ex) {

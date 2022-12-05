@@ -43,10 +43,10 @@ class AccountDao {
         return false;
     }
 
-    create(benutzername='', password='', antwort='', email='', profielbild='', sicherheitsfrageid, adminid=2) {
-        var sql = 'INSERT INTO Account (benutzername, password, antwort, email, profielbild, sicherheitsfrageid, adminid) VALUES (?)';
+    create(benutzername='', passwort='', antwort='', email='', profilbild='', sicherheitsfrageid='', adminid=2) {
+        var sql = 'INSERT INTO Account (benutzername, passwort, antwort, email, profilbild, sicherheitsfrageid, adminid) VALUES (?,?,?,?,?,?,?)';
         var statement = this._conn.prepare(sql);
-        var params = [benutzername, password, antwort, email, profielbild, sicherheitsfrageid, adminid];
+        var params = [benutzername, passwort, antwort, email, profilbild, sicherheitsfrageid, adminid];
         var result = statement.run(params);
 
         if (result.changes != 1) 
@@ -55,10 +55,10 @@ class AccountDao {
         return this.loadById(result.lastInsertRowid);
     }
 
-    update(id, benutzername='', password='', antwort='', email='', profielbild='', sicherheitsfrageid, adminid) {
-        var sql = 'UPDATE Account SET benutzername=?, password=?, antwort=?, email=?, profielbild=?, sicherheitsfrageid=?, adminid WHERE id=?';
+    update(id, benutzername='', passwort='', antwort='', email='', profilbild='', sicherheitsfrageid, adminid) {
+        var sql = 'UPDATE Account SET benutzername=?, passwort=?, antwort=?, email=?, profilbild=?, sicherheitsfrageid=?, adminid WHERE id=?';
         var statement = this._conn.prepare(sql);
-        var params = [benutzername, password, antwort, email, profielbild, sicherheitsfrageid, adminid, id];
+        var params = [benutzername, passwort, antwort, email, profilbild, sicherheitsfrageid, adminid, id];
         var result = statement.run(params);
 
         if (result.changes != 1) 
