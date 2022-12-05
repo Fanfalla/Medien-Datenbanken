@@ -4,6 +4,7 @@
 	<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>Home</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 		<link rel="stylesheet" href="Css.css">
 	</head>
 	<body>
@@ -28,38 +29,29 @@
 					<table class="tableRegistration">
 						<tr>
 
-							<td><input type="text" placeholder="Benutzername"class="groesse"></td>
+							<td><input type="text" placeholder="Benutzername"class="groesse" id="BName"></td>
 						</tr>
 						<tr>	
-							<td><input type="password" placeholder="Passwort"class="groesse"></td>
+							<td><input type="password" placeholder="Passwort"class="groesse" id="Pw1"></td>
 						</tr>
 						<tr>	
-							<td><input type="password" placeholder="Passwort wiederholen"class="groesse"></td>
+							<td><input type="password" placeholder="Passwort wiederholen"class="groesse" id="Pw2"></td>
 						</tr>
 						<tr>
-							<td><input type="text" placeholder="E-mail" class="groesse"><td>
+							<td><input type="text" placeholder="E-mail" class="groesse" id="Email"><td>
 						</tr>
 						<tr>
 							<td>
-								<select>
+								<select id="test">
 									<option value="Placeholder">Sicherheitsfrage</option>
-									<option value="Name vom ersten Haustier?">Name vom ersten Haustier?</option>
-									<option value="Mädchenname Ihrer Mutter?">Mädchenname Ihrer Mutter?</option>
-									<option value="Wie hieß Ihre Schule?">Wie hieß Ihre Schule?</option>
-									<option value="Wo sind Sie geboren?">Wo sind Sie geboren?</option>
-									<option value="In welchem Jahr wurde Ihr Vater geboren?">In welchem Jahr wurde Ihr Vater geboren?</option>
-									<option value="Von welcher Marke war Ihr erstes Auto?">Von welcher Marke war Ihr erstes Auto?</option>
-									<option value="Welche Farbe hatte Ihr erstes Auto?">Welche Farbe hatte Ihr erstes Auto?</option>
-									<option value="Was ist ihr Lieblingsanime?">Was ist ihr Lieblingsanime?</option>
-									<option value="Was ist ihr Lieblingsmanga?">Was ist ihr Lieblingsmanga?</option>
 								</select>
 							</td>
 						</tr>
 						<tr>
-							<td><input type="text" placeholder="Antwort"class="groesse"</td>
+							<td><input type="text" placeholder="Antwort"class="groesse" id="Ans"</td>
 						</tr>
 						<tr>
-							<td><button>Abschicken</button></td>
+							<td><button onClick="Abschicken()">Abschicken</button></td>
 						</tr>
 					</table>
 					<footer class="navigationBox2 schatten">
@@ -70,5 +62,77 @@
 					</footer>
 			</article>
 		</main>
+		<script>
+			$(document).ready(function() {
+            	loadAndDisplaySecurityquestions();
+        	});
+
+			function loadAndDisplaySecurityquestions() {
+            	console.log('loading all recs from api');
+
+            	$.ajax({
+                	url: 'http://localhost:8000/api/sicherheitsfrage/alle',
+                	method: 'get',
+                	contentType: 'application/json; charset=utf-8',
+                	cache: false,
+                	dataType: 'json'
+           	 	}).done(function (response) {
+                	console.log(response);
+                	renderSecurityquestions(response);                
+            	}).fail(function (jqXHR, statusText, error) {
+                	console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+                	$('#output').html('Ein Fehler ist aufgetreten');
+                	$('#pics').text('Keine Bilder vorhanden');
+            	});
+        	}
+
+			function renderSecurityquestions(arr) {
+				console.log(arr);
+    			var select = document.getElementById("test");
+
+    			for (var i = 0; i <arr.length; i++){
+        			var opt = document.createElement("option");
+        			opt.value = (i + 1);
+					opt.innerHTML = arr[i].sicherheitsfrage;
+        			select.appendChild(opt);
+    			}
+			}
+
+			function Abschicken() {
+				var Bname = document.getElementById('BName').value;
+				var Pw1 = document.getElementById('Pw1').value;
+				var Pw2 = document.getElementById('Pw2').value;
+				var Ans = document.getElementById('Ans').value;
+				var Email = document.getElementById('Email').value;
+				var PB = null;
+				var SQ = document.getElementById('test').value;
+				var AdminID = null;
+
+				var obj = { "benutzername": Bname, 
+							"passwort": Pw1, 
+							"antwort": Ans, 
+							"email": Email, 
+							"profilbild": PB,
+							"sicherheitsfrageid": SQ,
+							"adminid": AdminID };
+
+				console.log(obj);
+				console.log(JSON.stringify(obj));
+				$.ajax({
+                url: 'http://localhost:8000/api/account',
+                method: 'post',
+				contentType: 'application/json; charset=utf-8',
+                cache: false,
+				data: JSON.stringify(obj)
+            	}).done(function (response) {
+                	console.log(response);
+                	$('#output').html(JSON.stringify(response));
+            	}).fail(function (jqXHR, statusText, error) {
+                	console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+                	$('#output').html('Ein Fehler ist aufgetreten');
+            	});
+			}
+			
+		</script>
 	</body>
 </html>

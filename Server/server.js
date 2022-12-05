@@ -56,13 +56,13 @@ try {
     var serviceRouter = require('./services/Genre.js');
     app.use(TOPLEVELPATH, serviceRouter);
     
-    var serviceRouter = require('./services/Season.js');
+    var serviceRouter = require('./services/Sicherheitsfrage.js');
     app.use(TOPLEVELPATH, serviceRouter);
 
-    /*serviceRouter = require('./services/adresse.js');
+    serviceRouter = require('./services/account.js');
     app.use(TOPLEVELPATH, serviceRouter);
 
-    serviceRouter = require('./services/person.js');
+    /*serviceRouter = require('./services/person.js');
     app.use(TOPLEVELPATH, serviceRouter);
 
     
