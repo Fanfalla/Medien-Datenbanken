@@ -23,18 +23,20 @@
 		<main class="mainBox">
 			<article>
 					<h1 class="tableTDerw">Log in</h1>
-					<table class="tableRegistration">
-						<tr>
+					<form action="/auth" method="post">
+						<table class="tableRegistration" >
+							<tr>
 
-							<td><input type="text" placeholder="Benutzername"class="groesse"></td>
-						</tr>
-						<tr>	
-							<td><input type="password" placeholder="Passwort"class="groesse"></td>
-						</tr>
-						<tr>
-							<td><button>Log in</button></td>
-						</tr>
-					</table>
+								<td><input type="text" name="benutzername" placeholder="benutzername" class="groesse" id ="benutzername" required ></td>
+							</tr>
+							<tr>	
+								<td><input type="password" name="passwort"  placeholder="passwort"class="groesse" id ="passwort" required></td>
+							</tr>
+							<tr>
+								<td><button type="submit" value="Login" >Log in</button></td>
+							</tr>
+						</table>
+					</form>
 					<footer class="navigationBox2 schatten">
 							<ul class="navigationList">
 								<li class="navigationButton"><a href="Impressum.html" class="navigation">Impressum</a></li>
@@ -43,5 +45,6 @@
 					</footer>
 			</article>
 		</main>
+		<script src="Server/services/login.js"></script>
 	</body>
 </html>
