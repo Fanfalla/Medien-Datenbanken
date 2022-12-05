@@ -59,9 +59,12 @@ try {
     var serviceRouter = require('./services/Season.js');
     app.use(TOPLEVELPATH, serviceRouter);
 
-    /*serviceRouter = require('./services/adresse.js');
+    var serviceRouter = require('./services/EintragInfo.js');
     app.use(TOPLEVELPATH, serviceRouter);
 
+    var serviceRouter = require('./services/Anime.js');
+    app.use(TOPLEVELPATH, serviceRouter);
+    /*
     serviceRouter = require('./services/person.js');
     app.use(TOPLEVELPATH, serviceRouter);
 

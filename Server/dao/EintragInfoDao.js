@@ -43,8 +43,16 @@ class EintragInfoDao {
         return false;
     }
 
-    create(romaji = '', englisch = '', deutsch = '', startdatum, enddatum, cover = '', diashow = '', beschreibung = '', formatid, jahrid, sourceid, statusid) {
-        var sql = 'INSERT INTO EintragInfo (romaji, englisch, deutsch, startDatum, endDatum, cover, diashow, beschreibung, formatid, jahrid, sourceid, statusid) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
+    latestID() {
+        var sql = 'SELECT id FROM EintragInfo ORDER BY id desc LIMIT 1';
+        var statement = this._conn.prepare(sql);
+        var result = statement.get();
+        var a = Object.values(result);
+        return a;
+    }
+
+    create(romaji, englisch, deutsch, startdatum, enddatum, cover , diashow, beschreibung, formatid, jahrid, sourceid, statusid) {
+        var sql = 'INSERT INTO EintragInfo (romaji, englisch, deutsch, startDatum, endDatum, cover, diashow, beschreibung, formatid, jahrid, sourceid, statusid) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)';
         var statement = this._conn.prepare(sql);
         var params = [romaji, englisch, deutsch, startdatum, enddatum, cover, diashow, beschreibung, formatid, jahrid, sourceid, statusid];
         var result = statement.run(params);

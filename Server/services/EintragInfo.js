@@ -49,14 +49,34 @@ serviceRouter.get('/eintragInfo/existiert/:id', function(request, response) {
     }
 });
 
-serviceRouter.post('/eintragInfo', function(request, response) {
+serviceRouter.post('/EintragInfo/add', function(request, response) {
     console.log('Service EintragInfo: Client requested creation of new record');
 
     var errorMsgs=[];
-    if (helper.isUndefined(request.body.kennzeichnung)) 
-        errorMsgs.push('kennzeichnung fehlt');
-    if (helper.isUndefined(request.body.bezeichnung)) 
-        errorMsgs.push('bezeichnung fehlt');
+    if (helper.isUndefined(request.body.Romaji)) 
+        errorMsgs.push('Romaji fehlt');
+    if (helper.isUndefined(request.body.Englisch)) 
+        errorMsgs.push('English fehlt');
+    if (helper.isUndefined(request.body.Deutsch)) 
+        errorMsgs.push('Deutsch fehlt');
+    if (helper.isUndefined(request.body.StartDate)) 
+        errorMsgs.push('StartDate fehlt');
+    if (helper.isUndefined(request.body.EndDate)) 
+        errorMsgs.push('EndDate fehlt');
+    if (helper.isUndefined(request.body.Cover)) 
+        errorMsgs.push('Cover fehlt');
+    if (helper.isUndefined(request.body.Diashow)) 
+        errorMsgs.push('Diashow fehlt');
+    if (helper.isUndefined(request.body.Beschreibung))
+        errorMsgs.push('Beschreibung fehlt');
+    if (helper.isUndefined(request.body.Format)) 
+        errorMsgs.push('Format fehlt');
+    if (helper.isUndefined(request.body.Jahr)) 
+        errorMsgs.push('Jahr fehlt');
+    if (helper.isUndefined(request.body.Source)) 
+        errorMsgs.push('Source fehlt');
+    if (helper.isUndefined(request.body.Status)) 
+        errorMsgs.push('Status fehlt');
     
     if (errorMsgs.length > 0) {
         console.log('Service EintragInfo: Creation not possible, data missing');
@@ -66,7 +86,7 @@ serviceRouter.post('/eintragInfo', function(request, response) {
 
     const eintragInfoDao = new EintragInfoDao(request.app.locals.dbConnection);
     try {
-        var obj = eintragInfoDao.create(request.body.kennzeichnung, request.body.bezeichnung);
+        var obj = eintragInfoDao.create(request.body.Romaji, request.body.Englisch, request.body.Deutsch, request.body.StartDate, request.body.EndDate, request.body.Cover, request.body.Diashow, request.body.Beschreibung, request.body.Format, request.body.Jahr, request.body.Source, request.body.Status);
         console.log('Service EintragInfo: Record inserted');
         response.status(200).json(obj);
     } catch (ex) {
