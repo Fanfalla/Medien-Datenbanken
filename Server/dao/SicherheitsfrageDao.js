@@ -32,56 +32,6 @@ class SicherheitsfrageDao {
         return result;
     }
 
-    exists(id) {
-        var sql = 'SELECT COUNT(id) AS cnt FROM Sicherheitsfrage WHERE id=?';
-        var statement = this._conn.prepare(sql);
-        var result = statement.get(id);
-
-        if (result.cnt == 1) 
-            return true;
-
-        return false;
-    }
-
-    create(sicherheitsfrage = '') {
-        var sql = 'INSERT INTO Sicherheitsfrage (sicherheitsfrage) VALUES (?)';
-        var statement = this._conn.prepare(sql);
-        var params = [sicherheitsfrage];
-        var result = statement.run(params);
-
-        if (result.changes != 1) 
-            throw new Error('Could not insert new Record. Data: ' + params);
-
-        return this.loadById(result.lastInsertRowid);
-    }
-
-    update(id, sicherheitsfrage = '') {
-        var sql = 'UPDATE Sicherheitsfrage SET sicherheitsfrage=? WHERE id=?';
-        var statement = this._conn.prepare(sql);
-        var params = [sicherheitsfrage, id];
-        var result = statement.run(params);
-
-        if (result.changes != 1) 
-            throw new Error('Could not update existing Record. Data: ' + params);
-
-        return this.loadById(id);
-    }
-
-    delete(id) {
-        try {
-            var sql = 'DELETE FROM Sicherheitsfrage WHERE id=?';
-            var statement = this._conn.prepare(sql);
-            var result = statement.run(id);
-
-            if (result.changes != 1) 
-                throw new Error('Could not delete Record by id=' + id);
-
-            return true;
-        } catch (ex) {
-            throw new Error('Could not delete Record by id=' + id + '. Reason: ' + ex.message);
-        }
-    }
-
     toString() {
         console.log('SicherheitsfrageDao [_conn=' + this._conn + ']');
     }

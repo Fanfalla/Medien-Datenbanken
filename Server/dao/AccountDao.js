@@ -43,7 +43,7 @@ class AccountDao {
         return false;
     }
 
-    create(benutzername='', passwort='', antwort='', email='', profilbild='', sicherheitsfrageid='', adminid=2) {
+    create(benutzername='', passwort='', antwort='', email='', profilbild='', sicherheitsfrageid='', adminid='') {
         var sql = 'INSERT INTO Account (benutzername, passwort, antwort, email, profilbild, sicherheitsfrageid, adminid) VALUES (?,?,?,?,?,?,?)';
         var statement = this._conn.prepare(sql);
         var params = [benutzername, passwort, antwort, email, profilbild, sicherheitsfrageid, adminid];
