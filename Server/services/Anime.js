@@ -72,8 +72,6 @@ serviceRouter.post('/anime/add', function(request, response) {
         return;
     }
 
-    console.log('---'+request.body.latestid+'---');
-
     const animeDao = new AnimeDao(request.app.locals.dbConnection);
     try {
         var obj = animeDao.create(request.body.FolgenAnzahl, request.body.FolgenDauer, parseInt(eintragInfoDao.latestID()), request.body.Season, request.body.Studio);
