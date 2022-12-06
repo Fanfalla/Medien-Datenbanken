@@ -1,5 +1,6 @@
 const helper = require('../helper.js');
 const AnimeEintragGenreDao = require('../dao/AnimeEintragGenreDao.js');
+const AnimeDao = require('../dao/AnimeDao.js');
 const express = require('express');
 var serviceRouter = express.Router();
 
@@ -49,14 +50,13 @@ serviceRouter.get('/genre/existiert/:id', function(request, response) {
     }
 });
 
-serviceRouter.post('/animeEintragGenre', function(request, response) {
+serviceRouter.post('/animeEintragGenre/add', function(request, response) {
     console.log('Service AnimeEintragGenre: Client requested creation of new record');
+    const animeDao = new AnimeDao(request.app.locals.dbConnection);
 
     var errorMsgs=[];
-    if (helper.isUndefined(request.body.kennzeichnung)) 
-        errorMsgs.push('kennzeichnung fehlt');
-    if (helper.isUndefined(request.body.bezeichnung)) 
-        errorMsgs.push('bezeichnung fehlt');
+    if (helper.isUndefined(request.body.Genre)) 
+        errorMsgs.push('genre fehlt');
     
     if (errorMsgs.length > 0) {
         console.log('Service AnimeEintragGenre: Creation not possible, data missing');
@@ -65,8 +65,12 @@ serviceRouter.post('/animeEintragGenre', function(request, response) {
     }
 
     const animeEintragGenreDao = new AnimeEintragGenreDao(request.app.locals.dbConnection);
+    latestAnimeID = parseInt(animeDao.latestID());
+    console.log('---'+latestAnimeID+'---');
     try {
-        var obj = animeEintragGenreDao.create(request.body.kennzeichnung, request.body.bezeichnung);
+        for(var i = 0; i < request.body.Genre.length; i++){
+            var obj = animeEintragGenreDao.create(latestAnimeID, request.body.Genre[i]);
+        }
         console.log('Service AnimeEintragGenre: Record inserted');
         response.status(200).json(obj);
     } catch (ex) {

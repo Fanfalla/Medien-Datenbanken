@@ -1,4 +1,6 @@
 function AnimeHinzufuegen() {
+    var checked = document.querySelectorAll("#Genre :checked")
+    var genreArr = [...checked].map(option => option.value)
 
     
         var Romaji = document.getElementById("Romaji").value
@@ -16,8 +18,6 @@ function AnimeHinzufuegen() {
         let Cover = document.getElementById("Cover").value
         let Diashow = document.getElementById("Diashow").value
 
-        let checked = document.querySelectorAll("#Genre :checked")
-        let selected = [...checked].map(option => option.value)
 
 
     EmptyAnime()
