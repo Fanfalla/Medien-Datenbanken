@@ -56,7 +56,121 @@ try {
     var serviceRouter = require('./services/Account.js');
     app.use(TOPLEVELPATH, serviceRouter);
     
+<<<<<<< HEAD
+    var serviceRouter = require('./services/Season.js');
+    app.use(TOPLEVELPATH, serviceRouter);
+
+    var serviceRouter = require('./services/EintragInfo.js');
+    app.use(TOPLEVELPATH, serviceRouter);
+
+    var serviceRouter = require('./services/Anime.js');
+    app.use(TOPLEVELPATH, serviceRouter);
+    /*
+    serviceRouter = require('./services/person.js');
+    app.use(TOPLEVELPATH, serviceRouter);
+
+    
+    
+    serviceRouter = require('./services/branche.js');
+    app.use(TOPLEVELPATH, serviceRouter);
+
+    serviceRouter = require('./services/firma.js');
+    app.use(TOPLEVELPATH, serviceRouter);
+
+
+    
+    serviceRouter = require('./services/download.js');
+    app.use(TOPLEVELPATH, serviceRouter);
+
+
+
+    serviceRouter = require('./services/termin.js');
+    app.use(TOPLEVELPATH, serviceRouter);
+
+    
+    
+    serviceRouter = require('./services/produktkategorie.js');
+    app.use(TOPLEVELPATH, serviceRouter);
+
+    serviceRouter = require('./services/zahlungsart.js');
+    app.use(TOPLEVELPATH, serviceRouter);
+
+    serviceRouter = require('./services/mehrwertsteuer.js');
+    app.use(TOPLEVELPATH, serviceRouter);
+
+    serviceRouter = require('./services/produktbild.js');
+    app.use(TOPLEVELPATH, serviceRouter);
+
+    serviceRouter = require('./services/produkt.js');
+    app.use(TOPLEVELPATH, serviceRouter);
+
+
+    serviceRouter = require('./services/bestellung.js');
+    app.use(TOPLEVELPATH, serviceRouter);
+
+
+    serviceRouter = require('./services/speisenart.js');
+    app.use(TOPLEVELPATH, serviceRouter);
+
+    serviceRouter = require('./services/einheit.js');
+    app.use(TOPLEVELPATH, serviceRouter);
+
+    serviceRouter = require('./services/zutat.js');
+    app.use(TOPLEVELPATH, serviceRouter);
+
+    serviceRouter = require('./services/bewertung.js');
+    app.use(TOPLEVELPATH, serviceRouter);
+
+    serviceRouter = require('./services/gericht.js');
+    app.use(TOPLEVELPATH, serviceRouter);
+
+
+
+    serviceRouter = require('./services/benutzerrolle.js');
+    app.use(TOPLEVELPATH, serviceRouter);
+
+    serviceRouter = require('./services/forumsbenutzer.js');
+    app.use(TOPLEVELPATH, serviceRouter);
+
+    serviceRouter = require('./services/forumsbereich.js');
+    app.use(TOPLEVELPATH, serviceRouter);
+
+
+
+    serviceRouter = require('./services/filmgenre.js');
+    app.use(TOPLEVELPATH, serviceRouter);
+
+    serviceRouter = require('./services/kinosaal.js');
+    app.use(TOPLEVELPATH, serviceRouter);
+
+    serviceRouter = require('./services/reservierer.js');
+    app.use(TOPLEVELPATH, serviceRouter);
+
+    serviceRouter = require('./services/film.js');
+    app.use(TOPLEVELPATH, serviceRouter);
+
+    serviceRouter = require('./services/reservierung.js');
+    app.use(TOPLEVELPATH, serviceRouter);
+    
+    serviceRouter = require('./services/vorstellung.js');
+    app.use(TOPLEVELPATH, serviceRouter);
+
+
+    serviceRouter = require('./services/benutzer.js');
+    app.use(TOPLEVELPATH, serviceRouter);
+
+
+    serviceRouter = require('./services/galerie.js');
+    app.use(TOPLEVELPATH, serviceRouter);
+
+
+    serviceRouter = require('./services/dateiuploadeinzeln.js');
+    app.use(TOPLEVELPATH, serviceRouter);
+
+    serviceRouter = require('./services/dateiuploadmehrere.js');
+=======
     /*var serviceRouter = require('./services/Admin.js');
+>>>>>>> c4f38379f1196037331e9e5a488a12acedfe80b3
     app.use(TOPLEVELPATH, serviceRouter);*/
 
     serviceRouter = require('./services/Anime.js');

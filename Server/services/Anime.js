@@ -1,5 +1,6 @@
 const helper = require('../helper.js');
 const AnimeDao = require('../dao/AnimeDao.js');
+const EintragInfoDao = require('../dao/EintragInfoDao.js');
 const express = require('express');
 var serviceRouter = express.Router();
 
@@ -49,14 +50,21 @@ serviceRouter.get('/anime/existiert/:id', function(request, response) {
     }
 });
 
-serviceRouter.post('/anime', function(request, response) {
+serviceRouter.post('/anime/add', function(request, response) {
     console.log('Service Anime: Client requested creation of new record');
 
     var errorMsgs=[];
-    if (helper.isUndefined(request.body.kennzeichnung)) 
-        errorMsgs.push('kennzeichnung fehlt');
-    if (helper.isUndefined(request.body.bezeichnung)) 
-        errorMsgs.push('bezeichnung fehlt');
+
+    const eintragInfoDao = new EintragInfoDao(request.app.locals.dbConnection);
+
+    if (helper.isUndefined(request.body.FolgenAnzahl)) 
+        errorMsgs.push('Folgen Anzahl fehlt');
+    if (helper.isUndefined(request.body.FolgenDauer)) 
+        errorMsgs.push('Folgen Dauer fehlt');
+    if (helper.isUndefined(request.body.Season)) 
+        errorMsgs.push('Season fehlt');
+    if (helper.isUndefined(request.body.Studio)) 
+        errorMsgs.push('Studio fehlt');
     
     if (errorMsgs.length > 0) {
         console.log('Service Anime: Creation not possible, data missing');
@@ -64,9 +72,11 @@ serviceRouter.post('/anime', function(request, response) {
         return;
     }
 
+    console.log('---'+request.body.latestid+'---');
+
     const animeDao = new AnimeDao(request.app.locals.dbConnection);
     try {
-        var obj = animeDao.create(request.body.kennzeichnung, request.body.bezeichnung);
+        var obj = animeDao.create(request.body.FolgenAnzahl, request.body.FolgenDauer, parseInt(eintragInfoDao.latestID()), request.body.Season, request.body.Studio);
         console.log('Service Anime: Record inserted');
         response.status(200).json(obj);
     } catch (ex) {
@@ -75,16 +85,18 @@ serviceRouter.post('/anime', function(request, response) {
     }    
 });
 
-serviceRouter.put('/anime', function(request, response) {
+serviceRouter.put('/anime/edit', function(request, response) {
     console.log('Service Anime: Client requested update of existing record');
 
     var errorMsgs=[];
-    if (helper.isUndefined(request.body.id)) 
-        errorMsgs.push('id fehlt');
-    if (helper.isUndefined(request.body.kennzeichnung)) 
-        errorMsgs.push('kennzeichnung fehlt');
-    if (helper.isUndefined(request.body.bezeichnung)) 
-        errorMsgs.push('bezeichnung fehlt');
+    if (helper.isUndefined(request.body.FolgenAnzahl)) 
+        errorMsgs.push('Folgen Anzahl fehlt');
+    if (helper.isUndefined(request.body.FolgenDauer)) 
+        errorMsgs.push('Folgen Dauer fehlt');
+    if (helper.isUndefined(request.body.Season)) 
+        errorMsgs.push('Season fehlt');
+    if (helper.isUndefined(request.body.Studio)) 
+        errorMsgs.push('Studio fehlt');
 
     if (errorMsgs.length > 0) {
         console.log('Service Anime: Update not possible, data missing');
@@ -94,7 +106,7 @@ serviceRouter.put('/anime', function(request, response) {
 
     const animeDao = new AnimeDao(request.app.locals.dbConnection);
     try {
-        var obj = animeDao.update(request.body.id, request.body.kennzeichnung, request.body.bezeichnung);
+        var obj = animeDao.update(request.body.FolgenAnzahl, request.body.FolgenDauer, request.body.latestid ,request.body.Season, request.body.Studio);
         console.log('Service Anime: Record updated, id=' + request.body.id);
         response.status(200).json(obj);
     } catch (ex) {
