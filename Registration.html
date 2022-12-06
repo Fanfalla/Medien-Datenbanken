@@ -26,7 +26,7 @@
 					<h1 class="tableTDerw">Alle Felder sind Pflichtfelder und müssen ausgefüllt werden.</h1>
 					<h2 class="rot tableTDerw">ACHTUNG! Verwende unter keinen Umständen eine <br>
 												ID oder Passwort, das du bereits verwendet hast!</h2>
-					<table class="tableRegistration">
+					<table class="tableRegistration" id="PW">
 						<tr>
 
 							<td><input type="text" placeholder="Benutzername"class="groesse" id="BName"></td>
@@ -82,7 +82,6 @@
             	}).fail(function (jqXHR, statusText, error) {
                 	console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
                 	$('#output').html('Ein Fehler ist aufgetreten');
-                	$('#pics').text('Keine Bilder vorhanden');
             	});
         	}
 
@@ -98,7 +97,11 @@
     			}
 			}
 
+			var select = document.getElementById("PW");
+			var PWcell = select.insertRow(3);
+
 			function Abschicken() {
+
 				var Bname = document.getElementById('BName').value;
 				var Pw1 = document.getElementById('Pw1').value;
 				var Pw2 = document.getElementById('Pw2').value;
@@ -106,9 +109,14 @@
 				var Email = document.getElementById('Email').value;
 				var PB = null;
 				var SQ = document.getElementById('test').value;
-				var AdminID = null;
+				var AdminID = 2;
 
-				var obj = { "benutzername": Bname, 
+				if (Pw1 != Pw2) {
+					PWcell.innerHTML = "Passwörter stimmen nicht überein!!"
+					PWcell.style.color = "red";
+
+				} else {
+					var obj = { "benutzername": Bname, 
 							"passwort": Pw1, 
 							"antwort": Ans, 
 							"email": Email, 
@@ -116,21 +124,21 @@
 							"sicherheitsfrageid": SQ,
 							"adminid": AdminID };
 
-				console.log(obj);
-				console.log(JSON.stringify(obj));
-				$.ajax({
-                url: 'http://localhost:8000/api/account',
-                method: 'post',
-				contentType: 'application/json; charset=utf-8',
-                cache: false,
-				data: JSON.stringify(obj)
-            	}).done(function (response) {
-                	console.log(response);
-                	$('#output').html(JSON.stringify(response));
-            	}).fail(function (jqXHR, statusText, error) {
-                	console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
-                	$('#output').html('Ein Fehler ist aufgetreten');
-            	});
+					$.ajax({
+                	url: 'http://localhost:8000/api/account',
+                	method: 'post',
+					contentType: 'application/json; charset=utf-8',
+                	cache: false,
+					data: JSON.stringify(obj)
+            		}).done(function (response) {
+                		console.log(response);
+                		$('#output').html(JSON.stringify(response));
+						window.location.href = "Liste.html";
+            		}).fail(function (jqXHR, statusText, error) {
+                		console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+                		$('#output').html('Ein Fehler ist aufgetreten');
+            		});
+				}
 			}
 			
 		</script>
