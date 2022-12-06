@@ -53,9 +53,10 @@ try {
     const TOPLEVELPATH = '/api';
     console.log('Binding enpoints, top level Path at ' + TOPLEVELPATH);
 
-    var serviceRouter = require('./services/Genre.js');
+    var serviceRouter = require('./services/Account.js');
     app.use(TOPLEVELPATH, serviceRouter);
     
+<<<<<<< HEAD
     var serviceRouter = require('./services/Season.js');
     app.use(TOPLEVELPATH, serviceRouter);
 
@@ -167,10 +168,56 @@ try {
     app.use(TOPLEVELPATH, serviceRouter);
 
     serviceRouter = require('./services/dateiuploadmehrere.js');
+=======
+    /*var serviceRouter = require('./services/Admin.js');
+>>>>>>> c4f38379f1196037331e9e5a488a12acedfe80b3
     app.use(TOPLEVELPATH, serviceRouter);*/
 
+    serviceRouter = require('./services/Anime.js');
+    app.use(TOPLEVELPATH, serviceRouter);
 
+    serviceRouter = require('./services/AnimeEintragGenre.js');
+    app.use(TOPLEVELPATH, serviceRouter);
     
+    serviceRouter = require('./services/AnimeListe.js');
+    app.use(TOPLEVELPATH, serviceRouter);
+
+    serviceRouter = require('./services/EintragInfo.js');
+    app.use(TOPLEVELPATH, serviceRouter);
+    
+    serviceRouter = require('./services/Format.js');
+    app.use(TOPLEVELPATH, serviceRouter);
+
+    serviceRouter = require('./services/Genre.js');
+    app.use(TOPLEVELPATH, serviceRouter);
+    
+    serviceRouter = require('./services/Jahr.js');
+    app.use(TOPLEVELPATH, serviceRouter);
+
+    serviceRouter = require('./services/Manga.js');
+    app.use(TOPLEVELPATH, serviceRouter);
+
+    serviceRouter = require('./services/MangaGenre.js');
+    app.use(TOPLEVELPATH, serviceRouter);
+
+    serviceRouter = require('./services/MangaListe.js');
+    app.use(TOPLEVELPATH, serviceRouter);
+
+    serviceRouter = require('./services/Season.js');
+    app.use(TOPLEVELPATH, serviceRouter);
+
+    serviceRouter = require('./services/Sicherheitsfrage.js');
+    app.use(TOPLEVELPATH, serviceRouter);
+
+    serviceRouter = require('./services/Source.js');
+    app.use(TOPLEVELPATH, serviceRouter);
+
+    serviceRouter = require('./services/Status.js');
+    app.use(TOPLEVELPATH, serviceRouter);
+
+    serviceRouter = require('./services/Studio.js');
+    app.use(TOPLEVELPATH, serviceRouter);
+
     // send default error message if no matching endpoint found
     app.use(function (request, response) {
         console.log('Error occured, 404, resource not found');
