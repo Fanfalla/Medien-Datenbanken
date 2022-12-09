@@ -107,7 +107,7 @@
 						<tr>
 							<td></td>
 							<td colspan="2" class="tdHinzufuegen"><input type="url" id="Cover" placeholder="Cover" name="Cover"></input></td>
-							<td colspan="2" class="tdHinzufuegen"><input type="url" id="Diashow" pattern="*.jpg" placeholder="Diashow Bild f&uuml;r die Startseite" name="Diashow"></input></td>
+							<td colspan="2" class="tdHinzufuegen"><input type="url" id="Diashow" placeholder="Diashow Bild f&uuml;r die Startseite" name="Diashow"></input></td>
 						</tr>
 						<tr class="tableTDerw">
 							<td></td>
@@ -129,7 +129,7 @@
 			function LoadAndDisplayDropDownMenues(){
 
 				$.ajax({
-					url: 'http://localhost:8000/api/format/alle',
+					url: 'http://localhost:8000/api/format/alle/Anime',
 					method: 'get',
                 	contentType: 'application/json; charset=utf-8',
                 	cache: false,
@@ -233,7 +233,7 @@
 
     			for (var i = 0; i < arr.length; i++){
         			var opt = document.createElement("option");
-        			opt.value = (i + 1);
+        			opt.value =  arr[i].id;
 					opt.innerHTML = arr[i].format;
         			select.appendChild(opt);
     			}
@@ -245,7 +245,7 @@
 
 				for (var i = 0; i < arr.length; i++){
 					var opt = document.createElement("option");
-					opt.value = (i + 1);
+					opt.value = arr[i].id;
 					opt.innerHTML = arr[i].season;
 					select.appendChild(opt);
 				}
@@ -257,7 +257,7 @@
 
 				for (var i = 0; i < arr.length; i++){
 					var opt = document.createElement("option");
-					opt.value = (i + 1);
+					opt.value = arr[i].id;
 					opt.innerHTML = arr[i].jahr;
 					select.appendChild(opt);
 				}
@@ -269,7 +269,7 @@
 
 				for (var i = 0; i < arr.length; i++){
 					var opt = document.createElement("option");
-					opt.value = (i + 1);
+					opt.value = arr[i].id;
 					opt.innerHTML = arr[i].genre;
 					select.appendChild(opt);
 				}
@@ -281,7 +281,7 @@
 
 				for (var i = 0; i <arr.length; i++){
 					var opt = document.createElement("option");
-					opt.value = (i + 1);
+					opt.value = arr[i].id;
 					opt.innerHTML = arr[i].studio;
 					select.appendChild(opt);
 				}
@@ -293,7 +293,7 @@
 
 				for (var i = 0; i <arr.length; i++){
 					var opt = document.createElement("option");
-					opt.value = (i + 1);
+					opt.value = arr[i].id;
 					opt.innerHTML = arr[i].source;
 					select.appendChild(opt);
 				}
@@ -305,7 +305,7 @@
 
 				for (var i = 0; i <arr.length; i++){
 					var opt = document.createElement("option");
-					opt.value = (i + 1);
+					opt.value = arr[i].id;
 					opt.innerHTML = arr[i].status;
 					select.appendChild(opt);
 				}
@@ -373,7 +373,7 @@
 					console.log(xhr.status);
 					alert(xhr.responseText);
 				})
-			});
+			})
 		</script>
 	</body>
 </html>

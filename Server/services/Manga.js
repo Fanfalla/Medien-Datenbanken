@@ -1,5 +1,6 @@
 const helper = require('../helper.js');
 const MangaDao = require('../dao/MangaDao.js');
+const EintragInfoDao = require('../dao/EintragInfoDao.js');
 const express = require('express');
 var serviceRouter = express.Router();
 
@@ -49,14 +50,14 @@ serviceRouter.get('/manga/existiert/:id', function(request, response) {
     }
 });
 
-serviceRouter.post('/manga', function(request, response) {
+serviceRouter.post('/manga/add', function(request, response) {
     console.log('Service Manga: Client requested creation of new record');
 
     var errorMsgs=[];
-    if (helper.isUndefined(request.body.kennzeichnung)) 
-        errorMsgs.push('kennzeichnung fehlt');
-    if (helper.isUndefined(request.body.bezeichnung)) 
-        errorMsgs.push('bezeichnung fehlt');
+    if (helper.isUndefined(request.body.ChapterAnzahl)) 
+        errorMsgs.push('ChapterAnzahl fehlt');
+    if (helper.isUndefined(request.body.VolumeAnzahl)) 
+        errorMsgs.push('VolumeAnzahl fehlt');
     
     if (errorMsgs.length > 0) {
         console.log('Service Manga: Creation not possible, data missing');
@@ -65,8 +66,9 @@ serviceRouter.post('/manga', function(request, response) {
     }
 
     const mangaDao = new MangaDao(request.app.locals.dbConnection);
+    const eintragInfoDao = new EintragInfoDao(request.app.locals.dbConnection);
     try {
-        var obj = mangaDao.create(request.body.kennzeichnung, request.body.bezeichnung);
+        var obj = mangaDao.create(request.body.ChapterAnzahl, request.body.VolumeAnzahl, parseInt(eintragInfoDao.latestID()));
         console.log('Service Manga: Record inserted');
         response.status(200).json(obj);
     } catch (ex) {

@@ -21,8 +21,19 @@ class FormatDao {
         return result;
     }
 
-    loadAll() {
-        var sql = 'SELECT * FROM Format';
+    loadAllAnime() {
+        var sql = 'SELECT * FROM Format LIMIT 8';
+        var statement = this._conn.prepare(sql);
+        var result = statement.all();
+
+        if (helper.isArrayEmpty(result)) 
+            return [];
+        
+        return result;
+    }
+
+    loadAllManga() {
+        var sql = 'SELECT *  FROM Format Where id=1 or id > 8 ORDER BY id LIMIT 4';
         var statement = this._conn.prepare(sql);
         var result = statement.all();
 
