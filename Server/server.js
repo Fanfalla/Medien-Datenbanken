@@ -56,7 +56,6 @@ try {
     var serviceRouter = require('./services/Account.js');
     app.use(TOPLEVELPATH, serviceRouter);
     
-<<<<<<< HEAD
     var serviceRouter = require('./services/Season.js');
     app.use(TOPLEVELPATH, serviceRouter);
 
@@ -168,9 +167,6 @@ try {
     app.use(TOPLEVELPATH, serviceRouter);
 
     serviceRouter = require('./services/dateiuploadmehrere.js');
-=======
-    /*var serviceRouter = require('./services/Admin.js');
->>>>>>> abc3ca7eaa68b39696a9c944036917503688f014
     app.use(TOPLEVELPATH, serviceRouter);*/
 
     serviceRouter = require('./services/Anime.js');

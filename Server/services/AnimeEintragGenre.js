@@ -6,7 +6,7 @@ var serviceRouter = express.Router();
 
 console.log('- Service AnimeEintragGenre');
 
-serviceRouter.get('/genre/gib/:id', function(request, response) {
+serviceRouter.get('/animeEintragGenre/gib/:id', function(request, response) {
     console.log('Service AnimeEintragGenre: Client requested one record, id=' + request.params.id);
 
     const animeEintragGenreDao = new AnimeEintragGenreDao(request.app.locals.dbConnection);
@@ -20,7 +20,7 @@ serviceRouter.get('/genre/gib/:id', function(request, response) {
     }
 });
 
-serviceRouter.get('/genre/alle', function(request, response) {
+serviceRouter.get('/animeEintragGenre/alle', function(request, response) {
     console.log('Service AnimeEintragGenre: Client requested all records');
 
     const animeEintragGenreDao = new AnimeEintragGenreDao(request.app.locals.dbConnection);
@@ -34,7 +34,7 @@ serviceRouter.get('/genre/alle', function(request, response) {
     }
 });
 
-serviceRouter.get('/genre/existiert/:id', function(request, response) {
+serviceRouter.get('/animeEintragGenre/existiert/:id', function(request, response) {
     console.log('Service AnimeEintragGenre: Client requested check, if record exists, id=' + request.params.id);
 
     console.log('go');

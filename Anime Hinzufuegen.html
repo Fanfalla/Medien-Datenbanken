@@ -60,30 +60,14 @@
 						<tr>
 							<td class="tdHinzufuegen">
 								<select id="Format" class="dropdownMenue" name="Format">
-									<option value="1">---</option>
-									<option value="2">TV</option>
-									<option value="3">TV Short</option>
-									<option value="4">Movie</option>
-									<option value="5">OVA</option>
-									<option value="6">Special</option>
-									<option value="7">ONA</option>
-									<option value="8">Music</option>
 								</select>
-							</td class="tdHinzufuegen">
+							</td>
 							<td>
 								<select id="Season" class="dropdownMenue" name="Season">
-									<option value="1">---</option>
-									<option value="2">Winter</option>
-									<option value="3">Spring</option>
-									<option value="4">Summer</option>
-									<option value="5">Fall</option>
 								</select>
 							</td>
 							<td class="tdHinzufuegen">
 								<select id="Jahr" class="dropdownMenue" name="Jahr">
-									<option value="1">---</option>
-									<option value="2">1997</option>
-									<option value="3">1998</option>
 								</select>
 							</td>
 							<td class="tdHinzufuegen"><input type="date" id="StartDate" min="1998-01-01" name="StartDate"></input></td>
@@ -101,53 +85,18 @@
 						<tr>
 							<td class="tdHinzufuegen" rowspan="2">
 								<select id="Genre" class="dropdownMenue" multiple name="Genre">
-									<option value="1">---</option>
-									<option value="2">Action</option>
-									<option value="3">Adventure</option>
-									<option value="4">Comedy</option>
-									<option value="5">Drama</option>
-									<option value="6">Ecchi</option>
-									<option value="7">Fantasy</option>
-									<option value="8">Horror</option>
-									<option value="9">Mahou Shoujo</option>
-									<option value="10">Mecha</option>
-									<option value="11">Music</option>
-									<option value="12">Mystery</option>
-									<option value="13">Psychological</option>
-									<option value="14">Romance</option>
-									<option value="15">Sci-Fi</option>
-									<option value="16">Slice of Life</option>
-									<option value="17">Sport</option>
-									<option value="18">Supernatural</option>
-									<option value="19">Thriler</option>
 								</select>
 							</td>
 							<td class="tdHinzufuegen">
 								<select id="Studio" class="dropdownMenue" name="Studio">
-									<option value="1">---</option>
-									<option value="2">MADHOUSE</option>
 								</select>
 							</td>
 							<td class="tdHinzufuegen">
 								<select id="Source" class="dropdownMenue" name="Source">
-									<option value="1">---</option>
-									<option value="2">Original</option>
-									<option value="3">Manga</option>
-									<option value="4">Light Novel</option>
-									<option value="5">Web Novel</option>
-									<option value="6">Novel</option>
-									<option value="7">Video Game</option>
-									<option value="8">Visuel Novel</option>
-									<option value="9">Multi Media Projekt</option>
-									<option value="10">Other</option>
 								</select>
 							</td>
 							<td class="tdHinzufuegen">
-								<select id="status" class="dropdownMenue" name="Status">
-									<option value="1">---</option>
-									<option value="2">Finished</option>
-									<option value="3">Airing</option>
-									<option value="4">Not Yet Released</option>
+								<select id="Status" class="dropdownMenue" name="Status">
 								</select>
 							</td>
 						</tr>
@@ -172,6 +121,196 @@
 			</article>
 		</main>
 		<script>
+
+			$(document).ready(function() {
+				LoadAndDisplayDropDownMenues()
+			})
+
+			function LoadAndDisplayDropDownMenues(){
+
+				$.ajax({
+					url: 'http://localhost:8000/api/format/alle',
+					method: 'get',
+                	contentType: 'application/json; charset=utf-8',
+                	cache: false,
+                	dataType: 'json',
+				}).done(function (response) {
+                	console.log(response);
+                	RenderFormatOptions(response);                
+            	}).fail(function (jqXHR, statusText, error) {
+                	console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+                	$('#output').html('Ein Fehler ist aufgetreten');
+				})
+
+				$.ajax({
+					url: 'http://localhost:8000/api/season/alle',
+					method: 'get',
+					contentType: 'application/json; charset=utf-8',
+					cache: false,
+					dataType: 'json',
+				}).done(function (response) {
+					console.log(response);
+					RenderSeasonOptions(response);                
+				}).fail(function (jqXHR, statusText, error) {
+					console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+					$('#output').html('Ein Fehler ist aufgetreten');
+				})
+
+				$.ajax({
+					url: 'http://localhost:8000/api/jahr/alle',
+					method: 'get',
+					contentType: 'application/json; charset=utf-8',
+					cache: false,
+					dataType: 'json',
+				}).done(function (response) {
+					console.log(response);
+					RenderJahrOptions(response);                
+				}).fail(function (jqXHR, statusText, error) {
+					console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+					$('#output').html('Ein Fehler ist aufgetreten');
+				})
+
+				$.ajax({
+					url: 'http://localhost:8000/api/genre/alle',
+					method: 'get',
+					contentType: 'application/json; charset=utf-8',
+					cache: false,
+					dataType: 'json',
+				}).done(function (response) {
+					console.log(response);
+					RenderGenreOptions(response);                
+				}).fail(function (jqXHR, statusText, error) {
+					console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+					$('#output').html('Ein Fehler ist aufgetreten');
+				})
+
+				$.ajax({
+					url: 'http://localhost:8000/api/studio/alle',
+					method: 'get',
+					contentType: 'application/json; charset=utf-8',
+					cache: false,
+					dataType: 'json',
+				}).done(function (response) {
+					console.log(response);
+					RenderStudioOptions(response);                
+				}).fail(function (jqXHR, statusText, error) {
+					console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+					$('#output').html('Ein Fehler ist aufgetreten');
+				})
+
+				$.ajax({
+					url: 'http://localhost:8000/api/source/alle',
+					method: 'get',
+					contentType: 'application/json; charset=utf-8',
+					cache: false,
+					dataType: 'json',
+				}).done(function (response) {
+					console.log(response);
+					RenderSourceOptions(response);                
+				}).fail(function (jqXHR, statusText, error) {
+					console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+					$('#output').html('Ein Fehler ist aufgetreten');
+				})
+
+				$.ajax({
+					url: 'http://localhost:8000/api/status/alle',
+					method: 'get',
+					contentType: 'application/json; charset=utf-8',
+					cache: false,
+					dataType: 'json',
+				}).done(function (response) {
+					console.log(response);
+					RenderStatusOptions(response);                
+				}).fail(function (jqXHR, statusText, error) {
+					console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+					$('#output').html('Ein Fehler ist aufgetreten');
+				})
+			}
+
+			function RenderFormatOptions(arr) {
+				console.log(arr);
+    			var select = document.getElementById("Format");
+
+    			for (var i = 0; i < arr.length; i++){
+        			var opt = document.createElement("option");
+        			opt.value = (i + 1);
+					opt.innerHTML = arr[i].format;
+        			select.appendChild(opt);
+    			}
+			}
+
+			function RenderSeasonOptions(arr) {
+				console.log(arr);
+				var select = document.getElementById("Season");
+
+				for (var i = 0; i < arr.length; i++){
+					var opt = document.createElement("option");
+					opt.value = (i + 1);
+					opt.innerHTML = arr[i].season;
+					select.appendChild(opt);
+				}
+			}
+
+			function RenderJahrOptions(arr) {
+				console.log(arr);
+				var select = document.getElementById("Jahr");
+
+				for (var i = 0; i < arr.length; i++){
+					var opt = document.createElement("option");
+					opt.value = (i + 1);
+					opt.innerHTML = arr[i].jahr;
+					select.appendChild(opt);
+				}
+			}
+
+			function RenderGenreOptions(arr) {
+				console.log(arr);
+				var select = document.getElementById("Genre");
+
+				for (var i = 0; i < arr.length; i++){
+					var opt = document.createElement("option");
+					opt.value = (i + 1);
+					opt.innerHTML = arr[i].genre;
+					select.appendChild(opt);
+				}
+			}
+
+			function RenderStudioOptions(arr) {
+				console.log(arr);
+				var select = document.getElementById("Studio");
+
+				for (var i = 0; i <arr.length; i++){
+					var opt = document.createElement("option");
+					opt.value = (i + 1);
+					opt.innerHTML = arr[i].studio;
+					select.appendChild(opt);
+				}
+			}
+			
+			function RenderSourceOptions(arr) {
+				console.log(arr);
+				var select = document.getElementById("Source");
+
+				for (var i = 0; i <arr.length; i++){
+					var opt = document.createElement("option");
+					opt.value = (i + 1);
+					opt.innerHTML = arr[i].source;
+					select.appendChild(opt);
+				}
+			}
+			
+			function RenderStatusOptions(arr) {
+				console.log(arr);
+				var select = document.getElementById("Status");
+
+				for (var i = 0; i <arr.length; i++){
+					var opt = document.createElement("option");
+					opt.value = (i + 1);
+					opt.innerHTML = arr[i].status;
+					select.appendChild(opt);
+				}
+			}
+
 			$('#uploadForm').submit(function(event){
 
 				event.preventDefault();
