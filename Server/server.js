@@ -55,9 +55,6 @@ try {
 
     var serviceRouter = require('./services/Account.js');
     app.use(TOPLEVELPATH, serviceRouter);
-    
-    /*var serviceRouter = require('./services/Admin.js');
-    app.use(TOPLEVELPATH, serviceRouter);*/
 
     serviceRouter = require('./services/Anime.js');
     app.use(TOPLEVELPATH, serviceRouter);

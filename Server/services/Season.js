@@ -22,9 +22,9 @@ serviceRouter.get('/season/gib/:id', function(request, response) {
 serviceRouter.get('/season/alle', function(request, response) {
     console.log('Service Season: Client requested all records');
 
-    const SeasonDao = new SeasonDao(request.app.locals.dbConnection);
+    const seasonDao = new SeasonDao(request.app.locals.dbConnection);
     try {
-        var arr = SeasonDao.loadAll();
+        var arr = seasonDao.loadAll();
         console.log('Service Season: Records loaded, count=' + arr.length);
         response.status(200).json(arr);
     } catch (ex) {

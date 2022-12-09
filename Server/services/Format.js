@@ -19,7 +19,7 @@ serviceRouter.get('/format/gib/:id', function(request, response) {
     }
 });
 
-serviceRouter.get('/formart/alle', function(request, response) {
+serviceRouter.get('/format/alle', function(request, response) {
     console.log('Service Format: Client requested all records');
 
     const formatDao = new FormatDao(request.app.locals.dbConnection);
