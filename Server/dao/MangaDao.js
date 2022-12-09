@@ -21,6 +21,14 @@ class MangaDao {
         return result;
     }
 
+    latestID(){
+        var sql = 'SELECT id FROM Manga ORDER BY id desc LIMIT 1';
+        var statement = this._conn.prepare(sql);
+        var result = statement.get();
+        var a = Object.values(result);
+        return a;
+    }
+
     loadAll() {
         var sql = 'SELECT * FROM Manga';
         var statement = this._conn.prepare(sql);

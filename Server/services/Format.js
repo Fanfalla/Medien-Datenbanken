@@ -19,12 +19,26 @@ serviceRouter.get('/format/gib/:id', function(request, response) {
     }
 });
 
-serviceRouter.get('/format/alle', function(request, response) {
+serviceRouter.get('/format/alle/Anime', function(request, response) {
     console.log('Service Format: Client requested all records');
 
     const formatDao = new FormatDao(request.app.locals.dbConnection);
     try {
-        var arr = formatDao.loadAll();
+        var arr = formatDao.loadAllAnime();
+        console.log('Service Format: Records loaded, count=' + arr.length);
+        response.status(200).json(arr);
+    } catch (ex) {
+        console.error('Service Format: Error loading all records. Exception occured: ' + ex.message);
+        response.status(400).json({ 'fehler': true, 'nachricht': ex.message });
+    }
+});
+
+serviceRouter.get('/format/alle/Manga', function(request, response) {
+    console.log('Service Format: Client requested all records');
+
+    const formatDao = new FormatDao(request.app.locals.dbConnection);
+    try {
+        var arr = formatDao.loadAllManga();
         console.log('Service Format: Records loaded, count=' + arr.length);
         response.status(200).json(arr);
     } catch (ex) {

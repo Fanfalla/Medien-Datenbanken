@@ -4,6 +4,7 @@
 	<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>Home</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 		<link rel="stylesheet" href="Css.css">
 	</head>
 	<body class="adminBody">
@@ -18,114 +19,298 @@
 		<main>
 			<h1 class="startseiteH1">Manga Hinzuf&uuml;gen</h1>
 			<article class="AnimeUebersichtBox">
-				<table class="tableAnimeHinzufuegen tableTDerw3 tableHinzufuegen">
-					<tr class="tableTDerw2">
-						<td colspan="2" class="tdHinzufuegen"><b>Eintrag Hinzuf&uuml;gen</b></td>
-					</tr>
-					<tr>
-						<td class="tdHinzufuegen">Titel</td>
-					</tr>
-					<tr>
-						<td class="tdHinzufuegen">*Romaji</td>
-						<td class="tdHinzufuegen">Englisch</td>
-						<td class="tdHinzufuegen">Deutsch</td>
-					</tr>
-					<tr>
-						<td class="tdHinzufuegen"><input type="text" id="Romaji" placeholder="Romaji Titel"></input></td>
-						<td class="tdHinzufuegen"><input type="text" id="Englisch" placeholder="Englischer Titel"></td>
-						<td class="tdHinzufuegen"><input type="text" id="Deutsch" placeholder="Deutscher Titel"></td>
-					</tr>
-					<tr>
-						<td class="tdHinzufuegen">*Beschreibung</td>
-					</tr>
-					<tr>
-						<td class="tdHinzufuegen"><input type="text" id="Beschreibung" placeholder="Beschreibung"></input></td>
-					</tr>
-					<tr>
-						<td class="tdHinzufuegen">Chapter</td>
-						<td class="tdHinzufuegen">Volume</td>
-					</tr>
-					<tr>
-						<td class="tdHinzufuegen"><input type="text" id="Folgen" placeholder="Anzahl der Folgen"></td>
-						<td class="tdHinzufuegen"><input type="text" id="Dauer" placeholder="Dauer der Folgen"></td>
-					</tr>
-					<tr>
-						<td class="tdHinzufuegen">*Format</td>
-						<td class="tdHinzufuegen">Start Datum</td>
-						<td class="tdHinzufuegen">End Datum</td>
-					</tr>
-					<tr>
-						<td class="tdHinzufuegen">
-							<select id="Format" class="dropdownMenue">
-								<option value="0">---</option>
-								<option value="Manga">Manga</option>
-								<option value="Light Novel">Light Novel</option>
-								<option value="One Shot">One Shot</option>
-							</select>
-						</td>
-						<td class="tdHinzufuegen"><input type="date" id="StartDate" min="1998-01-01"></input></td>
-						<td class="tdHinzufuegen"><input type="date" id="EndDate" min="1998-01-01"></input></td>
-					</tr>
-					<tr>
-						<td class="tdHinzufuegen">Genres</td>
-						<td class="tdHinzufuegen">Source</td>
-					</tr>
-					<tr>
-						<td class="tdHinzufuegen">
-							<select id="Genre" class="dropdownMenue">
-								<option value="0">---</option>
-								<option value="Action">Action</option>
-								<option value="Adventure">Adventure</option>
-								<option value="Comedy">Comedy</option>
-								<option value="Drama">Drama</option>
-								<option value="Ecchi">Ecchi</option>
-								<option value="Fantasy">Fantasy</option>
-								<option value="Horror">Horror</option>
-								<option value="Mahou Shoujo">Mahou Shoujo</option>
-								<option value="Mecha">Mecha</option>
-								<option value="Music">Music</option>
-								<option value="Mystery">Mystery</option>
-								<option value="Psychological">Psychological</option>
-								<option value="Romance">Romance</option>
-								<option value="Sci-Fi">Sci-Fi</option>
-								<option value="Slice of Life">Slice of Life</option>
-								<option value="Sport">Sport</option>
-								<option value="Supernatural">Supernatural</option>
-								<option value="Thriler">Thriler</option>
-							</select>
-						</td>
-						<td class="tdHinzufuegen">
-							<select id="Source" class="dropdownMenue">
-								<option value="0">---</option>
-								<option value="Original">Original</option>
-								<option value="Anime">Anime</option>
-								<option value="Light Novel">Light Novel</option>
-								<option value="Web Novel">Web Novel</option>
-								<option value="Novel">Novel</option>
-								<option value="Video Game">Video Game</option>
-								<option value="">Visuel Novel</option>
-								<option value="Multi Media Projekt">Multi Media Projekt</option>
-								<option value="Other">Other</option>
-							</select>
-						</td>
-					</tr>
-					<tr>
-						<td colspan="2" class="tdHinzufuegen">Bild Cover</td>
-						<td colspan="2" class="tdHinzufuegen">Diashow Bild</td>
-					</tr>
-					<tr>
-						<td colspan="2" class="tdHinzufuegen"><input type="url" id="Cover" pattern="*.jpg" placeholder="Cover"></input></td>
-						<td colspan="2" class="tdHinzufuegen"><input type="url" id="Diashow" pattern="*.jpg" placeholder="Diashow Bild f&uuml;r die Startseite"></input></td>
-					</tr>
-					<tr class="tableTDerw">
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td class="tdHinzufuegen"><button>Submit</button></td>
-					</tr>
-				</table>
+				<form id="uploadForm" method="post" enctype="multipart/form-data">
+					<table class="tableAnimeHinzufuegen tableTDerw3 tableHinzufuegen">
+						<tr class="tableTDerw2">
+							<td colspan="2" class="tdHinzufuegen"><b>Eintrag Hinzuf&uuml;gen</b></td>
+						</tr>
+						<tr>
+							<td class="tdHinzufuegen">Titel</td>
+						</tr>
+						<tr>
+							<td class="tdHinzufuegen">*Romaji</td>
+							<td class="tdHinzufuegen">Englisch</td>
+							<td class="tdHinzufuegen">Deutsch</td>
+						</tr>
+						<tr>
+							<td class="tdHinzufuegen"><input type="text" id="Romaji" placeholder="Romaji Titel" name="Romaji"></input></td>
+							<td class="tdHinzufuegen"><input type="text" id="Englisch" placeholder="Englischer Titel" name="Englisch"></td>
+							<td class="tdHinzufuegen"><input type="text" id="Deutsch" placeholder="Deutscher Titel" name="Deutsch"></td>
+						</tr>
+						<tr>
+							<td class="tdHinzufuegen">*Beschreibung</td>
+						</tr>
+						<tr>
+							<td class="tdHinzufuegen"><input type="text" id="Beschreibung" placeholder="Beschreibung" name="Beschreibung"></input></td>
+						</tr>
+						<tr>
+							<td class="tdHinzufuegen">Chapter</td>
+							<td class="tdHinzufuegen">Volume</td>
+						</tr>
+						<tr>
+							<td class="tdHinzufuegen"><input type="text" id="ChapterAnzahl" placeholder="Anzahl der Folgen" name="ChapterAnzahl"></td>
+							<td class="tdHinzufuegen"><input type="text" id="VolumeAnzahl" placeholder="Dauer der Folgen" name="VolumeAnzahl"></td>
+						</tr>
+						<tr>
+							<td class="tdHinzufuegen">Format</td>
+							<td class="tdHinzufuegen">Jahr</td>
+							<td class="tdHinzufuegen">Start Datum</td>
+							<td class="tdHinzufuegen">End Datum</td>
+						</tr>
+						<tr>
+							<td class="tdHinzufuegen">
+								<select id="Format" class="dropdownMenue" name="Format">
+								</select>
+							</td>
+							<td class="tdHinzufuegen">
+								<select id="Jahr" class="dropdownMenue" name="Jahr">
+								</select>
+							</td>
+							<td class="tdHinzufuegen"><input type="date" id="StartDate" min="1998-01-01" name="StartDate"></input></td>
+							<td class="tdHinzufuegen"><input type="date" id="EndDate" min="1998-01-01" name="EndDate"></input></td>
+						</tr>
+						<tr>
+							<td class="tdHinzufuegen">Genres</td>
+							<td class="tdHinzufuegen">Source</td>
+							<td class="tdHinzufuegen">Status</td>
+						</tr>
+						<tr>
+							<td class="tdHinzufuegen">
+								<select id="Genre" class="dropdownMenue" multiple name="Genre">
+								</select>
+							</td>
+							<td class="tdHinzufuegen">
+								<select id="Source" class="dropdownMenue" name="Source">
+								</select>
+							</td>
+							<td class="tdHinzufuegen">
+								<select id="Status" class="dropdownMenue" name="Status">
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="2" class="tdHinzufuegen">Bild Cover</td>
+							<td colspan="2" class="tdHinzufuegen">Diashow Bild</td>
+						</tr>
+						<tr>
+							<td colspan="2" class="tdHinzufuegen"><input type="url" id="Cover" placeholder="Cover" name="Cover"></input></td>
+							<td colspan="2" class="tdHinzufuegen"><input type="url" id="Diashow" placeholder="Diashow Bild f&uuml;r die Startseite" name="Diashow"></input></td>
+						</tr>
+						<tr class="tableTDerw">
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td class="tdHinzufuegen"><input type="submit" id="Submit"></button></td>
+						</tr>
+					</table>
+				</form>
 			</article>
 		</main>
+		<script>
+			
+			$(document).ready(function() {
+				LoadAndDisplayDropDownMenues()
+			})
+
+			function LoadAndDisplayDropDownMenues(){
+
+				$.ajax({
+					url: 'http://localhost:8000/api/format/alle/Manga',
+					method: 'get',
+					contentType: 'application/json; charset=utf-8',
+					cache: false,
+					dataType: 'json',
+				}).done(function (response) {
+					console.log(response);
+					RenderFormatOptions(response);                
+				}).fail(function (jqXHR, statusText, error) {
+					console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+					$('#output').html('Ein Fehler ist aufgetreten');
+				})
+
+				$.ajax({
+					url: 'http://localhost:8000/api/genre/alle',
+					method: 'get',
+					contentType: 'application/json; charset=utf-8',
+					cache: false,
+					dataType: 'json',
+				}).done(function (response) {
+					console.log(response);
+					RenderGenreOptions(response);                
+				}).fail(function (jqXHR, statusText, error) {
+					console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+					$('#output').html('Ein Fehler ist aufgetreten');
+				})
+
+				
+				$.ajax({
+					url: 'http://localhost:8000/api/source/alle',
+					method: 'get',
+					contentType: 'application/json; charset=utf-8',
+					cache: false,
+					dataType: 'json',
+				}).done(function (response) {
+					console.log(response);
+					RenderSourceOptions(response);                
+				}).fail(function (jqXHR, statusText, error) {
+					console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+					$('#output').html('Ein Fehler ist aufgetreten');
+				})
+				
+				$.ajax({
+					url: 'http://localhost:8000/api/jahr/alle',
+					method: 'get',
+					contentType: 'application/json; charset=utf-8',
+					cache: false,
+					dataType: 'json',
+				}).done(function (response) {
+					console.log(response);
+					RenderJahrOptions(response);                
+				}).fail(function (jqXHR, statusText, error) {
+					console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+					$('#output').html('Ein Fehler ist aufgetreten');
+				})
+				
+				$.ajax({
+					url: 'http://localhost:8000/api/status/alle',
+					method: 'get',
+					contentType: 'application/json; charset=utf-8',
+					cache: false,
+					dataType: 'json',
+				}).done(function (response) {
+					console.log(response);
+					RenderStatusOptions(response);                
+				}).fail(function (jqXHR, statusText, error) {
+					console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+					$('#output').html('Ein Fehler ist aufgetreten');
+				})
+			}
+			
+			function RenderFormatOptions(arr) {
+				console.log(arr);
+    			var select = document.getElementById("Format");
+
+    			for (var i = 0; i < arr.length; i++){
+        			var opt = document.createElement("option");
+        			opt.value = arr[i].id;
+					opt.innerHTML = arr[i].format;
+        			select.appendChild(opt);
+    			}
+			}
+
+			function RenderGenreOptions(arr) {
+				console.log(arr);
+				var select = document.getElementById("Genre");
+
+				for (var i = 0; i < arr.length; i++){
+					var opt = document.createElement("option");
+					opt.value = arr[i].id;
+					opt.innerHTML = arr[i].genre;
+					select.appendChild(opt);
+				}
+			}
+			
+			function RenderSourceOptions(arr) {
+				console.log(arr);
+				var select = document.getElementById("Source");
+
+				for (var i = 0; i <arr.length; i++){
+					var opt = document.createElement("option");
+					opt.value = arr[i].id;
+					opt.innerHTML = arr[i].source;
+					select.appendChild(opt);
+				}
+			}
+			
+			function RenderJahrOptions(arr) {
+				console.log(arr);
+				var select = document.getElementById("Jahr");
+
+				for (var i = 0; i < arr.length; i++){
+					var opt = document.createElement("option");
+					opt.value = arr[i].id;
+					opt.innerHTML = arr[i].jahr;
+					select.appendChild(opt);
+				}
+			}
+			
+			function RenderStatusOptions(arr) {
+				console.log(arr);
+				var select = document.getElementById("Status");
+
+				for (var i = 0; i <arr.length; i++){
+					var opt = document.createElement("option");
+					opt.value = arr[i].id;
+					opt.innerHTML = arr[i].status;
+					select.appendChild(opt);
+				}
+			}
+
+			$('#uploadForm').submit(function(event){
+
+				event.preventDefault();
+
+				var formData = new FormData(this)
+
+				$.ajax({
+						url: 'http://localhost:8000/api/eintragInfo/Add',
+						type: 'POST',
+						data: formData,
+						contentType: false,
+						Cache: false,
+						processData: false,
+						dataType: '.json'
+				})
+				.done(function() {
+					consol.log('eintragInfo eingetragen')
+				})
+				.fail(function(xhr){
+					console.log('error recieved');
+					console.log(xhr);
+					console.log(xhr.status);
+					alert(xhr.responseText);
+				})
+
+				$.ajax({
+						url: 'http://localhost:8000/api/Manga/Add',
+						type: 'POST',
+						data: formData,
+						contentType: false,
+						Cache: false,
+						processData: false,
+						dataType: '.json'
+				})
+				.done(function() {
+					consol.log('eintragInfo eingetragen')
+				})
+				.fail(function(xhr){
+					console.log('error recieved');
+					console.log(xhr);
+					console.log(xhr.status);
+					alert(xhr.responseText);
+				})
+
+
+				$.ajax({
+					url: 'http://localhost:8000/api/MangaGenre/add',
+					type: 'POST',
+					data: formData,
+					contentType: false,
+					Cache: false,
+					processData: false,
+					dataType: '.json'
+				})
+				.done(function(){
+					consol.log('genres eingetragen');
+				})
+				.fail(function(xhr){
+					console.log('error recieved');
+					console.log(xhr);
+					console.log(xhr.status);
+					alert(xhr.responseText);
+				})
+			})
+		</script>
 	</body>
 </html>
