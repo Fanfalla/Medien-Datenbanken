@@ -183,6 +183,9 @@ nav {
 
 .pictureTable {
 	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+	border-spacing: 5px;
 }
 
 .picture {
@@ -294,7 +297,19 @@ nav {
 	padding-bottom: 20%;
 }
 
-	/* Registration*/
+	/* Datenbank Eintrag Tabelle */
+
+.animeEintragTabelleTD{
+	position: relative;
+	/*transform: translate(-50%, 0%);*/
+	background-color: white;
+	vertical-align: top;
+	padding: 0px;
+	/*background-color: #606060;*/
+	
+}
+
+	/* Registration */
 
 .tableRegistration {
 	text-align: center;

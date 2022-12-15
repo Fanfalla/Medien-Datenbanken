@@ -101,6 +101,9 @@ try {
     serviceRouter = require('./services/Studio.js');
     app.use(TOPLEVELPATH, serviceRouter);
 
+    serviceRouter = require('./services/ListStatus.js');
+    app.use(TOPLEVELPATH, serviceRouter);
+
     // send default error message if no matching endpoint found
     app.use(function (request, response) {
         console.log('Error occured, 404, resource not found');
