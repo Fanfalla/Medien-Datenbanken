@@ -4,6 +4,7 @@
 	<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>Home</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 		<link rel="stylesheet" href="Css.css">
 	</head>
 	<body>
@@ -27,229 +28,363 @@
 				</ul>
 		</footer>
 		<main>
-			<article class="mainBox">
-				<section class="filter">
-					<label class="labelSpaceRight">Genre: </label>
-					<select id="Genre" class="dropdownMenue">
-						<option value="0">---</option>
-						<option value="Action">Action</option>
-						<option value="Adventure">Adventure</option>
-						<option value="Comedy">Comedy</option>
-						<option value="Drama">Drama</option>
-						<option value="Ecchi">Ecchi</option>
-						<option value="Fantasy">Fantasy</option>
-						<option value="Horror">Horror</option>
-						<option value="Mahou Shoujo">Mahou Shoujo</option>
-						<option value="Mecha">Mecha</option>
-						<option value="Music">Music</option>
-						<option value="Mystery">Mystery</option>
-						<option value="Psychological">Psychological</option>
-						<option value="Romance">Romance</option>
-						<option value="Sci-Fi">Sci-Fi</option>
-						<option value="Slice of Life">Slice of Life</option>
-						<option value="Sport">Sport</option>
-						<option value="Supernatural">Supernatural</option>
-						<option value="Thriler">Thriler</option>
-					</select>
-					<label class="labelSpaceLeft labelSpaceRight">Season:</label>
-					<select id="Season" class="dropdownMenue">
-						<option value="0">---</option>
-						<option value="Winter">Winter</option>
-						<option value="Spring">Spring</option>
-						<option value="Summer">Summer</option>
-						<option value="Fall">Fall</option>
-					</select>
-					<label class="labelSpaceLeft labelSpaceRight">Jahr:</label>
-					<select id="Jahr" class="dropdownMenue">
-						<option value="0">---</option>
-						<option value="2023">2023</option>
-						<option value="2022">2022</option>
-						<option value="2021">2021</option>
-						<option value="2020">2020</option>
-						<option value="2019">2019</option>
-						<option value="2018">2018</option>
-						<option value="2017">2017</option>
-						<option value="2016">2016</option>
-						<option value="2015">2015</option>
-						<option value="2014">2014</option>
-						<option value="2013">2013</option>
-						<option value="2012">2012</option>
-						<option value="2011">2011</option>
-						<option value="2010">2010</option>
-						<option value="2009">2009</option>
-						<option value="2008">2008</option>
-						<option value="2007">2007</option>
-						<option value="2006">2006</option>
-						<option value="2005">2005</option>
-						<option value="2004">2004</option>
-						<option value="2003">2003</option>
-						<option value="2002">2002</option>
-						<option value="2001">2001</option>
-						<option value="2000">2000</option>
-						<option value="1999">1999</option>
-						<option value="1998">1998</option>
-					</select>
-					<label class="labelSpaceLeft labelSpaceRight">Format:</label>
-					<select id="Format" class="dropdownMenue">
-						<option value="0">---</option>
-						<option value="TV">TV</option>
-						<option value="TV Short">TV Short</option>
-						<option value="Movie">Movie</option>
-						<option value="OVA">OVA</option>
-						<option value="Special">Special</option>
-						<option value="ONA">ONA</option>
-						<option value="Music">Music</option>
-					</select>
-					<label class="labelSpaceLeft labelSpaceRight">Source:</label>
-					<select id="Source" class="dropdownMenue">
-						<option value="0">---</option>
-						<option value="Original">Original</option>
-						<option value="Manga">Manga</option>
-						<option value="Light Novel">Light Novel</option>
-						<option value="Web Novel">Web Novel</option>
-						<option value="Novel">Novel</option>
-						<option value="Video Game">Video Game</option>
-						<option value="">Visuel Novel</option>
-						<option value="Multi Media Projekt">Multi Media Projekt</option>
-						<option value="Other">Other</option>
-					</select>
-					<!--
-					<label class="labelSpaceLeft labelSpaceRight">:</label>
-					<select id="select" class="dropdownMenue">
-						<option value=""></option>
-					</select>
-					 -->
-				</section>
-				<section class="genreAuswahlBox">
-					<img src="Bilder\Genres\Action.png" class="genreAuswahl"></img>
-					<img src="Bilder\Genres\Adventure.png" class="genreAuswahl"></img>
-				</section>
+			<form id="uploadForm" enctype="multipart/form-data">
+				<article class="mainBox">
+					<section class="filter">
+						<label class="labelSpaceRight">Genre: </label>
+						<select id="Genre" class="dropdownMenue" name="Genre">
+						</select>
+						<label class="labelSpaceLeft labelSpaceRight">Season:</label>
+						<select id="Season" class="dropdownMenue" name="Season">
+						</select>
+						<label class="labelSpaceLeft labelSpaceRight">Jahr:</label>
+						<select id="Jahr" class="dropdownMenue" name="Jahr">
+						</select>
+						<label class="labelSpaceLeft labelSpaceRight">Format:</label>
+						<select id="Format" class="dropdownMenue" name="Format">
+						</select>
+						<label class="labelSpaceLeft labelSpaceRight">Source:</label>
+						<select id="Source" class="dropdownMenue" name="Source">
+						</select>
+						<!--
+						<label class="labelSpaceLeft labelSpaceRight">:</label>
+						<select id="select" class="dropdownMenue">
+							<option value=""></option>
+						</select>
+						-->
+					</section>
+					<section class="genreAuswahlBox">
+						<img src="Bilder\Genres\Action.png" class="genreAuswahl"></img>
+						<img src="Bilder\Genres\Adventure.png" class="genreAuswahl"></img>
+					</section>
+				</article>
+				<article class="mainBox datenbankBox">
+					<table class="pictureTable" id="AnimeTable">
+						<!--<tr>
+							<td class="animeEintragTabelleTD"><image src="Bilder/Bleach.png" width="215" height="300"><p>BLEACH</image></td>
+							<td class="animeEintragTabelleTD"><image src="Bilder/Anime/Bleach 2.png" width="215"></image></td>
+							<td class="animeEintragTabelleTD"><image src="Bilder/Bleach.png" width="215" height="300"><p>BLEACH</image></td>
+							<td class="animeEintragTabelleTD"><image src="Bilder/Bleach.png" width="215" height="300"><p>BLEACH</image></td>
+							<td class="animeEintragTabelleTD"><image src="Bilder/Bleach.png" width="215" height="300"><p>BLEACH</image></td>
+							<td class="animeEintragTabelleTD"><image src="Bilder/Bleach.png" width="215" height="300"><p>BLEACH</image></td>
+						</tr>
+						<tr>
+							<td class="animeEintragTabelleTD"><image src="Bilder/Bleach.png" width="215" height="300"><p>BLEACH</image></td>
+							<td class="animeEintragTabelleTD"><image src="Bilder/Bleach.png" width="215" height="300"><p>BLEACH</image></td>
+							<td class="animeEintragTabelleTD"><image src="Bilder/Bleach.png" width="215" height="300"><p>BLEACH</image></td>
+							<td class="animeEintragTabelleTD"><image src="Bilder/Bleach.png" width="215" height="300"><p>BLEACH</image></td>
+							<td class="animeEintragTabelleTD"><image src="Bilder/Bleach.png" width="215" height="300"><p>BLEACH</image></td>
+							<td class="animeEintragTabelleTD"><image src="Bilder/Bleach.png" width="215" height="300"><p>BLEACH</image></td>
+						</tr> -->
+					</table>
+					<footer class="navigationBox2 schatten">
+						<ul class="navigationList">
+							<li class="navigationButton"><a href="Home.html" class="navigation">Impressum</a></li>
+							<li class="navigationButton navigationButton2"><a href="Admin Ansicht.html" class="navigation">Admin Ansicht</a></li>
+						</ul>
+					</footer>
+				</article>
+			<article class="hinterGrundBox">
 			</article>
-			<article class="mainBox datenbankBox">
-				<table class="pictureTable">
-					<tr class="pictureTableExtra"> 
-						<td class=""><image src="Bilder\Anime\Bleach.png" class="picture schatten"></image> </td> 
-						<td><image src="Bilder\Anime\Bleach 2.png" class="picture schatten"></image> </td> 
-						<td><image src="Bilder\Anime\Chainsaw Man.png" class="picture schatten"></image> </td> 
-						<td><image src="Bilder\Anime\Death Note.png" class="picture schatten"></image> </td> 
-						<td><image src="Bilder\Anime\Detective Conan.png" class="picture schatten"></image> </td> 
-						<td><image src="Bilder\Anime\Dr Stone 1.png" class="picture schatten"></image> </td> 
-					</tr>
-					<tr class="pictureTableExtra"> 
-						<td><image src="Bilder\Anime\Dr Stone 2.png" class="picture schatten"></image> </td> 
-						<td><image src="Bilder\Anime\Dr Stone 2.5.png" class="picture schatten"></image> </td> 
-						<td><image src="Bilder\Anime\Dr Stone 3.png" class="picture schatten"></image> </td> 
-						<td><image src="Bilder\Anime\Evangelion 1.png" class="picture schatten"></image> </td> 
-						<td><image src="Bilder\Anime\FLCL.png" class="picture schatten"></image> </td> 
-						<td><image src="Bilder\Anime\Gintama.png" class="picture schatten"></image> </td> 
-					</tr>
-					<tr> 
-						<td><image src="Bilder\Anime\Haikyuu!!.png" class="picture schatten"></image> </td> 
-						<td><image src="Bilder\Anime\Hellsing ova.png" class="picture schatten"></image> </td> 
-						<td><image src="Bilder\Anime\Kaguya-sama love is war 1.png" class="picture schatten"></image> </td> 
-						<td><image src="Bilder\Anime\One Piece 1.png" class="picture schatten"></image> </td> 
-						<td><image src="Bilder\Anime\Sayonara.png" class="picture schatten"></image> </td> 
-						<td><image src="Bilder\Anime\Silent Voice.png" class="picture schatten"></image> </td> 
-					</tr>
-					<tr> 
-						<td><image src="Bilder\Anime\Spy x Family.png" class="picture schatten"></image> </td> 
-						<td><image src="Bilder\Anime\Spy x Family 1.5.png" class="picture schatten"></image> </td>
-					</tr>
-				</table>
-				<footer class="navigationBox2 schatten">
-					<ul class="navigationList">
-						<li class="navigationButton"><a href="Home.html" class="navigation">Impressum</a></li>
-						<li class="navigationButton navigationButton2"><a href="Admin Ansicht.html" class="navigation">Admin Ansicht</a></li>
-					</ul>
-				</footer>
-			</article>
-		<article class="hinterGrundBox">
-		</article>
-			<article class="eintragBox schatten">
-				<section class="eintragBildBox schatten">
-					<img src="Bilder/Bleach.png" class="eintragBild"></img>
-				</section>
-				<section class="eintragAuswahlBox">
-					<select id="Liste" type="dropdownMenue">
-						<option value="0">---</option>
-						<option value="1">Watching</option>
-						<option value="2">Completed</option>
-						<option value="3">Planning</option>
-						<option value="4">Paused</option>
-						<option value="5">Dropped</option>
-					</select>
-				</section>
-				<section class="eintragLoeschen">
-					<label>Delete</label>
-				</section>
-				<section class="eintragH1Box">
-					<label>Bleach</label>
-				</section>
-				<section class="eintragInfoBox">
-					<table class="eintragTable">
-						<tr>
-							<td class="eintragTableTD"><b><label>Englischer Titel:</label></b></td>
-							<td><label>Bleach</label></td>
-						</tr>
-						<tr>
-							<td><b><label>Deutscher Titel:</label></b></td>
-							<td><label>Bleach</label></td>
-						</tr>
-					</table>
-					<table class="eintragTable eintragTable2">
-						<tr>
-							<td class="eintragTableTD"><b><label>Beschreibung:</label></b></td>
-							<td><label> Der 15-jährige Schüler Ichigo Kurosaki kann seit seiner Kindheit Geister sehen. 
-										Doch damit nicht genug: Als er die Shinigami Rukia trifft, wird sein Leben noch einmal gehörig auf den Kopf gestellt. 
-										Während eines Kampfes in der Menschenwelt ist Rukia gezwungen, ihre Kräfte auf Ichigo zu übertragen, um ihrer beider Leben zu retten. 
-										Dank der neu gewonnenen spirituellen Kräfte entdeckt Ichigo seine wahre Berufung: 
-										die Lebenden wie die Toten um alles in der Welt vor dem Bösen zu beschützen.
-										<br>
-										<br>
-										(Quelle: crunchyroll)
-							</label></td>
-						</tr>
-					</table>
-					<table class="eintragTable2">
-						<tr>
-							<td class="eintragTableTD"><b><label>Folgen:</label></b></td>
-							<td><label>366</label></td>
-						</tr>
-						<tr>
-							<td class="eintragTableTD"><b><label>Folgen l&auml;nge:</label></b></td>
-							<td><label>24min</label></td>
-						</tr>
-					</table>
-					<table class="eintragTable2">
-						<tr>
-							<td class="eintragTableTD"><b><label>Start:</label></b></td>
-							<td><label>05.10.2004</label></td>
-						</tr>
-						<tr>
-							<td class="eintragTableTD"><b><label>End:</label></b></td>
-							<td><label>27.03.2012</label></td>
-						</tr>
-					</table>
-					<table class="eintragTable2">
-						<tr>
-							<td class="eintragTableTD"><b><label>Format:</label></b></td>
-							<td><label>TV</label></td>
-						</tr>
-						<tr>
-							<td class="eintragTableTD"><b><label>Source:</label></b></td>
-							<td><label>Manga</label></td>
-						</tr>
-						<tr>
-							<td class="eintragTableTD"><b><label>Studio:</label></b></td>
-							<td><label>Studio Pierrot</label></td>
-						</tr>
-						<tr>
-							<td class="eintragTableTD"><b><label>Genres:</label></b></td>
-							<td><label>Action<br>Adventure<br>Supernatural</label></td>
-						</tr>
-					</table>
-				</section>
-			</article>
+				<article class="eintragBox schatten">
+					<section class="eintragBildBox schatten">
+						<img src="Bilder/Bleach.png" class="eintragBild"></img>
+					</section>
+					<section class="eintragAuswahlBox">
+						<select id="ListStatus" type="dropdownMenue" name="ListStatus">
+							<option value="0">---</option>
+						</select>
+					</section>
+					<section class="eintragLoeschen">
+						<label>Delete</label>
+					</section>
+					<section class="eintragH1Box">
+						<label>Bleach</label>
+					</section>
+					<section class="eintragInfoBox">
+						<table class="eintragTable">
+							<tr>
+								<td class="eintragTableTD"><b><label>Englischer Titel:</label></b></td>
+								<td><label>Bleach</label></td>
+							</tr>
+							<tr>
+								<td><b><label>Deutscher Titel:</label></b></td>
+								<td><label>Bleach</label></td>
+							</tr>
+						</table>
+						<table class="eintragTable eintragTable2">
+							<tr>
+								<td class="eintragTableTD"><b><label>Beschreibung:</label></b></td>
+								<td><label> Der 15-jährige Schüler Ichigo Kurosaki kann seit seiner Kindheit Geister sehen. 
+											Doch damit nicht genug: Als er die Shinigami Rukia trifft, wird sein Leben noch einmal gehörig auf den Kopf gestellt. 
+											Während eines Kampfes in der Menschenwelt ist Rukia gezwungen, ihre Kräfte auf Ichigo zu übertragen, um ihrer beider Leben zu retten. 
+											Dank der neu gewonnenen spirituellen Kräfte entdeckt Ichigo seine wahre Berufung: 
+											die Lebenden wie die Toten um alles in der Welt vor dem Bösen zu beschützen.
+											<br>
+											<br>
+											(Quelle: crunchyroll)
+								</label></td>
+							</tr>
+						</table>
+						<table class="eintragTable2">
+							<tr>
+								<td class="eintragTableTD"><b><label>Folgen:</label></b></td>
+								<td><label>366</label></td>
+							</tr>
+							<tr>
+								<td class="eintragTableTD"><b><label>Folgen l&auml;nge:</label></b></td>
+								<td><label>24min</label></td>
+							</tr>
+						</table>
+						<table class="eintragTable2">
+							<tr>
+								<td class="eintragTableTD"><b><label>Start:</label></b></td>
+								<td><label>05.10.2004</label></td>
+							</tr>
+							<tr>
+								<td class="eintragTableTD"><b><label>End:</label></b></td>
+								<td><label>27.03.2012</label></td>
+							</tr>
+						</table>
+						<table class="eintragTable2">
+							<tr>
+								<td class="eintragTableTD"><b><label>Format:</label></b></td>
+								<td><label>TV</label></td>
+							</tr>
+							<tr>
+								<td class="eintragTableTD"><b><label>Source:</label></b></td>
+								<td><label>Manga</label></td>
+							</tr>
+							<tr>
+								<td class="eintragTableTD"><b><label>Studio:</label></b></td>
+								<td><label>Studio Pierrot</label></td>
+							</tr>
+							<tr>
+								<td class="eintragTableTD"><b><label>Genres:</label></b></td>
+								<td><label>Action<br>Adventure<br>Supernatural</label></td>
+							</tr>
+						</table>
+					</section>
+				</article>
+			</form>
 		</main>
+		<script>
+			
+			$(document).ready(function() {
+				LoadAndDisplayDropDownMenues()
+			})
+
+			function LoadAndDisplayDropDownMenues(){
+				$.ajax({
+					url: 'http://localhost:8000/api/genre/alle',
+					method: 'get',
+					contentType: 'application/json; charset=utf-8',
+					cache: false,
+					dataType: 'json',
+				}).done(function (response) {
+					console.log(response);
+					RenderGenreOptions(response);                
+				}).fail(function (jqXHR, statusText, error) {
+					console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+					$('#output').html('Ein Fehler ist aufgetreten');
+				})
+				
+				$.ajax({
+					url: 'http://localhost:8000/api/season/alle',
+					method: 'get',
+					contentType: 'application/json; charset=utf-8',
+					cache: false,
+					dataType: 'json',
+				}).done(function (response) {
+					console.log(response);
+					RenderSeasonOptions(response);                
+				}).fail(function (jqXHR, statusText, error) {
+					console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+					$('#output').html('Ein Fehler ist aufgetreten');
+				})
+				
+				$.ajax({
+					url: 'http://localhost:8000/api/jahr/alle',
+					method: 'get',
+					contentType: 'application/json; charset=utf-8',
+					cache: false,
+					dataType: 'json',
+				}).done(function (response) {
+					console.log(response);
+					RenderJahrOptions(response);                
+				}).fail(function (jqXHR, statusText, error) {
+					console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+					$('#output').html('Ein Fehler ist aufgetreten');
+				})
+				
+				$.ajax({
+					url: 'http://localhost:8000/api/format/alle/Anime',
+					method: 'get',
+                	contentType: 'application/json; charset=utf-8',
+                	cache: false,
+                	dataType: 'json',
+				}).done(function (response) {
+                	console.log(response);
+                	RenderFormatOptions(response);                
+            	}).fail(function (jqXHR, statusText, error) {
+                	console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+                	$('#output').html('Ein Fehler ist aufgetreten');
+				})
+				
+				$.ajax({
+					url: 'http://localhost:8000/api/source/alle',
+					method: 'get',
+					contentType: 'application/json; charset=utf-8',
+					cache: false,
+					dataType: 'json',
+				}).done(function (response) {
+					console.log(response);
+					RenderSourceOptions(response);                
+				}).fail(function (jqXHR, statusText, error) {
+					console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+					$('#output').html('Ein Fehler ist aufgetreten');
+				})
+				
+				$.ajax({
+					url: 'http://localhost:8000/api/listStatus/alle/Anime',
+					method: 'get',
+					contentType: 'application/json; charset=utf-8',
+					cache: false,
+					dataType: 'json',
+				}).done(function (response) {
+					console.log(response);
+					RenderStatusListStatus(response);
+				}).fail(function (jqXHR, statusText, error) {
+					console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+					$('#output').html('Ein Fehler ist aufgetreten');
+				})
+				
+				$.ajax({
+					url: 'http://localhost:8000/api/Anime/Alle',
+					method: 'get',
+					contentType: 'application/json; charset=utf-8',
+					cache: false,
+					dataType: 'json',
+				}).done(function (response) {
+					console.log(response);
+					RenderAnimeTable(response);
+				}).fail(function (jqXHR, statusText, error) {
+					console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+					$('#output').html('Ein Fehler ist aufgetreten');
+				})
+			}
+
+			function RenderGenreOptions(arr) {
+				console.log(arr);
+				var select = document.getElementById("Genre");
+
+				for (var i = 0; i < arr.length; i++){
+					var opt = document.createElement("option");
+					opt.value = arr[i].id;
+					opt.innerHTML = arr[i].genre;
+					select.appendChild(opt);
+				}
+			}
+
+			function RenderSeasonOptions(arr) {
+				console.log(arr);
+				var select = document.getElementById("Season");
+
+				for (var i = 0; i < arr.length; i++){
+					var opt = document.createElement("option");
+					opt.value = arr[i].id;
+					opt.innerHTML = arr[i].season;
+					select.appendChild(opt);
+				}
+			}
+
+			function RenderJahrOptions(arr) {
+				console.log(arr);
+				var select = document.getElementById("Jahr");
+
+				for (var i = 0; i < arr.length; i++){
+					var opt = document.createElement("option");
+					opt.value = arr[i].id;
+					opt.innerHTML = arr[i].jahr;
+					select.appendChild(opt);
+				}
+			}
+
+			function RenderFormatOptions(arr) {
+				console.log(arr);
+				var select = document.getElementById("Format");
+
+				for (var i = 0; i < arr.length; i++){
+					var opt = document.createElement("option");
+					opt.value =  arr[i].id;
+					opt.innerHTML = arr[i].format;
+					select.appendChild(opt);
+				}
+			}
+						
+			function RenderSourceOptions(arr) {
+				console.log(arr);
+				var select = document.getElementById("Source");
+
+				for (var i = 0; i <arr.length; i++){
+					var opt = document.createElement("option");
+					opt.value = arr[i].id;
+					opt.innerHTML = arr[i].source;
+					select.appendChild(opt);
+				}
+			}
+			
+			function RenderStatusListStatus(arr) {
+				console.log(arr);
+				var select = document.getElementById("ListStatus");
+
+				for (var i = 0; i <arr.length; i++){
+					var opt = document.createElement("option");
+					opt.value = arr[i].id;
+					opt.innerHTML = arr[i].ListStatus;
+					select.appendChild(opt);
+				}
+			}
+
+			function RenderAnimeTable(arr){
+				var table = document.getElementById("AnimeTable");
+				var thead = $('<thead>')
+								.append($('<tr>')
+									.append($('<th>'))
+									.append($('<th>'))
+									.append($('<th>'))
+									.append($('<th>'))
+									.append($('<th>'))
+									.append($('<th>'))
+								)
+					table.append(thead)
+					var body = $('<tbody>');
+						var tr = $('<tr>');
+							var zaehler = 0;
+
+							var tr = $('<tr>');
+
+							$(arr).each(function(idx, item) 
+							{
+								if(zaehler % 6 != 0 || zaehler == 0) {
+									alert(JSON.stringify(tr))
+									tr.append($('<td class="animeEintragTabelleTD">').html('<image src="' + item.cover + '" width="215" height="300"><p>' + item.romaji));
+									body.append(tr)
+									}
+								else
+								{
+									tr.append($('<td class="animeEintragTabelleTD">').html('<image src="' + item.cover + '" width="215" height="300"><p>' + item.romaji));
+									body.append(tr)
+									tr = $('<tr>');
+								}
+								zaehler += 1;
+
+							})
+
+				table.append(body)
+									
+			}
+
+		</script>
 	</body>
 </html>
