@@ -58,25 +58,7 @@
 						<img src="Bilder\Genres\Adventure.png" class="genreAuswahl"></img>
 					</section>
 				</article>
-				<article class="mainBox datenbankBox">
-					<table class="pictureTable" id="AnimeTable">
-						<!--<tr>
-							<td class="animeEintragTabelleTD"><image src="Bilder/Bleach.png" width="215" height="300"><p>BLEACH</image></td>
-							<td class="animeEintragTabelleTD"><image src="Bilder/Anime/Bleach 2.png" width="215"></image></td>
-							<td class="animeEintragTabelleTD"><image src="Bilder/Bleach.png" width="215" height="300"><p>BLEACH</image></td>
-							<td class="animeEintragTabelleTD"><image src="Bilder/Bleach.png" width="215" height="300"><p>BLEACH</image></td>
-							<td class="animeEintragTabelleTD"><image src="Bilder/Bleach.png" width="215" height="300"><p>BLEACH</image></td>
-							<td class="animeEintragTabelleTD"><image src="Bilder/Bleach.png" width="215" height="300"><p>BLEACH</image></td>
-						</tr>
-						<tr>
-							<td class="animeEintragTabelleTD"><image src="Bilder/Bleach.png" width="215" height="300"><p>BLEACH</image></td>
-							<td class="animeEintragTabelleTD"><image src="Bilder/Bleach.png" width="215" height="300"><p>BLEACH</image></td>
-							<td class="animeEintragTabelleTD"><image src="Bilder/Bleach.png" width="215" height="300"><p>BLEACH</image></td>
-							<td class="animeEintragTabelleTD"><image src="Bilder/Bleach.png" width="215" height="300"><p>BLEACH</image></td>
-							<td class="animeEintragTabelleTD"><image src="Bilder/Bleach.png" width="215" height="300"><p>BLEACH</image></td>
-							<td class="animeEintragTabelleTD"><image src="Bilder/Bleach.png" width="215" height="300"><p>BLEACH</image></td>
-						</tr> -->
-					</table>
+				<article class="mainBox datenbankBox" id="AnimeTablePlace">
 					<footer class="navigationBox2 schatten">
 						<ul class="navigationList">
 							<li class="navigationButton"><a href="Home.html" class="navigation">Impressum</a></li>
@@ -347,43 +329,55 @@
 			}
 
 			function RenderAnimeTable(arr){
-				var table = document.getElementById("AnimeTable");
-				var thead = $('<thead>')
-								.append($('<tr>')
-									.append($('<th>'))
-									.append($('<th>'))
-									.append($('<th>'))
-									.append($('<th>'))
-									.append($('<th>'))
-									.append($('<th>'))
-								)
-					table.append(thead)
-					var body = $('<tbody>');
-						var tr = $('<tr>');
-							var zaehler = 0;
+				
+				var table = document.createElement("table");
+				document.getElementById("AnimeTablePlace").appendChild(table).classList.add("pictureTable");
+				var zaehler = 0;
+				
+				$(arr).each(function(idx, item){
 
-							var tr = $('<tr>');
+					animeName = item.romaji;
 
-							$(arr).each(function(idx, item) 
-							{
-								if(zaehler % 6 != 0 || zaehler == 0) {
-									alert(JSON.stringify(tr))
-									tr.append($('<td class="animeEintragTabelleTD">').html('<image src="' + item.cover + '" width="215" height="300"><p>' + item.romaji));
-									body.append(tr)
-									}
-								else
-								{
-									tr.append($('<td class="animeEintragTabelleTD">').html('<image src="' + item.cover + '" width="215" height="300"><p>' + item.romaji));
-									body.append(tr)
-									tr = $('<tr>');
-								}
-								zaehler += 1;
+					if(animeName.length > 30){
+						animeName = animeName.substr(0,25) + '...'
+					}
 
-							})
-
-				table.append(body)
-									
-			}
+					if(zaehler == 7) {
+						zaehler = 0;	
+					}
+					
+					if(zaehler == 0){
+						row = table.insertRow();
+						A = row.insertCell();
+						B = row.insertCell();
+						C = row.insertCell();
+						D = row.insertCell();
+						E = row.insertCell();
+						F = row.insertCell();
+						zaehler += 1;
+					}
+					
+					if(zaehler == 1) {
+						A.innerHTML = '<image src="' + item.cover + '" width="215" height="300"><p>' + animeName;
+						}
+					if(zaehler == 2) {
+						B.innerHTML = '<image src="' + item.cover + '" width="215" height="300"><p>' + animeName;
+						}
+					if(zaehler == 3) {
+						C.innerHTML = '<image src="' + item.cover + '" width="215" height="300"><p>' + animeName;
+						}
+					if(zaehler == 4) {
+						D.innerHTML = '<image src="' + item.cover + '" width="215" height="300"><p>' + animeName;
+						}
+					if(zaehler == 5) {
+						E.innerHTML = '<image src="' + item.cover + '" width="215" height="300"><p>' + animeName;
+						}
+					if(zaehler == 6) {
+						F.innerHTML = '<image src="' + item.cover + '" width="215" height="300"><p>' + animeName;
+						}
+					zaehler += 1;
+				})
+		}
 
 		</script>
 	</body>
