@@ -98,46 +98,77 @@
 			}
 
 			var select = document.getElementById("PW");
-			var PWcell = select.insertRow(3);
+			var BNcell = select.insertRow(1);
+			var PWcell = select.insertRow(4);
+
+
 
 			function Abschicken() {
 
-				var Bname = document.getElementById('BName').value;
-				var Pw1 = document.getElementById('Pw1').value;
-				var Pw2 = document.getElementById('Pw2').value;
-				var Ans = document.getElementById('Ans').value;
-				var Email = document.getElementById('Email').value;
-				var PB = null;
-				var SQ = document.getElementById('test').value;
-				var AdminID = 2;
+				BNcell.innerHTML = "";
+				PWcell.innerHTML = "";
 
-				if (Pw1 != Pw2) {
-					PWcell.innerHTML = "Passwörter stimmen nicht überein!!"
-					PWcell.style.color = "red";
-
-				} else {
-					var obj = { "benutzername": Bname, 
-							"passwort": Pw1, 
-							"antwort": Ans, 
-							"email": Email, 
-							"profilbild": PB,
-							"sicherheitsfrageid": SQ,
-							"adminid": AdminID };
-
-					$.ajax({
-                	url: 'http://localhost:8000/api/account',
-                	method: 'post',
-					contentType: 'application/json; charset=utf-8',
+				$.ajax({
+                	url: 'http://localhost:8000/api/account/alle',
+                	method: 'get',
+                	contentType: 'application/json; charset=utf-8',
                 	cache: false,
-					data: JSON.stringify(obj)
-            		}).done(function (response) {
-                		console.log(response);
-                		$('#output').html(JSON.stringify(response));
-						window.location.href = "Liste.html";
-            		}).fail(function (jqXHR, statusText, error) {
-                		console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
-                		$('#output').html('Ein Fehler ist aufgetreten');
-            		});
+                	dataType: 'json'
+           	 	}).done(function (response) {
+                	console.log(response);
+					checkUnameAndPwAndPost(response);
+            	}).fail(function (jqXHR, statusText, error) {
+                	console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+                	$('#output').html('Ein Fehler ist aufgetreten');
+            	});
+
+				function checkUnameAndPwAndPost(arr) {
+					var Bname = document.getElementById('BName').value;
+					var Pw1 = document.getElementById('Pw1').value;
+					var Pw2 = document.getElementById('Pw2').value;
+					var Ans = document.getElementById('Ans').value;
+					var Email = document.getElementById('Email').value;
+					var PB = null;
+					var SQ = document.getElementById('test').value;
+					var AdminID = null;
+
+					var counter = 0;
+					for (var i = 0; i<arr.length; i++){
+						if (Bname == arr[i].benutzername) {
+							counter += 1;
+						}
+					}
+
+					if (counter == 1) {
+						BNcell.innerHTML = "Benutzername nicht verfügbar!!";
+						BNcell.style.color = "red";
+					} else if (Pw1 != Pw2) {
+						PWcell.innerHTML = "Passwörter stimmen nicht überein!!";
+						PWcell.style.color = "red";
+					} else {
+						var obj = { "benutzername": Bname, 
+								"passwort": Pw1, 
+								"antwort": Ans, 
+								"email": Email, 
+								"profilbild": PB,
+								"sicherheitsfrageid": SQ,
+								"adminid": AdminID };
+
+						$.ajax({
+                		url: 'http://localhost:8000/api/account',
+                		method: 'post',
+						contentType: 'application/json; charset=utf-8',
+                		cache: false,
+						data: JSON.stringify(obj)
+            			}).done(function (response) {
+                			console.log(response);
+                			$('#output').html(JSON.stringify(response));
+							window.location.href = "Liste.html";
+            			}).fail(function (jqXHR, statusText, error) {
+                			console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+                			$('#output').html('Ein Fehler ist aufgetreten');
+            			});
+					}
 				}
 			}
 			
