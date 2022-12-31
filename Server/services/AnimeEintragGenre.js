@@ -34,6 +34,34 @@ serviceRouter.get('/animeEintragGenre/alle', function(request, response) {
     }
 });
 
+serviceRouter.get('/animeEintragGenre/animeGenre/:id', function(request, response) {
+    console.log('Service AnimeEintragGenre: Client requested the records');
+
+    const animeEintragGenreDao = new AnimeEintragGenreDao(request.app.locals.dbConnection);
+    try {
+        var arr = animeEintragGenreDao.loadAnime(request.params.id);
+        console.log('Service AnimeEintragGenre: Records loaded, count=' + arr.length);
+        response.status(200).json(arr);
+    } catch (ex) {
+        console.error('Service AnimeEintragGenre: Error loading all records. Exception occured: ' + ex.message);
+        response.status(400).json({ 'fehler': true, 'nachricht': ex.message });
+    }
+});
+
+serviceRouter.get('/animeEintragGenre/SortGenre/:id', function(request, response) {
+    console.log('Service AnimeEintragGenre: Client requested the records');
+
+    const animeEintragGenreDao = new AnimeEintragGenreDao(request.app.locals.dbConnection);
+    try {
+        var arr = animeEintragGenreDao.loadGenre(request.params.id);
+        console.log('Service AnimeEintragGenre: Records loaded, count=' + arr.length);
+        response.status(200).json(arr);
+    } catch (ex) {
+        console.error('Service AnimeEintragGenre: Error loading all records. Exception occured: ' + ex.message);
+        response.status(400).json({ 'fehler': true, 'nachricht': ex.message });
+    }
+});
+
 serviceRouter.get('/animeEintragGenre/existiert/:id', function(request, response) {
     console.log('Service AnimeEintragGenre: Client requested check, if record exists, id=' + request.params.id);
 

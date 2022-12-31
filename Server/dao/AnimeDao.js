@@ -11,7 +11,7 @@ class AnimeDao {
     }
 
     loadById(id) {
-        var sql = 'SELECT * FROM Anime WHERE id=?';
+        var sql = 'SELECT Anime.id, folgenanzahl, dauer, romaji, englisch, deutsch, startdatum, enddatum, cover, diashow, beschreibung, format, jahr, \'source\'.\'source\', status, season, studio FROM Anime INNER JOIN EintragInfo ON Anime.eintragid = EintragInfo.id INNER JOIN Season ON Anime.seasonid = Season.id INNER JOIN Studio ON Anime.studioid = Studio.id INNER JOIN Format ON EintragInfo.formatid = Format.id INNER JOIN Jahr ON EintragInfo.jahrid = Jahr.id INNER JOIN \'Source\' ON EintragInfo.sourceid = \'Source\'.id INNER JOIN Status ON EintragInfo.statusid = Status.id WHERE anime.id=?';
         var statement = this._conn.prepare(sql);
         var result = statement.get(id);
 
@@ -30,7 +30,7 @@ class AnimeDao {
     }
 
     loadAll() {
-        var sql = 'SELECT Anime.id, folgenanzahl, dauer, romaji, englisch, deutsch, startdatum, enddatum, cover, diashow, beschreibung, format, jahr, \'source\', status, season, studio FROM Anime INNER JOIN EintragInfo ON Anime.eintragid = EintragInfo.id INNER JOIN Season ON Anime.seasonid = Season.id INNER JOIN Studio ON Anime.studioid = Studio.id INNER JOIN Format ON EintragInfo.formatid = Format.id INNER JOIN Jahr ON EintragInfo.jahrid = Jahr.id INNER JOIN \'Source\' ON EintragInfo.sourceid = \'Source\'.id INNER JOIN Status ON EintragInfo.statusid = Status.id ';
+        var sql = 'SELECT Anime.id, folgenanzahl, dauer, romaji, englisch, deutsch, startdatum, enddatum, cover, diashow, beschreibung, format, jahr, \'source\'.\'source\', status, season, studio FROM Anime INNER JOIN EintragInfo ON Anime.eintragid = EintragInfo.id INNER JOIN Season ON Anime.seasonid = Season.id INNER JOIN Studio ON Anime.studioid = Studio.id INNER JOIN Format ON EintragInfo.formatid = Format.id INNER JOIN Jahr ON EintragInfo.jahrid = Jahr.id INNER JOIN \'Source\' ON EintragInfo.sourceid = \'Source\'.id INNER JOIN Status ON EintragInfo.statusid = Status.id ';
         var statement = this._conn.prepare(sql);
         var result = statement.all();
 

@@ -32,19 +32,19 @@
 				<article class="mainBox">
 					<section class="filter">
 						<label class="labelSpaceRight">Genre: </label>
-						<select id="Genre" class="dropdownMenue" name="Genre">
+						<select id="Genre" class="dropdownMenue" name="Genre" onchange="BrowseFilter()">
 						</select>
 						<label class="labelSpaceLeft labelSpaceRight">Season:</label>
-						<select id="Season" class="dropdownMenue" name="Season">
+						<select id="Season" class="dropdownMenue" name="Season" onchange="BrowseFilter()">
 						</select>
 						<label class="labelSpaceLeft labelSpaceRight">Jahr:</label>
-						<select id="Jahr" class="dropdownMenue" name="Jahr">
+						<select id="Jahr" class="dropdownMenue" name="Jahr" onchange="BrowseFilter()">
 						</select>
 						<label class="labelSpaceLeft labelSpaceRight">Format:</label>
-						<select id="Format" class="dropdownMenue" name="Format">
+						<select id="Format" class="dropdownMenue" name="Format" onchange="BrowseFilter()">
 						</select>
 						<label class="labelSpaceLeft labelSpaceRight">Source:</label>
-						<select id="Source" class="dropdownMenue" name="Source">
+						<select id="Source" class="dropdownMenue" name="Source" onchange="BrowseFilter()">
 						</select>
 						<!--
 						<label class="labelSpaceLeft labelSpaceRight">:</label>
@@ -66,11 +66,11 @@
 						</ul>
 					</footer>
 				</article>
-			<article class="hinterGrundBox">
+			<article class="hinterGrundBox" id="TransparentBox" onclick="HideEntry()">
 			</article>
-				<article class="eintragBox schatten">
+				<article class="eintragBox schatten" id="EintragInfoBox">
 					<section class="eintragBildBox schatten">
-						<img src="Bilder/Bleach.png" class="eintragBild"></img>
+						<image src="" width="215" height="300" id="Cover"></img>
 					</section>
 					<section class="eintragAuswahlBox">
 						<select id="ListStatus" type="dropdownMenue" name="ListStatus">
@@ -81,69 +81,70 @@
 						<label>Delete</label>
 					</section>
 					<section class="eintragH1Box">
-						<label>Bleach</label>
+						<label id="Romaji"></label>
 					</section>
 					<section class="eintragInfoBox">
 						<table class="eintragTable">
 							<tr>
 								<td class="eintragTableTD"><b><label>Englischer Titel:</label></b></td>
-								<td><label>Bleach</label></td>
+								<td><label id="Englisch"></label></td>
 							</tr>
 							<tr>
 								<td><b><label>Deutscher Titel:</label></b></td>
-								<td><label>Bleach</label></td>
+								<td><label id="Deutsch"></label></td>
 							</tr>
 						</table>
 						<table class="eintragTable eintragTable2">
 							<tr>
 								<td class="eintragTableTD"><b><label>Beschreibung:</label></b></td>
-								<td><label> Der 15-jährige Schüler Ichigo Kurosaki kann seit seiner Kindheit Geister sehen. 
-											Doch damit nicht genug: Als er die Shinigami Rukia trifft, wird sein Leben noch einmal gehörig auf den Kopf gestellt. 
-											Während eines Kampfes in der Menschenwelt ist Rukia gezwungen, ihre Kräfte auf Ichigo zu übertragen, um ihrer beider Leben zu retten. 
-											Dank der neu gewonnenen spirituellen Kräfte entdeckt Ichigo seine wahre Berufung: 
-											die Lebenden wie die Toten um alles in der Welt vor dem Bösen zu beschützen.
-											<br>
-											<br>
-											(Quelle: crunchyroll)
+								<td><label id="Beschreibung">
 								</label></td>
 							</tr>
 						</table>
 						<table class="eintragTable2">
 							<tr>
 								<td class="eintragTableTD"><b><label>Folgen:</label></b></td>
-								<td><label>366</label></td>
+								<td><label id="Folgen"></label></td>
 							</tr>
 							<tr>
 								<td class="eintragTableTD"><b><label>Folgen l&auml;nge:</label></b></td>
-								<td><label>24min</label></td>
+								<td><label id="Dauer"></label>min</td>
 							</tr>
 						</table>
 						<table class="eintragTable2">
 							<tr>
+								<td class="eintragTableTD"><b><label>Status:</label></b></td>
+								<td><label id="Status"></label></td>
+							</tr>
+							<tr>
+								<td class="eintragTableTD"><b><label>Season:</label></b></td>
+								<td><label id="SeasonEintrag"></label></td>
+							</tr>
+							<tr>
 								<td class="eintragTableTD"><b><label>Start:</label></b></td>
-								<td><label>05.10.2004</label></td>
+								<td><label id="StartDate"></label></td>
 							</tr>
 							<tr>
 								<td class="eintragTableTD"><b><label>End:</label></b></td>
-								<td><label>27.03.2012</label></td>
+								<td><label id="EndDate"></label></td>
 							</tr>
 						</table>
 						<table class="eintragTable2">
 							<tr>
 								<td class="eintragTableTD"><b><label>Format:</label></b></td>
-								<td><label>TV</label></td>
+								<td><label id="FormatEintrag"></label></td>
 							</tr>
 							<tr>
 								<td class="eintragTableTD"><b><label>Source:</label></b></td>
-								<td><label>Manga</label></td>
+								<td><label id="SourceEintrag"></label></td>
 							</tr>
 							<tr>
 								<td class="eintragTableTD"><b><label>Studio:</label></b></td>
-								<td><label>Studio Pierrot</label></td>
+								<td><label id="StudioEintrag"></label></td>
 							</tr>
 							<tr>
 								<td class="eintragTableTD"><b><label>Genres:</label></b></td>
-								<td><label>Action<br>Adventure<br>Supernatural</label></td>
+								<td><label id="GenreEintrag"></label></td>
 							</tr>
 						</table>
 					</section>
@@ -328,13 +329,49 @@
 				}
 			}
 
+			function BrowseFilter(){
+
+				var SelectedValueGenre = 1
+				var SelectedValueSeason = 1
+				var SelectedValueJahr = 1
+				var SelectedValueFormat = 1
+				var SelectedValueSource = 1
+
+				SelectedValueGenre = document.getElementById('Genre').value
+				SelectedValueSeason = document.getElementById('Season').value
+				SelectedValueJahr = document.getElementById('Jahr').value
+				SelectedValueFormat = document.getElementById('Format').value
+				SelectedValueSource = document.getElementById('Source').value
+				
+				table = document.getElementById('AnimeAuswahl')
+				table.parentNode.removeChild(table)
+
+				$.ajax({
+					url: 'http://localhost:8000/api/Fillter/SortGenre/'+ SelectedValueGenre + '_' + SelectedValueSeason + '_' + SelectedValueJahr + '_' + SelectedValueFormat + '_' + SelectedValueSource,
+					method: 'get',
+					contentType: 'application/json; charset=utf-8',
+					cache: false,
+					dataType: 'json',
+				}).done(function (response) {
+					console.log(response);
+					RenderAnimeTable(response);          
+				}).fail(function (jqXHR, statusText, error) {
+					console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+					$('#output').html('Ein Fehler ist aufgetreten');
+				})
+
+			}
+
 			function RenderAnimeTable(arr){
 				
 				var table = document.createElement("table");
-				document.getElementById("AnimeTablePlace").appendChild(table).classList.add("pictureTable");
+				document.getElementById("AnimeTablePlace").appendChild(table).setAttribute("id", "AnimeAuswahl")
+				document.getElementById("AnimeAuswahl").classList.add("pictureTable")
 				var zaehler = 0;
 				
 				$(arr).each(function(idx, item){
+
+					
 
 					animeName = item.romaji;
 
@@ -358,26 +395,121 @@
 					}
 					
 					if(zaehler == 1) {
-						A.innerHTML = '<image src="' + item.cover + '" width="215" height="300"><p>' + animeName;
+						A.innerHTML = '<image src="' + item.cover + '" width="215" height="300" onclick="ShowEntry(' + item.id + ')"><p><label onclick="ShowEntry(' + item.id + ')">' + animeName + '</label>';
 						}
 					if(zaehler == 2) {
-						B.innerHTML = '<image src="' + item.cover + '" width="215" height="300"><p>' + animeName;
+						B.innerHTML = '<image src="' + item.cover + '" width="215" height="300" onclick="ShowEntry(' + item.id + ')"><p><label onclick="ShowEntry(' + item.id + ')">' + animeName + '</label>';
 						}
 					if(zaehler == 3) {
-						C.innerHTML = '<image src="' + item.cover + '" width="215" height="300"><p>' + animeName;
+						C.innerHTML = '<image src="' + item.cover + '" width="215" height="300" onclick="ShowEntry(' + item.id + ')"><p><label onclick="ShowEntry(' + item.id + ')">' + animeName + '</label>';
 						}
 					if(zaehler == 4) {
-						D.innerHTML = '<image src="' + item.cover + '" width="215" height="300"><p>' + animeName;
+						D.innerHTML = '<image src="' + item.cover + '" width="215" height="300" onclick="ShowEntry(' + item.id + ')"><p><label onclick="ShowEntry(' + item.id + ')">' + animeName + '</label>';
 						}
 					if(zaehler == 5) {
-						E.innerHTML = '<image src="' + item.cover + '" width="215" height="300"><p>' + animeName;
+						E.innerHTML = '<image src="' + item.cover + '" width="215" height="300" onclick="ShowEntry(' + item.id + ')"><p><label onclick="ShowEntry(' + item.id + ')">' + animeName + '</label>';
 						}
 					if(zaehler == 6) {
-						F.innerHTML = '<image src="' + item.cover + '" width="215" height="300"><p>' + animeName;
+						F.innerHTML = '<image src="' + item.cover + '" width="215" height="300" onclick="ShowEntry(' + item.id + ')"><p><label onclick="ShowEntry(' + item.id + ')">' + animeName + '</label>';
 						}
 					zaehler += 1;
 				})
 		}
+
+		function ShowEntry(id){
+				
+			$.ajax({
+				url: 'http://localhost:8000/api/Anime/gib/'+ id,
+				method: 'get',
+				contentType: 'application/json; charset=utf-8',
+				cache: false,
+				dataType: 'json',
+			}).done(function (response) {
+				console.log(response);
+				FillTableWithData(response);          
+			}).fail(function (jqXHR, statusText, error) {
+				console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+				$('#output').html('Ein Fehler ist aufgetreten');
+			})
+
+			$.ajax({
+				url: 'http://localhost:8000/api/animeEintragGenre/animeGenre/'+ id,
+				method: 'get',
+				contentType: 'application/json; charset=utf-8',
+				cache: false,
+				dataType: 'json',
+			}).done(function (response) {
+				console.log(response);
+				FillGenreCell(response);          
+			}).fail(function (jqXHR, statusText, error) {
+				console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+				$('#output').html('Ein Fehler ist aufgetreten');
+			})
+
+			EintragInfoBox.style.visibility="visible"
+			TransparentBox.style.visibility="visible"
+		}
+
+		function HideEntry(){
+			
+			EintragInfoBox.style.visibility="hidden"
+			TransparentBox.style.visibility="hidden"
+			
+			document.getElementById('Romaji').innerHTML = ''
+			document.getElementById('Englisch').innerHTML = ''
+			document.getElementById('Deutsch').innerHTML = ''
+			document.getElementById('Beschreibung').innerHTML = ''
+			document.getElementById('Folgen').innerHTML = ''
+			document.getElementById('Dauer').innerHTML = ''
+			document.getElementById('Status').innerHTML = ''
+			document.getElementById('StartDate').innerHTML = ''
+			document.getElementById('EndDate').innerHTML = ''
+			document.getElementById('FormatEintrag').innerHTML = ''
+			document.getElementById('SeasonEintrag').innerHTML = ''
+			document.getElementById('StudioEintrag').innerHTML = ''
+			document.getElementById('SourceEintrag').innerHTML = ''
+			document.getElementById('Cover').src = ''
+			document.getElementById('GenreEintrag').innerHTML = ''
+		}
+
+		function FillTableWithData(item) {
+
+			document.getElementById('Romaji').innerHTML = item.romaji
+			document.getElementById('Englisch').innerHTML = item.englisch
+			document.getElementById('Deutsch').innerHTML = item.deutsch
+			document.getElementById('Beschreibung').innerHTML = item.beschreibung
+			document.getElementById('Folgen').innerHTML = item.folgenanzahl
+			document.getElementById('Dauer').innerHTML = item.dauer
+			document.getElementById('Status').innerHTML = item.status
+			document.getElementById('StartDate').innerHTML = item.startdatum
+			document.getElementById('EndDate').innerHTML = item.enddatum
+			document.getElementById('FormatEintrag').innerHTML = item.format
+			document.getElementById('SeasonEintrag').innerHTML = item.season + ' ' + item.jahr
+			document.getElementById('StudioEintrag').innerHTML = item.studio
+			document.getElementById('SourceEintrag').innerHTML = item.source
+			document.getElementById('Cover').src = item.cover
+		}
+
+		function FillGenreCell(arr){
+
+			var genres = ''
+
+			$(arr).each(function(idx, item){
+
+				genres += item.genre + ', '
+			})
+
+			genres = genres.substring(0, genres.length - 2)
+			document.getElementById('GenreEintrag').innerHTML = genres
+		}
+
+/*  onmouseover="ShowFullName(' + item.id + ')
+		function ShowFullName(id){
+
+			var box = createElement('article')
+		} */
+
+
 
 		</script>
 	</body>
