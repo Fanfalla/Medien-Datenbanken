@@ -11,7 +11,7 @@ class AnimeEintragGenreDao {
     }
 
     loadById(id) {
-        var sql = 'SELECT * FROM animeeintraggenre WHERE id=?';
+        var sql = 'SELECT * FROM AnimeEintragGenre WHERE id=?';
         var statement = this._conn.prepare(sql);
         var result = statement.get(id);
 
@@ -22,12 +22,29 @@ class AnimeEintragGenreDao {
     }
 
     loadAll() {
-        var sql = 'SELECT * FROM animeeintraggenre';
+        var sql = 'SELECT * FROM AnimeEintragGenre';
         var statement = this._conn.prepare(sql);
         var result = statement.all();
 
         if (helper.isArrayEmpty(result)) 
             return [];
+        
+        return result;
+    }
+
+    loadAnime(id) {
+        console.log(id)
+        var sql = 'SELECT AnimeEintragGenre.id, Anime.id, genre FROM AnimeEintragGenre INNER JOIN Anime ON Anime.id = AnimeEintragGenre.animeeintragid INNER JOIN Genre ON AnimeEintragGenre.genreid = Genre.id WHERE animeeintragid=?';
+        var statement = this._conn.prepare(sql);
+        var result = statement.all(id);
+
+        if (helper.isUndefined(result)) 
+            throw new Error('No Record found by id=' + id);
+
+        if (helper.isArrayEmpty(result)){
+            console.log(result)
+            return [];
+        }
         
         return result;
     }
