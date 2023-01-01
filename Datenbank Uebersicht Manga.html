@@ -17,7 +17,6 @@
 				<li class="navigationButton"><a href="Datenbank Uebersicht Manga.html" class="navigation">Mangas</a></li>
 				<li class="navigationButton"><a href="Registration.html" class="navigation">Registration</a></li>
 				<li class="navigationButton"><a href="Login.html" class="navigation">Log in</a></li>
-				<li><input type="text" id="suche" placeholder="Suche..." class="searchBar"></li>
 			</ul>
 		</nav>
 	</header>
@@ -25,17 +24,18 @@
 			<form id="uploadForm" enctype="multipart/form-data">
 				<article class="mainBox">
 					<section class="filter">
+						<input type="text" id="Suche" name="Suche" value="" placeholder="Suche..." class="searchBar" onkeyup="BrowseFilter()">
 						<label class="labelSpaceRight">Genre: </label>
-						<select id="Genre" class="dropdownMenue" name="Genre">
+						<select id="Genre" class="dropdownMenue" name="Genre" onchange="GenreSelect()">
 						</select>
 						<label class="labelSpaceLeft labelSpaceRight">Jahr:</label>
-						<select id="Jahr" class="dropdownMenue" name="Jahr">
+						<select id="Jahr" class="dropdownMenue" name="Jahr" onchange="BrowseFilter()">
 						</select>
 						<label class="labelSpaceLeft labelSpaceRight">Format:</label>
-						<select id="Format" class="dropdownMenue" name="Format">
+						<select id="Format" class="dropdownMenue" name="Format" onchange="BrowseFilter()">
 						</select>
 						<label class="labelSpaceLeft labelSpaceRight">Source:</label>
-						<select id="Source" class="dropdownMenue" name="Source">
+						<select id="Source" class="dropdownMenue" name="Source" onchange="BrowseFilter()">
 						</select>
 						<!--
 						<label class="labelSpaceLeft labelSpaceRight">:</label>
@@ -44,8 +44,28 @@
 						</select>
 						-->
 					</section>
+					<section class="genreAuswahlBox" id="genreAuswahlBox">
+						<img src="Bilder\Genres\Action.png" class="genreAuswahl1" id="Action" value="1" onclick="GenreSelectRemove(2)"></img>
+						<img src="Bilder\Genres\Adventure.png" class="genreAuswahl2" id="Adventure" value="1" onclick="GenreSelectRemove(3)"></img>
+						<img src="Bilder\Genres\Adventure.png" class="genreAuswahl3" id="Comedy" value="1" onclick="GenreSelectRemove(4)"></img>
+						<img src="Bilder\Genres\Adventure.png" class="genreAuswahl4" id="Drama" value="1" onclick="GenreSelectRemove(5)"></img>
+						<img src="Bilder\Genres\Adventure.png" class="genreAuswahl5" id="Ecchi" value="1" onclick="GenreSelectRemove(6)"></img>
+						<img src="Bilder\Genres\Adventure.png" class="genreAuswahl6" id="Fantasy" value="1" onclick="GenreSelectRemove(7)"></img>
+						<img src="Bilder\Genres\Adventure.png" class="genreAuswahl7" id="Horror" value="1" onclick="GenreSelectRemove(8)"></img>
+						<img src="Bilder\Genres\Adventure.png" class="genreAuswahl8" id="MahouShoujo" value="1" onclick="GenreSelectRemove(9)"></img>
+						<img src="Bilder\Genres\Adventure.png" class="genreAuswahl9" id="Mecha" value="1" onclick="GenreSelectRemove(10)"></img>
+						<img src="Bilder\Genres\Adventure.png" class="genreAuswahl10" id="Music" value="1" onclick="GenreSelectRemove(11)"></img>
+						<img src="Bilder\Genres\Adventure.png" class="genreAuswahl11" id="Mystery" value="1" onclick="GenreSelectRemove(12)"></img>
+						<img src="Bilder\Genres\Adventure.png" class="genreAuswahl12" id="Psychological" value="1" onclick="GenreSelectRemove(13)"></img>
+						<img src="Bilder\Genres\Adventure.png" class="genreAuswahl13" id="Romance" value="1" onclick="GenreSelectRemove(14)"></img>
+						<img src="Bilder\Genres\Adventure.png" class="genreAuswahl14" id="Sci-Fi" value="1" onclick="GenreSelectRemove(15)"></img>
+						<img src="Bilder\Genres\Adventure.png" class="genreAuswahl15" id="SliceOfLife" value="1" onclick="GenreSelectRemove(16)"></img>
+						<img src="Bilder\Genres\Adventure.png" class="genreAuswahl16" id="Sport" value="1" onclick="GenreSelectRemove(17)"></img>
+						<img src="Bilder\Genres\Adventure.png" class="genreAuswahl17" id="Supernatural" value="1" onclick="GenreSelectRemove(18)"></img>
+						<img src="Bilder\Genres\Adventure.png" class="genreAuswahl18" id="Thriller" value="1" onclick="GenreSelectRemove(19)"></img>
+					</section>
 				</article>
-				<article class="mainBox datenbankBox" id="MangaTablePlace">
+				<article class="mainBox datenbankBox mainBoxExtra" id="MangaTablePlace">
 					<footer class="navigationBox2 schatten">
 						<ul class="navigationList">
 							<li class="navigationButton"><a href="Home.html" class="navigation">Impressum</a></li>
@@ -53,11 +73,11 @@
 						</ul>
 					</footer>
 				</article>
-				<article class="hinterGrundBox">
+				<article class="hinterGrundBox" id="TransparentBox" onclick="HideEntry()">
 				</article>
-				<article class="eintragBox schatten">
+				<article class="eintragBox schatten" id="EintragInfoBox">
 					<section class="eintragBildBox schatten">
-						<img src="Bilder/Aot_Manga.jpg" class="eintragBild"></img>
+						<image src="" width="215" height="300" id="Cover"></img>
 					</section>
 					<section class="eintragAuswahlBox">
 						<select id="ListStatus" type="dropdownMenue" name="ListStatus">
@@ -68,63 +88,61 @@
 						<label>Delete</label>
 					</section>
 					<section class="eintragH1Box">
-						<label>Shingeki no Kyojin</label>
+						<label id="Romaji"></label>
 					</section>
 					<section class="eintragInfoBox">
 						<table class="eintragTable">
 							<tr>
-								<td class="eintragTableTD"><b><label>Englischer Titel:<label></b></td>
-								<td><label>Attack on Titan<label></td>
+								<td class="eintragTableTD"><b><label>Englischer Titel:</label></b></td>
+								<td><label id="Englisch"></label></td>
 							</tr>
 							<tr>
 								<td><b><label>Deutscher Titel:<label></b></td>
-								<td><label>Attack on Titan<label></td>
+									<td><label id="Deutsch"></label></td>
 							</tr>
 						</table>
 						<table class="eintragTable eintragTable2">
 							<tr>
 								<td class="eintragTableTD"><b><label>Beschreibung:</label></b></td>
-								<td><label> Die Erde gehört riesigen Menschenfressern: den TITANEN!
-											Die letzten Menschen leben zusammengepfercht in einer Festung mit 50 Meter hohen Mauern. 
-											Als ein kolossaler Titan die äußere Mauer einreißt, bricht ein letzter Kampf aus – um das Überleben der Menschheit!
-											<br>
-											<br>
-											(Quelle: carlsen)
-								</label></td>
+								<td><label id="Beschreibung"></label></td>
 							</tr>
 						</table>
 						<table class="eintragTable2">
 							<tr>
 								<td class="eintragTableTD"><b><label>Chapter:</label></b></td>
-								<td><label>141</label></td>
+								<td><label id="Chapter"></label></td>
 							</tr>
 							<tr>
 								<td class="eintragTableTD"><b><label>Volumes:</label></b></td>
-								<td><label>34</label></td>
+								<td><label id="Volumes"></label></td>
 							</tr>
 						</table>
 						<table class="eintragTable2">
 							<tr>
+								<td class="eintragTableTD"><b><label>Status:</label></b></td>
+								<td><label id="Status"></label></td>
+							</tr>
+							<tr>
 								<td class="eintragTableTD"><b><label>Start:</label></b></td>
-								<td><label>09.09.2009</label></td>
+								<td><label id="StartDate"></label></td>
 							</tr>
 							<tr>
 								<td class="eintragTableTD"><b><label>End:</label></b></td>
-								<td><label>09.04.2021</label></td>
+								<td><label id="EndDate"></label></td>
 							</tr>
 						</table>
 						<table class="eintragTable2">
 							<tr>
 								<td class="eintragTableTD"><b><label>Format:</label></b></td>
-								<td><label>Manga</label></td>
+								<td><label id="FormatEintrag"></label></td>
 							</tr>
 							<tr>
 								<td class="eintragTableTD"><b><label>Source:</label></b></td>
-								<td><label>Original</label></td>
+								<td><label id="SourceEintrag"></label></td>
 							</tr>
 							<tr>
 								<td class="eintragTableTD"><b><label>Genres:</label></b></td>
-								<td><label>Action<br>Drama<br>Fantasy<br>Mystery</label></td>
+								<td><label id="GenreEintrag"></label></td>
 							</tr>
 						</table>
 					</section>
@@ -309,18 +327,282 @@
 				}
 			}
 
+			function GenreSelect() {
+
+				var genre = document.getElementById('Genre').value
+				var view = document.getElementById('genreAuswahlBox')
+
+				if(genre == 2){
+					document.getElementById('Action').value = 2
+					document.getElementById('Action').style.display = 'inline'
+				}
+
+				if(genre == 3){
+					document.getElementById('Adventure').value = 3
+					document.getElementById('Adventure').style.display = 'inline'
+				}
+
+				if(genre == 4){
+					document.getElementById('Comedy').value = 4
+					document.getElementById('Comedy').style.display = 'inline'
+				}
+
+				if(genre == 5){
+					document.getElementById('Drama').value = 5
+					document.getElementById('Drama').style.display = 'inline'
+				}
+
+				if(genre == 6){
+					document.getElementById('Ecchi').value = 6
+					document.getElementById('Ecchi').style.display = 'inline'
+				}
+
+				if(genre == 7){
+					document.getElementById('Fantasy').value = 7
+					document.getElementById('Fantasy').style.display = 'inline'
+				}
+
+				if(genre == 8){
+					document.getElementById('Horror').value = 8
+					document.getElementById('Horror').style.display = 'inline'
+				}
+
+				if(genre == 9){
+					document.getElementById('MahouShoujo').value = 9
+					document.getElementById('MahouShoujo').style.display = 'inline'
+				}
+
+				if(genre == 10){
+					document.getElementById('Mecha').value = 10
+					document.getElementById('Mecha').style.display = 'inline'
+				}
+
+				if(genre == 11){
+					document.getElementById('Music').value = 11
+					document.getElementById('Music').style.display = 'inline'
+				}
+
+				if(genre == 12){
+					document.getElementById('Mystery').value = 12
+					document.getElementById('Mystery').style.display = 'inline'
+				}
+
+				if(genre == 13){
+					document.getElementById('Psychological').value = 13
+					document.getElementById('Psychological').style.display = 'inline'
+				}
+
+				if(genre == 14){
+					document.getElementById('Romance').value = 14
+					document.getElementById('Romance').style.display = 'inline'
+				}
+
+				if(genre == 15){
+					document.getElementById('Sci-Fi').value = 15
+					document.getElementById('Sci-Fi').style.display = 'inline'
+				}
+
+				if(genre == 16){
+					document.getElementById('SliceOfLife').value = 16
+					document.getElementById('SliceOfLife').style.display = 'inline'
+				}
+
+				if(genre == 17){
+					document.getElementById('Sport').value = 17
+					document.getElementById('Sport').style.display = 'inline'
+				}
+
+				if(genre == 18){
+					document.getElementById('Supernatural').value = 18
+					document.getElementById('Supernatural').style.display = 'inline'
+				}
+
+				if(genre == 19){
+					document.getElementById('Thriller').value = 19
+					document.getElementById('Thriller').style.display = 'inline'
+				}
+				document.getElementById('Genre').selectedIndex = 0
+
+				BrowseFilter()
+			}
+
+			function GenreSelectRemove(id){
+
+				if(id == 2){
+					document.getElementById('Action').value = 0
+					document.getElementById('Action').style.display = "none"
+				}
+
+				if(id == 3){
+					document.getElementById('Adventure').value = 0
+					document.getElementById('Adventure').style.display = "none"
+				}
+
+				if(id == 4){
+					document.getElementById('Comedy').value = 0
+					document.getElementById('Comedy').style.display = "none"
+				}
+
+				if(id == 5){
+					document.getElementById('Drama').value = 0
+					document.getElementById('Drama').style.display = "none"
+				}
+
+				if(id == 6){
+					document.getElementById('Ecchi').value = 0
+					document.getElementById('Ecchi').style.display = "none"
+				}
+
+				if(id == 7){
+					document.getElementById('Fantasy').value = 0
+					document.getElementById('Fantasy').style.display = "none"
+				}
+
+				if(id == 8){
+					document.getElementById('Horror').value = 0
+					document.getElementById('Horror').style.display = "none"
+				}
+
+				if(id == 9){
+					document.getElementById('MahouShoujo').value = 0
+					document.getElementById('MahouShoujo').style.display = "none"
+				}
+
+				if(id == 10){
+					document.getElementById('Mecha').value = 0
+					document.getElementById('Mecha').style.display = "none"
+				}
+
+				if(id == 11){
+					document.getElementById('Music').value = 0
+					document.getElementById('Music').style.display = "none"
+				}
+
+				if(id == 12){
+					document.getElementById('Mystery').value = 0
+					document.getElementById('Mystery').style.display = "none"
+				}
+
+				if(id == 13){
+					document.getElementById('Psychological').value = 0
+					document.getElementById('Psychological').style.display = "none"
+				}
+
+				if(id == 14){
+					document.getElementById('Romance').value = 0
+					document.getElementById('Romance').style.display = "none"
+				}
+
+				if(id == 15){
+					document.getElementById('Sci-Fi').value = 0
+					document.getElementById('Sci-Fi').style.display = "none"
+				}
+
+				if(id == 16){
+					document.getElementById('SliceOfLife').value = 0
+					document.getElementById('SliceOfLife').style.display = "none"
+				}
+
+				if(id == 17){
+					document.getElementById('Sport').value = 0
+					document.getElementById('Sport').style.display = "none"
+				}
+
+				if(id == 18){
+					document.getElementById('Supernatural').value = 0
+					document.getElementById('Supernatural').style.display = "none"
+				}
+
+				if(id == 19){
+					document.getElementById('Thriller').value = 0
+					document.getElementById('Thriller').style.display = "none"
+				}
+
+				BrowseFilter()
+			}
+
+			function BrowseFilter(){
+
+				var SelectedValueJahr = 1
+				var SelectedValueFormat = 1
+				var SelectedValueSource = 1
+				var SelectedText = "";
+
+				var SelectedValueGenre1 = 1
+				var SelectedValueGenre2 = 1
+				var SelectedValueGenre3 = 1
+				var SelectedValueGenre4 = 1
+				var SelectedValueGenre5 = 1
+				var SelectedValueGenre6 = 1
+				var SelectedValueGenre7 = 1
+				var SelectedValueGenre8 = 1
+				var SelectedValueGenre9 = 1
+				var SelectedValueGenre10 = 1
+				var SelectedValueGenre11 = 1
+				var SelectedValueGenre12 = 1
+				var SelectedValueGenre13 = 1
+				var SelectedValueGenre14 = 1
+				var SelectedValueGenre15 = 1
+				var SelectedValueGenre16 = 1
+				var SelectedValueGenre17 = 1
+				var SelectedValueGenre18 = 1
+
+				SelectedValueJahr = document.getElementById('Jahr').value
+				SelectedValueFormat = document.getElementById('Format').value
+				SelectedValueSource = document.getElementById('Source').value
+				
+				SelectedValueGenre1 = document.getElementById('Action').value
+				SelectedValueGenre2 = document.getElementById('Adventure').value
+				SelectedValueGenre3 = document.getElementById('Comedy').value
+				SelectedValueGenre4 = document.getElementById('Drama').value
+				SelectedValueGenre5 = document.getElementById('Ecchi').value
+				SelectedValueGenre6 = document.getElementById('Fantasy').value
+				SelectedValueGenre7 = document.getElementById('Horror').value
+				SelectedValueGenre8 = document.getElementById('MahouShoujo').value
+				SelectedValueGenre9 = document.getElementById('Mecha').value
+				SelectedValueGenre10 = document.getElementById('Music').value
+				SelectedValueGenre11 = document.getElementById('Mystery').value
+				SelectedValueGenre12 = document.getElementById('Psychological').value
+				SelectedValueGenre13 = document.getElementById('Romance').value
+				SelectedValueGenre14 = document.getElementById('Sci-Fi').value
+				SelectedValueGenre15 = document.getElementById('SliceOfLife').value
+				SelectedValueGenre16 = document.getElementById('Sport').value
+				SelectedValueGenre17 = document.getElementById('Supernatural').value
+				SelectedValueGenre18 = document.getElementById('Thriller').value
+				SelectedText += document.getElementById('Suche').value
+				
+				table = document.getElementById('MangaAuswahl')
+				table.parentNode.removeChild(table)
+
+				$.ajax({
+					url: 'http://localhost:8000/api/Fillter/SortGenreManga/' + SelectedValueJahr + '_' + SelectedValueFormat + '_' + SelectedValueSource  + '_' + SelectedText + '_' + SelectedValueGenre1 + '&' + SelectedValueGenre2 + '&' + SelectedValueGenre3 + '&' + SelectedValueGenre4 + '&' + SelectedValueGenre5 + '&' + SelectedValueGenre6 + '&' + SelectedValueGenre7 + '&' + SelectedValueGenre8 + '&' + SelectedValueGenre9 + '&' + SelectedValueGenre10 + '&'  + SelectedValueGenre11 + '&'  + SelectedValueGenre12 + '&'  + SelectedValueGenre13 + '&'  + SelectedValueGenre14 + '&'  + SelectedValueGenre15 + '&'  + SelectedValueGenre16 + '&'  + SelectedValueGenre17 + '&' + SelectedValueGenre18,
+					method: 'get',
+					contentType: 'application/json; charset=utf-8',
+					cache: false,
+					dataType: 'json',
+				}).done(function (response) {
+					console.log(response);
+					RenderMangaTable(response);          
+				}).fail(function (jqXHR, statusText, error) {
+					console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+					$('#output').html('Ein Fehler ist aufgetreten');
+				})
+
+			}
+
 			function RenderMangaTable(arr){
 				
 				var table = document.createElement("table");
-				document.getElementById("MangaTablePlace").appendChild(table).classList.add("pictureTable");
+				document.getElementById("MangaTablePlace").appendChild(table).setAttribute("id", "MangaAuswahl")
+				document.getElementById("MangaAuswahl").classList.add("pictureTable")
 				var zaehler = 0;
 				
 				$(arr).each(function(idx, item){
 
-					animeName = item.romaji;
+					mangaName = item.romaji;
 
-					if(animeName.length > 30){
-						animeName = animeName.substr(0,25) + '...'
+					if(mangaName.length > 30){
+						mangaName = mangaName.substr(0,25) + '...'
 					}
 
 					if(zaehler == 7) {
@@ -339,25 +621,116 @@
 					}
 					
 					if(zaehler == 1) {
-						A.innerHTML = '<image src="' + item.cover + '" width="215" height="300"><p>' + animeName;
+						A.innerHTML = '<image class="schatten" src="' + item.cover + '" width="215" height="300" onclick="ShowEntry(' + item.id + ')" onmouseover="ChangeColorOver(' + item.id + ')" onmouseout="ChangeColorOut(' + item.id + ')"><p><label onclick="ShowEntry(' + item.id + ')" onmouseover="ChangeColorOver(' + item.id + ')" onmouseout="ChangeColorOut(' + item.id + ')" id="' + item.id + '">' + mangaName + '</label>';
 						}
 					if(zaehler == 2) {
-						B.innerHTML = '<image src="' + item.cover + '" width="215" height="300"><p>' + animeName;
+						B.innerHTML = '<image class="schatten" src="' + item.cover + '" width="215" height="300" onclick="ShowEntry(' + item.id + ')" onmouseover="ChangeColorOver(' + item.id + ')" onmouseout="ChangeColorOut(' + item.id + ')"><p><label onclick="ShowEntry(' + item.id + ')" onmouseover="ChangeColorOver(' + item.id + ')" onmouseout="ChangeColorOut(' + item.id + ')" id="' + item.id + '">' + mangaName + '</label>';
 						}
 					if(zaehler == 3) {
-						C.innerHTML = '<image src="' + item.cover + '" width="215" height="300"><p>' + animeName;
+						C.innerHTML = '<image class="schatten" src="' + item.cover + '" width="215" height="300" onclick="ShowEntry(' + item.id + ')" onmouseover="ChangeColorOver(' + item.id + ')" onmouseout="ChangeColorOut(' + item.id + ')"><p><label onclick="ShowEntry(' + item.id + ')" onmouseover="ChangeColorOver(' + item.id + ')" onmouseout="ChangeColorOut(' + item.id + ')" id="' + item.id + '">' + mangaName + '</label>';
 						}
 					if(zaehler == 4) {
-						D.innerHTML = '<image src="' + item.cover + '" width="215" height="300"><p>' + animeName;
+						D.innerHTML = '<image class="schatten" src="' + item.cover + '" width="215" height="300" onclick="ShowEntry(' + item.id + ')" onmouseover="ChangeColorOver(' + item.id + ')" onmouseout="ChangeColorOut(' + item.id + ')"><p><label onclick="ShowEntry(' + item.id + ')" onmouseover="ChangeColorOver(' + item.id + ')" onmouseout="ChangeColorOut(' + item.id + ')" id="' + item.id + '">' + mangaName + '</label>';
 						}
 					if(zaehler == 5) {
-						E.innerHTML = '<image src="' + item.cover + '" width="215" height="300"><p>' + animeName;
+						E.innerHTML = '<image class="schatten" src="' + item.cover + '" width="215" height="300" onclick="ShowEntry(' + item.id + ')" onmouseover="ChangeColorOver(' + item.id + ')" onmouseout="ChangeColorOut(' + item.id + ')"><p><label onclick="ShowEntry(' + item.id + ')" onmouseover="ChangeColorOver(' + item.id + ')" onmouseout="ChangeColorOut(' + item.id + ')" id="' + item.id + '">' + mangaName + '</label>';
 						}
 					if(zaehler == 6) {
-						F.innerHTML = '<image src="' + item.cover + '" width="215" height="300"><p>' + animeName;
+						F.innerHTML = '<image class="schatten" src="' + item.cover + '" width="215" height="300" onclick="ShowEntry(' + item.id + ')" onmouseover="ChangeColorOver(' + item.id + ')" onmouseout="ChangeColorOut(' + item.id + ')"><p><label onclick="ShowEntry(' + item.id + ')" onmouseover="ChangeColorOver(' + item.id + ')" onmouseout="ChangeColorOut(' + item.id + ')" id="' + item.id + '">' + mangaName + '</label>';
 						}
 					zaehler += 1;
 				})
+			}
+
+			function ChangeColorOver (id){
+				document.getElementById(id).style.color = "red"
+			}
+
+			function ChangeColorOut (id){
+				document.getElementById(id).style.color = "black"
+			}
+
+			function ShowEntry(id){
+					
+				$.ajax({
+					url: 'http://localhost:8000/api/Manga/gib/'+ id,
+					method: 'get',
+					contentType: 'application/json; charset=utf-8',
+					cache: false,
+					dataType: 'json',
+				}).done(function (response) {
+					console.log(response);
+					FillTableWithData(response);          
+				}).fail(function (jqXHR, statusText, error) {
+					console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+					$('#output').html('Ein Fehler ist aufgetreten');
+				})
+
+				$.ajax({
+					url: 'http://localhost:8000/api/MangaGenre/mangaGenre/'+ id,
+					method: 'get',
+					contentType: 'application/json; charset=utf-8',
+					cache: false,
+					dataType: 'json',
+				}).done(function (response) {
+					console.log(response);
+					FillGenreCell(response);          
+				}).fail(function (jqXHR, statusText, error) {
+					console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+					$('#output').html('Ein Fehler ist aufgetreten');
+				})
+
+				EintragInfoBox.style.visibility="visible"
+				TransparentBox.style.visibility="visible"
+			}
+
+			function HideEntry(){
+				
+				EintragInfoBox.style.visibility="hidden"
+				TransparentBox.style.visibility="hidden"
+				
+				document.getElementById('Romaji').innerHTML = ''
+				document.getElementById('Englisch').innerHTML = ''
+				document.getElementById('Deutsch').innerHTML = ''
+				document.getElementById('Beschreibung').innerHTML = ''
+				document.getElementById('Chapter').innerHTML = ''
+				document.getElementById('Volume').innerHTML = ''
+				document.getElementById('Status').innerHTML = ''
+				document.getElementById('StartDate').innerHTML = ''
+				document.getElementById('EndDate').innerHTML = ''
+				document.getElementById('FormatEintrag').innerHTML = ''
+				document.getElementById('SourceEintrag').innerHTML = ''
+				document.getElementById('Cover').src = ''
+				document.getElementById('GenreEintrag').innerHTML = ''
+			}
+
+			function FillTableWithData(item) {
+
+				document.getElementById('Romaji').innerHTML = item.romaji
+				document.getElementById('Englisch').innerHTML = item.englisch
+				document.getElementById('Deutsch').innerHTML = item.deutsch
+				document.getElementById('Beschreibung').innerHTML = item.beschreibung
+				document.getElementById('Chapter').innerHTML = item.chapteranzahl
+				document.getElementById('Volumes').innerHTML = item.volumeanzahl
+				document.getElementById('Status').innerHTML = item.status
+				document.getElementById('StartDate').innerHTML = item.startdatum
+				document.getElementById('EndDate').innerHTML = item.enddatum
+				document.getElementById('FormatEintrag').innerHTML = item.format
+				document.getElementById('SourceEintrag').innerHTML = item.source
+				document.getElementById('Cover').src = item.cover
+			}
+
+			function FillGenreCell(arr){
+
+				var genres = ''
+
+				$(arr).each(function(idx, item){
+
+					genres += item.genre + ', '
+				})
+
+				genres = genres.substring(0, genres.length - 2)
+				document.getElementById('GenreEintrag').innerHTML = genres
 			}
 
 		</script>

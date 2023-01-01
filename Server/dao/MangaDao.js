@@ -11,7 +11,7 @@ class MangaDao {
     }
 
     loadById(id) {
-        var sql = 'SELECT * FROM Manga WHERE id=?';
+        var sql = 'SELECT Manga.id, chapteranzahl, volumeanzahl, romaji, englisch, deutsch, startdatum, enddatum, cover, diashow, beschreibung, format, jahr, \'source\'.\'source\', status FROM Manga INNER JOIN EintragInfo ON Manga.eintragid = EintragInfo.id INNER JOIN Format  ON EintragInfo.formatid = Format.id  INNER JOIN Jahr  ON EintragInfo.jahrid = Jahr.id  INNER JOIN \'Source\' ON EintragInfo.sourceid = \'Source\'.id  INNER JOIN Status ON EintragInfo.statusid = Status.id WHERE Manga.id=?';
         var statement = this._conn.prepare(sql);
         var result = statement.get(id);
 
@@ -30,7 +30,7 @@ class MangaDao {
     }
 
     loadAll() {
-        var sql = 'SELECT Manga.id, chapteranzahl, volumeanzahl, romaji, englisch, deutsch, startdatum, enddatum, cover, diashow, beschreibung, format, jahr, \'source\', status FROM Manga INNER JOIN EintragInfo ON Manga.eintragid = EintragInfo.id INNER JOIN Format  ON EintragInfo.formatid = Format.id  INNER JOIN Jahr  ON EintragInfo.jahrid = Jahr.id  INNER JOIN \'Source\' ON EintragInfo.sourceid = \'Source\'.id  INNER JOIN Status ON EintragInfo.statusid = Status.id';
+        var sql = 'SELECT Manga.id, chapteranzahl, volumeanzahl, romaji, englisch, deutsch, startdatum, enddatum, cover, diashow, beschreibung, format, jahr, \'source\'.\'source\', status FROM Manga INNER JOIN EintragInfo ON Manga.eintragid = EintragInfo.id INNER JOIN Format  ON EintragInfo.formatid = Format.id  INNER JOIN Jahr  ON EintragInfo.jahrid = Jahr.id  INNER JOIN \'Source\' ON EintragInfo.sourceid = \'Source\'.id  INNER JOIN Status ON EintragInfo.statusid = Status.id';
         var statement = this._conn.prepare(sql);
         var result = statement.all();
 
