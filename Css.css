@@ -155,13 +155,115 @@ nav {
 .genreAuswahlBox {
 	position: relative;
 	left: 3%;
+	display: inline;
+}
+
+.genreAuswahl1 {
+	width: 70px;
+	height: 30px;
 	display: none;
 }
 
-.genreAuswahl {
+.genreAuswahl2 {
 	width: 70px;
 	height: 30px;
-	visibility: visible;
+	display: none;
+}
+
+.genreAuswahl3 {
+	width: 70px;
+	height: 30px;
+	display: none;
+}
+
+.genreAuswahl4 {
+	width: 70px;
+	height: 30px;
+	display: none;
+}
+
+.genreAuswahl5 {
+	width: 70px;
+	height: 30px;
+	display: none;
+}
+
+.genreAuswahl6 {
+	width: 70px;
+	height: 30px;
+	display: none;
+}
+
+.genreAuswahl7 {
+	width: 70px;
+	height: 30px;
+	display: none;
+}
+
+.genreAuswahl8 {
+	width: 70px;
+	height: 30px;
+	display: none;
+}
+
+.genreAuswahl9 {
+	width: 70px;
+	height: 30px;
+	display: none;
+}
+
+.genreAuswahl10 {
+	width: 70px;
+	height: 30px;
+	display: none;
+}
+
+.genreAuswahl11 {
+	width: 70px;
+	height: 30px;
+	display: none;
+}
+
+.genreAuswahl12 {
+	width: 70px;
+	height: 30px;
+	display: none;
+}
+
+.genreAuswahl13 {
+	width: 70px;
+	height: 30px;
+	display: none;
+}
+
+.genreAuswahl14 {
+	width: 70px;
+	height: 30px;
+	display: none;
+}
+
+.genreAuswahl15 {
+	width: 70px;
+	height: 30px;
+	display: none;
+}
+
+.genreAuswahl16 {
+	width: 70px;
+	height: 30px;
+	display: none;
+}
+
+.genreAuswahl17 {
+	width: 70px;
+	height: 30px;
+	display: none;
+}
+
+.genreAuswahl18 {
+	width: 70px;
+	height: 30px;
+	display: none;
 }
 	
 .labelSpaceLeft {
