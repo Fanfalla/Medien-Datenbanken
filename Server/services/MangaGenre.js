@@ -34,6 +34,34 @@ serviceRouter.get('/mangaGenre/alle', function(request, response) {
     }
 });
 
+serviceRouter.get('/MangaGenre/MangaGenre/:id', function(request, response) {
+    console.log('Service MangaGenre: Client requested the records');
+
+    const mangaGenreDao = new MangaGenreDao(request.app.locals.dbConnection);
+    try {
+        var arr = mangaGenreDao.loadManga(request.params.id);
+        console.log('Service MangaGenre: Records loaded, count=' + arr.length);
+        response.status(200).json(arr);
+    } catch (ex) {
+        console.error('Service MangaGenre: Error loading all records. Exception occured: ' + ex.message);
+        response.status(400).json({ 'fehler': true, 'nachricht': ex.message });
+    }
+});
+
+serviceRouter.get('/MangaGenre/SortGenre/:id', function(request, response) {
+    console.log('Service MangaGenre: Client requested the records');
+
+    const mangaGenreDao = new MangaGenreDao(request.app.locals.dbConnection);
+    try {
+        var arr = mangaGenreDao.loadGenre(request.params.id);
+        console.log('Service MangaGenre: Records loaded, count=' + arr.length);
+        response.status(200).json(arr);
+    } catch (ex) {
+        console.error('Service MangaGenre: Error loading all records. Exception occured: ' + ex.message);
+        response.status(400).json({ 'fehler': true, 'nachricht': ex.message });
+    }
+});
+
 serviceRouter.get('/mangaGenre/existiert/:id', function(request, response) {
     console.log('Service MangaGenre: Client requested check, if record exists, id=' + request.params.id);
 
@@ -46,6 +74,20 @@ serviceRouter.get('/mangaGenre/existiert/:id', function(request, response) {
         response.status(200).json({'id': request.params.id, 'existiert': exists});
     } catch (ex) {
         console.error('Service MangaGenre: Error checking if record exists. Exception occured: ' + ex.message);
+        response.status(400).json({ 'fehler': true, 'nachricht': ex.message });
+    }
+});
+
+serviceRouter.get('/mangaGenre/mangaGenre/:id', function(request, response) {
+    console.log('Service MangaGenre: Client requested the records');
+
+    const mangaGenreDao = new MangaGenreDao(request.app.locals.dbConnection);
+    try {
+        var arr = mangaGenreDao.loadManga(request.params.id);
+        console.log('Service MangaGenre: Records loaded, count=' + arr.length);
+        response.status(200).json(arr);
+    } catch (ex) {
+        console.error('Service MangaGenre: Error loading all records. Exception occured: ' + ex.message);
         response.status(400).json({ 'fehler': true, 'nachricht': ex.message });
     }
 });

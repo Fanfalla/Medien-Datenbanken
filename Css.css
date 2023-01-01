@@ -111,6 +111,11 @@ nav {
 	background-color: #606060;
 	border: 3px solid black;
 }
+
+.mainBoxExtra{
+	min-height: 80%;
+}
+
 .pictureDia {
 	width: 100%;
 	border: 3px solid black;

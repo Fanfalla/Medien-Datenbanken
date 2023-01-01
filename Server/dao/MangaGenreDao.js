@@ -32,6 +32,23 @@ class MangaGenreDao {
         return result;
     }
 
+    loadManga(id) {
+        console.log(id)
+        var sql = 'SELECT MangaGenre.id, Manga.id, genre FROM MangaGenre INNER JOIN Manga ON Manga.id = MangaGenre.mangaid INNER JOIN Genre ON MangaGenre.genreid = Genre.id WHERE mangaid=?';
+        var statement = this._conn.prepare(sql);
+        var result = statement.all(id);
+
+        if (helper.isUndefined(result)) 
+            throw new Error('No Record found by id=' + id);
+
+        if (helper.isArrayEmpty(result)){
+            console.log(result)
+            return [];
+        }
+        
+        return result;
+    }
+
     exists(id) {
         var sql = 'SELECT COUNT(id) AS cnt FROM MangaGenre WHERE id=?';
         var statement = this._conn.prepare(sql);
