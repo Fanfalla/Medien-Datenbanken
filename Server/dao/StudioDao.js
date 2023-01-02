@@ -21,6 +21,17 @@ class StudioDao {
         return result;
     }
 
+    StudioExists(studio = '') {
+        var sql = 'SELECT * FROM Studio WHERE studio=?';
+        var statement = this._conn.prepare(sql);
+        var result = statement.get(studio);
+
+        if (result === undefined) 
+            return false;
+
+        return result;
+    }
+
     loadAll() {
         var sql = 'SELECT * FROM Studio';
         var statement = this._conn.prepare(sql);
@@ -43,8 +54,8 @@ class StudioDao {
         return false;
     }
 
-    create(studio = '') {
-        var sql = 'INSERT INTO Studio (gebre) VALUES (?)';
+    create(studio) {
+        var sql = 'INSERT INTO Studio (studio) VALUES (?)';
         var statement = this._conn.prepare(sql);
         var params = [studio];
         var result = statement.run(params);

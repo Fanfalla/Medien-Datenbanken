@@ -21,6 +21,17 @@ class MangaDao {
         return result;
     }
 
+    MangaExists(romaji = '') {
+        var sql = 'SELECT * FROM Manga WHERE romaji=?';
+        var statement = this._conn.prepare(sql);
+        var result = statement.get(romaji);
+
+        if (result === undefined) 
+            return false;
+
+        return result;
+    }
+
     latestID(){
         var sql = 'SELECT id FROM Manga ORDER BY id desc LIMIT 1';
         var statement = this._conn.prepare(sql);

@@ -74,9 +74,14 @@ serviceRouter.post('/anime/add', function(request, response) {
 
     const animeDao = new AnimeDao(request.app.locals.dbConnection);
     try {
-        var obj = animeDao.create(request.body.FolgenAnzahl, request.body.FolgenDauer, parseInt(eintragInfoDao.latestID()), request.body.Season, request.body.Studio);
-        console.log('Service Anime: Record inserted');
-        response.status(200).json(obj);
+        if(!animeDao.AnimeExists(request.body.romaji)){
+            var obj = animeDao.create(request.body.FolgenAnzahl, request.body.FolgenDauer, parseInt(eintragInfoDao.latestID()), request.body.Season, request.body.Studio);
+            console.log('Service Anime: Record inserted');
+            response.status(200).json(obj);
+        }else{
+            console.log('Anime Existiert bereits')
+            response.json({'nachricht': 'Anime Existiert bereits'})
+        }
     } catch (ex) {
         console.error('Service Anime: Error creating new record. Exception occured: ' + ex.message);
         response.status(400).json({ 'fehler': true, 'nachricht': ex.message });

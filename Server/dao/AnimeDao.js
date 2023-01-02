@@ -21,6 +21,17 @@ class AnimeDao {
         return result;
     }
 
+    AnimeExists(romaji = '') {
+        var sql = 'SELECT * FROM Anime WHERE romaji=?';
+        var statement = this._conn.prepare(sql);
+        var result = statement.get(romaji);
+
+        if (result === undefined) 
+            return false;
+
+        return result;
+    }
+
     latestID(){
         var sql = 'SELECT id FROM Anime ORDER BY id desc LIMIT 1';
         var statement = this._conn.prepare(sql);
