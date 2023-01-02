@@ -68,9 +68,14 @@ serviceRouter.post('/manga/add', function(request, response) {
     const mangaDao = new MangaDao(request.app.locals.dbConnection);
     const eintragInfoDao = new EintragInfoDao(request.app.locals.dbConnection);
     try {
-        var obj = mangaDao.create(request.body.ChapterAnzahl, request.body.VolumeAnzahl, parseInt(eintragInfoDao.latestID()));
-        console.log('Service Manga: Record inserted');
-        response.status(200).json(obj);
+        if(!mangaDao.MangaExists(request.body.romaji)){
+            var obj = mangaDao.create(request.body.ChapterAnzahl, request.body.VolumeAnzahl, parseInt(eintragInfoDao.latestID()));
+            console.log('Service Manga: Record inserted');
+            response.status(200).json(obj);
+        }else{
+            console.log('Manga Existiert bereits')
+            response.json({'nachricht': 'Manga Existiert bereits'})
+        }
     } catch (ex) {
         console.error('Service Manga: Error creating new record. Exception occured: ' + ex.message);
         response.status(400).json({ 'fehler': true, 'nachricht': ex.message });

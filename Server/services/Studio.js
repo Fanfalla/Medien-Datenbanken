@@ -49,14 +49,12 @@ serviceRouter.get('/studio/existiert/:id', function(request, response) {
     }
 });
 
-serviceRouter.post('/studio', function(request, response) {
+serviceRouter.post('/studio/add', function(request, response) {
     console.log('Service Studio: Client requested creation of new record');
 
     var errorMsgs=[];
-    if (helper.isUndefined(request.body.kennzeichnung)) 
-        errorMsgs.push('kennzeichnung fehlt');
-    if (helper.isUndefined(request.body.bezeichnung)) 
-        errorMsgs.push('bezeichnung fehlt');
+    if (helper.isUndefined(request.body.studio)) 
+        errorMsgs.push('studio fehlt');
     
     if (errorMsgs.length > 0) {
         console.log('Service Studio: Creation not possible, data missing');
@@ -66,13 +64,18 @@ serviceRouter.post('/studio', function(request, response) {
 
     const studioDao = new StudioDao(request.app.locals.dbConnection);
     try {
-        var obj = studioDao.create(request.body.kennzeichnung, request.body.bezeichnung);
-        console.log('Service Studio: Record inserted');
-        response.status(200).json(obj);
-    } catch (ex) {
+        if(!studioDao.StudioExists(request.body.studio)){
+            var obj = studioDao.create(request.body.studio);
+            console.log('Service Studio: Record inserted');
+            response.status(200).json(obj);
+        } else{
+            console.log('Studio Existiert bereits')
+            response.json({'nachricht': 'studio Existiert bereits'})
+        } 
+    }catch (ex) {
         console.error('Service Studio: Error creating new record. Exception occured: ' + ex.message);
         response.status(400).json({ 'fehler': true, 'nachricht': ex.message });
-    }    
+    }  
 });
 
 serviceRouter.put('/studio', function(request, response) {

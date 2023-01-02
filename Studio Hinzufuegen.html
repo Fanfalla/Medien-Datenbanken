@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="de">
+	<head>
+	<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Home</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		<link rel="stylesheet" href="Css.css">
+	</head>
+	<body class="adminBody">
+		<section class="adminBox">
+			<ul class="adminNavigationList">
+				<li class="adminNavigationButton"><a href="Admin Ansicht.html" class="adminNavigation">Admin Ansicht</a></li>
+				<li class="adminNavigationButton"><a href="Anime Hinzufuegen.html" class="adminNavigation">Anime Hinzuf&uuml;gen</a></li>
+				<li class="adminNavigationButton"><a href="Manga Hinzufuegen.html" class="adminNavigation">Manga Hinzuf&uuml;gen</a></li>
+				<li class="adminNavigationButton"><a href="Studio Hinzufuegen.html" class="adminNavigation">Studio Hinzuf&uuml;gen</a></li>	
+				
+			</ul>
+		</section>
+		
+		<main>
+			<h1 class="startseiteH1">Studio Hinzuf&uuml;gen</h1>
+			<article class="AnimeUebersichtBox">
+				<form id="uploadForm" method="post" enctype="multipart/form-data">
+					<table class="tableAnimeHinzufuegen tableTDerw3 tableHinzufuegen">
+						<tr class="tableTDerw2">
+							<td colspan="2" class="tdHinzufuegen"><b>Eintrag Hinzuf&uuml;gen</b></td>
+						</tr>
+						<tr>
+							<td class="tdHinzufuegen">Studio</td>
+						</tr>
+						<tr>
+							<td class="tdHinzufuegen" colspan="2">Name</td>
+						</tr>
+						<tr>
+							<td class="tdHinzufuegen" colspan="2"><input type="text" id="studio" value="" placeholder="Studio Name" name="studio"></input></td>
+							<td class="tdHinzufuegen"><input type="submit" id="Submit" value="Submit"></button></td>
+						</tr>
+						
+					</table>
+				</form>
+			</article>
+		</main>
+		<script>
+
+			$('#uploadForm').submit(function(event){
+
+				event.preventDefault();
+
+				var formData = new FormData(this)
+				
+
+				$.ajax({
+					url: 'http://localhost:8000/api/studio/add',
+					type: 'POST',
+					data: formData,
+					contentType: false,
+					Cache: false,
+					processData: false,
+					dataType: '.json'
+				})
+				.done(function() {
+					consol.log('eintragInfo eingetragen')
+				})
+				.fail(function(xhr){
+					console.log('error recieved');
+					console.log(xhr);
+					console.log(xhr.status);
+					alert(xhr.responseText);
+				})
+				
+				uploadForm.reset()
+			})
+		</script>
+	</body>
+</html>
