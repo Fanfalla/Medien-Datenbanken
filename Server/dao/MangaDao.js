@@ -22,7 +22,7 @@ class MangaDao {
     }
 
     MangaExists(romaji = '') {
-        var sql = 'SELECT * FROM Manga WHERE romaji=?';
+        var sql = 'SELECT * FROM Manga INNER JOIN EintragInfo ON Manga.eintragid = EintragInfo.id WHERE romaji=?';
         var statement = this._conn.prepare(sql);
         var result = statement.get(romaji);
 

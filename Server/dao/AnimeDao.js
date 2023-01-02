@@ -22,7 +22,7 @@ class AnimeDao {
     }
 
     AnimeExists(romaji = '') {
-        var sql = 'SELECT * FROM Anime WHERE romaji=?';
+        var sql = 'SELECT * FROM Anime INNER JOIN EintragInfo ON Anime.eintragid = EintragInfo.id  WHERE romaji=?';
         var statement = this._conn.prepare(sql);
         var result = statement.get(romaji);
 
