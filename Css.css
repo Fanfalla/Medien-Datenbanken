@@ -286,8 +286,11 @@ nav {
 
 .dropdownMenue {
 	width: 100px;
+	
 }
-
+.dropdowngenre {
+	height: 150px;
+}
 .pictureTable {
 	text-align: center;
 	margin-left: auto;
