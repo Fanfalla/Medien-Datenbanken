@@ -17,7 +17,6 @@
 				<li class="navigationButton"><a href="Datenbank Uebersicht Manga.html" class="navigation">Mangas</a></li>
 				<li class="navigationButton"><a href="Registration.html" class="navigation">Registration</a></li>
 				<li class="navigationButton"><a href="Login.html" class="navigation">Log in</a></li>
-				<li><input type="text" id="suche" placeholder="Suche..." class="searchBar"></li>
 			</ul>
 		</nav>
 	</header>
@@ -163,7 +162,7 @@
             			}).done(function (response) {
                 			console.log(response);
                 			$('#output').html(JSON.stringify(response));
-							window.location.href = "Liste.html";
+							window.location.href = "Profil.html";
             			}).fail(function (jqXHR, statusText, error) {
                 			console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
                 			$('#output').html('Ein Fehler ist aufgetreten');

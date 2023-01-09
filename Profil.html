@@ -4,7 +4,9 @@
 	<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>Home</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 		<link rel="stylesheet" href="Css.css">
+		<script src="sessionHandling.js"></script>
 	</head>
 	<body>
 	
@@ -15,9 +17,9 @@
 				<li class="navigationButton"><a href="Home.html" class="navigation">Startseite</a></li>
 				<li class="navigationButton"><a href="Datenbank Uebersicht Anime.html" class="navigation">Animes</a></li>
 				<li class="navigationButton"><a href="Datenbank Uebersicht Manga.html" class="navigation">Mangas</a></li>
-				<li class="navigationButton"><a href="Registration.html" class="navigation">Registration</a></li>
-				<li class="navigationButton"><a href="Login.html" class="navigation">Log in</a></li>
-				<li><input type="text" id="suche" placeholder="Suche..." class="searchBar"></li>
+				<li class="navigationButton"><a href="Liste.html" class="navigation">Meine Liste</a></li>
+				<li class="navigationButton"><a id="1" href="Profil.html" class="navigation"></a></li>
+				<li class="navigationButton"><a onClick="Logout()" class="navigation">Logout</a></li>
 			</ul>
 		</nav>
 	</header>
@@ -32,7 +34,7 @@
 					<table class="tableProfil" >
 						<tr>
 							<td class="trPadding tableProfil">Benutzername:</td>
-							<td class="trPadding"><input type="text" placeholder="Benutzername"></td>
+							<td class="trPadding" id="Bname"></td>
 						</tr>
 						<tr>
 							<td class="daten" colspan="2">Account Passwort</td>
@@ -60,6 +62,16 @@
 					</table>
 					
 		</aside>
-		
+		<script>
+			$(document).ready(function() {
+				document.getElementById("Bname").innerHTML = getJSONSessionItem('Account').benutzername;
+				document.getElementById("1").innerHTML = getJSONSessionItem("Account").benutzername;
+        	});
+
+			function Logout() {
+				removeSessionItem("Account");
+				window.location.href = "Login.html";
+			}
+		</script>
 	</body>
 </html>

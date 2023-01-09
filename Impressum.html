@@ -4,7 +4,9 @@
     <meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>Home</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 		<link rel="stylesheet" href="Css.css">
+		<script src="sessionHandling.js"></script>
     </head>
     <body>
 		<header>
@@ -14,9 +16,9 @@
 					<li class="navigationButton"><a href="Home.html" class="navigation">Startseite</a></li>
 					<li class="navigationButton"><a href="Datenbank Uebersicht Anime.html" class="navigation">Animes</a></li>
 					<li class="navigationButton"><a href="Datenbank Uebersicht Manga.html" class="navigation">Mangas</a></li>
-					<li class="navigationButton"><a href="Registration.html" class="navigation">Registration</a></li>
-					<li class="navigationButton"><a href="Login.html" class="navigation">Log in</a></li>
-					<li><input type="text" id="suche" placeholder="Suche..." class="searchBar"></li>
+					<li class="navigationButton"><a id="1" href="Registration.html" class="navigation">Registration</a></li>
+					<li class="navigationButton"><a id="2" href="Login.html" class="navigation">Log in</a></li>
+					<li class="navigationButton"><a id="3" onClick="Logout()" class="navigation"></a></li>
 				</ul>
 			</nav>
 		</header>
@@ -47,5 +49,21 @@
 				<p>MatrikelNr: 89396</p>
 			</article>
         </main>
+		<script>
+			$(document).ready(function() {
+					if (existsSessionItem("Account")) {
+						document.getElementById("1").innerHTML = "Meine Liste";
+						document.getElementById("1").href = "Liste.html";
+						document.getElementById("2").innerHTML = getJSONSessionItem("Account").benutzername;
+						document.getElementById("2").href = "Profil.html";
+						document.getElementById("3").innerHTML = "Log out";
+					}
+				});
+	
+				function Logout() {
+					removeSessionItem("Account");
+					window.location.href = "Login.html";
+				}
+		</script>
     </body>
 </html>
