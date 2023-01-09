@@ -9,3 +9,4 @@ Datenbank in die html geholt.
 Außerdem kann man Animes und Mangas über die Adminseite in die Datenbank einfügen. Diese werden dann zu einem
 späteren Zeitpunkt noch auf der Webseite dargestellt.
 Für den finalen Zustand der Webseite fehlen noch ein paar Elemente.  
+<!--Test>
