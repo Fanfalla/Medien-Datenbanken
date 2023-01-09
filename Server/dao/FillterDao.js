@@ -18,6 +18,8 @@ class FillterDao {
         var format = "formatid"
         var source = "sourceid"
         let selectedtext = ""
+        var selectedOrder = "romaji"
+        var folgenanzahl = 0
         
         var genre1 = "genreid"
         var genre2 = "genreid"
@@ -56,6 +58,31 @@ class FillterDao {
 
         if(ids[4] != ""){
             selectedtext = ids[4]
+        }
+
+        if(ids[6] > 0){
+
+            if(ids[6] == 1){
+                selectedOrder = "romaji ASC"
+            }
+
+            if(ids[6] == 2){
+                selectedOrder = "startdatum ASC"
+            }
+
+            if(ids[6] == 3){
+                selectedOrder = "startdatum DESC"
+            }
+
+            if(ids[6] == 4){
+                selectedOrder = "folgenanzahl ASC, romaji ASC"
+            }
+
+            if(ids[6] == 5){
+                folgenanzahl = 1
+                selectedOrder = "folgenanzahl DESC, romaji ASC"
+            }
+
         }
         
         var arr = ids[5].split("&")
@@ -131,10 +158,8 @@ class FillterDao {
         if(arr[17] > 1){
             genre18 = arr[17]
         }
-
-        console.log(selectedtext)
         
-        var sql = 'SELECT Anime.id, romaji, cover FROM Anime INNER JOIN AnimeEintragGenre ON AnimeEintragGenre.animeeintragid = Anime.id INNER JOIN EintragInfo ON EintragInfo.id = Anime.eintragid INNER JOIN Season ON Anime.seasonid = Season.id WHERE Anime.id IN (SELECT Anime.id FROM Anime INNER JOIN AnimeEintragGenre ON AnimeEintragGenre.animeeintragid = Anime.id WHERE genreid = ' + genre1 + ') AND Anime.id IN (SELECT Anime.id FROM Anime INNER JOIN AnimeEintragGenre ON AnimeEintragGenre.animeeintragid = Anime.id WHERE genreid = ' + genre2 + ') AND Anime.id IN (SELECT Anime.id FROM Anime INNER JOIN AnimeEintragGenre ON AnimeEintragGenre.animeeintragid = Anime.id WHERE genreid = ' + genre3 + ') AND Anime.id IN (SELECT Anime.id FROM Anime INNER JOIN AnimeEintragGenre ON AnimeEintragGenre.animeeintragid = Anime.id WHERE genreid = ' + genre4 + ') AND Anime.id IN (SELECT Anime.id FROM Anime INNER JOIN AnimeEintragGenre ON AnimeEintragGenre.animeeintragid = Anime.id WHERE genreid = ' + genre5 + ') AND Anime.id IN (SELECT Anime.id FROM Anime INNER JOIN AnimeEintragGenre ON AnimeEintragGenre.animeeintragid = Anime.id WHERE genreid = ' + genre6 + ') AND Anime.id IN (SELECT Anime.id FROM Anime INNER JOIN AnimeEintragGenre ON AnimeEintragGenre.animeeintragid = Anime.id WHERE genreid = ' + genre7 + ') AND Anime.id IN (SELECT Anime.id FROM Anime INNER JOIN AnimeEintragGenre ON AnimeEintragGenre.animeeintragid = Anime.id WHERE genreid = ' + genre8 + ') AND Anime.id IN (SELECT Anime.id FROM Anime INNER JOIN AnimeEintragGenre ON AnimeEintragGenre.animeeintragid = Anime.id WHERE genreid = ' + genre9 + ') AND Anime.id IN (SELECT Anime.id FROM Anime INNER JOIN AnimeEintragGenre ON AnimeEintragGenre.animeeintragid = Anime.id WHERE genreid = ' + genre10 + ') AND Anime.id IN (SELECT Anime.id FROM Anime INNER JOIN AnimeEintragGenre ON AnimeEintragGenre.animeeintragid = Anime.id WHERE genreid = ' + genre11 + ') AND Anime.id IN (SELECT Anime.id FROM Anime INNER JOIN AnimeEintragGenre ON AnimeEintragGenre.animeeintragid = Anime.id WHERE genreid = ' + genre12 + ') AND Anime.id IN (SELECT Anime.id FROM Anime INNER JOIN AnimeEintragGenre ON AnimeEintragGenre.animeeintragid = Anime.id WHERE genreid = ' + genre13 + ') AND Anime.id IN (SELECT Anime.id FROM Anime INNER JOIN AnimeEintragGenre ON AnimeEintragGenre.animeeintragid = Anime.id WHERE genreid = ' + genre14 + ') AND Anime.id IN (SELECT Anime.id FROM Anime INNER JOIN AnimeEintragGenre ON AnimeEintragGenre.animeeintragid = Anime.id WHERE genreid = ' + genre15 + ') AND Anime.id IN (SELECT Anime.id FROM Anime INNER JOIN AnimeEintragGenre ON AnimeEintragGenre.animeeintragid = Anime.id WHERE genreid = ' + genre16 + ') AND Anime.id IN (SELECT Anime.id FROM Anime INNER JOIN AnimeEintragGenre ON AnimeEintragGenre.animeeintragid = Anime.id WHERE genreid = ' + genre17 + ') AND Anime.id IN (SELECT Anime.id FROM Anime INNER JOIN AnimeEintragGenre ON AnimeEintragGenre.animeeintragid = Anime.id WHERE genreid = ' + genre18 + ') AND seasonid = ' + season + ' AND jahrid = ' + jahr + ' AND formatid = ' + format + ' AND sourceid = ' + source + ' And romaji LIKE \'%' + selectedtext + '%\' GROUP BY Anime.id';
+        var sql = 'SELECT Anime.id, romaji, cover FROM Anime INNER JOIN AnimeEintragGenre ON AnimeEintragGenre.animeeintragid = Anime.id INNER JOIN EintragInfo ON EintragInfo.id = Anime.eintragid INNER JOIN Season ON Anime.seasonid = Season.id WHERE Anime.id IN (SELECT Anime.id FROM Anime INNER JOIN AnimeEintragGenre ON AnimeEintragGenre.animeeintragid = Anime.id WHERE genreid = ' + genre1 + ') AND Anime.id IN (SELECT Anime.id FROM Anime INNER JOIN AnimeEintragGenre ON AnimeEintragGenre.animeeintragid = Anime.id WHERE genreid = ' + genre2 + ') AND Anime.id IN (SELECT Anime.id FROM Anime INNER JOIN AnimeEintragGenre ON AnimeEintragGenre.animeeintragid = Anime.id WHERE genreid = ' + genre3 + ') AND Anime.id IN (SELECT Anime.id FROM Anime INNER JOIN AnimeEintragGenre ON AnimeEintragGenre.animeeintragid = Anime.id WHERE genreid = ' + genre4 + ') AND Anime.id IN (SELECT Anime.id FROM Anime INNER JOIN AnimeEintragGenre ON AnimeEintragGenre.animeeintragid = Anime.id WHERE genreid = ' + genre5 + ') AND Anime.id IN (SELECT Anime.id FROM Anime INNER JOIN AnimeEintragGenre ON AnimeEintragGenre.animeeintragid = Anime.id WHERE genreid = ' + genre6 + ') AND Anime.id IN (SELECT Anime.id FROM Anime INNER JOIN AnimeEintragGenre ON AnimeEintragGenre.animeeintragid = Anime.id WHERE genreid = ' + genre7 + ') AND Anime.id IN (SELECT Anime.id FROM Anime INNER JOIN AnimeEintragGenre ON AnimeEintragGenre.animeeintragid = Anime.id WHERE genreid = ' + genre8 + ') AND Anime.id IN (SELECT Anime.id FROM Anime INNER JOIN AnimeEintragGenre ON AnimeEintragGenre.animeeintragid = Anime.id WHERE genreid = ' + genre9 + ') AND Anime.id IN (SELECT Anime.id FROM Anime INNER JOIN AnimeEintragGenre ON AnimeEintragGenre.animeeintragid = Anime.id WHERE genreid = ' + genre10 + ') AND Anime.id IN (SELECT Anime.id FROM Anime INNER JOIN AnimeEintragGenre ON AnimeEintragGenre.animeeintragid = Anime.id WHERE genreid = ' + genre11 + ') AND Anime.id IN (SELECT Anime.id FROM Anime INNER JOIN AnimeEintragGenre ON AnimeEintragGenre.animeeintragid = Anime.id WHERE genreid = ' + genre12 + ') AND Anime.id IN (SELECT Anime.id FROM Anime INNER JOIN AnimeEintragGenre ON AnimeEintragGenre.animeeintragid = Anime.id WHERE genreid = ' + genre13 + ') AND Anime.id IN (SELECT Anime.id FROM Anime INNER JOIN AnimeEintragGenre ON AnimeEintragGenre.animeeintragid = Anime.id WHERE genreid = ' + genre14 + ') AND Anime.id IN (SELECT Anime.id FROM Anime INNER JOIN AnimeEintragGenre ON AnimeEintragGenre.animeeintragid = Anime.id WHERE genreid = ' + genre15 + ') AND Anime.id IN (SELECT Anime.id FROM Anime INNER JOIN AnimeEintragGenre ON AnimeEintragGenre.animeeintragid = Anime.id WHERE genreid = ' + genre16 + ') AND Anime.id IN (SELECT Anime.id FROM Anime INNER JOIN AnimeEintragGenre ON AnimeEintragGenre.animeeintragid = Anime.id WHERE genreid = ' + genre17 + ') AND Anime.id IN (SELECT Anime.id FROM Anime INNER JOIN AnimeEintragGenre ON AnimeEintragGenre.animeeintragid = Anime.id WHERE genreid = ' + genre18 + ') AND seasonid = ' + season + ' AND jahrid = ' + jahr + ' AND formatid = ' + format + ' AND sourceid = ' + source + ' And romaji LIKE \'%' + selectedtext + '%\' AND folgenanzahl != ' + folgenanzahl + ' GROUP BY Anime.id ORDER BY ' + selectedOrder;
         var statement = this._conn.prepare(sql);
         console.log(statement.get())
         var result = statement.all();
@@ -157,6 +182,8 @@ class FillterDao {
         var format = "formatid"
         var source = "sourceid"
         let selectedtext = ""
+        var selectedOrder = "romaji"
+        var chapteranzahl = 0
         
         var genre1 = "genreid"
         var genre2 = "genreid"
@@ -191,6 +218,39 @@ class FillterDao {
 
         if(ids[3] != ""){
             selectedtext = ids[3]
+        }
+
+        if(ids[5] > 0){
+
+            if(ids[5] == 1){
+                selectedOrder = "romaji ASC"
+            }
+
+            if(ids[5] == 2){
+                selectedOrder = "startdatum ASC"
+            }
+
+            if(ids[5] == 3){
+                selectedOrder = "startdatum DESC"
+            }
+
+            if(ids[5] == 4){
+                selectedOrder = "chapteranzahl ASC, romaji ASC"
+            }
+
+            if(ids[5] == 5){
+                chapteranzahl = 1
+                selectedOrder = "chapteranzahl DESC, romaji ASC"
+            }
+
+            if(ids[5] == 6){
+                selectedOrder = "volumeanzahl ASC, romaji ASC"
+            }
+
+            if(ids[5] == 7){
+                selectedOrder = "volumeanzahl DESC, romaji ASC"
+            }
+
         }
         
         var arr = ids[4].split("&")
@@ -267,7 +327,7 @@ class FillterDao {
             genre18 = arr[17]
         }
         
-        var sql = 'SELECT Manga.id, romaji, cover FROM Manga INNER JOIN MangaGenre ON MangaGenre.mangaid = Manga.id INNER JOIN EintragInfo ON EintragInfo.id = Manga.eintragid WHERE Manga.id IN (SELECT Manga.id FROM Manga INNER JOIN MangaGenre ON MangaGenre.mangaid = Manga.id WHERE genreid = ' + genre1 + ') AND Manga.id IN (SELECT Manga.id FROM Manga INNER JOIN MangaGenre ON MangaGenre.mangaid = Manga.id WHERE genreid = ' + genre2 + ') AND Manga.id IN (SELECT Manga.id FROM Manga INNER JOIN MangaGenre ON MangaGenre.mangaid = Manga.id WHERE genreid = ' + genre3 + ') AND Manga.id IN (SELECT Manga.id FROM Manga INNER JOIN MangaGenre ON MangaGenre.mangaid = Manga.id WHERE genreid = ' + genre4 + ') AND Manga.id IN (SELECT Manga.id FROM Manga INNER JOIN MangaGenre ON MangaGenre.mangaid = Manga.id WHERE genreid = ' + genre5 + ') AND Manga.id IN (SELECT Manga.id FROM Manga INNER JOIN MangaGenre ON MangaGenre.mangaid = Manga.id WHERE genreid = ' + genre6 + ') AND Manga.id IN (SELECT Manga.id FROM Manga INNER JOIN MangaGenre ON MangaGenre.mangaid = Manga.id WHERE genreid = ' + genre7 + ') AND Manga.id IN (SELECT Manga.id FROM Manga INNER JOIN MangaGenre ON MangaGenre.Mangaid = Manga.id WHERE genreid = ' + genre8 + ') AND Manga.id IN (SELECT Manga.id FROM Manga INNER JOIN MangaGenre ON MangaGenre.mangaid = Manga.id WHERE genreid = ' + genre9 + ') AND Manga.id IN (SELECT Manga.id FROM Manga INNER JOIN MangaGenre ON MangaGenre.mangaid = Manga.id WHERE genreid = ' + genre10 + ') AND Manga.id IN (SELECT Manga.id FROM Manga INNER JOIN MangaGenre ON MangaGenre.mangaid = Manga.id WHERE genreid = ' + genre11 + ') AND Manga.id IN (SELECT Manga.id FROM Manga INNER JOIN MangaGenre ON MangaGenre.mangaid = Manga.id WHERE genreid = ' + genre12 + ') AND Manga.id IN (SELECT Manga.id FROM Manga INNER JOIN MangaGenre ON MangaGenre.mangaid = Manga.id WHERE genreid = ' + genre13 + ') AND Manga.id IN (SELECT Manga.id FROM Manga INNER JOIN MangaGenre ON MangaGenre.mangaid = Manga.id WHERE genreid = ' + genre14 + ') AND Manga.id IN (SELECT Manga.id FROM Manga INNER JOIN MangaGenre ON MangaGenre.mangaid = Manga.id WHERE genreid = ' + genre15 + ') AND Manga.id IN (SELECT Manga.id FROM Manga INNER JOIN MangaGenre ON MangaGenre.mangaid = Manga.id WHERE genreid = ' + genre16 + ') AND Manga.id IN (SELECT Manga.id FROM Manga INNER JOIN MangaGenre ON MangaGenre.mangaid = Manga.id WHERE genreid = ' + genre17 + ') AND Manga.id IN (SELECT Manga.id FROM Manga INNER JOIN MangaGenre ON MangaGenre.mangaid = Manga.id WHERE genreid = ' + genre18 + ') AND jahrid = ' + jahr + ' AND formatid = ' + format + ' AND sourceid = ' + source + ' AND romaji LIKE \'%' + selectedtext + '%\' GROUP BY Manga.id';
+        var sql = 'SELECT Manga.id, romaji, cover FROM Manga INNER JOIN MangaGenre ON MangaGenre.mangaid = Manga.id INNER JOIN EintragInfo ON EintragInfo.id = Manga.eintragid WHERE Manga.id IN (SELECT Manga.id FROM Manga INNER JOIN MangaGenre ON MangaGenre.mangaid = Manga.id WHERE genreid = ' + genre1 + ') AND Manga.id IN (SELECT Manga.id FROM Manga INNER JOIN MangaGenre ON MangaGenre.mangaid = Manga.id WHERE genreid = ' + genre2 + ') AND Manga.id IN (SELECT Manga.id FROM Manga INNER JOIN MangaGenre ON MangaGenre.mangaid = Manga.id WHERE genreid = ' + genre3 + ') AND Manga.id IN (SELECT Manga.id FROM Manga INNER JOIN MangaGenre ON MangaGenre.mangaid = Manga.id WHERE genreid = ' + genre4 + ') AND Manga.id IN (SELECT Manga.id FROM Manga INNER JOIN MangaGenre ON MangaGenre.mangaid = Manga.id WHERE genreid = ' + genre5 + ') AND Manga.id IN (SELECT Manga.id FROM Manga INNER JOIN MangaGenre ON MangaGenre.mangaid = Manga.id WHERE genreid = ' + genre6 + ') AND Manga.id IN (SELECT Manga.id FROM Manga INNER JOIN MangaGenre ON MangaGenre.mangaid = Manga.id WHERE genreid = ' + genre7 + ') AND Manga.id IN (SELECT Manga.id FROM Manga INNER JOIN MangaGenre ON MangaGenre.Mangaid = Manga.id WHERE genreid = ' + genre8 + ') AND Manga.id IN (SELECT Manga.id FROM Manga INNER JOIN MangaGenre ON MangaGenre.mangaid = Manga.id WHERE genreid = ' + genre9 + ') AND Manga.id IN (SELECT Manga.id FROM Manga INNER JOIN MangaGenre ON MangaGenre.mangaid = Manga.id WHERE genreid = ' + genre10 + ') AND Manga.id IN (SELECT Manga.id FROM Manga INNER JOIN MangaGenre ON MangaGenre.mangaid = Manga.id WHERE genreid = ' + genre11 + ') AND Manga.id IN (SELECT Manga.id FROM Manga INNER JOIN MangaGenre ON MangaGenre.mangaid = Manga.id WHERE genreid = ' + genre12 + ') AND Manga.id IN (SELECT Manga.id FROM Manga INNER JOIN MangaGenre ON MangaGenre.mangaid = Manga.id WHERE genreid = ' + genre13 + ') AND Manga.id IN (SELECT Manga.id FROM Manga INNER JOIN MangaGenre ON MangaGenre.mangaid = Manga.id WHERE genreid = ' + genre14 + ') AND Manga.id IN (SELECT Manga.id FROM Manga INNER JOIN MangaGenre ON MangaGenre.mangaid = Manga.id WHERE genreid = ' + genre15 + ') AND Manga.id IN (SELECT Manga.id FROM Manga INNER JOIN MangaGenre ON MangaGenre.mangaid = Manga.id WHERE genreid = ' + genre16 + ') AND Manga.id IN (SELECT Manga.id FROM Manga INNER JOIN MangaGenre ON MangaGenre.mangaid = Manga.id WHERE genreid = ' + genre17 + ') AND Manga.id IN (SELECT Manga.id FROM Manga INNER JOIN MangaGenre ON MangaGenre.mangaid = Manga.id WHERE genreid = ' + genre18 + ') AND jahrid = ' + jahr + ' AND formatid = ' + format + ' AND sourceid = ' + source + ' AND romaji LIKE \'%' + selectedtext + '%\' AND chapteranzahl > ' + chapteranzahl + ' GROUP BY Manga.id ORDER BY ' + selectedOrder;
         var statement = this._conn.prepare(sql);
         console.log(statement.get())
         var result = statement.all();
