@@ -67,3 +67,4 @@ function isJSONString(str) {
 function isNullOrUndefined(val) {
     return val === null || val === undefined;
 }
+// test
