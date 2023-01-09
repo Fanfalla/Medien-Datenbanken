@@ -42,6 +42,14 @@
 						<label class="labelSpaceLeft labelSpaceRight">Source:</label>
 						<select id="Source" class="dropdownMenue" name="Source" onchange="BrowseFilter()">
 						</select>
+						<label class="labelSpaceLeft labelSpaceRight">Sort:</label>
+						<select id="Order" name="Order" class="dropdownMenue" onchange="BrowseFilter()">
+							<option value="1">Alphabetisch</option>
+							<option value="2">Start Datum Aufsteigend</option>
+							<option value="3">Start Datum Absteigend</option>
+							<option value="4">Folgen Anzahl Aufsteigend</option>
+							<option value="5">Folgen Anzahl Absteigend</option>
+						</select>
 						<!--
 						<label class="labelSpaceLeft labelSpaceRight"></label>
 						<select id="select" class="dropdownMenue">
@@ -182,6 +190,7 @@
 			}
 
 			function LoadAndDisplayDropDownMenues(){
+				
 				$.ajax({
 					url: 'http://localhost:8000/api/genre/alle',
 					method: 'get',
@@ -554,6 +563,7 @@
 				var SelectedValueFormat = 1
 				var SelectedValueSource = 1
 				var SelectedText = "";
+				var SelectedValueOrder = 1
 
 				var SelectedValueGenre1 = 1
 				var SelectedValueGenre2 = 1
@@ -578,6 +588,7 @@
 				SelectedValueJahr = document.getElementById('Jahr').value
 				SelectedValueFormat = document.getElementById('Format').value
 				SelectedValueSource = document.getElementById('Source').value
+				SelectedValueOrder = document.getElementById('Order').value
 				
 				SelectedValueGenre1 = document.getElementById('Action').value
 				SelectedValueGenre2 = document.getElementById('Adventure').value
@@ -604,7 +615,7 @@
 				table.parentNode.removeChild(table)
 
 				$.ajax({
-					url: 'http://localhost:8000/api/Fillter/SortGenreAnime/'+ SelectedValueSeason + '_' + SelectedValueJahr + '_' + SelectedValueFormat + '_' + SelectedValueSource + '_' + SelectedText + '_' +  SelectedValueGenre1 + '&' + SelectedValueGenre2 + '&' + SelectedValueGenre3 + '&' + SelectedValueGenre4 + '&' + SelectedValueGenre5 + '&' + SelectedValueGenre6 + '&' + SelectedValueGenre7 + '&' + SelectedValueGenre8 + '&' + SelectedValueGenre9 + '&' + SelectedValueGenre10 + '&'  + SelectedValueGenre11 + '&'  + SelectedValueGenre12 + '&'  + SelectedValueGenre13 + '&'  + SelectedValueGenre14 + '&'  + SelectedValueGenre15 + '&'  + SelectedValueGenre16 + '&'  + SelectedValueGenre17 + '&'  + SelectedValueGenre18,
+					url: 'http://localhost:8000/api/Fillter/SortGenreAnime/'+ SelectedValueSeason + '_' + SelectedValueJahr + '_' + SelectedValueFormat + '_' + SelectedValueSource + '_' + SelectedText + '_' +  SelectedValueGenre1 + '&' + SelectedValueGenre2 + '&' + SelectedValueGenre3 + '&' + SelectedValueGenre4 + '&' + SelectedValueGenre5 + '&' + SelectedValueGenre6 + '&' + SelectedValueGenre7 + '&' + SelectedValueGenre8 + '&' + SelectedValueGenre9 + '&' + SelectedValueGenre10 + '&'  + SelectedValueGenre11 + '&'  + SelectedValueGenre12 + '&'  + SelectedValueGenre13 + '&'  + SelectedValueGenre14 + '&'  + SelectedValueGenre15 + '&'  + SelectedValueGenre16 + '&'  + SelectedValueGenre17 + '&'  + SelectedValueGenre18 + '_' + SelectedValueOrder,
 					method: 'get',
 					contentType: 'application/json; charset=utf-8',
 					cache: false,
