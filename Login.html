@@ -4,7 +4,9 @@
 	<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>Home</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 		<link rel="stylesheet" href="Css.css">
+		<script src="sessionHandling.js"></script>
 	</head>
 	<body>
 		<header>
@@ -16,27 +18,24 @@
 				<li class="navigationButton"><a href="Datenbank Uebersicht Manga.html" class="navigation">Mangas</a></li>
 				<li class="navigationButton"><a href="Registration.html" class="navigation">Registration</a></li>
 				<li class="navigationButton"><a href="Login.html" class="navigation">Log in</a></li>
-				<li><input type="text" id="suche" placeholder="Suche..." class="searchBar"></li>
 			</ul>
 		</nav>
 	</header>
 		<main class="mainBox">
 			<article>
 					<h1 class="tableTDerw">Log in</h1>
-					<form action="/auth" method="post">
-						<table class="tableRegistration" >
+						<table class="tableRegistration" id="Login">
 							<tr>
 
-								<td><input type="text" name="benutzername" placeholder="benutzername" class="groesse" id ="benutzername" required ></td>
+								<td><input type="text" name="benutzername" placeholder="Benutzername" class="groesse" id ="benutzername" required ></td>
 							</tr>
 							<tr>	
-								<td><input type="password" name="passwort"  placeholder="passwort"class="groesse" id ="passwort" required></td>
+								<td><input type="password" name="passwort"  placeholder="Passwort"class="groesse" id ="passwort" required></td>
 							</tr>
 							<tr>
-								<td><button type="submit" value="Login" >Log in</button></td>
+								<td><button onClick="Login()" type="submit" value="Login" >Log in</button></td>
 							</tr>
 						</table>
-					</form>
 					<footer class="navigationBox2 schatten">
 							<ul class="navigationList">
 								<li class="navigationButton"><a href="Impressum.html" class="navigation">Impressum</a></li>
@@ -45,6 +44,42 @@
 					</footer>
 			</article>
 		</main>
-		<script src="Server/services/login.js"></script>
+		<script>
+			var select = document.getElementById("Login");
+			var BNcell = select.insertRow(2);
+			function Login() {
+
+				BNcell.innerHTML = "";
+
+				$.ajax({
+                	url: 'http://localhost:8000/api/account/alle',
+                	method: 'get',
+                	contentType: 'application/json; charset=utf-8',
+                	cache: false,
+                	dataType: 'json'
+           	 	}).done(function (response) {
+                	console.log(response);
+					checkUnameAndPw(response);
+            	}).fail(function (jqXHR, statusText, error) {
+                	console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+                	$('#output').html('Ein Fehler ist aufgetreten');
+            	});
+
+				function checkUnameAndPw(arr) {
+					var Bname = document.getElementById("benutzername").value;
+					var PW = document.getElementById("passwort").value;
+
+					for (var i = 0; i<arr.length; i++) {
+						if (Bname == arr[i].benutzername && PW == arr[i].passwort) {
+							window.location.href = "Profil.html";
+							setJSONSessionItem("Account", arr[i]);
+						}
+					}
+					BNcell.innerHTML = "Benutzername oder Passwort stimmen nicht überein";
+					BNcell.style.color = "red";
+				}
+			}
+		</script>
 	</body>
 </html>
+<!--Test>

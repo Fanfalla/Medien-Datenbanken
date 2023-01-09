@@ -5,7 +5,9 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 		<title>Meine Liste</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 		<link rel="stylesheet" href="Css.css">
+		<script src="sessionHandling.js"></script>
 	</head>
 	
 	<body>
@@ -16,9 +18,9 @@
 				<li class="navigationButton"><a href="Home.html" class="navigation">Startseite</a></li>
 				<li class="navigationButton"><a href="Datenbank Uebersicht Anime.html" class="navigation">Animes</a></li>
 				<li class="navigationButton"><a href="Datenbank Uebersicht Manga.html" class="navigation">Mangas</a></li>
-				<li class="navigationButton"><a href="Registration.html" class="navigation">Registration</a></li>
-				<li class="navigationButton"><a href="Login.html" class="navigation">Log in</a></li>
-				<li><input type="text" id="suche" placeholder="Suche..." class="searchBar"></li>
+				<li class="navigationButton"><a href="Liste.html" class="navigation">Meine Liste</a></li>
+				<li class="navigationButton"><a id="1" href="Profil.html" class="navigation"></a></li>
+				<li class="navigationButton"><a onClick="Logout()" class="navigation">Logout</a></li>
 			</ul>
 		</nav>
 	</header>
@@ -164,6 +166,7 @@
 						</ul>
 			</footer>	
 		</main>
+<<<<<<< HEAD
 		<Script>
 			
 			$(document).ready(function() {
@@ -346,5 +349,18 @@
 			}
 
 		</Script>
+=======
+		<script>
+			$(document).ready(function() {
+				document.getElementById("1").innerHTML = getJSONSessionItem("Account").benutzername;
+        	});
+
+			function Logout() {
+				removeSessionItem("Account");
+				window.location.href = "Login.html";
+			}
+		</script>
+>>>>>>> b2f033d33c0aada5abaa721af2f9ded54be66121
 	</body>
 </html>
+<!--Test>
