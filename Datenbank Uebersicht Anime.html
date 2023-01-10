@@ -81,8 +81,8 @@
 				<article class="mainBox datenbankBox mainBoxExtra" id="AnimeTablePlace">
 					<footer class="navigationBox2 schatten">
 						<ul class="navigationList">
-							<li class="navigationButton"><a href="Home.html" class="navigation">Impressum</a></li>
-							<li class="navigationButton navigationButton2"><a href="Admin Ansicht.html" class="navigation">Admin Ansicht</a></li>
+							<li class="navigationButton"><a href="Impressum.html" class="navigation">Impressum</a></li>
+							<li class="navigationButton navigationButton2"><a id="admin" href="#" class="navigation"></a></li>
 						</ul>
 					</footer>
 				</article>
@@ -180,7 +180,11 @@
 					document.getElementById("1").href = "Liste.html";
 					document.getElementById("2").innerHTML = getJSONSessionItem("Account").benutzername;
 					document.getElementById("2").href = "Profil.html";
-					document.getElementById("3").innerHTML = "Log out";
+					document.getElementById("3").innerHTML = "Logout";
+					if (getJSONSessionItem("Account").adminid == 1) {
+						document.getElementById("admin").innerHTML = "Admin Ansicht";
+						document.getElementById("admin").href = "Admin Ansicht.html";
+					}
 				}
 			})
 

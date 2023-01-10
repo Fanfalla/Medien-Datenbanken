@@ -177,8 +177,8 @@
 			</article>
 			<footer class="navigationBox2 schatten">
 						<ul class="navigationList">
-							<li class="navigationButton"><a href="Home.html" class="navigation">Impressum</a></li>
-							<li class="navigationButton navigationButton2"><a href="Admin Ansicht.html" class="navigation">Admin Ansicht</a></li>
+							<li class="navigationButton"><a href="Impressum.html" class="navigation">Impressum</a></li>
+							<li class="navigationButton navigationButton2"><a id="admin" href="#" class="navigation"></a></li>
 						</ul>
 			</footer>	
 		</main>
@@ -186,7 +186,18 @@
 			
 			$(document).ready(function() {
 				LoadAndDisplayDropDownMenues()
+				document.getElementById("1").innerHTML = getJSONSessionItem("Account").benutzername;
+				document.getElementById("1").href = "Profil.html";
+				if (getJSONSessionItem("Account").adminid == 1) {
+						document.getElementById("admin").innerHTML = "Admin Ansicht";
+						document.getElementById("admin").href = "Admin Ansicht.html";
+				}
 			})
+
+			function Logout() {
+				removeSessionItem("Account");
+				window.location.href = "Login.html";
+			}
 
 			function LoadAndDisplayDropDownMenues(){
 			
