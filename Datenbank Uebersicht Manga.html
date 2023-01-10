@@ -131,7 +131,7 @@
 				<tr>
 					<td colspan="2">
 						<section class="eintragAuswahlBox">
-							<select id="ListStatus" type="dropdownMenue" name="">
+							<select id="ListStatus" type="dropdownMenue" name="" onchange="AddMangaToList()">
 								<option value="0">---</option>
 							</select>
 						</section>
@@ -742,8 +742,29 @@
 					$('#output').html('Ein Fehler ist aufgetreten');
 				})
 
+				if (user = getJSONSessionItem("Account").id){
+
+					$.ajax({
+						url: 'http://localhost:8000/api/mangaListe/gib/'+ id + '_' + user,
+						method: 'get',
+						contentType: 'application/json; charset=utf-8',
+						cache: false,
+						dataType: 'json',
+					}).done(function (response) {
+						console.log(response);
+						getAnimeListStatus(response);          
+					}).fail(function (jqXHR, statusText, error) {
+						console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+						$('#output').html('Ein Fehler ist aufgetreten');
+					})
+				}
+
 				EintragInfoBox.style.visibility="visible"
 				TransparentBox.style.visibility="visible"
+			}
+
+			function getAnimeListStatus(id){
+				document.getElementById('ListStatus').value = id
 			}
 
 			function HideEntry(){
@@ -764,6 +785,7 @@
 				document.getElementById('SourceEintrag').innerHTML = ''
 				document.getElementById('Cover').src = ''
 				document.getElementById('GenreEintrag').innerHTML = ''
+				document.getElementById('ListStatus').value = 0
 			}
 
 			function FillTableWithData(item) {
@@ -780,6 +802,7 @@
 				document.getElementById('FormatEintrag').innerHTML = item.format
 				document.getElementById('SourceEintrag').innerHTML = item.source
 				document.getElementById('Cover').src = item.cover
+				document.getElementById('ListStatus').name = item.id
 			}
 
 			function FillGenreCell(arr){
@@ -793,6 +816,37 @@
 
 				genres = genres.substring(0, genres.length - 2)
 				document.getElementById('GenreEintrag').innerHTML = genres
+			}
+
+			function AddMangaToList(){
+
+				var user = ""
+
+				if (user = getJSONSessionItem("Account").benutzername){
+
+					var listStatusUser = document.getElementById('ListStatus').value
+					var entryID = document.getElementById('ListStatus').name
+
+					var obj = { "User": user, "ListStatusUser": listStatusUser, "EntryID": entryID}
+
+					$.ajax({
+						url: 'http://localhost:8000/api/mangaListe/status/add',
+						method: 'post',
+						contentType: 'application/json; charset=utf-8',
+						cache: false,
+						data: JSON.stringify(obj),
+					})
+					.done(function() {
+						consol.log('eintragInfo eingetragen')
+					})
+					.fail(function(xhr){
+						console.log('error recieved');
+						console.log(xhr);
+						console.log(xhr.status);
+						alert(xhr.responseText);
+					})
+				}
+
 			}
 
 		</script>

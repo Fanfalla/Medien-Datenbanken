@@ -10,6 +10,23 @@ class MangaListeDao {
         return this._conn;
     }
 
+    loadByIds(ids) {
+
+        var a = ids[0]
+        var b = ids[1]
+
+        var sql = 'SELECT liststatusid FROM MangaListe WHERE mangaid = ? AND accountid= ?';
+        var statement = this._conn.prepare(sql);
+        var params = [a, b]
+        var result = statement.get(params);
+        var a = Object.values(result);
+
+        if (helper.isUndefined(result)) 
+            throw new Error('No Record found by id=' + ids[0]);
+
+        return a;
+    }
+
     loadById(id) {
         var sql = 'SELECT * FROM MangaListe WHERE id=?';
         var statement = this._conn.prepare(sql);
@@ -17,6 +34,18 @@ class MangaListeDao {
 
         if (helper.isUndefined(result)) 
             throw new Error('No Record found by id=' + id);
+
+        return result;
+    }
+
+    loadByUserAndName(userid, mangaid) {
+        var sql = 'SELECT * FROM Mangaliste WHERE accountid = ? AND mangaid = ?';
+        var statement = this._conn.prepare(sql);
+        var params = [userid, mangaid];
+        var result = statement.get(params);
+
+        if (helper.isUndefined(result)) 
+            return false;
 
         return result;
     }
@@ -43,16 +72,24 @@ class MangaListeDao {
         return false;
     }
 
-    create(accountid, mangaid) {
-        var sql = 'INSERT INTO MangaListe (accountid, mangaid) VALUES (?,?)';
+    create(accountid, mangaid, liststatusid) {
+        var sql = 'INSERT INTO MangaListe (accountid, mangaid, liststatusid) VALUES (?,?,?)';
         var statement = this._conn.prepare(sql);
-        var params = [accountid, mangaid];
+        var params = [accountid, mangaid, liststatusid];
         var result = statement.run(params);
 
-        if (result.changes != 1) 
-            throw new Error('Could not insert new Record. Data: ' + params);
+        if (result === undefined) 
+            return false;
 
         return this.loadById(result.lastInsertRowid);
+    }
+
+    getUserId(benutzername){
+        var sql = 'SELECT id FROM Account Where benutzername = ?'
+        var statement = this._conn.prepare(sql);
+        var result = statement.get(benutzername);
+        var a = Object.values(result);
+        return a;
     }
 
     update(id, accountid, mangaid) {
@@ -67,18 +104,31 @@ class MangaListeDao {
         return this.loadById(id);
     }
 
-    delete(id) {
+    editStatus(statusid, accountid, mangaid) {
+        var sql = 'UPDATE MangaListe SET liststatusid= ? WHERE accountid = ? AND mangaid = ?';
+        var statement = this._conn.prepare(sql);
+        var params = [statusid, accountid, mangaid];
+        var result = statement.run(params);
+
+        if (result.changes != 1) 
+            throw new Error('Could not update existing Record. Data: ' + params);
+
+        return this.loadById(id);
+    }
+
+    delete(userid, mangaid) {
         try {
-            var sql = 'DELETE FROM MangaListe WHERE id=?';
+            var sql = 'DELETE FROM MangaListe WHERE accountid = ? AND mangaid = ?';
             var statement = this._conn.prepare(sql);
-            var result = statement.run(id);
+            var params = [userid, mangaid];
+            var result = statement.run(params);
 
             if (result.changes != 1) 
-                throw new Error('Could not delete Record by id=' + id);
+                throw new Error('Could not delete manga= ' + mangaid + ' from user= ' + userid);
 
             return true;
         } catch (ex) {
-            throw new Error('Could not delete Record by id=' + id + '. Reason: ' + ex.message);
+            throw new Error('Could not delete manga= ' + mangaid + ' from user= ' + userid + '. Reason: ' + ex.message);
         }
     }
 

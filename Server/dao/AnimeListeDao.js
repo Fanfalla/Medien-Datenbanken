@@ -10,13 +10,31 @@ class AnimeListeDao {
         return this._conn;
     }
 
-    loadById(id) {
-        var sql = 'SELECT * FROM AnimeListe WHERE id=?';
+    loadByIds(ids) {
+
+        var a = ids[0]
+        var b = ids[1]
+
+        var sql = 'SELECT liststatusid FROM AnimeListe WHERE animeid = ? AND accountid= ?';
         var statement = this._conn.prepare(sql);
-        var result = statement.get(id);
+        var params = [a, b]
+        var result = statement.get(params);
+        var a = Object.values(result);
 
         if (helper.isUndefined(result)) 
-            throw new Error('No Record found by id=' + id);
+            throw new Error('No Record found by id=' + ids[0]);
+
+        return a;
+    }
+
+    loadByUserAndName(userid, animeid) {
+        var sql = 'SELECT * FROM Animeliste WHERE accountid = ? AND animeid = ?';
+        var statement = this._conn.prepare(sql);
+        var params = [userid, animeid];
+        var result = statement.get(params);
+
+        if (helper.isUndefined(result)) 
+            return false;
 
         return result;
     }
@@ -54,14 +72,22 @@ class AnimeListeDao {
         return false;
     }
 
-    create(accountid, animeid) {
-        var sql = 'INSERT INTO AnimeListe (accountid, animeid) VALUES (?,?)';
+    getUserId(benutzername){
+        var sql = 'SELECT id FROM Account Where benutzername = ?'
         var statement = this._conn.prepare(sql);
-        var params = [accountid, animeid];
+        var result = statement.get(benutzername);
+        var a = Object.values(result);
+        return a;
+    }
+
+    create(accountid, animeid, liststatusid) {
+        var sql = 'INSERT INTO AnimeListe (accountid, animeid, liststatusid) VALUES (?,?,?)';
+        var statement = this._conn.prepare(sql);
+        var params = [accountid, animeid, liststatusid];
         var result = statement.run(params);
 
-        if (result.changes != 1) 
-            throw new Error('Could not insert new Record. Data: ' + params);
+        if (result === undefined) 
+            return false;
 
         return this.loadById(result.lastInsertRowid);
     }
@@ -78,18 +104,31 @@ class AnimeListeDao {
         return this.loadById(id);
     }
 
-    delete(id) {
+    editStatus(statusid, accountid, animeid) {
+        var sql = 'UPDATE AnimeListe SET liststatusid= ? WHERE accountid = ? AND animeid = ?';
+        var statement = this._conn.prepare(sql);
+        var params = [statusid, accountid, animeid];
+        var result = statement.run(params);
+
+        if (result.changes != 1) 
+            throw new Error('Could not update existing Record. Data: ' + params);
+
+        return this.loadById(id);
+    }
+
+    delete(userid, animeid) {
         try {
-            var sql = 'DELETE FROM AnimeListe WHERE id=?';
+            var sql = 'DELETE FROM AnimeListe WHERE accountid = ? AND animeid = ?';
             var statement = this._conn.prepare(sql);
-            var result = statement.run(id);
+            var params = [userid, animeid];
+            var result = statement.run(params);
 
             if (result.changes != 1) 
-                throw new Error('Could not delete Record by id=' + id);
+                throw new Error('Could not delete anime= ' + animeid + ' from user= ' + userid);
 
             return true;
         } catch (ex) {
-            throw new Error('Could not delete Record by id=' + id + '. Reason: ' + ex.message);
+            throw new Error('Could not delete anime= ' + animeid + ' from user= ' + userid + '. Reason: ' + ex.message);
         }
     }
 
