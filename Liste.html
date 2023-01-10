@@ -37,11 +37,27 @@
 					</li>
 					<li class="filterMargin">Genres:</li>
 					<li>
-						<select id="Genre" name="Genre" class="dropdownMenue dropdownMenueListe">
+						<select id="Genre" name="Genre" class="dropdownMenue dropdownMenueListe" onchange="GenreSelect()">
 						</select>
 					</li>
-					<li><img src="Bilder\Genres\Action.png" class="genreAuswahlListe genreAuswahlListeV genreAuswahlListeV1"></img></li>
-					<li><img src="Bilder\Genres\Adventure.png" class="genreAuswahlListe genreAuswahlListeV genreAuswahlListeV2"></img></li>
+					<li><img src="Bilder\Genres\Action.png" class="genreAuswahl1" id="Action" value="1" onclick="GenreSelectRemove(2)"></img></li>
+					<li><img src="Bilder\Genres\Adventure.png" class="genreAuswahl2" id="Adventure" value="1" onclick="GenreSelectRemove(3)"></img></li>
+					<li><img src="Bilder\Genres\Adventure.png" class="genreAuswahl3" id="Comedy" value="1" onclick="GenreSelectRemove(4)"></img></li>
+					<li><img src="Bilder\Genres\Adventure.png" class="genreAuswahl4" id="Drama" value="1" onclick="GenreSelectRemove(5)"></img></li>
+					<li><img src="Bilder\Genres\Adventure.png" class="genreAuswahl5" id="Ecchi" value="1" onclick="GenreSelectRemove(6)"></img></li>
+					<li><img src="Bilder\Genres\Adventure.png" class="genreAuswahl6" id="Fantasy" value="1" onclick="GenreSelectRemove(7)"></img></li>
+					<li><img src="Bilder\Genres\Adventure.png" class="genreAuswahl7" id="Horror" value="1" onclick="GenreSelectRemove(8)"></img></li>
+					<li><img src="Bilder\Genres\Adventure.png" class="genreAuswahl8" id="MahouShoujo" value="1" onclick="GenreSelectRemove(9)"></img></li>
+					<li><img src="Bilder\Genres\Adventure.png" class="genreAuswahl9" id="Mecha" value="1" onclick="GenreSelectRemove(10)"></img></li>
+					<li><img src="Bilder\Genres\Adventure.png" class="genreAuswahl10" id="Music" value="1" onclick="GenreSelectRemove(11)"></img></li>
+					<li><img src="Bilder\Genres\Adventure.png" class="genreAuswahl11" id="Mystery" value="1" onclick="GenreSelectRemove(12)"></img>
+					<li><img src="Bilder\Genres\Adventure.png" class="genreAuswahl12" id="Psychological" value="1" onclick="GenreSelectRemove(13)"></img></li>
+					<li><img src="Bilder\Genres\Adventure.png" class="genreAuswahl13" id="Romance" value="1" onclick="GenreSelectRemove(14)"></img></li>
+					<li><img src="Bilder\Genres\Adventure.png" class="genreAuswahl14" id="Sci-Fi" value="1" onclick="GenreSelectRemove(15)"></img></li>
+					<li><img src="Bilder\Genres\Adventure.png" class="genreAuswahl15" id="SliceOfLife" value="1" onclick="GenreSelectRemove(16)"></img></li>
+					<li><img src="Bilder\Genres\Adventure.png" class="genreAuswahl16" id="Sport" value="1" onclick="GenreSelectRemove(17)"></img></img></li>
+					<li><img src="Bilder\Genres\Adventure.png" class="genreAuswahl17" id="Supernatural" value="1" onclick="GenreSelectRemove(18)"></img></li>
+					<li><img src="Bilder\Genres\Adventure.png" class="genreAuswahl18" id="Thriller" value="1" onclick="GenreSelectRemove(19)"></img></li>
 					<li class="filterMargin">Jahr:</li>
 					<li>
 						<select id="Jahr" name="Jahr" class="dropdownMenue dropdownMenueListe">
@@ -166,7 +182,6 @@
 						</ul>
 			</footer>	
 		</main>
-<<<<<<< HEAD
 		<Script>
 			
 			$(document).ready(function() {
@@ -348,19 +363,201 @@
 				}
 			}
 
-		</Script>
-=======
-		<script>
-			$(document).ready(function() {
-				document.getElementById("1").innerHTML = getJSONSessionItem("Account").benutzername;
-        	});
+function GenreSelect() {
 
-			function Logout() {
-				removeSessionItem("Account");
-				window.location.href = "Login.html";
-			}
-		</script>
->>>>>>> b2f033d33c0aada5abaa721af2f9ded54be66121
+	var genre = document.getElementById('Genre').value
+	var view = document.getElementById('genreAuswahlBox')
+
+	if(genre == 2){
+		document.getElementById('Action').value = 2
+		document.getElementById('Action').style.display = 'inline'
+	}
+
+	if(genre == 3){
+		document.getElementById('Adventure').value = 3
+		document.getElementById('Adventure').style.display = 'inline'
+	}
+
+	if(genre == 4){
+		document.getElementById('Comedy').value = 4
+		document.getElementById('Comedy').style.display = 'inline'
+	}
+
+	if(genre == 5){
+		document.getElementById('Drama').value = 5
+		document.getElementById('Drama').style.display = 'inline'
+	}
+
+	if(genre == 6){
+		document.getElementById('Ecchi').value = 6
+		document.getElementById('Ecchi').style.display = 'inline'
+	}
+
+	if(genre == 7){
+		document.getElementById('Fantasy').value = 7
+		document.getElementById('Fantasy').style.display = 'inline'
+	}
+
+	if(genre == 8){
+		document.getElementById('Horror').value = 8
+		document.getElementById('Horror').style.display = 'inline'
+	}
+
+	if(genre == 9){
+		document.getElementById('MahouShoujo').value = 9
+		document.getElementById('MahouShoujo').style.display = 'inline'
+	}
+
+	if(genre == 10){
+		document.getElementById('Mecha').value = 10
+		document.getElementById('Mecha').style.display = 'inline'
+	}
+
+	if(genre == 11){
+		document.getElementById('Music').value = 11
+		document.getElementById('Music').style.display = 'inline'
+	}
+
+	if(genre == 12){
+		document.getElementById('Mystery').value = 12
+		document.getElementById('Mystery').style.display = 'inline'
+	}
+
+	if(genre == 13){
+		document.getElementById('Psychological').value = 13
+		document.getElementById('Psychological').style.display = 'inline'
+	}
+
+	if(genre == 14){
+		document.getElementById('Romance').value = 14
+		document.getElementById('Romance').style.display = 'inline'
+	}
+
+	if(genre == 15){
+		document.getElementById('Sci-Fi').value = 15
+		document.getElementById('Sci-Fi').style.display = 'inline'
+	}
+
+	if(genre == 16){
+		document.getElementById('SliceOfLife').value = 16
+		document.getElementById('SliceOfLife').style.display = 'inline'
+	}
+
+	if(genre == 17){
+		document.getElementById('Sport').value = 17
+		document.getElementById('Sport').style.display = 'inline'
+	}
+
+	if(genre == 18){
+		document.getElementById('Supernatural').value = 18
+		document.getElementById('Supernatural').style.display = 'inline'
+	}
+
+	if(genre == 19){
+		document.getElementById('Thriller').value = 19
+		document.getElementById('Thriller').style.display = 'inline'
+	}
+	document.getElementById('Genre').selectedIndex = 0
+
+	BrowseFilter()
+}
+
+function GenreSelectRemove(id){
+
+	if(id == 2){
+		document.getElementById('Action').value = 0
+		document.getElementById('Action').style.display = "none"
+	}
+
+	if(id == 3){
+		document.getElementById('Adventure').value = 0
+		document.getElementById('Adventure').style.display = "none"
+	}
+
+	if(id == 4){
+		document.getElementById('Comedy').value = 0
+		document.getElementById('Comedy').style.display = "none"
+	}
+
+	if(id == 5){
+		document.getElementById('Drama').value = 0
+		document.getElementById('Drama').style.display = "none"
+	}
+
+	if(id == 6){
+		document.getElementById('Ecchi').value = 0
+		document.getElementById('Ecchi').style.display = "none"
+	}
+
+	if(id == 7){
+		document.getElementById('Fantasy').value = 0
+		document.getElementById('Fantasy').style.display = "none"
+	}
+
+	if(id == 8){
+		document.getElementById('Horror').value = 0
+		document.getElementById('Horror').style.display = "none"
+	}
+
+	if(id == 9){
+		document.getElementById('MahouShoujo').value = 0
+		document.getElementById('MahouShoujo').style.display = "none"
+	}
+
+	if(id == 10){
+		document.getElementById('Mecha').value = 0
+		document.getElementById('Mecha').style.display = "none"
+	}
+
+	if(id == 11){
+		document.getElementById('Music').value = 0
+		document.getElementById('Music').style.display = "none"
+	}
+
+	if(id == 12){
+		document.getElementById('Mystery').value = 0
+		document.getElementById('Mystery').style.display = "none"
+	}
+
+	if(id == 13){
+		document.getElementById('Psychological').value = 0
+		document.getElementById('Psychological').style.display = "none"
+	}
+
+	if(id == 14){
+		document.getElementById('Romance').value = 0
+		document.getElementById('Romance').style.display = "none"
+	}
+
+	if(id == 15){
+		document.getElementById('Sci-Fi').value = 0
+		document.getElementById('Sci-Fi').style.display = "none"
+	}
+
+	if(id == 16){
+		document.getElementById('SliceOfLife').value = 0
+		document.getElementById('SliceOfLife').style.display = "none"
+	}
+
+	if(id == 17){
+		document.getElementById('Sport').value = 0
+		document.getElementById('Sport').style.display = "none"
+	}
+
+	if(id == 18){
+		document.getElementById('Supernatural').value = 0
+		document.getElementById('Supernatural').style.display = "none"
+	}
+
+	if(id == 19){
+		document.getElementById('Thriller').value = 0
+		document.getElementById('Thriller').style.display = "none"
+	}
+
+	BrowseFilter()
+}
+
+		</Script>
 	</body>
 </html>
 <!--Test>

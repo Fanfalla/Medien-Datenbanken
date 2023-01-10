@@ -21,6 +21,17 @@ class AnimeListeDao {
         return result;
     }
 
+    loadById(id) {
+        var sql = 'SELECT * FROM AnimeListe WHERE id=?';
+        var statement = this._conn.prepare(sql);
+        var result = statement.get(id);
+
+        if (helper.isUndefined(result)) 
+            throw new Error('No Record found by id=' + id);
+
+        return result;
+    }
+
     loadAll() {
         var sql = 'SELECT * FROM AnimeListe';
         var statement = this._conn.prepare(sql);
