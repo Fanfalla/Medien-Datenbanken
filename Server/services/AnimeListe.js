@@ -8,10 +8,14 @@ console.log('- Service AnimeListe');
 serviceRouter.get('/animeListe/gib/:id', function(request, response) {
     console.log('Service AnimeListe: Client requested one record, id=' + request.params.id);
 
+    var a = request.params.id
+    var b = a.split('_')
+    console.log(b)
+
     const animeListeDao = new AnimeListeDao(request.app.locals.dbConnection);
     try {
-        var obj = animeListeDao.loadById(request.params.id);
-        console.log('Service AnimeListe: Record loaded');
+        var obj = parseInt(animeListeDao.loadByIds(b));
+        console.log('Service AnimeListe: Record loaded ' + obj);
         response.status(200).json(obj);
     } catch (ex) {
         console.error('Service AnimeListe: Error loading record by id. Exception occured: ' + ex.message);
@@ -49,16 +53,20 @@ serviceRouter.get('/animeListe/existiert/:id', function(request, response) {
     }
 });
 
-serviceRouter.post('/animeListe', function(request, response) {
+serviceRouter.post('/animeListe/status/add', function(request, response) {
     console.log('Service AnimeListe: Client requested creation of new record');
+
+    console.log('-------> User: ' + request.body.User)
+    console.log('-------> ListStatusUser: ' + request.body.ListStatusUser)
+    console.log('-------> EntryID: ' + request.body.EntryID)
 
     var errorMsgs=[];
     if (helper.isUndefined(request.body.User)) 
-        errorMsgs.push('kennzeichnung fehlt');
+        errorMsgs.push('User fehlt');
     if (helper.isUndefined(request.body.ListStatusUser)) 
-        errorMsgs.push('bezeichnung fehlt');
+        errorMsgs.push('ListstatusUser fehlt');
     if (helper.isUndefined(request.body.EntryID)) 
-        errorMsgs.push('bezeichnung fehlt');
+        errorMsgs.push('EntryID fehlt');
     
     if (errorMsgs.length > 0) {
         console.log('Service AnimeListe: Creation not possible, data missing');
@@ -68,10 +76,21 @@ serviceRouter.post('/animeListe', function(request, response) {
 
     const animeListeDao = new AnimeListeDao(request.app.locals.dbConnection);
     try {
-  //      if(animeListeDao)
-    //    var obj = animeListeDao.create(request.body.kennzeichnung, request.body.bezeichnung);
-        console.log('Service AnimeListe: Record inserted');
-        response.status(200).json(obj);
+
+        if(request.body.ListStatusUser == 0){
+            var obj = animeListeDao.delete(parseInt(animeListeDao.getUserId(request.body.User)), request.body.EntryID)
+            console.log('Service AnimeListe: Record Deleted');
+        }
+        if(animeListeDao.loadByUserAndName(parseInt(animeListeDao.getUserId(request.body.User)), request.body.EntryID) && request.body.ListStatusUser > 0){
+            var obj = animeListeDao.editStatus(request.body.ListStatusUser, parseInt(animeListeDao.getUserId(request.body.User)), request.body.EntryID)
+            console.log('Service AnimeListe: Record Updated');
+            response.status(200).json(obj);
+        }
+        if(!animeListeDao.loadByUserAndName(parseInt(animeListeDao.getUserId(request.body.User)), request.body.EntryID) && request.body.ListStatusUser > 0){
+            var obj = animeListeDao.create(parseInt(animeListeDao.getUserId(request.body.User)), request.body.EntryID, request.body.ListStatusUser);
+            console.log('Service AnimeListe: Record inserted');
+            response.status(200).json(obj);
+        }
     } catch (ex) {
         console.error('Service AnimeListe: Error creating new record. Exception occured: ' + ex.message);
         response.status(400).json({ 'fehler': true, 'nachricht': ex.message });

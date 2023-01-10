@@ -8,10 +8,14 @@ console.log('- Service MangaListe');
 serviceRouter.get('/mangaListe/gib/:id', function(request, response) {
     console.log('Service MangaListe: Client requested one record, id=' + request.params.id);
 
+    var a = request.params.id
+    var b = a.split('_')
+    console.log(b)
+
     const mangaListeDao = new MangaListeDao(request.app.locals.dbConnection);
     try {
-        var obj = mangaListeDao.loadById(request.params.id);
-        console.log('Service MangaListe: Record loaded');
+        var obj = parseInt(mangaListeDao.loadByIds(b));
+        console.log('Service MangaListe: Record loaded ' + obj);
         response.status(200).json(obj);
     } catch (ex) {
         console.error('Service MangaListe: Error loading record by id. Exception occured: ' + ex.message);
@@ -49,26 +53,44 @@ serviceRouter.get('/mangaListe/existiert/:id', function(request, response) {
     }
 });
 
-serviceRouter.post('/mangaListe', function(request, response) {
+serviceRouter.post('/mangaListe/status/add', function(request, response) {
     console.log('Service MangaListe: Client requested creation of new record');
 
+    console.log('-------> User: ' + request.body.User)
+    console.log('-------> ListStatusUser: ' + request.body.ListStatusUser)
+    console.log('-------> EntryID: ' + request.body.EntryID)
+
     var errorMsgs=[];
-    if (helper.isUndefined(request.body.kennzeichnung)) 
-        errorMsgs.push('kennzeichnung fehlt');
-    if (helper.isUndefined(request.body.bezeichnung)) 
-        errorMsgs.push('bezeichnung fehlt');
+    if (helper.isUndefined(request.body.User)) 
+        errorMsgs.push('User fehlt');
+    if (helper.isUndefined(request.body.ListStatusUser)) 
+        errorMsgs.push('ListstatusUser fehlt');
+    if (helper.isUndefined(request.body.EntryID)) 
+        errorMsgs.push('EntryID fehlt');
     
     if (errorMsgs.length > 0) {
-        console.log('Service MangaList: Creation not possible, data missing');
+        console.log('Service MangaListe: Creation not possible, data missing');
         response.status(400).json({ 'fehler': true, 'nachricht': 'Funktion nicht möglich. Fehlende Daten: ' + helper.concatArray(errorMsgs) });
         return;
     }
 
     const mangaListeDao = new MangaListeDao(request.app.locals.dbConnection);
     try {
-        var obj = mangaListeDao.create(request.body.kennzeichnung, request.body.bezeichnung);
-        console.log('Service MangaListe: Record inserted');
-        response.status(200).json(obj);
+
+        if(request.body.ListStatusUser == 0){
+            var obj = mangaListeDao.delete(parseInt(mangaListeDao.getUserId(request.body.User)), request.body.EntryID)
+            console.log('Service MangaListe: Record Deleted');
+        }
+        if(mangaListeDao.loadByUserAndName(parseInt(mangaListeDao.getUserId(request.body.User)), request.body.EntryID) && request.body.ListStatusUser > 0){
+            var obj = mangaListeDao.editStatus(request.body.ListStatusUser, parseInt(mangaListeDao.getUserId(request.body.User)), request.body.EntryID)
+            console.log('Service MangaListe: Record Updated');
+            response.status(200).json(obj);
+        }
+        if(!mangaListeDao.loadByUserAndName(parseInt(mangaListeDao.getUserId(request.body.User)), request.body.EntryID) && request.body.ListStatusUser > 0){
+            var obj = mangaListeDao.create(parseInt(mangaListeDao.getUserId(request.body.User)), request.body.EntryID, request.body.ListStatusUser);
+            console.log('Service MangaListe: Record inserted');
+            response.status(200).json(obj);
+        }
     } catch (ex) {
         console.error('Service MangaListe: Error creating new record. Exception occured: ' + ex.message);
         response.status(400).json({ 'fehler': true, 'nachricht': ex.message });

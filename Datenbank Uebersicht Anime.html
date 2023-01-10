@@ -93,7 +93,7 @@
 						<image src="" width="215" height="300" id="Cover"></img>
 					</section>
 					<section class="eintragAuswahlBox">
-						<select id="ListStatus" type="dropdownMenue" name="">
+						<select id="ListStatus" type="dropdownMenue" name="" onchange="AddAnimeToList()">
 							<option value="0">---</option>
 						</select>
 					</section>
@@ -720,8 +720,29 @@
 					$('#output').html('Ein Fehler ist aufgetreten');
 				})
 
+				if (user = getJSONSessionItem("Account").id){
+
+					$.ajax({
+						url: 'http://localhost:8000/api/animeListe/gib/'+ id + '_' + user,
+						method: 'get',
+						contentType: 'application/json; charset=utf-8',
+						cache: false,
+						dataType: 'json',
+					}).done(function (response) {
+						console.log(response);
+						getAnimeListStatus(response);          
+					}).fail(function (jqXHR, statusText, error) {
+						console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+						$('#output').html('Ein Fehler ist aufgetreten');
+					})
+				}
+
 				EintragInfoBox.style.visibility="visible"
 				TransparentBox.style.visibility="visible"
+			}
+
+			function getAnimeListStatus(id){
+				document.getElementById('ListStatus').value = id
 			}
 
 			function HideEntry(){
@@ -744,6 +765,7 @@
 				document.getElementById('SourceEintrag').innerHTML = ''
 				document.getElementById('Cover').src = ''
 				document.getElementById('GenreEintrag').innerHTML = ''
+				document.getElementById('ListStatus').value = 0
 			}
 
 			function FillTableWithData(item) {
@@ -780,7 +802,7 @@
 
 			function AddAnimeToList(){
 
-				var user
+				var user = ""
 
 				if (user = getJSONSessionItem("Account").benutzername){
 
@@ -790,13 +812,11 @@
 					var obj = { "User": user, "ListStatusUser": listStatusUser, "EntryID": entryID}
 
 					$.ajax({
-						url: 'http://localhost:8000/api/eintragInfo/Add',
-						type: 'POST',
+						url: 'http://localhost:8000/api/animeListe/status/add',
+						method: 'post',
+						contentType: 'application/json; charset=utf-8',
+						cache: false,
 						data: JSON.stringify(obj),
-						contentType: false,
-						Cache: false,
-						processData: false,
-						dataType: '.json'
 					})
 					.done(function() {
 						consol.log('eintragInfo eingetragen')
