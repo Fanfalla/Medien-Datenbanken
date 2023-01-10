@@ -53,9 +53,11 @@ serviceRouter.post('/animeListe', function(request, response) {
     console.log('Service AnimeListe: Client requested creation of new record');
 
     var errorMsgs=[];
-    if (helper.isUndefined(request.body.kennzeichnung)) 
+    if (helper.isUndefined(request.body.User)) 
         errorMsgs.push('kennzeichnung fehlt');
-    if (helper.isUndefined(request.body.bezeichnung)) 
+    if (helper.isUndefined(request.body.ListStatusUser)) 
+        errorMsgs.push('bezeichnung fehlt');
+    if (helper.isUndefined(request.body.EntryID)) 
         errorMsgs.push('bezeichnung fehlt');
     
     if (errorMsgs.length > 0) {
@@ -66,7 +68,8 @@ serviceRouter.post('/animeListe', function(request, response) {
 
     const animeListeDao = new AnimeListeDao(request.app.locals.dbConnection);
     try {
-        var obj = animeListeDao.create(request.body.kennzeichnung, request.body.bezeichnung);
+  //      if(animeListeDao)
+    //    var obj = animeListeDao.create(request.body.kennzeichnung, request.body.bezeichnung);
         console.log('Service AnimeListe: Record inserted');
         response.status(200).json(obj);
     } catch (ex) {

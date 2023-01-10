@@ -93,7 +93,7 @@
 						<image src="" width="215" height="300" id="Cover"></img>
 					</section>
 					<section class="eintragAuswahlBox">
-						<select id="ListStatus" type="dropdownMenue" name="ListStatus">
+						<select id="ListStatus" type="dropdownMenue" name="">
 							<option value="0">---</option>
 						</select>
 					</section>
@@ -762,6 +762,7 @@
 				document.getElementById('StudioEintrag').innerHTML = item.studio
 				document.getElementById('SourceEintrag').innerHTML = item.source
 				document.getElementById('Cover').src = item.cover
+				document.getElementById('ListStatus').name = item.id
 			}
 
 			function FillGenreCell(arr){
@@ -777,13 +778,38 @@
 				document.getElementById('GenreEintrag').innerHTML = genres
 			}
 
-/*  onmouseover="ShowFullName(' + item.id + ')
-		function ShowFullName(id){
+			function AddAnimeToList(){
 
-			var box = createElement('article')
-		} */
+				var user
 
+				if (user = getJSONSessionItem("Account").benutzername){
 
+					var listStatusUser = document.getElementById('ListStatus').value
+					var entryID = document.getElementById('ListStatus').name
+
+					var obj = { "User": user, "ListStatusUser": listStatusUser, "EntryID": entryID}
+
+					$.ajax({
+						url: 'http://localhost:8000/api/eintragInfo/Add',
+						type: 'POST',
+						data: JSON.stringify(obj),
+						contentType: false,
+						Cache: false,
+						processData: false,
+						dataType: '.json'
+					})
+					.done(function() {
+						consol.log('eintragInfo eingetragen')
+					})
+					.fail(function(xhr){
+						console.log('error recieved');
+						console.log(xhr);
+						console.log(xhr.status);
+						alert(xhr.responseText);
+					})
+				}
+
+			}
 
 		</script>
 	</body>

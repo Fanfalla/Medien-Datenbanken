@@ -63,32 +63,6 @@ serviceRouter.get('/listStatus/existiert/:id', function(request, response) {
     }
 });
 
-serviceRouter.post('/listStatus', function(request, response) {
-    console.log('Service ListStatus: Client requested creation of new record');
-
-    var errorMsgs=[];
-    if (helper.isUndefined(request.body.kennzeichnung)) 
-        errorMsgs.push('kennzeichnung fehlt');
-    if (helper.isUndefined(request.body.bezeichnung)) 
-        errorMsgs.push('bezeichnung fehlt');
-    
-    if (errorMsgs.length > 0) {
-        console.log('Service ListStatus: Creation not possible, data missing');
-        response.status(400).json({ 'fehler': true, 'nachricht': 'Funktion nicht möglich. Fehlende Daten: ' + helper.concatArray(errorMsgs) });
-        return;
-    }
-
-    const listStatusDao = new ListStatusDao(request.app.locals.dbConnection);
-    try {
-        var obj = listStatusDao.create(request.body.kennzeichnung, request.body.bezeichnung);
-        console.log('Service ListStatus: Record inserted');
-        response.status(200).json(obj);
-    } catch (ex) {
-        console.error('Service ListStatus: Error creating new record. Exception occured: ' + ex.message);
-        response.status(400).json({ 'fehler': true, 'nachricht': ex.message });
-    }    
-});
-
 serviceRouter.put('/listStatus', function(request, response) {
     console.log('Service ListStatus: Client requested update of existing record');
 
