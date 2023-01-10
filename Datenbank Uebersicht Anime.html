@@ -88,84 +88,117 @@
 				</article>
 				<article class="hinterGrundBox" id="TransparentBox" onclick="HideEntry()">
 				</article>
+				
 				<article class="eintragBox schatten" id="EintragInfoBox">
-					<section class="eintragBildBox schatten">
-						<image src="" width="215" height="300" id="Cover"></img>
-					</section>
-					<section class="eintragAuswahlBox">
-						<select id="ListStatus" type="dropdownMenue" name="">
-							<option value="0">---</option>
-						</select>
-					</section>
-					<section class="eintragLoeschen">
-						<label>Delete</label>
-					</section>
-					<section class="eintragH1Box">
+				<table class="eintragTable" >
+				<tr>
+					<td>
+					</td>
+					
+					<td>
+					<section class="eintragRomaji">
 						<label id="Romaji"></label>
 					</section>
-					<section class="eintragInfoBox">
-						<table class="eintragTable">
-							<tr>
-								<td class="eintragTableTD"><b><label>Englischer Titel:</label></b></td>
-								<td><label id="Englisch"></label></td>
+					</td>
+				
+				</tr>
+				<tr >
+					<td class="alignTop">
+						<section class="eintragBildBox schatten ">
+							<image src="" width="215" height="300" id="Cover"></img>
+						</section>
+					</td>
+					<td>
+					<table>
+						<tr>
+							<td ><b><label>Englischer Titel:</label></b></td>
+							<td><label id="Englisch"></label></td>
+						</tr>
+						<tr>
+							<td><b><label>Deutscher Titel:</label></b></td>
+							<td><label id="Deutsch"></label></td>
+						</tr>
+					</table>
+							
+					<table class="alignTopText">
+						<tr>
+							<td class="alignTop"><b ><label>Beschreibung:</label></b></td>
+							<td><textbox id="Beschreibung" maxlength="150"></textbox></td>
 							</tr>
-							<tr>
-								<td><b><label>Deutscher Titel:</label></b></td>
-								<td><label id="Deutsch"></label></td>
-							</tr>
-						</table>
-						<table class="eintragTable eintragTable2">
-							<tr>
-								<td class="eintragTableTD"><b><label>Beschreibung:</label></b></td>
-								<td><label id="Beschreibung"></label></td>
-							</tr>
-						</table>
-						<table class="eintragTable2">
-							<tr>
-								<td class="eintragTableTD"><b><label>Folgen:</label></b></td>
-								<td><label id="Folgen"></label></td>
-							</tr>
-							<tr>
-								<td class="eintragTableTD"><b><label>Folgen l&auml;nge:</label></b></td>
-								<td><label id="Dauer"></label>min</td>
-							</tr>
-						</table>
-						<table class="eintragTable2">
-							<tr>
-								<td class="eintragTableTD"><b><label>Status:</label></b></td>
-								<td><label id="Status"></label></td>
-							</tr>
-							<tr>
-								<td class="eintragTableTD"><b><label>Season:</label></b></td>
-								<td><label id="SeasonEintrag"></label></td>
-							</tr>
-							<tr>
-								<td class="eintragTableTD"><b><label>Start:</label></b></td>
-								<td><label id="StartDate"></label></td>
-							</tr>
-							<tr>
-								<td class="eintragTableTD"><b><label>End:</label></b></td>
-								<td><label id="EndDate"></label></td>
-							</tr>
-						</table>
-						<table class="eintragTable2">
-							<tr>
-								<td class="eintragTableTD"><b><label>Format:</label></b></td>
-								<td><label id="FormatEintrag"></label></td>
-							</tr>
-							<tr>
-								<td class="eintragTableTD"><b><label>Source:</label></b></td>
-								<td><label id="SourceEintrag"></label></td>
-							</tr>
-							<tr>
-								<td class="eintragTableTD"><b><label>Studio:</label></b></td>
-								<td><label id="StudioEintrag"></label></td>
-							</tr>
-							<tr>
-								<td class="eintragTableTD"><b><label>Genres:</label></b></td>
-								<td><label id="GenreEintrag"></label></td>
-							</tr>
-						</table>
+					</table>
+					</td>
+				</tr>
+				
+				
+				<tr>
+					<td colspan="2">
+						<section class="eintragAuswahlBox">
+							<select id="ListStatus" type="dropdownMenue" name="">
+								<option value="0">---</option>
+							</select>
+						</section>
+					</td>
+					<td>
+					</td>
+					
+				</tr>
+				<tr>
+				<td>
+				</td>
+				<td>
+				
+					<table >
+						<tr>
+							<td><b><label>Folgen:</label></b></td>
+							<td><label id="Folgen"></label></td>
+						</tr>
+						<tr>
+							<td><b><label>Folgen l&auml;nge:</label></b></td>
+							<td><label id="Dauer"></label>min</td>
+						</tr>
+					</table>
+					<table>
+						<tr>
+							<td><b><label>Status:</label></b></td>
+							<td><label id="Status"></label></td>
+						</tr>
+						<tr>
+							<td><b><label>Season:</label></b></td>
+							<td><label id="SeasonEintrag"></label></td>
+						</tr>
+						<tr>
+							<td><b><label>Start:</label></b></td>
+							<td><label id="StartDate"></label></td>
+						</tr>
+						<tr>
+							<td><b><label>End:</label></b></td>
+							<td><label id="EndDate"></label></td>
+						</tr>
+					
+						<tr>
+							<td><b><label>Format:</label></b></td>
+							<td><label id="FormatEintrag"></label></td>
+						</tr>
+						<tr>
+							<td><b><label>Source:</label></b></td>
+							<td><label id="SourceEintrag"></label></td>
+						</tr>
+						<tr>
+							<td><b><label>Studio:</label></b></td>
+							<td><label id="StudioEintrag"></label></td>
+						</tr>
+						<tr>
+							<td><b><label>Genres:</label></b></td>
+							<td><label id="GenreEintrag"></label></td>
+						</tr>
+					</table>
+				</td>
+				</tr>
+				
+					</section>
+				</table>
+				<section class="eintragLoeschen">
+						<label>Delete</label>
 					</section>
 				</article>
 			</form>
