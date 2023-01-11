@@ -376,6 +376,7 @@ nav {
 	border: 3px solid black;
 	text-align: center;
 	margin: 0.5%;
+	visibility: hidden;
 }
 
 
@@ -750,4 +751,3 @@ nav {
 	text-align:right;
 	padding-top: 25px;
 }
-.testasdasdasdfas{}
