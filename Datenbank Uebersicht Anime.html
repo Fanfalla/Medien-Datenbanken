@@ -60,22 +60,22 @@
 					<section class="genreAuswahlBox" id="genreAuswahlBox">
 						<img src="Bilder\Genres\Action.png" class="genreAuswahl1" id="Action" value="1" onclick="GenreSelectRemove(2)"></img>
 						<img src="Bilder\Genres\Adventure.png" class="genreAuswahl2" id="Adventure" value="1" onclick="GenreSelectRemove(3)"></img>
-						<img src="Bilder\Genres\Adventure.png" class="genreAuswahl3" id="Comedy" value="1" onclick="GenreSelectRemove(4)"></img>
-						<img src="Bilder\Genres\Adventure.png" class="genreAuswahl4" id="Drama" value="1" onclick="GenreSelectRemove(5)"></img>
-						<img src="Bilder\Genres\Adventure.png" class="genreAuswahl5" id="Ecchi" value="1" onclick="GenreSelectRemove(6)"></img>
-						<img src="Bilder\Genres\Adventure.png" class="genreAuswahl6" id="Fantasy" value="1" onclick="GenreSelectRemove(7)"></img>
-						<img src="Bilder\Genres\Adventure.png" class="genreAuswahl7" id="Horror" value="1" onclick="GenreSelectRemove(8)"></img>
-						<img src="Bilder\Genres\Adventure.png" class="genreAuswahl8" id="MahouShoujo" value="1" onclick="GenreSelectRemove(9)"></img>
-						<img src="Bilder\Genres\Adventure.png" class="genreAuswahl9" id="Mecha" value="1" onclick="GenreSelectRemove(10)"></img>
-						<img src="Bilder\Genres\Adventure.png" class="genreAuswahl10" id="Music" value="1" onclick="GenreSelectRemove(11)"></img>
-						<img src="Bilder\Genres\Adventure.png" class="genreAuswahl11" id="Mystery" value="1" onclick="GenreSelectRemove(12)"></img>
-						<img src="Bilder\Genres\Adventure.png" class="genreAuswahl12" id="Psychological" value="1" onclick="GenreSelectRemove(13)"></img>
-						<img src="Bilder\Genres\Adventure.png" class="genreAuswahl13" id="Romance" value="1" onclick="GenreSelectRemove(14)"></img>
-						<img src="Bilder\Genres\Adventure.png" class="genreAuswahl14" id="Sci-Fi" value="1" onclick="GenreSelectRemove(15)"></img>
-						<img src="Bilder\Genres\Adventure.png" class="genreAuswahl15" id="SliceOfLife" value="1" onclick="GenreSelectRemove(16)"></img>
-						<img src="Bilder\Genres\Adventure.png" class="genreAuswahl16" id="Sport" value="1" onclick="GenreSelectRemove(17)"></img>
-						<img src="Bilder\Genres\Adventure.png" class="genreAuswahl17" id="Supernatural" value="1" onclick="GenreSelectRemove(18)"></img>
-						<img src="Bilder\Genres\Adventure.png" class="genreAuswahl18" id="Thriller" value="1" onclick="GenreSelectRemove(19)"></img>
+						<img src="Bilder\Genres\Comedy.png" class="genreAuswahl3" id="Comedy" value="1" onclick="GenreSelectRemove(4)"></img>
+						<img src="Bilder\Genres\Drama.png" class="genreAuswahl4" id="Drama" value="1" onclick="GenreSelectRemove(5)"></img>
+						<img src="Bilder\Genres\Ecchi.png" class="genreAuswahl5" id="Ecchi" value="1" onclick="GenreSelectRemove(6)"></img>
+						<img src="Bilder\Genres\Fantasy.png" class="genreAuswahl6" id="Fantasy" value="1" onclick="GenreSelectRemove(7)"></img>
+						<img src="Bilder\Genres\Horror.png" class="genreAuswahl7" id="Horror" value="1" onclick="GenreSelectRemove(8)"></img>
+						<img src="Bilder\Genres\MahouShoujo.png" class="genreAuswahl8" id="MahouShoujo" value="1" onclick="GenreSelectRemove(9)"></img>
+						<img src="Bilder\Genres\Mecha.png" class="genreAuswahl9" id="Mecha" value="1" onclick="GenreSelectRemove(10)"></img>
+						<img src="Bilder\Genres\Music.png" class="genreAuswahl10" id="Music" value="1" onclick="GenreSelectRemove(11)"></img>
+						<img src="Bilder\Genres\Mystery.png" class="genreAuswahl11" id="Mystery" value="1" onclick="GenreSelectRemove(12)"></img>
+						<img src="Bilder\Genres\Psychological.png" class="genreAuswahl12" id="Psychological" value="1" onclick="GenreSelectRemove(13)"></img>
+						<img src="Bilder\Genres\Romance.png" class="genreAuswahl13" id="Romance" value="1" onclick="GenreSelectRemove(14)"></img>
+						<img src="Bilder\Genres\Sci-Fi.png" class="genreAuswahl14" id="Sci-Fi" value="1" onclick="GenreSelectRemove(15)"></img>
+						<img src="Bilder\Genres\SliceOfLife.png" class="genreAuswahl15" id="SliceOfLife" value="1" onclick="GenreSelectRemove(16)"></img>
+						<img src="Bilder\Genres\Sport.png" class="genreAuswahl16" id="Sport" value="1" onclick="GenreSelectRemove(17)"></img>
+						<img src="Bilder\Genres\Supernatural.png" class="genreAuswahl17" id="Supernatural" value="1" onclick="GenreSelectRemove(18)"></img>
+						<img src="Bilder\Genres\Thriller.png" class="genreAuswahl18" id="Thriller" value="1" onclick="GenreSelectRemove(19)"></img>
 					</section>
 				</article>
 				<article class="mainBox datenbankBox mainBoxExtra" id="AnimeTablePlace">
@@ -197,7 +197,7 @@
 				
 					</section>
 				</table>
-				<section class="eintragLoeschen">
+				<section  id="delete" class="eintragLoeschen" onclick="Delete()">
 						<label>Delete</label>
 					</section>
 				</article>
@@ -776,6 +776,9 @@
 
 				EintragInfoBox.style.visibility="visible"
 				TransparentBox.style.visibility="visible"
+				if (getJSONSessionItem("Account").adminid == 1) {
+						document.getElementById("delete").style.visibility = "visible";
+				}
 			}
 
 			function getAnimeListStatus(id){
@@ -786,6 +789,7 @@
 				
 				EintragInfoBox.style.visibility="hidden"
 				TransparentBox.style.visibility="hidden"
+				document.getElementById("delete").style.visibility = "hidden";
 				
 				document.getElementById('Romaji').innerHTML = ''
 				document.getElementById('Englisch').innerHTML = ''
