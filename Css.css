@@ -315,7 +315,7 @@ nav {
 	
 .hinterGrundBox {
 	position: fixed;
-	width: 100%;
+	width: 200%;
 	height: 200%;
 	background-color: #000000;
 	transform: translate(-1%, -10%);
@@ -539,8 +539,11 @@ nav {
 	position: relative;
 	background-color: #606060;
 	border: 3px solid black;
+	top: 5px;
 	left: 15%;
-	width: 80%
+	width: 80%;
+	margin-top: 1%;
+	margin-bottom: 1%;
 }
 
 .sammlungTable {
@@ -750,4 +753,10 @@ nav {
 	text-align:right;
 	padding-top: 25px;
 }
-.testasdasdasdfas{}
+
+.textForList{
+	position: relative;
+	margin-left: 5%;
+	font-size: 50px;
+
+}
