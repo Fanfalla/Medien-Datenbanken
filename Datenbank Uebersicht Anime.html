@@ -101,7 +101,7 @@
 						</tr>
 						<tr>
 							<td class="alignTop">
-								<section class="eintragBildBox schatten ">
+								<section class="eintragBildBox schatten">
 									<image src="" width="215" height="300" id="Cover"></img>
 								</section>
 							</td>
@@ -137,7 +137,7 @@
 						<tr>
 							<td></td>
 							<td>
-								<table >
+								<table>
 									<tr>
 										<td><b><label>Folgen:</label></b></td>
 										<td><label id="Folgen"></label></td>
@@ -164,7 +164,6 @@
 										<td><b><label>End:</label></b></td>
 										<td><label id="EndDate"></label></td>
 									</tr>
-								
 									<tr>
 										<td><b><label>Format:</label></b></td>
 										<td><label id="FormatEintrag"></label></td>
@@ -185,6 +184,9 @@
 							</td>
 						</tr>
 					</table>
+				  <section  id="delete" class="eintragLoeschen" onclick="Delete()">
+						<label>Delete</label>
+					</section>
 				</article>
 			</form>
 		</main>
@@ -763,6 +765,13 @@
 						$('#output').html('Ein Fehler ist aufgetreten');
 					})
 				}
+        
+				EintragInfoBox.style.visibility="visible"
+				TransparentBox.style.visibility="visible"
+				if (getJSONSessionItem("Account").adminid == 1) {
+						document.getElementById("delete").style.visibility = "visible";
+				}
+        
 			}
 
 			function getAnimeListStatus(id){
@@ -773,6 +782,7 @@
 				
 				EintragInfoBox.style.visibility="hidden"
 				TransparentBox.style.visibility="hidden"
+				document.getElementById("delete").style.visibility = "hidden";
 				
 				document.getElementById('Romaji').innerHTML = ''
 				document.getElementById('Englisch').innerHTML = ''

@@ -746,6 +746,9 @@
 
 				EintragInfoBox.style.visibility="visible"
 				TransparentBox.style.visibility="visible"
+				if (getJSONSessionItem("Account").adminid == 1) {
+						document.getElementById("delete").style.visibility = "visible";
+				}
 			}
 
 			function getAnimeListStatus(id){
@@ -756,6 +759,7 @@
 				
 				EintragInfoBox.style.visibility="hidden"
 				TransparentBox.style.visibility="hidden"
+				document.getElementById("delete").style.visibility = "hidden";
 				
 				document.getElementById('Romaji').innerHTML = ''
 				document.getElementById('Englisch').innerHTML = ''

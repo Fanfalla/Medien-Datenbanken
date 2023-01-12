@@ -376,6 +376,7 @@ nav {
 	border: 3px solid black;
 	text-align: center;
 	margin: 0.5%;
+	visibility: hidden;
 }
 
 
@@ -758,5 +759,4 @@ nav {
 	position: relative;
 	margin-left: 5%;
 	font-size: 50px;
-
 }
