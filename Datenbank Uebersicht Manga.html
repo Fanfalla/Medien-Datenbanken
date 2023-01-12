@@ -89,107 +89,92 @@
 				</article>
 				<article class="eintragBox schatten" id="EintragInfoBox">
 					<table class="eintragTable" >
-				<tr>
-					<td>
-					</td>
-					
-					<td>
-					<section class="eintragRomaji">
-						<label id="Romaji"></label>
-					</section>
-					</td>
-				
-				</tr>
-				<tr >
-					<td class="alignTop">
-						<section class="eintragBildBox schatten ">
-							<image src="" width="215" height="300" id="Cover"></img>
-						</section>
-					</td>
-					<td >
-					<table >
-						<tr >
-							<td ><b><label>Englischer Titel:</label></b></td>
-							<td><label id="Englisch"></label></td>
+						<tr>
+							<td></td>
+							<td>
+								<section class="eintragRomaji">
+									<label id="Romaji"></label>
+								</section>
+							</td>
 						</tr>
 						<tr>
-							<td><b><label>Deutscher Titel:</label></b></td>
-							<td><label id="Deutsch"></label></td>
-						</tr>
-					</table>
-							
-					<table class="alignTopText">
-						<tr>
-							<td class="alignTop"><b ><label>Beschreibung:</label></b></td>
-							<td><textbox id="Beschreibung" maxlength="150"></textbox></td>
-							</tr>
-					</table>
-					</td>
-				</tr>
-				
-				
-				<tr>
-					<td colspan="2">
-						<section class="eintragAuswahlBox">
-							<select id="ListStatus" type="dropdownMenue" name="" onchange="AddMangaToList()">
-								<option value="0">---</option>
-							</select>
-						</section>
-					</td>
-					<td>
-					</td>
-					
-				</tr>
-				<tr>
-				<td>
-				</td>
-				<td>
-				
-					<table>
-						<tr>
-							<td><b><label>Chapter:</label></b></td>
-							<td><label id="Chapter"></label></td>
+							<td class="alignTop">
+								<section class="eintragBildBox schatten ">
+									<image src="" width="215" height="300" id="Cover"></img>
+								</section>
+							</td>
+							<td>
+								<table>
+									<tr>
+										<td ><b><label>Englischer Titel:</label></b></td>
+										<td><label id="Englisch"></label></td>
+									</tr>
+									<tr>
+										<td><b><label>Deutscher Titel:</label></b></td>
+										<td><label id="Deutsch"></label></td>
+									</tr>
+								</table>
+								<table class="alignTopText">
+									<tr>
+										<td class="alignTop"><b ><label>Beschreibung:</label></b></td>
+										<td><textbox id="Beschreibung" maxlength="150"></textbox></td>
+									</tr>
+								</table>
+							</td>
 						</tr>
 						<tr>
-							<td><b><label>Volumes:</label></b></td>
-							<td><label id="Volumes"></label></td>
-						</tr>
-					</table>
-					<table>
-						<tr>
-							<td><b><label>Status:</label></b></td>
-							<td><label id="Status"></label></td>
-						</tr>
-						<tr>
-							<td><b><label>Start:</label></b></td>
-							<td><label id="StartDate"></label></td>
+							<td colspan="2">
+								<section class="eintragAuswahlBox">
+									<select id="ListStatus" type="dropdownMenue" name="" onchange="AddMangaToList()">
+										<option value="0">---</option>
+									</select>
+								</section>
+							</td>
+							<td></td>
 						</tr>
 						<tr>
-							<td><b><label>End:</label></b></td>
-							<td><label id="EndDate"></label></td>
-						</tr>
-					
-						<tr>
-							<td><b><label>Format:</label></b></td>
-							<td><label id="FormatEintrag"></label></td>
-						</tr>
-						<tr>
-							<td><b><label>Source:</label></b></td>
-							<td><label id="SourceEintrag"></label></td>
-						</tr>
-						<tr>
-							<td><b><label>Genres:</label></b></td>
-							<td><label id="GenreEintrag"></label></td>
+							<td></td>
+							<td>
+								<table>
+									<tr>
+										<td><b><label>Chapter:</label></b></td>
+										<td><label id="Chapter"></label></td>
+									</tr>
+									<tr>
+										<td><b><label>Volumes:</label></b></td>
+										<td><label id="Volumes"></label></td>
+									</tr>
+								</table>
+								<table>
+									<tr>
+										<td><b><label>Status:</label></b></td>
+										<td><label id="Status"></label></td>
+									</tr>
+									<tr>
+										<td><b><label>Start:</label></b></td>
+										<td><label id="StartDate"></label></td>
+									</tr>
+									<tr>
+										<td><b><label>End:</label></b></td>
+										<td><label id="EndDate"></label></td>
+									</tr>
+								
+									<tr>
+										<td><b><label>Format:</label></b></td>
+										<td><label id="FormatEintrag"></label></td>
+									</tr>
+									<tr>
+										<td><b><label>Source:</label></b></td>
+										<td><label id="SourceEintrag"></label></td>
+									</tr>
+									<tr>
+										<td><b><label>Genres:</label></b></td>
+										<td><label id="GenreEintrag"></label></td>
+									</tr>
+								</table>
+							</td>
 						</tr>
 					</table>
-				</td>
-				</tr>
-				
-					
-				</table>
-					<section class="eintragLoeschen">
-						<label>Delete</label>
-					</section>
 				</article>
 			</form>
 		</main>
@@ -781,7 +766,7 @@
 				document.getElementById('Deutsch').innerHTML = ''
 				document.getElementById('Beschreibung').innerHTML = ''
 				document.getElementById('Chapter').innerHTML = ''
-				document.getElementById('Volume').innerHTML = ''
+				document.getElementById('Volumes').innerHTML = ''
 				document.getElementById('Status').innerHTML = ''
 				document.getElementById('StartDate').innerHTML = ''
 				document.getElementById('EndDate').innerHTML = ''

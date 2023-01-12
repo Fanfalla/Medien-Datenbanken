@@ -24,167 +24,207 @@
 			</ul>
 		</nav>
 	</header>
-		
-		<main class="mainBox2">	
-			<article class="filter2Box">
-				<ul class="filter2 ">
-					<li class="filterMargin">Medium:</li>
-					<li>
-						<select id="Medium" class="dropdownMenue dropdownMenueListe" onchange="ChangeFilter()">
-							<option value="1">Animes</option>
-							<option value="2">Mangas</option>
-						</select>
-					</li>
-					<li class="filterMargin">Genres:</li>
-					<li>
-						<select id="Genre" name="Genre" class="dropdownMenue dropdownMenueListe" onchange="GenreSelect()">
-						</select>
-					</li>
-					<img src="Bilder\Genres\Action.png" class="genreAuswahl1" id="Action" value="1" onclick="GenreSelectRemove(2)"></img>
-						<img src="Bilder\Genres\Adventure.png" class="genreAuswahl2" id="Adventure" value="1" onclick="GenreSelectRemove(3)"></img>
-						<img src="Bilder\Genres\Comedy.png" class="genreAuswahl3" id="Comedy" value="1" onclick="GenreSelectRemove(4)"></img>
-						<img src="Bilder\Genres\Drama.png" class="genreAuswahl4" id="Drama" value="1" onclick="GenreSelectRemove(5)"></img>
-						<img src="Bilder\Genres\Ecchi.png" class="genreAuswahl5" id="Ecchi" value="1" onclick="GenreSelectRemove(6)"></img>
-						<img src="Bilder\Genres\Fantasy.png" class="genreAuswahl6" id="Fantasy" value="1" onclick="GenreSelectRemove(7)"></img>
-						<img src="Bilder\Genres\Horror.png" class="genreAuswahl7" id="Horror" value="1" onclick="GenreSelectRemove(8)"></img>
-						<img src="Bilder\Genres\MahouShoujo.png" class="genreAuswahl8" id="MahouShoujo" value="1" onclick="GenreSelectRemove(9)"></img>
-						<img src="Bilder\Genres\Mecha.png" class="genreAuswahl9" id="Mecha" value="1" onclick="GenreSelectRemove(10)"></img>
-						<img src="Bilder\Genres\Music.png" class="genreAuswahl10" id="Music" value="1" onclick="GenreSelectRemove(11)"></img>
-						<img src="Bilder\Genres\Mystery.png" class="genreAuswahl11" id="Mystery" value="1" onclick="GenreSelectRemove(12)"></img>
-						<img src="Bilder\Genres\Psychological.png" class="genreAuswahl12" id="Psychological" value="1" onclick="GenreSelectRemove(13)"></img>
-						<img src="Bilder\Genres\Romance.png" class="genreAuswahl13" id="Romance" value="1" onclick="GenreSelectRemove(14)"></img>
-						<img src="Bilder\Genres\Sci-Fi.png" class="genreAuswahl14" id="Sci-Fi" value="1" onclick="GenreSelectRemove(15)"></img>
-						<img src="Bilder\Genres\SliceOfLife.png" class="genreAuswahl15" id="SliceOfLife" value="1" onclick="GenreSelectRemove(16)"></img>
-						<img src="Bilder\Genres\Sport.png" class="genreAuswahl16" id="Sport" value="1" onclick="GenreSelectRemove(17)"></img>
-						<img src="Bilder\Genres\Supernatural.png" class="genreAuswahl17" id="Supernatural" value="1" onclick="GenreSelectRemove(18)"></img>
-						<img src="Bilder\Genres\Thriller.png" class="genreAuswahl18" id="Thriller" value="1" onclick="GenreSelectRemove(19)"></img>
-					<li class="filterMargin">Jahr:</li>
-					<li>
-						<select id="Jahr" name="Jahr" class="dropdownMenue dropdownMenueListe">
-						</select>
-					</li>
-					<li class="filterMargin">Source:</li>
-					<li>
-						<select id="Source" name="SourceAnime" class="dropdownMenue dropdownMenueListe">
-						</select>
-					</li>
-				</ul>
-				<ul id="AnimeFilter" class="filter2 filterAnime">
-					<li class="filterMargin">Season:</li>
-					<li>
-						<select id="Season" name="SeasonAnime" class="dropdownMenue dropdownMenueListe">
-						</select>
-					</li>
-					<li class="filterMargin">Format:</li>
-					<li>
-						<select id="FormatAnime" name="FormatAnime" class="dropdownMenue dropdownMenueListe">
-						</select>
-					</li>
-				</ul>
-				<ul id="MangaFillter" class="filter2 filterManga">
-					<li class="filterMargin">Format:</li>
-					<li>
-						<select id="FormatManga" class="dropdownMenue dropdownMenueListe">
-						</select>
-					</li>
-				</ul>
-				<ul class="filter2">
-					<li class="filterMargin">Sort:</li>
-					<li>
-						<select id="Sort" class="dropdownMenue dropdownMenueListe">
-							<option value="1">Alphabetisch</option>
-							<option value="2">Start Datum Aufsteigend</option>
-							<option value="3">Start Datum Aufsteigend</option>
-							<option value="4">Vervollständigt</option>
-						</select>
-					</li>
-				</ul>
+  
+		<main>	
+			<article class="mainBox2">
+				<article class="filter2Box">
+					<ul class="filter2">
+						<li class="filterMargin">Medium:</li>
+						<li>
+							<select id="Medium" class="dropdownMenue dropdownMenueListe" onchange="ChangeFilter()">
+								<option value="1">Animes</option>
+								<option value="2">Mangas</option>
+							</select>
+						</li>
+						<li class="filterMargin">Genres:</li>
+						<li>
+							<select id="Genre" name="Genre" class="dropdownMenue dropdownMenueListe" onchange="GenreSelect()">
+							</select>
+						</li>
+						<li><img src="Bilder\Genres\Action.png" class="genreAuswahl1" id="Action" value="1" onclick="GenreSelectRemove(2)"></img></li>
+						<li><img src="Bilder\Genres\Adventure.png" class="genreAuswahl2" id="Adventure" value="1" onclick="GenreSelectRemove(3)"></img></li>
+						<li><img src="Bilder\Genres\Comedy.png" class="genreAuswahl3" id="Comedy" value="1" onclick="GenreSelectRemove(4)"></img></li>
+						<li><img src="Bilder\Genres\Drama.png" class="genreAuswahl4" id="Drama" value="1" onclick="GenreSelectRemove(5)"></img></li>
+						<li><img src="Bilder\Genres\Ecchi.png" class="genreAuswahl5" id="Ecchi" value="1" onclick="GenreSelectRemove(6)"></img></li>
+						<li><img src="Bilder\Genres\Fantasy.png" class="genreAuswahl6" id="Fantasy" value="1" onclick="GenreSelectRemove(7)"></img></li>
+						<li><img src="Bilder\Genres\Horror.png" class="genreAuswahl7" id="Horror" value="1" onclick="GenreSelectRemove(8)"></img></li>
+						<li><img src="Bilder\Genres\MahouShoujo.png" class="genreAuswahl8" id="MahouShoujo" value="1" onclick="GenreSelectRemove(9)"></img></li>
+						<li><img src="Bilder\Genres\Mecha.png" class="genreAuswahl9" id="Mecha" value="1" onclick="GenreSelectRemove(10)"></img></li>
+						<li><img src="Bilder\Genres\Music.png" class="genreAuswahl10" id="Music" value="1" onclick="GenreSelectRemove(11)"></img></li>
+						<li><img src="Bilder\Genres\Mystery.png" class="genreAuswahl11" id="Mystery" value="1" onclick="GenreSelectRemove(12)"></img>
+						<li><img src="Bilder\Genres\Psychological.png" class="genreAuswahl12" id="Psychological" value="1" onclick="GenreSelectRemove(13)"></img></li>
+						<li><img src="Bilder\Genres\Romance.png" class="genreAuswahl13" id="Romance" value="1" onclick="GenreSelectRemove(14)"></img></li>
+						<li><img src="Bilder\Genres\Sci-Fi.png" class="genreAuswahl14" id="Sci-Fi" value="1" onclick="GenreSelectRemove(15)"></img></li>
+						<li><img src="Bilder\Genres\SliceOfLife.png" class="genreAuswahl15" id="SliceOfLife" value="1" onclick="GenreSelectRemove(16)"></img></li>
+						<li><img src="Bilder\Genres\Sport.png" class="genreAuswahl16" id="Sport" value="1" onclick="GenreSelectRemove(17)"></img></img></li>
+						<li><img src="Bilder\Genres\Supernatural.png" class="genreAuswahl17" id="Supernatural" value="1" onclick="GenreSelectRemove(18)"></img></li>
+						<li><img src="Bilder\Genres\Thriller.png" class="genreAuswahl18" id="Thriller" value="1" onclick="GenreSelectRemove(19)"></img></li>
+						<li class="filterMargin">Jahr:</li>
+						<li>
+							<select id="Jahr" name="Jahr" class="dropdownMenue dropdownMenueListe">
+							</select>
+						</li>
+						<li class="filterMargin">Source:</li>
+						<li>
+							<select id="Source" name="SourceAnime" class="dropdownMenue dropdownMenueListe">
+							</select>
+						</li>
+					</ul>
+					<ul id="AnimeFilter" class="filter2 filterAnime">
+						<li class="filterMargin">Season:</li>
+						<li>
+							<select id="Season" name="SeasonAnime" class="dropdownMenue dropdownMenueListe">
+							</select>
+						</li>
+						<li class="filterMargin">Format:</li>
+						<li>
+							<select id="FormatAnime" name="FormatAnime" class="dropdownMenue dropdownMenueListe">
+							</select>
+						</li>
+					</ul>
+					<ul id="MangaFillter" class="filter2 filterManga">
+						<li class="filterMargin">Format:</li>
+						<li>
+							<select id="FormatManga" class="dropdownMenue dropdownMenueListe">
+							</select>
+						</li>
+					</ul>
+					<ul class="filter2">
+						<li class="filterMargin">Sort:</li>
+						<li>
+							<select id="Sort" class="dropdownMenue dropdownMenueListe">
+								<option value="1">Alphabetisch</option>
+								<option value="2">Start Datum Aufsteigend</option>
+								<option value="3">Start Datum Aufsteigend</option>
+								<option value="4">Vervollständigt</option>
+							</select>
+						</li>
+					</ul>
+				</article>
+				<article class="sammlungBox">
+					<label class="textForList" id="LabelCurrent" onclick="showList('TablePlaceCurrent')" onmouseover="ChangeColorOver('LabelCurrent')" onmouseout="ChangeColorOut('LabelCurrent')">Watching</label>
+					<article id="TablePlaceCurrent" style="display: block">
+					</article><br><br>
+					<label class="textForList" id="LabelCompleted" onclick="showList('TablePlaceCompleted')" onmouseover="ChangeColorOver('LabelCompleted')" onmouseout="ChangeColorOut('LabelCompleted')">Completed</label>
+					<article id="TablePlaceCompleted" style="display: none">
+					</article><br><br>
+					<label class="textForList" id="LabelPaused" onclick="showList('TablePlacePaused')" onmouseover="ChangeColorOver('LabelPaused')" onmouseout="ChangeColorOut('LabelPaused')">Paused</label>
+					<article id="TablePlacePaused" style="display: none">
+					</article><br><br>
+					<label class="textForList" id="LabelDropped" onclick="showList('TablePlaceDropped')" onmouseover="ChangeColorOver('LabelDropped')" onmouseout="ChangeColorOut('LabelDropped')">Dropped</label>
+					<article id="TablePlaceDropped" style="display: none">
+					</article><br><br>
+					<label class="textForList" id="LabelPlanning" onclick="showList('TablePlacePlanning')" onmouseover="ChangeColorOver('LabelPlanning')" onmouseout="ChangeColorOut('LabelPlanning')">Planning</label>
+					<article id="TablePlacePlanning" style="display: block">
+					</article>	<br><br>
+				</article>
 			</article>
-			<article class="sammlungBox">
-				<section class="filterAnime">
-					<table id="watching" class="pictureTable sammlungWatching sammlungTableEX">
-						<tr>
-							<td class="sammlungTable" colspan="5">Watching</td>
-						</tr>
-						<tr class="pictureTableExtra"> 
-							<td class="sammlungTableTD"><image src="Bilder\Anime\Bleach 2.png" class="picture schatten"></image></td> 
-							<td class="sammlungTableTD"><image src="Bilder\Anime\Chainsaw Man.png" class="picture schatten"></image></td> 
-							<td class="sammlungTableTD"><image src="Bilder\Anime\Detective Conan.png" class="picture schatten"></image></td>
-							<td class="sammlungTableTD"><image src="Bilder\Anime\One Piece 1.png" class="picture schatten"></image></td>
-							<td class="sammlungTableTD"><image src="Bilder\Anime\Spy x Family 1.5.png" class="picture schatten"></image></td> 
-						</tr>
-					</table>
-				</section>
-				<section class="filterAnime">
-					<table id="completed" class="pictureTable sammlungCompleted sammlungTableEX">
-						<tr>
-							<td class="sammlungTable" colspan="5">Completed</td>
-						</tr>
-						<tr class="pictureTableExtra"> 
-							<td class=""><image src="Bilder\Anime\Bleach.png" class="picture schatten"></image></td> 
-							<td class="sammlungTableTD"><image src="Bilder\Anime\Death Note.png" class="picture schatten"></image></td> 
-							<td class="sammlungTableTD"><image src="Bilder\Anime\Dr Stone 1.png" class="picture schatten"></image></td> 
-							<td class="sammlungTableTD"><image src="Bilder\Anime\Spy x Family.png" class="picture schatten"></image></td> 
-							<td class="sammlungTableTD"><image src="Bilder\Anime\Silent Voice.png" class="picture schatten"></image></td> 
-						</tr>
-						<tr class="pictureTableExtra"> 
-							<td class="sammlungTableTD"><image src="Bilder\Anime\Dr Stone 2.png" class="picture schatten"></image></td> 
-							<td class="sammlungTableTD"><image src="Bilder\Anime\Dr Stone 2.5.png" class="picture schatten"></image></td> 
-							<td class="sammlungTableTD"><image src="Bilder\Anime\Evangelion 1.png" class="picture schatten"></image></td> 
-							<td class="sammlungTableTD"><image src="Bilder\Anime\FLCL.png" class="picture schatten"></image></td> 
-							<td class="sammlungTableTD"><image src="Bilder\Anime\Gintama.png" class="picture schatten"></image></td> 
-						</tr>
-						<tr> 
-							<td class="sammlungTableTD"><image src="Bilder\Anime\Haikyuu!!.png" class="picture schatten"></image></td> 
-							<td class="sammlungTableTD"><image src="Bilder\Anime\Hellsing ova.png" class="picture schatten"></image></td> 
-							<td class="sammlungTableTD"><image src="Bilder\Anime\Kaguya-sama love is war 1.png" class="picture schatten"></image></td> 
-							<td class="sammlungTableTD"><image src="Bilder\Anime\Sayonara.png" class="picture schatten"></image></td> 
-						</tr>
-					</table>
-				</section>
-				<section id="paused" class="filterAnime sammlungPaused  sammlungTableEX">
-					<table id="paused" class="pictureTable">
-						<tr>
-							<td class="sammlungTable" colspan="5">Paused</td>
-						</tr>
-						<tr class="pictureTableExtra">
-						</tr>
-					</table>
-				</section>
-				<section id="dropped" class="filterAnime sammlungDropped sammlungTableEX">
-					<table id="dropped" class="pictureTable">
-						<tr>
-							<td class="sammlungTable" colspan="5">Dropped</td>
-						</tr>
-						<tr class="pictureTableExtra">
-						</tr>
-					</table>
-				</section>
-				<section id="planning" class="filterAnime sammlungPlanning  sammlungTableEX">
-					<table id="planning" class="pictureTable">
-						<tr>
-							<td class="sammlungTable" colspan="5">Planning</td>
-						</tr>
-						<tr class="pictureTableExtra">
-							<td class="sammlungTableTD"><image src="Bilder\Anime\Dr Stone 3.png" class="picture schatten"></image></td>
-							<td class="sammlungTableTD"><image src="Bilder\Anime\Dr Stone 3.png" class="picture schatten"></image></td>
-							<td class="sammlungTableTD"><image src="Bilder\Anime\Dr Stone 3.png" class="picture schatten"></image></td>
-							<td class="sammlungTableTD"><image src="Bilder\Anime\Dr Stone 3.png" class="picture schatten"></image></td>
-							<td class="sammlungTableTD"><image src="Bilder\Anime\Dr Stone 3.png" class="picture schatten"></image></td>
-						</tr>
-					</table>
-				</section>
+
+			<article class="hinterGrundBox" id="TransparentBox" onclick="HideEntry()">
 			</article>
-			<footer class="navigationBox2 schatten">
-						<ul class="navigationList">
-							<li class="navigationButton"><a href="Impressum.html" class="navigation">Impressum</a></li>
-							<li class="navigationButton navigationButton2"><a id="admin" href="#" class="navigation"></a></li>
-						</ul>
-			</footer>	
+			<article class="eintragBox schatten" id="EintragInfoBox">
+				<table class="eintragTable" >
+					<tr>
+						<td></td>
+						<td>
+							<section class="eintragRomaji">
+								<label id="Romaji"></label>
+							</section>
+						</td>
+					</tr>
+					<tr>
+						<td class="alignTop">
+							<section class="eintragBildBox schatten ">
+								<image src="" width="215" height="300" id="Cover"></img>
+							</section>
+						</td>
+						<td>
+							<table>
+								<tr>
+									<td ><b><label>Englischer Titel:</label></b></td>
+									<td><label id="Englisch"></label></td>
+								</tr>
+								<tr>
+									<td><b><label>Deutscher Titel:</label></b></td>
+									<td><label id="Deutsch"></label></td>
+								</tr>
+							</table>
+							<table class="alignTopText">
+								<tr>
+									<td class="alignTop"><b ><label>Beschreibung:</label></b></td>
+									<td><textbox id="Beschreibung" maxlength="150"></textbox></td>
+									</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2">
+							<section class="eintragAuswahlBox">
+								<select id="ListStatus" type="dropdownMenue" name="" onchange="AddAnimeToList()">
+									<option value="0">---</option>
+								</select>
+							</section>
+						</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td>
+							<table >
+								<tr>
+									<td><b><label>Folgen:</label></b></td>
+									<td><label id="Folgen"></label></td>
+								</tr>
+								<tr>
+									<td><b><label>Folgen l&auml;nge:</label></b></td>
+									<td><label id="Dauer"></label>min</td>
+								</tr>
+							</table>
+							<table>
+								<tr>
+									<td><b><label>Status:</label></b></td>
+									<td><label id="Status"></label></td>
+								</tr>
+								<tr>
+									<td><b><label>Season:</label></b></td>
+									<td><label id="SeasonEintrag"></label></td>
+								</tr>
+								<tr>
+									<td><b><label>Start:</label></b></td>
+									<td><label id="StartDate"></label></td>
+								</tr>
+								<tr>
+									<td><b><label>End:</label></b></td>
+									<td><label id="EndDate"></label></td>
+								</tr>
+							
+								<tr>
+									<td><b><label>Format:</label></b></td>
+									<td><label id="FormatEintrag"></label></td>
+								</tr>
+								<tr>
+									<td><b><label>Source:</label></b></td>
+									<td><label id="SourceEintrag"></label></td>
+								</tr>
+								<tr>
+									<td><b><label>Studio:</label></b></td>
+									<td><label id="StudioEintrag"></label></td>
+								</tr>
+								<tr>
+									<td><b><label>Genres:</label></b></td>
+									<td><label id="GenreEintrag"></label></td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+			</article>
+			
 		</main>
 		<Script>
 			
 			$(document).ready(function() {
+				document.getElementById('Medium').value = 1
 				LoadAndDisplayDropDownMenues()
 				document.getElementById("1").innerHTML = getJSONSessionItem("Account").benutzername;
 				document.getElementById("1").href = "Profil.html";
@@ -285,6 +325,154 @@
                 	$('#output').html('Ein Fehler ist aufgetreten');
 				})
 
+				RenderAnime()
+
+			}
+
+			function RenderAnime(){
+				
+				$.ajax({
+					url: 'http://localhost:8000/api/Anime/Alle',
+					method: 'get',
+					contentType: 'application/json; charset=utf-8',
+					cache: false,
+					dataType: 'json',
+				}).done(function (response) {
+					console.log(response);
+					RenderCurrent(response);
+				}).fail(function (jqXHR, statusText, error) {
+					console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+					$('#output').html('Ein Fehler ist aufgetreten');
+				})
+				
+				$.ajax({
+					url: 'http://localhost:8000/api/Anime/Alle',
+					method: 'get',
+					contentType: 'application/json; charset=utf-8',
+					cache: false,
+					dataType: 'json',
+				}).done(function (response) {
+					console.log(response);
+					RenderCompleted(response);
+				}).fail(function (jqXHR, statusText, error) {
+					console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+					$('#output').html('Ein Fehler ist aufgetreten');
+				})
+				
+				$.ajax({
+					url: 'http://localhost:8000/api/Anime/Alle',
+					method: 'get',
+					contentType: 'application/json; charset=utf-8',
+					cache: false,
+					dataType: 'json',
+				}).done(function (response) {
+					console.log(response);
+					RenderPaused(response);
+				}).fail(function (jqXHR, statusText, error) {
+					console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+					$('#output').html('Ein Fehler ist aufgetreten');
+				})
+				
+				$.ajax({
+					url: 'http://localhost:8000/api/Anime/Alle',
+					method: 'get',
+					contentType: 'application/json; charset=utf-8',
+					cache: false,
+					dataType: 'json',
+				}).done(function (response) {
+					console.log(response);
+					RenderDropped(response);
+				}).fail(function (jqXHR, statusText, error) {
+					console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+					$('#output').html('Ein Fehler ist aufgetreten');
+				})
+				
+				$.ajax({
+					url: 'http://localhost:8000/api/Anime/Alle',
+					method: 'get',
+					contentType: 'application/json; charset=utf-8',
+					cache: false,
+					dataType: 'json',
+				}).done(function (response) {
+					console.log(response);
+					RenderPlanning(response);
+				}).fail(function (jqXHR, statusText, error) {
+					console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+					$('#output').html('Ein Fehler ist aufgetreten');
+				})
+			}
+
+			function RenderManga(){
+				
+				$.ajax({
+					url: 'http://localhost:8000/api/Manga/Alle',
+					method: 'get',
+					contentType: 'application/json; charset=utf-8',
+					cache: false,
+					dataType: 'json',
+				}).done(function (response) {
+					console.log(response);
+					RenderCurrent(response);
+				}).fail(function (jqXHR, statusText, error) {
+					console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+					$('#output').html('Ein Fehler ist aufgetreten');
+				})
+				
+				$.ajax({
+					url: 'http://localhost:8000/api/Manga/Alle',
+					method: 'get',
+					contentType: 'application/json; charset=utf-8',
+					cache: false,
+					dataType: 'json',
+				}).done(function (response) {
+					console.log(response);
+					RenderCompleted(response);
+				}).fail(function (jqXHR, statusText, error) {
+					console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+					$('#output').html('Ein Fehler ist aufgetreten');
+				})
+				
+				$.ajax({
+					url: 'http://localhost:8000/api/Manga/Alle',
+					method: 'get',
+					contentType: 'application/json; charset=utf-8',
+					cache: false,
+					dataType: 'json',
+				}).done(function (response) {
+					console.log(response);
+					RenderPaused(response);
+				}).fail(function (jqXHR, statusText, error) {
+					console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+					$('#output').html('Ein Fehler ist aufgetreten');
+				})
+				
+				$.ajax({
+					url: 'http://localhost:8000/api/Manga/Alle',
+					method: 'get',
+					contentType: 'application/json; charset=utf-8',
+					cache: false,
+					dataType: 'json',
+				}).done(function (response) {
+					console.log(response);
+					RenderDropped(response);
+				}).fail(function (jqXHR, statusText, error) {
+					console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+					$('#output').html('Ein Fehler ist aufgetreten');
+				})
+				
+				$.ajax({
+					url: 'http://localhost:8000/api/Manga/Alle',
+					method: 'get',
+					contentType: 'application/json; charset=utf-8',
+					cache: false,
+					dataType: 'json',
+				}).done(function (response) {
+					console.log(response);
+					RenderPlanning(response);
+				}).fail(function (jqXHR, statusText, error) {
+					console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+					$('#output').html('Ein Fehler ist aufgetreten');
+				})
 			}
 
 			function RenderGenreOptions(arr) {
@@ -366,207 +554,461 @@
 				if(medium == 1){
 					MangaFillter.style.display="none"
 					AnimeFilter.style.display="block"
+					clearTables()
+					document.getElementById('LabelCurrent').innerHTML = "Watching"
+					hideLists()
+
+					RenderAnime()
 				}
 
 				if(medium == 2){
 					AnimeFilter.style.display="none"
 					MangaFillter.style.display="block"
+					clearTables()
+					document.getElementById('LabelCurrent').innerHTML = "Reading"
+					hideLists()
+
+					RenderManga()
 				}
 			}
 
-function GenreSelect() {
+			function clearTables(){
 
-	var genre = document.getElementById('Genre').value
-	var view = document.getElementById('genreAuswahlBox')
+				table1 = document.getElementById('Current')
+				table1.parentNode.removeChild(table1)
 
-	if(genre == 2){
-		document.getElementById('Action').value = 2
-		document.getElementById('Action').style.display = 'inline'
-	}
+				table2 = document.getElementById('Completed')
+				table2.parentNode.removeChild(table2)
 
-	if(genre == 3){
-		document.getElementById('Adventure').value = 3
-		document.getElementById('Adventure').style.display = 'inline'
-	}
+				table3 = document.getElementById('Paused')
+				table3.parentNode.removeChild(table3)
 
-	if(genre == 4){
-		document.getElementById('Comedy').value = 4
-		document.getElementById('Comedy').style.display = 'inline'
-	}
+				table4 = document.getElementById('Dropped')
+				table4.parentNode.removeChild(table4)
 
-	if(genre == 5){
-		document.getElementById('Drama').value = 5
-		document.getElementById('Drama').style.display = 'inline'
-	}
+				table5 = document.getElementById('Planning')
+				table5.parentNode.removeChild(table5)
+			}
 
-	if(genre == 6){
-		document.getElementById('Ecchi').value = 6
-		document.getElementById('Ecchi').style.display = 'inline'
-	}
+			function hideLists(){
+				document.getElementById('TablePlaceCurrent').style.display = "none"
+				document.getElementById('TablePlaceCompleted').style.display = "none"
+				document.getElementById('TablePlacePaused').style.display = "none"
+				document.getElementById('TablePlaceDropped').style.display = "none"
+				document.getElementById('TablePlacePlanning').style.display = "none"
+			}
 
-	if(genre == 7){
-		document.getElementById('Fantasy').value = 7
-		document.getElementById('Fantasy').style.display = 'inline'
-	}
+			function GenreSelect() {
 
-	if(genre == 8){
-		document.getElementById('Horror').value = 8
-		document.getElementById('Horror').style.display = 'inline'
-	}
+				var genre = document.getElementById('Genre').value
+				var view = document.getElementById('genreAuswahlBox')
 
-	if(genre == 9){
-		document.getElementById('MahouShoujo').value = 9
-		document.getElementById('MahouShoujo').style.display = 'inline'
-	}
+				if(genre == 2){
+					document.getElementById('Action').value = 2
+					document.getElementById('Action').style.display = 'inline'
+				}
 
-	if(genre == 10){
-		document.getElementById('Mecha').value = 10
-		document.getElementById('Mecha').style.display = 'inline'
-	}
+				if(genre == 3){
+					document.getElementById('Adventure').value = 3
+					document.getElementById('Adventure').style.display = 'inline'
+				}
 
-	if(genre == 11){
-		document.getElementById('Music').value = 11
-		document.getElementById('Music').style.display = 'inline'
-	}
+				if(genre == 4){
+					document.getElementById('Comedy').value = 4
+					document.getElementById('Comedy').style.display = 'inline'
+				}
 
-	if(genre == 12){
-		document.getElementById('Mystery').value = 12
-		document.getElementById('Mystery').style.display = 'inline'
-	}
+				if(genre == 5){
+					document.getElementById('Drama').value = 5
+					document.getElementById('Drama').style.display = 'inline'
+				}
 
-	if(genre == 13){
-		document.getElementById('Psychological').value = 13
-		document.getElementById('Psychological').style.display = 'inline'
-	}
+				if(genre == 6){
+					document.getElementById('Ecchi').value = 6
+					document.getElementById('Ecchi').style.display = 'inline'
+				}
 
-	if(genre == 14){
-		document.getElementById('Romance').value = 14
-		document.getElementById('Romance').style.display = 'inline'
-	}
+				if(genre == 7){
+					document.getElementById('Fantasy').value = 7
+					document.getElementById('Fantasy').style.display = 'inline'
+				}
 
-	if(genre == 15){
-		document.getElementById('Sci-Fi').value = 15
-		document.getElementById('Sci-Fi').style.display = 'inline'
-	}
+				if(genre == 8){
+					document.getElementById('Horror').value = 8
+					document.getElementById('Horror').style.display = 'inline'
+				}
 
-	if(genre == 16){
-		document.getElementById('SliceOfLife').value = 16
-		document.getElementById('SliceOfLife').style.display = 'inline'
-	}
+				if(genre == 9){
+					document.getElementById('MahouShoujo').value = 9
+					document.getElementById('MahouShoujo').style.display = 'inline'
+				}
 
-	if(genre == 17){
-		document.getElementById('Sport').value = 17
-		document.getElementById('Sport').style.display = 'inline'
-	}
+				if(genre == 10){
+					document.getElementById('Mecha').value = 10
+					document.getElementById('Mecha').style.display = 'inline'
+				}
 
-	if(genre == 18){
-		document.getElementById('Supernatural').value = 18
-		document.getElementById('Supernatural').style.display = 'inline'
-	}
+				if(genre == 11){
+					document.getElementById('Music').value = 11
+					document.getElementById('Music').style.display = 'inline'
+				}
 
-	if(genre == 19){
-		document.getElementById('Thriller').value = 19
-		document.getElementById('Thriller').style.display = 'inline'
-	}
-	document.getElementById('Genre').selectedIndex = 0
+				if(genre == 12){
+					document.getElementById('Mystery').value = 12
+					document.getElementById('Mystery').style.display = 'inline'
+				}
 
-	BrowseFilter()
-}
+				if(genre == 13){
+					document.getElementById('Psychological').value = 13
+					document.getElementById('Psychological').style.display = 'inline'
+				}
 
-function GenreSelectRemove(id){
+				if(genre == 14){
+					document.getElementById('Romance').value = 14
+					document.getElementById('Romance').style.display = 'inline'
+				}
 
-	if(id == 2){
-		document.getElementById('Action').value = 0
-		document.getElementById('Action').style.display = "none"
-	}
+				if(genre == 15){
+					document.getElementById('Sci-Fi').value = 15
+					document.getElementById('Sci-Fi').style.display = 'inline'
+				}
 
-	if(id == 3){
-		document.getElementById('Adventure').value = 0
-		document.getElementById('Adventure').style.display = "none"
-	}
+				if(genre == 16){
+					document.getElementById('SliceOfLife').value = 16
+					document.getElementById('SliceOfLife').style.display = 'inline'
+				}
 
-	if(id == 4){
-		document.getElementById('Comedy').value = 0
-		document.getElementById('Comedy').style.display = "none"
-	}
+				if(genre == 17){
+					document.getElementById('Sport').value = 17
+					document.getElementById('Sport').style.display = 'inline'
+				}
 
-	if(id == 5){
-		document.getElementById('Drama').value = 0
-		document.getElementById('Drama').style.display = "none"
-	}
+				if(genre == 18){
+					document.getElementById('Supernatural').value = 18
+					document.getElementById('Supernatural').style.display = 'inline'
+				}
 
-	if(id == 6){
-		document.getElementById('Ecchi').value = 0
-		document.getElementById('Ecchi').style.display = "none"
-	}
+				if(genre == 19){
+					document.getElementById('Thriller').value = 19
+					document.getElementById('Thriller').style.display = 'inline'
+				}
+				document.getElementById('Genre').selectedIndex = 0
 
-	if(id == 7){
-		document.getElementById('Fantasy').value = 0
-		document.getElementById('Fantasy').style.display = "none"
-	}
+				BrowseFilter()
+			}
 
-	if(id == 8){
-		document.getElementById('Horror').value = 0
-		document.getElementById('Horror').style.display = "none"
-	}
+			function GenreSelectRemove(id){
 
-	if(id == 9){
-		document.getElementById('MahouShoujo').value = 0
-		document.getElementById('MahouShoujo').style.display = "none"
-	}
+				if(id == 2){
+					document.getElementById('Action').value = 0
+					document.getElementById('Action').style.display = "none"
+				}
 
-	if(id == 10){
-		document.getElementById('Mecha').value = 0
-		document.getElementById('Mecha').style.display = "none"
-	}
+				if(id == 3){
+					document.getElementById('Adventure').value = 0
+					document.getElementById('Adventure').style.display = "none"
+				}
 
-	if(id == 11){
-		document.getElementById('Music').value = 0
-		document.getElementById('Music').style.display = "none"
-	}
+				if(id == 4){
+					document.getElementById('Comedy').value = 0
+					document.getElementById('Comedy').style.display = "none"
+				}
 
-	if(id == 12){
-		document.getElementById('Mystery').value = 0
-		document.getElementById('Mystery').style.display = "none"
-	}
+				if(id == 5){
+					document.getElementById('Drama').value = 0
+					document.getElementById('Drama').style.display = "none"
+				}
 
-	if(id == 13){
-		document.getElementById('Psychological').value = 0
-		document.getElementById('Psychological').style.display = "none"
-	}
+				if(id == 6){
+					document.getElementById('Ecchi').value = 0
+					document.getElementById('Ecchi').style.display = "none"
+				}
 
-	if(id == 14){
-		document.getElementById('Romance').value = 0
-		document.getElementById('Romance').style.display = "none"
-	}
+				if(id == 7){
+					document.getElementById('Fantasy').value = 0
+					document.getElementById('Fantasy').style.display = "none"
+				}
 
-	if(id == 15){
-		document.getElementById('Sci-Fi').value = 0
-		document.getElementById('Sci-Fi').style.display = "none"
-	}
+				if(id == 8){
+					document.getElementById('Horror').value = 0
+					document.getElementById('Horror').style.display = "none"
+				}
 
-	if(id == 16){
-		document.getElementById('SliceOfLife').value = 0
-		document.getElementById('SliceOfLife').style.display = "none"
-	}
+				if(id == 9){
+					document.getElementById('MahouShoujo').value = 0
+					document.getElementById('MahouShoujo').style.display = "none"
+				}
 
-	if(id == 17){
-		document.getElementById('Sport').value = 0
-		document.getElementById('Sport').style.display = "none"
-	}
+				if(id == 10){
+					document.getElementById('Mecha').value = 0
+					document.getElementById('Mecha').style.display = "none"
+				}
 
-	if(id == 18){
-		document.getElementById('Supernatural').value = 0
-		document.getElementById('Supernatural').style.display = "none"
-	}
+				if(id == 11){
+					document.getElementById('Music').value = 0
+					document.getElementById('Music').style.display = "none"
+				}
 
-	if(id == 19){
-		document.getElementById('Thriller').value = 0
-		document.getElementById('Thriller').style.display = "none"
-	}
+				if(id == 12){
+					document.getElementById('Mystery').value = 0
+					document.getElementById('Mystery').style.display = "none"
+				}
 
-	BrowseFilter()
-}
+				if(id == 13){
+					document.getElementById('Psychological').value = 0
+					document.getElementById('Psychological').style.display = "none"
+				}
+
+				if(id == 14){
+					document.getElementById('Romance').value = 0
+					document.getElementById('Romance').style.display = "none"
+				}
+
+				if(id == 15){
+					document.getElementById('Sci-Fi').value = 0
+					document.getElementById('Sci-Fi').style.display = "none"
+				}
+
+				if(id == 16){
+					document.getElementById('SliceOfLife').value = 0
+					document.getElementById('SliceOfLife').style.display = "none"
+				}
+
+				if(id == 17){
+					document.getElementById('Sport').value = 0
+					document.getElementById('Sport').style.display = "none"
+				}
+
+				if(id == 18){
+					document.getElementById('Supernatural').value = 0
+					document.getElementById('Supernatural').style.display = "none"
+				}
+
+				if(id == 19){
+					document.getElementById('Thriller').value = 0
+					document.getElementById('Thriller').style.display = "none"
+				}
+
+				BrowseFilter()
+			}
+
+			function RenderCurrent(arr){
+				
+				var table = document.createElement("table");
+				document.getElementById("TablePlaceCurrent").appendChild(table).setAttribute("id", "Current")
+				document.getElementById("Current").classList.add("pictureTable")
+
+				RenderTable(arr, table)
+			}
+
+			function RenderCompleted(arr){
+				
+				var table = document.createElement("table");
+				document.getElementById("TablePlaceCompleted").appendChild(table).setAttribute("id", "Completed")
+				document.getElementById("Completed").classList.add("pictureTable")
+
+				RenderTable(arr, table)
+			}
+
+			function RenderPaused(arr){
+				
+				var table = document.createElement("table");
+				document.getElementById("TablePlacePaused").appendChild(table).setAttribute("id", "Paused")
+				document.getElementById("Paused").classList.add("pictureTable")
+
+				RenderTable(arr, table)
+			}
+
+			function RenderDropped(arr){
+				
+				var table = document.createElement("table");
+				document.getElementById("TablePlaceDropped").appendChild(table).setAttribute("id", "Dropped")
+				document.getElementById("Dropped").classList.add("pictureTable")
+
+				RenderTable(arr, table)
+			}
+
+			function RenderPlanning(arr){
+				
+				var table = document.createElement("table");
+				document.getElementById("TablePlacePlanning").appendChild(table).setAttribute("id", "Planning")
+				document.getElementById("Planning").classList.add("pictureTable")
+
+				RenderTable(arr, table)
+			}
+
+			function RenderTable(arr, table){
+				var zaehler = 0;
+				
+				$(arr).each(function(idx, item){
+
+					animeName = item.romaji;
+
+					if(animeName.length > 30){
+						animeName = animeName.substr(0,25) + '...'
+					}
+
+					if(zaehler == 6) {
+						zaehler = 0;	
+					}
+					
+					if(zaehler == 0){
+						row = table.insertRow();
+						A = row.insertCell();
+						B = row.insertCell();
+						C = row.insertCell();
+						D = row.insertCell();
+						E = row.insertCell();
+						zaehler += 1;
+					}
+					
+					if(zaehler == 1) {
+						A.innerHTML = '<image class="schatten" src="' + item.cover + '" width="215" height="300" onclick="ShowEntry(' + item.id + ')" onmouseover="ChangeColorOver(' + item.id + ')" onmouseout="ChangeColorOut(' + item.id + ')"><p><label onclick="ShowEntry(' + item.id + ')" onmouseover="ChangeColorOver(' + item.id + ')" onmouseout="ChangeColorOut(' + item.id + ')" id="' + item.id + '">' + animeName + '</label>';
+						}
+					if(zaehler == 2) {
+						B.innerHTML = '<image class="schatten" src="' + item.cover + '" width="215" height="300" onclick="ShowEntry(' + item.id + ')" onmouseover="ChangeColorOver(' + item.id + ')" onmouseout="ChangeColorOut(' + item.id + ')"><p><label onclick="ShowEntry(' + item.id + ')" onmouseover="ChangeColorOver(' + item.id + ')" onmouseout="ChangeColorOut(' + item.id + ')" id="' + item.id + '">' + animeName + '</label>';
+						}
+					if(zaehler == 3) {
+						C.innerHTML = '<image class="schatten" src="' + item.cover + '" width="215" height="300" onclick="ShowEntry(' + item.id + ')" onmouseover="ChangeColorOver(' + item.id + ')" onmouseout="ChangeColorOut(' + item.id + ')"><p><label onclick="ShowEntry(' + item.id + ')" onmouseover="ChangeColorOver(' + item.id + ')" onmouseout="ChangeColorOut(' + item.id + ')" id="' + item.id + '">' + animeName + '</label>';
+						}
+					if(zaehler == 4) {
+						D.innerHTML = '<image class="schatten" src="' + item.cover + '" width="215" height="300" onclick="ShowEntry(' + item.id + ')" onmouseover="ChangeColorOver(' + item.id + ')" onmouseout="ChangeColorOut(' + item.id + ')"><p><label onclick="ShowEntry(' + item.id + ')" onmouseover="ChangeColorOver(' + item.id + ')" onmouseout="ChangeColorOut(' + item.id + ')" id="' + item.id + '">' + animeName + '</label>';
+						}
+					if(zaehler == 5) {
+						E.innerHTML = '<image class="schatten" src="' + item.cover + '" width="215" height="300" onclick="ShowEntry(' + item.id + ')" onmouseover="ChangeColorOver(' + item.id + ')" onmouseout="ChangeColorOut(' + item.id + ')"><p><label onclick="ShowEntry(' + item.id + ')" onmouseover="ChangeColorOver(' + item.id + ')" onmouseout="ChangeColorOut(' + item.id + ')" id="' + item.id + '">' + animeName + '</label>';
+						}
+					zaehler += 1;
+				})
+			}
+
+			function ChangeColorOver (id){
+				document.getElementById(id).style.color = "red"
+			}
+
+			function ChangeColorOut (id){
+				document.getElementById(id).style.color = "black"
+			}
+
+			function ShowEntry(id){
+					
+				$.ajax({
+					url: 'http://localhost:8000/api/Anime/gib/'+ id,
+					method: 'get',
+					contentType: 'application/json; charset=utf-8',
+					cache: false,
+					dataType: 'json',
+				}).done(function (response) {
+					console.log(response);
+					FillTableWithData(response);          
+				}).fail(function (jqXHR, statusText, error) {
+					console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+					$('#output').html('Ein Fehler ist aufgetreten');
+				})
+
+				$.ajax({
+					url: 'http://localhost:8000/api/animeEintragGenre/animeGenre/'+ id,
+					method: 'get',
+					contentType: 'application/json; charset=utf-8',
+					cache: false,
+					dataType: 'json',
+				}).done(function (response) {
+					console.log(response);
+					FillGenreCell(response);          
+				}).fail(function (jqXHR, statusText, error) {
+					console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+					$('#output').html('Ein Fehler ist aufgetreten');
+				})
+
+				EintragInfoBox.style.visibility="visible"
+				TransparentBox.style.visibility="visible"
+
+				if (getJSONSessionItem("Account").id){
+
+					user = getJSONSessionItem("Account").id
+
+					$.ajax({
+						url: 'http://localhost:8000/api/animeListe/gib/'+ id + '_' + user,
+						method: 'get',
+						contentType: 'application/json; charset=utf-8',
+						cache: false,
+						dataType: 'json',
+					}).done(function (response) {
+						console.log(response);
+						getAnimeListStatus(response);          
+					}).fail(function (jqXHR, statusText, error) {
+						console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+						$('#output').html('Ein Fehler ist aufgetreten');
+					})
+				}
+			}
+
+			function getAnimeListStatus(id){
+				document.getElementById('ListStatus').value = id
+			}
+
+			function HideEntry(){
+				
+				EintragInfoBox.style.visibility="hidden"
+				TransparentBox.style.visibility="hidden"
+				
+				document.getElementById('Romaji').innerHTML = ''
+				document.getElementById('Englisch').innerHTML = ''
+				document.getElementById('Deutsch').innerHTML = ''
+				document.getElementById('Beschreibung').innerHTML = ''
+				document.getElementById('Folgen').innerHTML = ''
+				document.getElementById('Dauer').innerHTML = ''
+				document.getElementById('Status').innerHTML = ''
+				document.getElementById('StartDate').innerHTML = ''
+				document.getElementById('EndDate').innerHTML = ''
+				document.getElementById('FormatEintrag').innerHTML = ''
+				document.getElementById('SeasonEintrag').innerHTML = ''
+				document.getElementById('StudioEintrag').innerHTML = ''
+				document.getElementById('SourceEintrag').innerHTML = ''
+				document.getElementById('Cover').src = ''
+				document.getElementById('GenreEintrag').innerHTML = ''
+				document.getElementById('ListStatus').value = 0
+			}
+
+			function FillTableWithData(item) {
+
+				document.getElementById('Romaji').innerHTML = item.romaji
+				document.getElementById('Englisch').innerHTML = item.englisch
+				document.getElementById('Deutsch').innerHTML = item.deutsch
+				document.getElementById('Beschreibung').innerHTML = item.beschreibung
+				document.getElementById('Folgen').innerHTML = item.folgenanzahl
+				document.getElementById('Dauer').innerHTML = item.dauer
+				document.getElementById('Status').innerHTML = item.status
+				document.getElementById('StartDate').innerHTML = item.startdatum
+				document.getElementById('EndDate').innerHTML = item.enddatum
+				document.getElementById('FormatEintrag').innerHTML = item.format
+				document.getElementById('SeasonEintrag').innerHTML = item.season + ' ' + item.jahr
+				document.getElementById('StudioEintrag').innerHTML = item.studio
+				document.getElementById('SourceEintrag').innerHTML = item.source
+				document.getElementById('Cover').src = item.cover
+				document.getElementById('ListStatus').name = item.id
+			}
+
+			function FillGenreCell(arr){
+
+				var genres = ''
+
+				$(arr).each(function(idx, item){
+
+					genres += item.genre + ', '
+				})
+
+				genres = genres.substring(0, genres.length - 2)
+				document.getElementById('GenreEintrag').innerHTML = genres
+			}
+
+			function showList(id){
+
+				if(document.getElementById(id).style.display == "block"){
+					document.getElementById(id).style.display = "none"
+				}else{
+					document.getElementById(id).style.display = "block"
+				}
+			}
 
 		</Script>
 	</body>
