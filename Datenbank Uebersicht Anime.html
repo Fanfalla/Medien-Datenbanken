@@ -50,7 +50,7 @@
 							<option value="4">Folgen Anzahl Aufsteigend</option>
 							<option value="5">Folgen Anzahl Absteigend</option>
 						</select>
-						<!--
+						<!-- ListStatus
 						<label class="labelSpaceLeft labelSpaceRight"></label>
 						<select id="select" class="dropdownMenue">
 							<option value=""></option>
@@ -86,118 +86,105 @@
 						</ul>
 					</footer>
 				</article>
+
 				<article class="hinterGrundBox" id="TransparentBox" onclick="HideEntry()">
 				</article>
-				
 				<article class="eintragBox schatten" id="EintragInfoBox">
-				<table class="eintragTable" >
-				<tr>
-					<td>
-					</td>
-					
-					<td>
-					<section class="eintragRomaji">
-						<label id="Romaji"></label>
-					</section>
-					</td>
-				
-				</tr>
-				<tr >
-					<td class="alignTop">
-						<section class="eintragBildBox schatten ">
-							<image src="" width="215" height="300" id="Cover"></img>
-						</section>
-					</td>
-					<td>
-					<table>
+					<table class="eintragTable" >
 						<tr>
-							<td ><b><label>Englischer Titel:</label></b></td>
-							<td><label id="Englisch"></label></td>
+							<td></td>
+							<td>
+								<section class="eintragRomaji">
+									<label id="Romaji"></label>
+								</section>
+							</td>
 						</tr>
 						<tr>
-							<td><b><label>Deutscher Titel:</label></b></td>
-							<td><label id="Deutsch"></label></td>
-						</tr>
-					</table>
-							
-					<table class="alignTopText">
-						<tr>
-							<td class="alignTop"><b ><label>Beschreibung:</label></b></td>
-							<td><textbox id="Beschreibung" maxlength="150"></textbox></td>
-							</tr>
-					</table>
-					</td>
-				</tr>
-				
-				
-				<tr>
-					<td colspan="2">
-						<section class="eintragAuswahlBox">
-							<select id="ListStatus" type="dropdownMenue" name="" onchange="AddAnimeToList()">
-								<option value="0">---</option>
-							</select>
-						</section>
-					</td>
-					<td>
-					</td>
-					
-				</tr>
-				<tr>
-				<td>
-				</td>
-				<td>
-				
-					<table >
-						<tr>
-							<td><b><label>Folgen:</label></b></td>
-							<td><label id="Folgen"></label></td>
+							<td class="alignTop">
+								<section class="eintragBildBox schatten">
+									<image src="" width="215" height="300" id="Cover"></img>
+								</section>
+							</td>
+							<td>
+								<table>
+									<tr>
+										<td ><b><label>Englischer Titel:</label></b></td>
+										<td><label id="Englisch"></label></td>
+									</tr>
+									<tr>
+										<td><b><label>Deutscher Titel:</label></b></td>
+										<td><label id="Deutsch"></label></td>
+									</tr>
+								</table>
+								<table class="alignTopText">
+									<tr>
+										<td class="alignTop"><b ><label>Beschreibung:</label></b></td>
+										<td><textbox id="Beschreibung" maxlength="150"></textbox></td>
+										</tr>
+								</table>
+							</td>
 						</tr>
 						<tr>
-							<td><b><label>Folgen l&auml;nge:</label></b></td>
-							<td><label id="Dauer"></label>min</td>
-						</tr>
-					</table>
-					<table>
-						<tr>
-							<td><b><label>Status:</label></b></td>
-							<td><label id="Status"></label></td>
-						</tr>
-						<tr>
-							<td><b><label>Season:</label></b></td>
-							<td><label id="SeasonEintrag"></label></td>
+							<td colspan="2">
+								<section class="eintragAuswahlBox">
+									<select id="ListStatus" type="dropdownMenue" name="" onchange="AddAnimeToList()">
+										<option value="0">---</option>
+									</select>
+								</section>
+							</td>
+							<td></td>
 						</tr>
 						<tr>
-							<td><b><label>Start:</label></b></td>
-							<td><label id="StartDate"></label></td>
-						</tr>
-						<tr>
-							<td><b><label>End:</label></b></td>
-							<td><label id="EndDate"></label></td>
-						</tr>
-					
-						<tr>
-							<td><b><label>Format:</label></b></td>
-							<td><label id="FormatEintrag"></label></td>
-						</tr>
-						<tr>
-							<td><b><label>Source:</label></b></td>
-							<td><label id="SourceEintrag"></label></td>
-						</tr>
-						<tr>
-							<td><b><label>Studio:</label></b></td>
-							<td><label id="StudioEintrag"></label></td>
-						</tr>
-						<tr>
-							<td><b><label>Genres:</label></b></td>
-							<td><label id="GenreEintrag"></label></td>
+							<td></td>
+							<td>
+								<table>
+									<tr>
+										<td><b><label>Folgen:</label></b></td>
+										<td><label id="Folgen"></label></td>
+									</tr>
+									<tr>
+										<td><b><label>Folgen l&auml;nge:</label></b></td>
+										<td><label id="Dauer"></label>min</td>
+									</tr>
+								</table>
+								<table>
+									<tr>
+										<td><b><label>Status:</label></b></td>
+										<td><label id="Status"></label></td>
+									</tr>
+									<tr>
+										<td><b><label>Season:</label></b></td>
+										<td><label id="SeasonEintrag"></label></td>
+									</tr>
+									<tr>
+										<td><b><label>Start:</label></b></td>
+										<td><label id="StartDate"></label></td>
+									</tr>
+									<tr>
+										<td><b><label>End:</label></b></td>
+										<td><label id="EndDate"></label></td>
+									</tr>
+									<tr>
+										<td><b><label>Format:</label></b></td>
+										<td><label id="FormatEintrag"></label></td>
+									</tr>
+									<tr>
+										<td><b><label>Source:</label></b></td>
+										<td><label id="SourceEintrag"></label></td>
+									</tr>
+									<tr>
+										<td><b><label>Studio:</label></b></td>
+										<td><label id="StudioEintrag"></label></td>
+									</tr>
+									<tr>
+										<td><b><label>Genres:</label></b></td>
+										<td><label id="GenreEintrag"></label></td>
+									</tr>
+								</table>
+							</td>
 						</tr>
 					</table>
-				</td>
-				</tr>
-				
-					</section>
-				</table>
-				<section  id="delete" class="eintragLoeschen" onclick="Delete()">
+				  <section  id="delete" class="eintragLoeschen" onclick="Delete()">
 						<label>Delete</label>
 					</section>
 				</article>
@@ -759,7 +746,12 @@
 					$('#output').html('Ein Fehler ist aufgetreten');
 				})
 
-				if (user = getJSONSessionItem("Account").id){
+				EintragInfoBox.style.visibility="visible"
+				TransparentBox.style.visibility="visible"
+
+				if (getJSONSessionItem("Account").id){
+
+					user = getJSONSessionItem("Account").id
 
 					$.ajax({
 						url: 'http://localhost:8000/api/animeListe/gib/'+ id + '_' + user,
@@ -775,12 +767,12 @@
 						$('#output').html('Ein Fehler ist aufgetreten');
 					})
 				}
-
+        
 				EintragInfoBox.style.visibility="visible"
 				TransparentBox.style.visibility="visible"
 				if (getJSONSessionItem("Account").adminid == 1) {
 						document.getElementById("delete").style.visibility = "visible";
-					}
+				  }
 			}
 
 			function getAnimeListStatus(id){
