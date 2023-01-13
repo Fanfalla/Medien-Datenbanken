@@ -1,5 +1,6 @@
 const helper = require('../helper.js');
 const MangaListeDao = require('../dao/MangaListeDao.js');
+const MangaDao = require('../dao/MangaDao.js');
 const express = require('express');
 var serviceRouter = express.Router();
 
@@ -75,18 +76,27 @@ serviceRouter.post('/mangaListe/status/add', function(request, response) {
     }
 
     const mangaListeDao = new MangaListeDao(request.app.locals.dbConnection);
+    const mangaDao = new MangaDao(request.app.locals.dbConnection);
     try {
 
         if(request.body.ListStatusUser == 0){
             var obj = mangaListeDao.delete(parseInt(mangaListeDao.getUserId(request.body.User)), request.body.EntryID)
             console.log('Service MangaListe: Record Deleted');
         }
+
         if(mangaListeDao.loadByUserAndName(parseInt(mangaListeDao.getUserId(request.body.User)), request.body.EntryID) && request.body.ListStatusUser > 0){
             var obj = mangaListeDao.editStatus(request.body.ListStatusUser, parseInt(mangaListeDao.getUserId(request.body.User)), request.body.EntryID)
             console.log('Service MangaListe: Record Updated');
             response.status(200).json(obj);
         }
-        if(!mangaListeDao.loadByUserAndName(parseInt(mangaListeDao.getUserId(request.body.User)), request.body.EntryID) && request.body.ListStatusUser > 0){
+
+        if(!mangaListeDao.loadByUserAndName(parseInt(mangaListeDao.getUserId(request.body.User)), request.body.EntryID) && request.body.ListStatusUser > 0 && request.body.ListStatusUser == 3){
+            var obj = mangaListeDao.createC(parseInt(mangaListeDao.getUserId(request.body.User)), request.body.EntryID, request.body.ListStatusUser, parseInt(mangaDao.getChapter(request.body.EntryID)));
+            console.log('Service MangaListe: Record inserted');
+            response.status(200).json(obj);
+        }
+
+        if(!mangaListeDao.loadByUserAndName(parseInt(mangaListeDao.getUserId(request.body.User)), request.body.EntryID) && request.body.ListStatusUser > 0 && request.body.ListStatusUser != 3){
             var obj = mangaListeDao.create(parseInt(mangaListeDao.getUserId(request.body.User)), request.body.EntryID, request.body.ListStatusUser);
             console.log('Service MangaListe: Record inserted');
             response.status(200).json(obj);

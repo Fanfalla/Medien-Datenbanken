@@ -32,6 +32,15 @@ class AnimeDao {
         return result;
     }
 
+    getFolgen(id){
+        var sql = 'SELECT folgenanzahl FROM Anime WHERE anime.id = ?'
+        var statement = this._conn.prepare(sql);
+        var result = statement.get(id);
+        var a = Object.values(result);
+
+        return a;
+    }
+
     latestID(){
         var sql = 'SELECT id FROM Anime ORDER BY id desc LIMIT 1';
         var statement = this._conn.prepare(sql);

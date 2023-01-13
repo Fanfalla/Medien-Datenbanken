@@ -73,9 +73,21 @@ class MangaListeDao {
     }
 
     create(accountid, mangaid, liststatusid) {
-        var sql = 'INSERT INTO MangaListe (accountid, mangaid, liststatusid) VALUES (?,?,?)';
+        var sql = 'INSERT INTO MangaListe (accountid, mangaid, liststatusid, chapter) VALUES (?,?,?,0)';
         var statement = this._conn.prepare(sql);
         var params = [accountid, mangaid, liststatusid];
+        var result = statement.run(params);
+
+        if (result === undefined) 
+            return false;
+
+        return this.loadById(result.lastInsertRowid);
+    }
+
+    createC(accountid, mangaid, liststatusid, chapter) {
+        var sql = 'INSERT INTO MangaListe (accountid, mangaid, liststatusid, chapter) VALUES (?,?,?,?)';
+        var statement = this._conn.prepare(sql);
+        var params = [accountid, mangaid, liststatusid, chapter];
         var result = statement.run(params);
 
         if (result === undefined) 

@@ -102,20 +102,20 @@
 					</ul>
 				</article>
 				<article class="sammlungBox">
-					<label class="textForList" id="LabelCurrent" onclick="showList('TablePlaceCurrent')" onmouseover="ChangeColorOver('LabelCurrent')" onmouseout="ChangeColorOut('LabelCurrent')">Watching</label>
-					<article id="TablePlaceCurrent" style="display: block">
+					<label class="textForList" id="LabelCurrent" onclick="showList('TablePlaceCurrent')" onmouseover="ChangeColorOver('LabelCurrent')" onmouseout="ChangeColorOut('LabelCurrent')"></label>
+					<article id="TablePlaceCurrent" style="display: none">
 					</article><br><br>
-					<label class="textForList" id="LabelCompleted" onclick="showList('TablePlaceCompleted')" onmouseover="ChangeColorOver('LabelCompleted')" onmouseout="ChangeColorOut('LabelCompleted')">Completed</label>
+					<label class="textForList" id="LabelCompleted" onclick="showList('TablePlaceCompleted')" onmouseover="ChangeColorOver('LabelCompleted')" onmouseout="ChangeColorOut('LabelCompleted')"></label>
 					<article id="TablePlaceCompleted" style="display: none">
 					</article><br><br>
-					<label class="textForList" id="LabelPaused" onclick="showList('TablePlacePaused')" onmouseover="ChangeColorOver('LabelPaused')" onmouseout="ChangeColorOut('LabelPaused')">Paused</label>
+					<label class="textForList" id="LabelPaused" onclick="showList('TablePlacePaused')" onmouseover="ChangeColorOver('LabelPaused')" onmouseout="ChangeColorOut('LabelPaused')"></label>
 					<article id="TablePlacePaused" style="display: none">
 					</article><br><br>
-					<label class="textForList" id="LabelDropped" onclick="showList('TablePlaceDropped')" onmouseover="ChangeColorOver('LabelDropped')" onmouseout="ChangeColorOut('LabelDropped')">Dropped</label>
+					<label class="textForList" id="LabelDropped" onclick="showList('TablePlaceDropped')" onmouseover="ChangeColorOver('LabelDropped')" onmouseout="ChangeColorOut('LabelDropped')"></label>
 					<article id="TablePlaceDropped" style="display: none">
 					</article><br><br>
-					<label class="textForList" id="LabelPlanning" onclick="showList('TablePlacePlanning')" onmouseover="ChangeColorOver('LabelPlanning')" onmouseout="ChangeColorOut('LabelPlanning')">Planning</label>
-					<article id="TablePlacePlanning" style="display: block">
+					<label class="textForList" id="LabelPlanning" onclick="showList('TablePlacePlanning')" onmouseover="ChangeColorOver('LabelPlanning')" onmouseout="ChangeColorOut('LabelPlanning')"></label>
+					<article id="TablePlacePlanning" style="display: none">
 					</article>	<br><br>
 				</article>
 			</article>
@@ -160,7 +160,7 @@
 					<tr>
 						<td colspan="2">
 							<section class="eintragAuswahlBox">
-								<select id="ListStatus" type="dropdownMenue" name="" onchange="AddAnimeToList()">
+								<select id="ListStatus" type="dropdownMenue" name="" onchange="AddEntryToList()">
 									<option value="0">---</option>
 								</select>
 							</section>
@@ -330,9 +330,25 @@
 			}
 
 			function RenderAnime(){
+
+				var acc = getJSONSessionItem("Account").id
 				
 				$.ajax({
-					url: 'http://localhost:8000/api/Anime/Alle',
+					url: 'http://localhost:8000/api/listStatus/alle/Anime',
+					method: 'get',
+					contentType: 'application/json; charset=utf-8',
+					cache: false,
+					dataType: 'json',
+				}).done(function (response) {
+					console.log(response);
+					RenderStatusListStatus(response);
+				}).fail(function (jqXHR, statusText, error) {
+					console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+					$('#output').html('Ein Fehler ist aufgetreten');
+				})
+				
+				$.ajax({
+					url: 'http://localhost:8000/api/animeListe/getWatching/' + acc,
 					method: 'get',
 					contentType: 'application/json; charset=utf-8',
 					cache: false,
@@ -346,7 +362,7 @@
 				})
 				
 				$.ajax({
-					url: 'http://localhost:8000/api/Anime/Alle',
+					url: 'http://localhost:8000/api/animeListe/getCompleted/' + acc,
 					method: 'get',
 					contentType: 'application/json; charset=utf-8',
 					cache: false,
@@ -360,7 +376,7 @@
 				})
 				
 				$.ajax({
-					url: 'http://localhost:8000/api/Anime/Alle',
+					url: 'http://localhost:8000/api/animeListe/getPaused/' + acc,
 					method: 'get',
 					contentType: 'application/json; charset=utf-8',
 					cache: false,
@@ -374,7 +390,7 @@
 				})
 				
 				$.ajax({
-					url: 'http://localhost:8000/api/Anime/Alle',
+					url: 'http://localhost:8000/api/animeListe/getDropped/' + acc,
 					method: 'get',
 					contentType: 'application/json; charset=utf-8',
 					cache: false,
@@ -388,7 +404,164 @@
 				})
 				
 				$.ajax({
-					url: 'http://localhost:8000/api/Anime/Alle',
+					url: 'http://localhost:8000/api/animeListe/getPlanning/' + acc,
+					method: 'get',
+					contentType: 'application/json; charset=utf-8',
+					cache: false,
+					dataType: 'json',
+				}).done(function (response) {
+					console.log(response);
+					RenderPlanning(response);
+				}).fail(function (jqXHR, statusText, error) {
+					console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+					$('#output').html('Ein Fehler ist aufgetreten');
+				})
+				
+				$.ajax({
+						url: 'http://localhost:8000/api/animeListe/count/' + acc + '_' + 1,
+						method: 'get',
+						contentType: 'application/json; charset=utf-8',
+						cache: false,
+						dataType: 'json',
+					}).done(function (response) {
+						console.log(response);
+						countEntrys(response, 'LabelCurrent', 'Watching (');
+					}).fail(function (jqXHR, statusText, error) {
+						console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+						$('#output').html('Ein Fehler ist aufgetreten');
+					})
+				
+				$.ajax({
+						url: 'http://localhost:8000/api/animeListe/count/' + acc + '_' + 3,
+						method: 'get',
+						contentType: 'application/json; charset=utf-8',
+						cache: false,
+						dataType: 'json',
+					}).done(function (response) {
+						console.log(response);
+						countEntrys(response, 'LabelCompleted', 'Completed (');
+					}).fail(function (jqXHR, statusText, error) {
+						console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+						$('#output').html('Ein Fehler ist aufgetreten');
+					})
+				
+				$.ajax({
+						url: 'http://localhost:8000/api/animeListe/count/' + acc + '_' + 4,
+						method: 'get',
+						contentType: 'application/json; charset=utf-8',
+						cache: false,
+						dataType: 'json',
+					}).done(function (response) {
+						console.log(response);
+						countEntrys(response, 'LabelPlanning', 'Planning (');
+					}).fail(function (jqXHR, statusText, error) {
+						console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+						$('#output').html('Ein Fehler ist aufgetreten');
+					})
+				
+				$.ajax({
+						url: 'http://localhost:8000/api/animeListe/count/' + acc + '_' + 5,
+						method: 'get',
+						contentType: 'application/json; charset=utf-8',
+						cache: false,
+						dataType: 'json',
+					}).done(function (response) {
+						console.log(response);
+						countEntrys(response, 'LabelPaused', 'Paused (');
+					}).fail(function (jqXHR, statusText, error) {
+						console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+						$('#output').html('Ein Fehler ist aufgetreten');
+					})
+				
+				$.ajax({
+						url: 'http://localhost:8000/api/animeListe/count/' + acc + '_' + 6,
+						method: 'get',
+						contentType: 'application/json; charset=utf-8',
+						cache: false,
+						dataType: 'json',
+					}).done(function (response) {
+						console.log(response);
+						countEntrys(response, 'LabelDropped', 'Dropped (');
+					}).fail(function (jqXHR, statusText, error) {
+						console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+						$('#output').html('Ein Fehler ist aufgetreten');
+					})
+			}
+
+			function RenderManga(){
+				
+				$.ajax({
+					url: 'http://localhost:8000/api/listStatus/alle/Manga',
+					method: 'get',
+					contentType: 'application/json; charset=utf-8',
+					cache: false,
+					dataType: 'json',
+				}).done(function (response) {
+					console.log(response);
+					RenderStatusListStatus(response);
+				}).fail(function (jqXHR, statusText, error) {
+					console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+					$('#output').html('Ein Fehler ist aufgetreten');
+				})
+				
+				$.ajax({
+					url: 'http://localhost:8000/api/Manga/Alle',
+					method: 'get',
+					contentType: 'application/json; charset=utf-8',
+					cache: false,
+					dataType: 'json',
+				}).done(function (response) {
+					console.log(response);
+					RenderCurrent(response);
+				}).fail(function (jqXHR, statusText, error) {
+					console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+					$('#output').html('Ein Fehler ist aufgetreten');
+				})
+				
+				$.ajax({
+					url: 'http://localhost:8000/api/Manga/Alle',
+					method: 'get',
+					contentType: 'application/json; charset=utf-8',
+					cache: false,
+					dataType: 'json',
+				}).done(function (response) {
+					console.log(response);
+					RenderCompleted(response);
+				}).fail(function (jqXHR, statusText, error) {
+					console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+					$('#output').html('Ein Fehler ist aufgetreten');
+				})
+				
+				$.ajax({
+					url: 'http://localhost:8000/api/Manga/Alle',
+					method: 'get',
+					contentType: 'application/json; charset=utf-8',
+					cache: false,
+					dataType: 'json',
+				}).done(function (response) {
+					console.log(response);
+					RenderPaused(response);
+				}).fail(function (jqXHR, statusText, error) {
+					console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+					$('#output').html('Ein Fehler ist aufgetreten');
+				})
+				
+				$.ajax({
+					url: 'http://localhost:8000/api/Manga/Alle',
+					method: 'get',
+					contentType: 'application/json; charset=utf-8',
+					cache: false,
+					dataType: 'json',
+				}).done(function (response) {
+					console.log(response);
+					RenderDropped(response);
+				}).fail(function (jqXHR, statusText, error) {
+					console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+					$('#output').html('Ein Fehler ist aufgetreten');
+				})
+				
+				$.ajax({
+					url: 'http://localhost:8000/api/Manga/Alle',
 					method: 'get',
 					contentType: 'application/json; charset=utf-8',
 					cache: false,
@@ -402,77 +575,51 @@
 				})
 			}
 
-			function RenderManga(){
-				
-				$.ajax({
-					url: 'http://localhost:8000/api/Manga/Alle',
-					method: 'get',
-					contentType: 'application/json; charset=utf-8',
-					cache: false,
-					dataType: 'json',
-				}).done(function (response) {
-					console.log(response);
-					RenderCurrent(response);
-				}).fail(function (jqXHR, statusText, error) {
-					console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
-					$('#output').html('Ein Fehler ist aufgetreten');
-				})
-				
-				$.ajax({
-					url: 'http://localhost:8000/api/Manga/Alle',
-					method: 'get',
-					contentType: 'application/json; charset=utf-8',
-					cache: false,
-					dataType: 'json',
-				}).done(function (response) {
-					console.log(response);
-					RenderCompleted(response);
-				}).fail(function (jqXHR, statusText, error) {
-					console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
-					$('#output').html('Ein Fehler ist aufgetreten');
-				})
-				
-				$.ajax({
-					url: 'http://localhost:8000/api/Manga/Alle',
-					method: 'get',
-					contentType: 'application/json; charset=utf-8',
-					cache: false,
-					dataType: 'json',
-				}).done(function (response) {
-					console.log(response);
-					RenderPaused(response);
-				}).fail(function (jqXHR, statusText, error) {
-					console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
-					$('#output').html('Ein Fehler ist aufgetreten');
-				})
-				
-				$.ajax({
-					url: 'http://localhost:8000/api/Manga/Alle',
-					method: 'get',
-					contentType: 'application/json; charset=utf-8',
-					cache: false,
-					dataType: 'json',
-				}).done(function (response) {
-					console.log(response);
-					RenderDropped(response);
-				}).fail(function (jqXHR, statusText, error) {
-					console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
-					$('#output').html('Ein Fehler ist aufgetreten');
-				})
-				
-				$.ajax({
-					url: 'http://localhost:8000/api/Manga/Alle',
-					method: 'get',
-					contentType: 'application/json; charset=utf-8',
-					cache: false,
-					dataType: 'json',
-				}).done(function (response) {
-					console.log(response);
-					RenderPlanning(response);
-				}).fail(function (jqXHR, statusText, error) {
-					console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
-					$('#output').html('Ein Fehler ist aufgetreten');
-				})
+			function countEntrys(result, id, text){
+				document.getElementById(id).innerHTML = text + result + ')'
+			}
+			
+			function RenderStatusListStatus(arr) {
+				console.log(arr);
+				var select = document.getElementById("ListStatus");
+
+				for (var i = 0; i <arr.length; i++){
+					var opt = document.createElement("option");
+					opt.value = arr[i].id;
+					opt.innerHTML = arr[i].ListStatus;
+					select.appendChild(opt);
+				}
+			}
+
+			function AddEntryToList(){
+
+				var user = ""
+
+				if (user = getJSONSessionItem("Account").benutzername){
+
+					var listStatusUser = document.getElementById('ListStatus').value
+					var entryID = document.getElementById('ListStatus').name
+
+					var obj = { "User": user, "ListStatusUser": listStatusUser, "EntryID": entryID}
+
+					$.ajax({
+						url: 'http://localhost:8000/api/animeListe/status/add',
+						method: 'post',
+						contentType: 'application/json; charset=utf-8',
+						cache: false,
+						data: JSON.stringify(obj),
+					})
+					.done(function() {
+						consol.log('eintragInfo eingetragen')
+					})
+					.fail(function(xhr){
+						console.log('error recieved');
+						console.log(xhr);
+						console.log(xhr.status);
+						alert(xhr.responseText);
+					})
+				}
+
 			}
 
 			function RenderGenreOptions(arr) {
@@ -567,13 +714,13 @@
 					clearTables()
 					document.getElementById('LabelCurrent').innerHTML = "Reading"
 					hideLists()
-
+					
 					RenderManga()
 				}
 			}
 
 			function clearTables(){
-
+				
 				table1 = document.getElementById('Current')
 				table1.parentNode.removeChild(table1)
 
@@ -588,6 +735,10 @@
 
 				table5 = document.getElementById('Planning')
 				table5.parentNode.removeChild(table5)
+
+				for(var i = 5; i > 0; i--) {
+					document.getElementById('ListStatus').remove(i);
+				}
 			}
 
 			function hideLists(){
@@ -796,7 +947,7 @@
 				
 				var table = document.createElement("table");
 				document.getElementById("TablePlaceCurrent").appendChild(table).setAttribute("id", "Current")
-				document.getElementById("Current").classList.add("pictureTable")
+				document.getElementById("Current").classList.add("pictureTableList")
 
 				RenderTable(arr, table)
 			}
@@ -805,16 +956,16 @@
 				
 				var table = document.createElement("table");
 				document.getElementById("TablePlaceCompleted").appendChild(table).setAttribute("id", "Completed")
-				document.getElementById("Completed").classList.add("pictureTable")
+				document.getElementById("Completed").classList.add("pictureTableList")
 
-				RenderTable(arr, table)
+				RenderTableC(arr, table)
 			}
 
 			function RenderPaused(arr){
 				
 				var table = document.createElement("table");
 				document.getElementById("TablePlacePaused").appendChild(table).setAttribute("id", "Paused")
-				document.getElementById("Paused").classList.add("pictureTable")
+				document.getElementById("Paused").classList.add("pictureTableList")
 
 				RenderTable(arr, table)
 			}
@@ -823,7 +974,7 @@
 				
 				var table = document.createElement("table");
 				document.getElementById("TablePlaceDropped").appendChild(table).setAttribute("id", "Dropped")
-				document.getElementById("Dropped").classList.add("pictureTable")
+				document.getElementById("Dropped").classList.add("pictureTableList")
 
 				RenderTable(arr, table)
 			}
@@ -832,13 +983,12 @@
 				
 				var table = document.createElement("table");
 				document.getElementById("TablePlacePlanning").appendChild(table).setAttribute("id", "Planning")
-				document.getElementById("Planning").classList.add("pictureTable")
+				document.getElementById("Planning").classList.add("pictureTableList")
 
 				RenderTable(arr, table)
 			}
 
 			function RenderTable(arr, table){
-				var zaehler = 0;
 				
 				$(arr).each(function(idx, item){
 
@@ -847,46 +997,95 @@
 					if(animeName.length > 30){
 						animeName = animeName.substr(0,25) + '...'
 					}
+					
+					row = table.insertRow();
+					A = row.insertCell(); //cover
+					B = row.insertCell(); //romaji
+					B.setAttribute("Width", "800px")
+					C = row.insertCell(); //progress
+					C.setAttribute("Width", "100px")
+					D = row.insertCell(); //format
 
-					if(zaehler == 6) {
-						zaehler = 0;	
-					}
-					
-					if(zaehler == 0){
-						row = table.insertRow();
-						A = row.insertCell();
-						B = row.insertCell();
-						C = row.insertCell();
-						D = row.insertCell();
-						E = row.insertCell();
-						zaehler += 1;
-					}
-					
-					if(zaehler == 1) {
-						A.innerHTML = '<image class="schatten" src="' + item.cover + '" width="215" height="300" onclick="ShowEntry(' + item.id + ')" onmouseover="ChangeColorOver(' + item.id + ')" onmouseout="ChangeColorOut(' + item.id + ')"><p><label onclick="ShowEntry(' + item.id + ')" onmouseover="ChangeColorOver(' + item.id + ')" onmouseout="ChangeColorOut(' + item.id + ')" id="' + item.id + '">' + animeName + '</label>';
-						}
-					if(zaehler == 2) {
-						B.innerHTML = '<image class="schatten" src="' + item.cover + '" width="215" height="300" onclick="ShowEntry(' + item.id + ')" onmouseover="ChangeColorOver(' + item.id + ')" onmouseout="ChangeColorOut(' + item.id + ')"><p><label onclick="ShowEntry(' + item.id + ')" onmouseover="ChangeColorOver(' + item.id + ')" onmouseout="ChangeColorOut(' + item.id + ')" id="' + item.id + '">' + animeName + '</label>';
-						}
-					if(zaehler == 3) {
-						C.innerHTML = '<image class="schatten" src="' + item.cover + '" width="215" height="300" onclick="ShowEntry(' + item.id + ')" onmouseover="ChangeColorOver(' + item.id + ')" onmouseout="ChangeColorOut(' + item.id + ')"><p><label onclick="ShowEntry(' + item.id + ')" onmouseover="ChangeColorOver(' + item.id + ')" onmouseout="ChangeColorOut(' + item.id + ')" id="' + item.id + '">' + animeName + '</label>';
-						}
-					if(zaehler == 4) {
-						D.innerHTML = '<image class="schatten" src="' + item.cover + '" width="215" height="300" onclick="ShowEntry(' + item.id + ')" onmouseover="ChangeColorOver(' + item.id + ')" onmouseout="ChangeColorOut(' + item.id + ')"><p><label onclick="ShowEntry(' + item.id + ')" onmouseover="ChangeColorOver(' + item.id + ')" onmouseout="ChangeColorOut(' + item.id + ')" id="' + item.id + '">' + animeName + '</label>';
-						}
-					if(zaehler == 5) {
-						E.innerHTML = '<image class="schatten" src="' + item.cover + '" width="215" height="300" onclick="ShowEntry(' + item.id + ')" onmouseover="ChangeColorOver(' + item.id + ')" onmouseout="ChangeColorOut(' + item.id + ')"><p><label onclick="ShowEntry(' + item.id + ')" onmouseover="ChangeColorOver(' + item.id + ')" onmouseout="ChangeColorOut(' + item.id + ')" id="' + item.id + '">' + animeName + '</label>';
-						}
-					zaehler += 1;
+					A.innerHTML = '<image class="schatten" src="' + item.cover + '" width="54" height="75" onclick="ShowEntry(' + item.id + ')" onmouseover="ChangeColorOver(' + item.id + ')" onmouseout="ChangeColorOut(' + item.id + ')"></image>'
+					B.innerHTML = '<label onclick="ShowEntry(' + item.id + ')" onmouseover="ChangeColorOver(' + item.id + ')" onmouseout="ChangeColorOut(' + item.id + ')" id="' + item.id + '1">' + animeName + '</label>';
+					C.innerHTML = '<label onclick="" onmouseover="ChangeColorOver(' + item.id + ')" onmouseout="ChangeColorOut(' + item.id + ')" id="' + item.id + '2">' + '<label id="+' + item.id + '" onclick="addFolge(' + item.id + ', ' + item.folgenanzahl + ')"> + </label> <label id="folgen' + item.id + '">' + item.folgen + '</label>/' + item.folgenanzahl + '</label>';
+					D.innerHTML = '<label onmouseover="ChangeColorOver(' + item.id + ')" onmouseout="ChangeColorOut(' + item.id + ')" id="' + item.id + '3">' + item.format + '</label>';
 				})
 			}
 
+			function RenderTableC(arr, table){
+				
+				$(arr).each(function(idx, item){
+
+					animeName = item.romaji;
+
+					if(animeName.length > 30){
+						animeName = animeName.substr(0,25) + '...'
+					}
+					
+					row = table.insertRow();
+					A = row.insertCell(); //cover
+					B = row.insertCell(); //romaji
+					B.setAttribute("Width", "800px")
+					C = row.insertCell(); //progress
+					C.setAttribute("Width", "100px")
+					D = row.insertCell(); //format
+
+					A.innerHTML = '<image class="schatten" src="' + item.cover + '" width="54" height="75" onclick="ShowEntry(' + item.id + ')" onmouseover="ChangeColorOver(' + item.id + ')" onmouseout="ChangeColorOut(' + item.id + ')"></image>'
+					B.innerHTML = '<label onclick="ShowEntry(' + item.id + ')" onmouseover="ChangeColorOver(' + item.id + ')" onmouseout="ChangeColorOut(' + item.id + ')" id="' + item.id + '1">' + animeName + '</label>';
+					C.innerHTML = '<label onclick="" onmouseover="ChangeColorOver(' + item.id + ')" onmouseout="ChangeColorOut(' + item.id + ')" id="' + item.id + '2">' + '<label id="folgen' + item.id + '">' + item.folgen + '</label>/' + item.folgenanzahl + '</label>';
+					D.innerHTML = '<label onmouseover="ChangeColorOver(' + item.id + ')" onmouseout="ChangeColorOut(' + item.id + ')" id="' + item.id + '3">' + item.format + '</label>';
+				})
+			}
+
+			function addFolge(animeid, folgenanzahl) {
+
+				var userid = getJSONSessionItem("Account").id
+				var a = 'folgen' + animeid
+				var folgen = document.getElementById(a).innerHTML
+
+				$.ajax({
+					url: 'http://localhost:8000/api/animeListe/addFolge/' + folgen + '_' + animeid + '_' + userid,
+					method: 'get',
+					contentType: 'application/json; charset=utf-8',
+					cache: false,
+					dataType: 'json',
+				}).done(function (response) {
+					console.log(response);
+					updateFolgen(response, animeid, folgenanzahl);
+				}).fail(function (jqXHR, statusText, error) {
+					console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+					$('#output').html('Ein Fehler ist aufgetreten');
+				})
+			}
+
+			function updateFolgen(newFolgen, animeid, folgenanzahl){
+				var a = 'folgen' + animeid
+				document.getElementById(a).innerHTML = newFolgen
+				if(newFolgen == folgenanzahl){
+					var b = '+' + animeid
+					document.getElementById(b).innerHTML = ''
+				}else{
+					var b = '+' + animeid
+					document.getElementById(b).innerHTML = '+'}
+			}
+
 			function ChangeColorOver (id){
-				document.getElementById(id).style.color = "red"
+				var id1 = id + '1'
+				var id2 = id + '2'
+				var id3 = id + '3'
+				document.getElementById(id1).style.color = "red"
+				document.getElementById(id2).style.color = "red"
+				document.getElementById(id3).style.color = "red"
 			}
 
 			function ChangeColorOut (id){
-				document.getElementById(id).style.color = "black"
+				var id1 = id + '1'
+				var id2 = id + '2'
+				var id3 = id + '3'
+				document.getElementById(id1).style.color = "black"
+				document.getElementById(id2).style.color = "black"
+				document.getElementById(id3).style.color = "black"
 			}
 
 			function ShowEntry(id){
