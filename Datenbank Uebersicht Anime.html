@@ -73,7 +73,7 @@
 						<img src="Bilder\Genres\Romance.png" class="genreAuswahl13" id="Romance" value="1" onclick="GenreSelectRemove(14)"></img>
 						<img src="Bilder\Genres\Sci-Fi.png" class="genreAuswahl14" id="Sci-Fi" value="1" onclick="GenreSelectRemove(15)"></img>
 						<img src="Bilder\Genres\SliceOfLife.png" class="genreAuswahl15" id="SliceOfLife" value="1" onclick="GenreSelectRemove(16)"></img>
-						<img src="Bilder\Genres\Sport.png" class="genreAuswahl16" id="Sport" value="1" onclick="GenreSelectRemove(17)"></img>
+						<img src="Bilder\Genres\Sports.png" class="genreAuswahl16" id="Sport" value="1" onclick="GenreSelectRemove(17)"></img>
 						<img src="Bilder\Genres\Supernatural.png" class="genreAuswahl17" id="Supernatural" value="1" onclick="GenreSelectRemove(18)"></img>
 						<img src="Bilder\Genres\Thriller.png" class="genreAuswahl18" id="Thriller" value="1" onclick="GenreSelectRemove(19)"></img>
 					</section>
@@ -728,6 +728,8 @@
 			}
 
 			function ShowEntry(id){
+
+				setSessionItem("id", id)
 					
 				$.ajax({
 					url: 'http://localhost:8000/api/Anime/gib/'+ id,
@@ -778,7 +780,7 @@
 				TransparentBox.style.visibility="visible"
 				if (getJSONSessionItem("Account").adminid == 1) {
 						document.getElementById("delete").style.visibility = "visible";
-				}
+					}
 			}
 
 			function getAnimeListStatus(id){
@@ -870,6 +872,10 @@
 					})
 				}
 
+			}
+
+			function Delete() {
+				console.log(getSessionItem("id"));
 			}
 
 		</script>
