@@ -39,6 +39,138 @@ class AnimeListeDao {
         return result;
     }
 
+    count(arr) {
+        var userid = arr[0]
+        var animeid = arr[1]
+        var sql = 'SELECT count(id) FROM animeliste WHERE accountid = ? AND liststatusid = ?';
+        var statement = this._conn.prepare(sql);
+        var params = [userid, animeid];
+        var result = statement.get(params);
+        var a = Object.values(result)
+
+        if (helper.isUndefined(result))
+            return false;
+
+        return a;
+    }
+
+    loadWatching(userid) {
+        var sql = 'SELECT anime.id, romaji, folgen, format, folgenanzahl, cover FROM Animeliste INNER JOIN Anime ON animeid = anime.id INNER JOIN eintraginfo ON eintragid = eintraginfo.id INNER JOIN Format ON eintraginfo.formatid = Format.id WHERE accountid = ? AND liststatusid = 1';
+        var statement = this._conn.prepare(sql);
+        var params = [userid];
+        var result = statement.all(params);
+
+        if (helper.isArrayEmpty(result)) 
+            return [];
+
+        return result;
+    }
+
+    loadCompleted(userid) {
+        var sql = 'SELECT anime.id, romaji, folgen, format, folgenanzahl, cover FROM Animeliste INNER JOIN Anime ON animeid = anime.id INNER JOIN eintraginfo ON eintragid = eintraginfo.id INNER JOIN Format ON eintraginfo.formatid = Format.id WHERE accountid = ? AND liststatusid = 3';
+        var statement = this._conn.prepare(sql);
+        var params = [userid];
+        var result = statement.all(params);
+
+        if (helper.isArrayEmpty(result)) 
+            return [];
+
+        return result;
+    }
+
+    loadPlanning(userid) {
+        var sql = 'SELECT anime.id, romaji, folgen, format, folgenanzahl, cover FROM Animeliste INNER JOIN Anime ON animeid = anime.id INNER JOIN eintraginfo ON eintragid = eintraginfo.id INNER JOIN Format ON eintraginfo.formatid = Format.id WHERE accountid = ? AND liststatusid = 4';
+        var statement = this._conn.prepare(sql);
+        var params = [userid];
+        var result = statement.all(params);
+
+        if (helper.isArrayEmpty(result)) 
+            return [];
+
+        return result;
+    }
+
+    loadPaused(userid) {
+        var sql = 'SELECT anime.id, romaji, folgen, format, folgenanzahl, cover FROM Animeliste INNER JOIN Anime ON animeid = anime.id INNER JOIN eintraginfo ON eintragid = eintraginfo.id INNER JOIN Format ON eintraginfo.formatid = Format.id WHERE accountid = ? AND liststatusid = 5';
+        var statement = this._conn.prepare(sql);
+        var params = [userid];
+        var result = statement.all(params);
+
+        if (helper.isArrayEmpty(result)) 
+            return [];
+
+        return result;
+    }
+
+    loadDropped(userid) {
+        var sql = 'SELECT anime.id, romaji, folgen, format, folgenanzahl, cover FROM Animeliste INNER JOIN Anime ON animeid = anime.id INNER JOIN eintraginfo ON eintragid = eintraginfo.id INNER JOIN Format ON eintraginfo.formatid = Format.id WHERE accountid = ? AND liststatusid = 6';
+        var statement = this._conn.prepare(sql);
+        var params = [userid];
+        var result = statement.all(params);
+
+        if (helper.isArrayEmpty(result)) 
+            return [];
+
+        return result;
+    }
+
+    addFolge(arr) {
+
+        console.log(arr)
+        var folgen = parseInt(arr[0]) + 1
+        var animeid = arr[1]
+        var userid = arr[2]
+        var sql = 'UPDATE animeliste set folgen = ? WHERE animeid = ? AND accountid = ?';
+        var statement = this._conn.prepare(sql);
+        var params = [folgen, animeid, userid];
+        var result = statement.run(params);
+
+        if (result.changes != 1) 
+            throw new Error('Could not update existing Record. Data: ' + params);
+    }
+
+    getFolge(arr) {
+        var animeid = arr[1]
+        var userid = arr[2]
+        var sql = 'SELECT folgen FROM animeliste WHERE animeid = ? AND accountid = ?';
+        var statement = this._conn.prepare(sql);
+        var params = [animeid, userid];
+        var result = statement.get(params);
+        var a = Object.values(result);
+
+        return a;
+    }
+
+    getListStatus(arr) {
+        var animeid = arr[1]
+        var userid = arr[2]
+        var sql = 'SELECT liststatusid FROM animeliste WHERE animeid = ? AND accountid = ?';
+        var statement = this._conn.prepare(sql);
+        var params = [animeid, userid];
+        var result = statement.get(params);
+        var a = Object.values(result);
+
+        return a;
+    }
+
+    updateListStatus(arr){
+        var animeid = arr[1]
+        var userid = arr[2]
+        var sql = 'UPDATE animeliste set liststatusid = 3 WHERE animeid = ? AND accountid = ?';
+        var statement = this._conn.prepare(sql);
+        var params = [animeid, userid];
+        statement.run(params);
+    }
+
+    updateListStatusOther(arr){
+        var animeid = arr[1]
+        var userid = arr[2]
+        var sql = 'UPDATE animeliste set liststatusid = 1 WHERE animeid = ? AND accountid = ?';
+        var statement = this._conn.prepare(sql);
+        var params = [animeid, userid];
+        statement.run(params);
+    }
+
     loadById(id) {
         var sql = 'SELECT * FROM AnimeListe WHERE id=?';
         var statement = this._conn.prepare(sql);
@@ -81,9 +213,21 @@ class AnimeListeDao {
     }
 
     create(accountid, animeid, liststatusid) {
-        var sql = 'INSERT INTO AnimeListe (accountid, animeid, liststatusid) VALUES (?,?,?)';
+        var sql = 'INSERT INTO AnimeListe (accountid, animeid, liststatusid, folgen) VALUES (?,?,?,0)';
         var statement = this._conn.prepare(sql);
         var params = [accountid, animeid, liststatusid];
+        var result = statement.run(params);
+
+        if (result === undefined) 
+            return false;
+
+        return this.loadById(result.lastInsertRowid);
+    }
+
+    createF(accountid, animeid, liststatusid, folgen) {
+        var sql = 'INSERT INTO AnimeListe (accountid, animeid, liststatusid, folgen) VALUES (?,?,?,?)';
+        var statement = this._conn.prepare(sql);
+        var params = [accountid, animeid, liststatusid, folgen];
         var result = statement.run(params);
 
         if (result === undefined) 
