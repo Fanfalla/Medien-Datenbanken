@@ -715,6 +715,8 @@
 			}
 
 			function ShowEntry(id){
+
+				setSessionItem("id", id);
 					
 				$.ajax({
 					url: 'http://localhost:8000/api/Anime/gib/'+ id,
@@ -853,7 +855,7 @@
 						data: JSON.stringify(obj),
 					})
 					.done(function() {
-						consol.log('eintragInfo eingetragen')
+						console.log('eintragInfo eingetragen')
 					})
 					.fail(function(xhr){
 						console.log('error recieved');
@@ -863,6 +865,78 @@
 					})
 				}
 
+			}
+
+			function Delete() {
+				/*Delete Eintrag aus AnimeListe*/
+				var id = getSessionItem("id");
+				$.ajax({
+						url: 'http://localhost:8000/api/animeListe/delete/' + id,
+						method: 'delete',
+						contentType: 'application/json; charset=utf-8',
+						cache: false,
+				})
+				.done(function() {
+					console.log('Eintrag gelöscht')
+				})
+				.fail(function(xhr){
+					console.log('error recieved');
+					console.log(xhr);
+					console.log(xhr.status);
+					alert(xhr.responseText);
+				})
+
+				/*Delete Eintrag aus AnimeEintragGerne*/
+				$.ajax({
+					url: 'http://localhost:8000/api/animeEintragGenre/delete/' + id,
+					method: 'delete',
+					contentType: 'application/json; charset=utf-8',
+					cache: false,
+				})
+				.done(function() {
+					console.log('Eintrag gelöscht')
+				})
+				.fail(function(xhr){
+					console.log('error recieved');
+					console.log(xhr);
+					console.log(xhr.status);
+					alert(xhr.responseText);
+				})
+
+				/*Delete Eintrag aus Anime*/
+				$.ajax({
+					url: 'http://localhost:8000/api/anime/' + id,
+					method: 'delete',
+					contentType: 'application/json; charset=utf-8',
+					cache: false,
+				})
+				.done(function() {
+					console.log('Eintrag gelöscht')
+				})
+				.fail(function(xhr){
+					console.log('error recieved');
+					console.log(xhr);
+					console.log(xhr.status);
+					alert(xhr.responseText);
+				})
+
+				/*Delete Eintrag aus EintragInfo*/
+				$.ajax({
+					url: 'http://localhost:8000/api/anime/delete' + id,
+					
+					method: 'delete',
+					contentType: 'application/json; charset=utf-8',
+					cache: false,
+				})
+				.done(function() {
+					console.log('Eintrag gelöscht')
+				})
+				.fail(function(xhr){
+					console.log('error recieved');
+					console.log(xhr);
+					console.log(xhr.status);
+					alert(xhr.responseText);
+				})
 			}
 
 		</script>

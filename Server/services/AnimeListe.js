@@ -258,4 +258,21 @@ serviceRouter.delete('/animeListe/:id', function(request, response) {
     }
 });
 
+serviceRouter.delete('/animeListe/delete/:id', function(request, response) {
+    console.log('Service AnimeListe: Client requested deletion of record, animeid=' + request.params.id);
+
+    const animeListeDao = new AnimeListeDao(request.app.locals.dbConnection);
+    try {
+        if (animeListeDao.existsAnimeId(request.params.id)) {
+            var obj = animeListeDao.loadByAnimeId(request.params.id);
+            animeListeDao.deleteAnimeId(request.params.id);
+            console.log('Service AnimeListe: Deletion of record successfull, id=' + request.params.id);
+            response.status(200).json({ 'gelöscht': true, 'eintrag': obj });
+        }
+    } catch (ex) {
+        console.error('Service AnimeListe: Error deleting record. Exception occured: ' + ex.message);
+        response.status(400).json({ 'fehler': true, 'nachricht': ex.message });
+    }
+});
+
 module.exports = serviceRouter;
