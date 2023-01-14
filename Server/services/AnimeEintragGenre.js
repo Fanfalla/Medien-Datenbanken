@@ -150,4 +150,19 @@ serviceRouter.delete('/animeEintragGenre/:id', function(request, response) {
     }
 });
 
+serviceRouter.delete('/animeEintragGenre/delete/:id', function(request, response) {
+    console.log('Service AnimeEintragGenre: Client requested deletion of record, id=' + request.params.id);
+
+    const animeEintragGenreDao = new AnimeEintragGenreDao(request.app.locals.dbConnection);
+    try {
+        var obj = animeEintragGenreDao.loadByAnimeEintragId(request.params.id);
+        animeEintragGenreDao.deleteAnimeEintragId(request.params.id);
+        console.log('Service AnimeEintragGenre: Deletion of record successfull, id=' + request.params.id);
+        response.status(200).json({ 'gelöscht': true, 'eintrag': obj });
+    } catch (ex) {
+        console.error('Service AnimeEintragGenre: Error deleting record. Exception occured: ' + ex.message);
+        response.status(400).json({ 'fehler': true, 'nachricht': ex.message });
+    }
+});
+
 module.exports = serviceRouter;
