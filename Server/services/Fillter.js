@@ -41,4 +41,22 @@ serviceRouter.get('/Fillter/SortGenreManga/:id', function(request, response) {
     }
 });
 
+serviceRouter.get('/Fillter/SortGenreAnimeList/:id', function(request, response) {
+    console.log('Service AnimeEintragGenre: Client requested the records');
+
+    var a = request.params.id
+    var b = a.split('_')
+    console.log(b)
+
+    const fillterDao = new FillterDao(request.app.locals.dbConnection);
+    try {
+        var arr = fillterDao.FilterAnimeList(b);
+        console.log('Service AnimeEintragGenre: Records loaded, count=' + arr.length);
+        response.status(200).json(arr);
+    } catch (ex) {
+        console.error('Service AnimeEintragGenre: Error loading all records. Exception occured: ' + ex.message);
+        response.status(400).json({ 'fehler': true, 'nachricht': ex.message });
+    }
+});
+
 module.exports = serviceRouter;
