@@ -182,6 +182,17 @@ class AnimeListeDao {
         return result;
     }
 
+    loadByAnimeId(id) {
+        var sql = 'SELECT * FROM AnimeListe WHERE animeid=?';
+        var statement = this._conn.prepare(sql);
+        var result = statement.get(id);
+
+        if (helper.isUndefined(result)) 
+            throw new Error('No Record found by id=' + id);
+
+        return result;
+    }
+
     loadAll() {
         var sql = 'SELECT * FROM AnimeListe';
         var statement = this._conn.prepare(sql);
@@ -199,6 +210,17 @@ class AnimeListeDao {
         var result = statement.get(id);
 
         if (result.cnt == 1) 
+            return true;
+
+        return false;
+    }
+
+    existsAnimeId(id) {
+        var sql = 'SELECT COUNT(id) AS cnt FROM AnimeListe WHERE animeid=?';
+        var statement = this._conn.prepare(sql);
+        var result = statement.get(id);
+
+        if (result.cnt >= 1) 
             return true;
 
         return false;
@@ -273,6 +295,21 @@ class AnimeListeDao {
             return true;
         } catch (ex) {
             throw new Error('Could not delete anime= ' + animeid + ' from user= ' + userid + '. Reason: ' + ex.message);
+        }
+    }
+
+    deleteAnimeId(animeid) {
+        try {
+            var sql = 'DELETE FROM AnimeListe WHERE animeid = ?';
+            var statement = this._conn.prepare(sql);
+            var result = statement.run(animeid);
+
+            if (result.changes == 0) 
+                throw new Error('Could not delete anime= ' + animeid);
+
+            return true;
+        } catch (ex) {
+            throw new Error('Could not delete anime= ' + animeid + '. Reason: ' + ex.message);
         }
     }
 

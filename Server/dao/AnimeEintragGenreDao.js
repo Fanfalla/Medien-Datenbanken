@@ -21,6 +21,17 @@ class AnimeEintragGenreDao {
         return result;
     }
 
+    loadByAnimeEintragId(id) {
+        var sql = 'SELECT * FROM AnimeEintragGenre WHERE animeeintragid=?';
+        var statement = this._conn.prepare(sql);
+        var result = statement.get(id);
+
+        if (helper.isUndefined(result)) 
+            throw new Error('No Record found by animeeintragid=' + id);
+
+        return result;
+    }
+
     loadAll() {
         var sql = 'SELECT * FROM AnimeEintragGenre';
         var statement = this._conn.prepare(sql);
@@ -96,6 +107,21 @@ class AnimeEintragGenreDao {
             return true;
         } catch (ex) {
             throw new Error('Could not delete Record by id=' + id + '. Reason: ' + ex.message);
+        }
+    }
+
+    deleteAnimeEintragId(id) {
+        try {
+            var sql = 'DELETE FROM animeeintraggenre WHERE animeeintragid=?';
+            var statement = this._conn.prepare(sql);
+            var result = statement.run(id);
+
+            if (result.changes == 0) 
+                throw new Error('Could not delete Record by animeeintragid=' + id);
+
+            return true;
+        } catch (ex) {
+            throw new Error('Could not delete Record by animeeintragid=' + id + '. Reason: ' + ex.message);
         }
     }
 
