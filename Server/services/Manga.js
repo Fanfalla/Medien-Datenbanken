@@ -125,4 +125,18 @@ serviceRouter.delete('/manga/:id', function(request, response) {
     }
 });
 
+serviceRouter.get('/manga/gib/eintragid/:id', function(request, response) {
+    console.log('Service Manga: Client requested eintragid with id=' + request.params.id);
+
+    const mangaDao = new MangaDao(request.app.locals.dbConnection);
+    try {
+        var obj = mangaDao.loadEintragId(request.params.id);
+        console.log('Service Manga: EintragId loaded');
+        response.status(200).json(obj);
+    } catch (ex) {
+        console.error('Service Manga: Error loading record by id. Exception occured: ' + ex.message);
+        response.status(400).json({ 'fehler': true, 'nachricht': ex.message });
+    }
+});
+
 module.exports = serviceRouter;

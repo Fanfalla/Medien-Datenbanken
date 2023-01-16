@@ -21,6 +21,17 @@ class AnimeDao {
         return result;
     }
 
+    loadEintragId(id) {
+        var sql = 'SELECT eintragid FROM Anime WHERE id=?';
+        var statement = this._conn.prepare(sql);
+        var result = statement.get(id);
+
+        if (helper.isUndefined(result)) 
+            throw new Error('No Record found by id=' + id);
+
+        return result;
+    }
+
     AnimeExists(romaji = '') {
         var sql = 'SELECT * FROM Anime INNER JOIN EintragInfo ON Anime.eintragid = EintragInfo.id  WHERE romaji=?';
         var statement = this._conn.prepare(sql);

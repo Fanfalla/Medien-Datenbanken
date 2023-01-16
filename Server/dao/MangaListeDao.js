@@ -38,6 +38,17 @@ class MangaListeDao {
         return result;
     }
 
+    loadByMangaId(id) {
+        var sql = 'SELECT * FROM MangaListe WHERE mangaid=?';
+        var statement = this._conn.prepare(sql);
+        var result = statement.get(id);
+
+        if (helper.isUndefined(result)) 
+            throw new Error('No Record found by mangaid=' + id);
+
+        return result;
+    }
+
     loadByUserAndName(userid, mangaid) {
         var sql = 'SELECT * FROM Mangaliste WHERE accountid = ? AND mangaid = ?';
         var statement = this._conn.prepare(sql);
@@ -67,6 +78,17 @@ class MangaListeDao {
         var result = statement.get(id);
 
         if (result.cnt == 1) 
+            return true;
+
+        return false;
+    }
+
+    existsMangaId(id) {
+        var sql = 'SELECT COUNT(id) AS cnt FROM MangaListe WHERE mangaid=?';
+        var statement = this._conn.prepare(sql);
+        var result = statement.get(id);
+
+        if (result.cnt >= 1) 
             return true;
 
         return false;
@@ -141,6 +163,21 @@ class MangaListeDao {
             return true;
         } catch (ex) {
             throw new Error('Could not delete manga= ' + mangaid + ' from user= ' + userid + '. Reason: ' + ex.message);
+        }
+    }
+
+    deleteMangaId(mangaid) {
+        try {
+            var sql = 'DELETE FROM MangaListe WHERE mangaid = ?';
+            var statement = this._conn.prepare(sql);
+            var result = statement.run(mangaid);
+
+            if (result.changes == 0) 
+                throw new Error('Could not delete manga= ' + mangaid);
+
+            return true;
+        } catch (ex) {
+            throw new Error('Could not delete manga= ' + mangaid + '. Reason: ' + ex.message);
         }
     }
 

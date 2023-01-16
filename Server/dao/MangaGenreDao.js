@@ -21,6 +21,18 @@ class MangaGenreDao {
         return result;
     }
 
+    
+    loadByMangaId(id) {
+        var sql = 'SELECT * FROM MangaGenre WHERE mangaid=?';
+        var statement = this._conn.prepare(sql);
+        var result = statement.get(id);
+
+        if (helper.isUndefined(result)) 
+            throw new Error('No Record found by mangaid=' + id);
+
+        return result;
+    }
+
     loadAll() {
         var sql = 'SELECT * FROM MangaGenre';
         var statement = this._conn.prepare(sql);
@@ -96,6 +108,21 @@ class MangaGenreDao {
             return true;
         } catch (ex) {
             throw new Error('Could not delete Record by id=' + id + '. Reason: ' + ex.message);
+        }
+    }
+
+    deleteMangaEintragId(id) {
+        try {
+            var sql = 'DELETE FROM mangagenre WHERE mangaid=?';
+            var statement = this._conn.prepare(sql);
+            var result = statement.run(id);
+
+            if (result.changes == 0) 
+                throw new Error('Could not delete Record by mangaid=' + id);
+
+            return true;
+        } catch (ex) {
+            throw new Error('Could not delete Record by mangaid=' + id + '. Reason: ' + ex.message);
         }
     }
 

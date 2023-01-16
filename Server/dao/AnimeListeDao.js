@@ -188,7 +188,7 @@ class AnimeListeDao {
         var result = statement.get(id);
 
         if (helper.isUndefined(result)) 
-            throw new Error('No Record found by id=' + id);
+            throw new Error('No Record found by mangaid=' + id);
 
         return result;
     }
