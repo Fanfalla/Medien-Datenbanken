@@ -55,7 +55,7 @@ class AnimeListeDao {
     }
 
     loadWatching(userid) {
-        var sql = 'SELECT anime.id, romaji, folgen, format, folgenanzahl, cover FROM Animeliste INNER JOIN Anime ON animeid = anime.id INNER JOIN eintraginfo ON eintragid = eintraginfo.id INNER JOIN Format ON eintraginfo.formatid = Format.id WHERE accountid = ? AND liststatusid = 1';
+        var sql = 'SELECT anime.id, romaji, folgen, format, folgenanzahl, cover FROM Animeliste INNER JOIN Anime ON animeid = anime.id INNER JOIN eintraginfo ON eintragid = eintraginfo.id INNER JOIN Format ON eintraginfo.formatid = Format.id WHERE accountid = ? AND liststatusid = 1 ORDER BY romaji';
         var statement = this._conn.prepare(sql);
         var params = [userid];
         var result = statement.all(params);
@@ -67,7 +67,7 @@ class AnimeListeDao {
     }
 
     loadCompleted(userid) {
-        var sql = 'SELECT anime.id, romaji, folgen, format, folgenanzahl, cover FROM Animeliste INNER JOIN Anime ON animeid = anime.id INNER JOIN eintraginfo ON eintragid = eintraginfo.id INNER JOIN Format ON eintraginfo.formatid = Format.id WHERE accountid = ? AND liststatusid = 3';
+        var sql = 'SELECT anime.id, romaji, folgen, format, folgenanzahl, cover FROM Animeliste INNER JOIN Anime ON animeid = anime.id INNER JOIN eintraginfo ON eintragid = eintraginfo.id INNER JOIN Format ON eintraginfo.formatid = Format.id WHERE accountid = ? AND liststatusid = 3 ORDER BY romaji';
         var statement = this._conn.prepare(sql);
         var params = [userid];
         var result = statement.all(params);
@@ -79,7 +79,7 @@ class AnimeListeDao {
     }
 
     loadPlanning(userid) {
-        var sql = 'SELECT anime.id, romaji, folgen, format, folgenanzahl, cover FROM Animeliste INNER JOIN Anime ON animeid = anime.id INNER JOIN eintraginfo ON eintragid = eintraginfo.id INNER JOIN Format ON eintraginfo.formatid = Format.id WHERE accountid = ? AND liststatusid = 4';
+        var sql = 'SELECT anime.id, romaji, folgen, format, folgenanzahl, cover FROM Animeliste INNER JOIN Anime ON animeid = anime.id INNER JOIN eintraginfo ON eintragid = eintraginfo.id INNER JOIN Format ON eintraginfo.formatid = Format.id WHERE accountid = ? AND liststatusid = 4 ORDER BY romaji';
         var statement = this._conn.prepare(sql);
         var params = [userid];
         var result = statement.all(params);
@@ -91,7 +91,7 @@ class AnimeListeDao {
     }
 
     loadPaused(userid) {
-        var sql = 'SELECT anime.id, romaji, folgen, format, folgenanzahl, cover FROM Animeliste INNER JOIN Anime ON animeid = anime.id INNER JOIN eintraginfo ON eintragid = eintraginfo.id INNER JOIN Format ON eintraginfo.formatid = Format.id WHERE accountid = ? AND liststatusid = 5';
+        var sql = 'SELECT anime.id, romaji, folgen, format, folgenanzahl, cover FROM Animeliste INNER JOIN Anime ON animeid = anime.id INNER JOIN eintraginfo ON eintragid = eintraginfo.id INNER JOIN Format ON eintraginfo.formatid = Format.id WHERE accountid = ? AND liststatusid = 5 ORDER BY romaji';
         var statement = this._conn.prepare(sql);
         var params = [userid];
         var result = statement.all(params);
@@ -103,7 +103,7 @@ class AnimeListeDao {
     }
 
     loadDropped(userid) {
-        var sql = 'SELECT anime.id, romaji, folgen, format, folgenanzahl, cover FROM Animeliste INNER JOIN Anime ON animeid = anime.id INNER JOIN eintraginfo ON eintragid = eintraginfo.id INNER JOIN Format ON eintraginfo.formatid = Format.id WHERE accountid = ? AND liststatusid = 6';
+        var sql = 'SELECT anime.id, romaji, folgen, format, folgenanzahl, cover FROM Animeliste INNER JOIN Anime ON animeid = anime.id INNER JOIN eintraginfo ON eintragid = eintraginfo.id INNER JOIN Format ON eintraginfo.formatid = Format.id WHERE accountid = ? AND liststatusid = 6 ORDER BY romaji';
         var statement = this._conn.prepare(sql);
         var params = [userid];
         var result = statement.all(params);
