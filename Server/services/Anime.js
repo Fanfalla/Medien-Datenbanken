@@ -133,4 +133,18 @@ serviceRouter.delete('/anime/:id', function(request, response) {
     }
 });
 
+serviceRouter.get('/anime/gib/eintragid/:id', function(request, response) {
+    console.log('Service Anime: Client requested eintragid with id=' + request.params.id);
+
+    const animeDao = new AnimeDao(request.app.locals.dbConnection);
+    try {
+        var obj = animeDao.loadEintragId(request.params.id);
+        console.log('Service Anime: EintragId loaded');
+        response.status(200).json(obj);
+    } catch (ex) {
+        console.error('Service Anime: Error loading record by id. Exception occured: ' + ex.message);
+        response.status(400).json({ 'fehler': true, 'nachricht': ex.message });
+    }
+});
+
 module.exports = serviceRouter;

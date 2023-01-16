@@ -150,4 +150,24 @@ serviceRouter.delete('/mangaListe/:id', function(request, response) {
     }
 });
 
+serviceRouter.delete('/mangaListe/delete/:id', function(request, response) {
+    console.log('Service MangaListe: Client requested deletion of record, mangaid=' + request.params.id);
+
+    const mangaListeDao = new MangaListeDao(request.app.locals.dbConnection);
+    try {
+        if (mangaListeDao.existsMangaId(request.params.id)) {
+            var obj = mangaListeDao.loadByMangaId(request.params.id);
+            mangaListeDao.deleteMangaId(request.params.id);
+            console.log('Service MangaListe: Deletion of record successfull, id=' + request.params.id);
+            response.status(200).json({ 'gelöscht': true, 'eintrag': obj });
+        } else {
+            console.log('Service MangaListe: No record with id=' + request.params.id);
+            response.status(200).json({'fehler': false,});
+        }
+    } catch (ex) {
+        console.error('Service MangaListe: Error deleting record. Exception occured: ' + ex.message);
+        response.status(400).json({ 'fehler': true, 'nachricht': ex.message });
+    }
+});
+
 module.exports = serviceRouter;

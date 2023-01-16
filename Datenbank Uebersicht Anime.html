@@ -868,8 +868,10 @@
 			}
 
 			function Delete() {
-				/*Delete Eintrag aus AnimeListe*/
+
 				var id = getSessionItem("id");
+
+				/*Delete Eintrag aus AnimeListe*/
 				$.ajax({
 						url: 'http://localhost:8000/api/animeListe/delete/' + id,
 						method: 'delete',
@@ -877,7 +879,8 @@
 						cache: false,
 				})
 				.done(function() {
-					console.log('Eintrag gelöscht')
+					console.log('Eintrag gelöscht');
+					DeleteAnimeEintragGenre(id);
 				})
 				.fail(function(xhr){
 					console.log('error recieved');
@@ -887,56 +890,89 @@
 				})
 
 				/*Delete Eintrag aus AnimeEintragGerne*/
-				$.ajax({
-					url: 'http://localhost:8000/api/animeEintragGenre/delete/' + id,
-					method: 'delete',
-					contentType: 'application/json; charset=utf-8',
-					cache: false,
-				})
-				.done(function() {
-					console.log('Eintrag gelöscht')
-				})
-				.fail(function(xhr){
-					console.log('error recieved');
-					console.log(xhr);
-					console.log(xhr.status);
-					alert(xhr.responseText);
-				})
+				function DeleteAnimeEintragGenre(id) {
+					$.ajax({
+						url: 'http://localhost:8000/api/animeEintragGenre/delete/' + id,
+						method: 'delete',
+						contentType: 'application/json; charset=utf-8',
+						cache: false,
+					})
+					.done(function() {
+						console.log('Eintrag gelöscht');
+						GetEintragId(id);
+					})
+					.fail(function(xhr){
+						console.log('error recieved');
+						console.log(xhr);
+						console.log(xhr.status);
+						alert(xhr.responseText);
+					})
+				}
 
+				/*Get Eintrag aus Anime*/
+				function GetEintragId(id) {
+					$.ajax({
+						url: 'http://localhost:8000/api/anime/gib/eintragid/' + id,
+						method: 'get',
+						contentType: 'application/json; charset=utf-8',
+						cache: false,
+						dataType: 'json',
+					})
+					.done(function(response) {
+						console.log('EintragId erhalten');
+						setJSONSessionItem("EintragId", response);
+						DeleteAnime(id);
+					})
+					.fail(function(xhr){
+						console.log('error recieved');
+						console.log(xhr);
+						console.log(xhr.status);
+						alert(xhr.responseText);
+				})
+				}
 				/*Delete Eintrag aus Anime*/
-				$.ajax({
-					url: 'http://localhost:8000/api/anime/' + id,
-					method: 'delete',
-					contentType: 'application/json; charset=utf-8',
-					cache: false,
-				})
-				.done(function() {
-					console.log('Eintrag gelöscht')
-				})
-				.fail(function(xhr){
-					console.log('error recieved');
-					console.log(xhr);
-					console.log(xhr.status);
-					alert(xhr.responseText);
-				})
+				function DeleteAnime(id) {
+					$.ajax({
+						url: 'http://localhost:8000/api/anime/' + id,
+						method: 'delete',
+						contentType: 'application/json; charset=utf-8',
+						cache: false,
+					})
+					.done(function() {
+						console.log('Eintrag gelöscht');
+						DeleteEintragInfo();
+					})
+					.fail(function(xhr){
+						console.log('error recieved');
+						console.log(xhr);
+						console.log(xhr.status);
+						alert(xhr.responseText);
+					})
+				}
 
 				/*Delete Eintrag aus EintragInfo*/
-				$.ajax({
-					url: 'http://localhost:8000/api/anime/delete' + id,
-					
-					method: 'delete',
-					contentType: 'application/json; charset=utf-8',
-					cache: false,
-				})
-				.done(function() {
-					console.log('Eintrag gelöscht')
-				})
-				.fail(function(xhr){
-					console.log('error recieved');
-					console.log(xhr);
-					console.log(xhr.status);
-					alert(xhr.responseText);
-				})
+				function DeleteEintragInfo() {
+					var JSONEintragId = getJSONSessionItem("EintragId");
+					var EintragId = JSONEintragId.eintragid;
+
+					$.ajax({
+						url: 'http://localhost:8000/api/eintragInfo/' + EintragId,
+						method: 'delete',
+						contentType: 'application/json; charset=utf-8',
+						cache: false,
+					})
+					.done(function() {
+						console.log('Eintrag gelöscht');
+						removeSessionItem("id");
+						removeSessionItem("EintragId");
+					})
+					.fail(function(xhr){
+						console.log('error recieved');
+						console.log(xhr);
+						console.log(xhr.status);
+						alert(xhr.responseText);
+					})
+				}
 			}
 
 		</script>

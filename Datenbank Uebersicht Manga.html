@@ -14,7 +14,7 @@
 		<nav class="navigationBox schatten">
 			<ul class="navigationList">
 				<li class="navigationButton"><a href="Home.html" class="navigation">Startseite</a></li>
-				<li class="navigationButton"><a href="Datenbank Uebersicht Anime.html" class="navigation">Animes</a></li>
+				<li class="navigationButton"><a href="Datenbank Uebersicht Manga.html" class="navigation">Mangas</a></li>
 				<li class="navigationButton"><a href="Datenbank Uebersicht Manga.html" class="navigation">Mangas</a></li>
 				<li class="navigationButton"><a id="1" href="Registration.html" class="navigation">Registration</a></li>
 				<li class="navigationButton"><a id="2" href="Login.html" class="navigation">Log in</a></li>
@@ -700,6 +700,8 @@
 			}
 
 			function ShowEntry(id){
+
+				setSessionItem("id", id);
 					
 				$.ajax({
 					url: 'http://localhost:8000/api/Manga/gib/'+ id,
@@ -739,7 +741,7 @@
 						dataType: 'json',
 					}).done(function (response) {
 						console.log(response);
-						getAnimeListStatus(response);          
+						getMangaListStatus(response);          
 					}).fail(function (jqXHR, statusText, error) {
 						console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
 						$('#output').html('Ein Fehler ist aufgetreten');
@@ -753,7 +755,7 @@
 				}
 			}
 
-			function getAnimeListStatus(id){
+			function getMangaListStatus(id){
 				document.getElementById('ListStatus').value = id
 			}
 
@@ -838,6 +840,114 @@
 				}
 
 			}
+
+			function Delete() {
+
+			var id = getSessionItem("id");
+
+			/*Delete Eintrag aus MangaListe*/
+			$.ajax({
+				url: 'http://localhost:8000/api/mangaListe/delete/' + id,
+				method: 'delete',
+				contentType: 'application/json; charset=utf-8',
+				cache: false,
+			})
+			.done(function() {
+				console.log('Eintrag gelöscht');
+				DeleteMangaEintragGenre(id);
+			})
+			.fail(function(xhr){
+				console.log('error recieved');
+				console.log(xhr);
+				console.log(xhr.status);
+				alert(xhr.responseText);
+			})
+
+			/*Delete Eintrag aus MangaGerne*/
+			function DeleteMangaEintragGenre(id) {
+				$.ajax({
+					url: 'http://localhost:8000/api/mangaEintragGenre/delete/' + id,
+					method: 'delete',
+					contentType: 'application/json; charset=utf-8',
+					cache: false,
+				})
+				.done(function() {
+					console.log('Eintrag gelöscht');
+					GetEintragId(id);
+				})
+				.fail(function(xhr){
+					console.log('error recieved');
+					console.log(xhr);
+					console.log(xhr.status);
+					alert(xhr.responseText);
+				})
+			}
+
+			/*Get Eintrag aus Manga*/
+			function GetEintragId(id) {
+				$.ajax({
+					url: 'http://localhost:8000/api/manga/gib/eintragid/' + id,
+					method: 'get',
+					contentType: 'application/json; charset=utf-8',
+					cache: false,
+					dataType: 'json',
+				})
+				.done(function(response) {
+					console.log('EintragId erhalten');
+					setJSONSessionItem("EintragId", response);
+					DeleteManga(id);
+				})
+				.fail(function(xhr){
+					console.log('error recieved');
+					console.log(xhr);
+					console.log(xhr.status);
+					alert(xhr.responseText);
+			})
+			}
+			/*Delete Eintrag aus Manga*/
+			function DeleteManga(id) {
+				$.ajax({
+					url: 'http://localhost:8000/api/manga/' + id,
+					method: 'delete',
+					contentType: 'application/json; charset=utf-8',
+					cache: false,
+				})
+				.done(function() {
+					console.log('Eintrag gelöscht');
+					DeleteEintragInfo();
+				})
+				.fail(function(xhr){
+					console.log('error recieved');
+					console.log(xhr);
+					console.log(xhr.status);
+					alert(xhr.responseText);
+				})
+			}
+
+			/*Delete Eintrag aus EintragInfo*/
+			function DeleteEintragInfo() {
+				var JSONEintragId = getJSONSessionItem("EintragId");
+				var EintragId = JSONEintragId.eintragid;
+
+				$.ajax({
+					url: 'http://localhost:8000/api/eintragInfo/' + EintragId,
+					method: 'delete',
+					contentType: 'application/json; charset=utf-8',
+					cache: false,
+				})
+				.done(function() {
+					console.log('Eintrag gelöscht');
+					removeSessionItem("id");
+					removeSessionItem("EintragId");
+				})
+				.fail(function(xhr){
+					console.log('error recieved');
+					console.log(xhr);
+					console.log(xhr.status);
+					alert(xhr.responseText);
+				})
+			}
+		}
 
 		</script>
 	</body>

@@ -163,4 +163,19 @@ serviceRouter.delete('/mangaGenre/:id', function(request, response) {
     }
 });
 
+serviceRouter.delete('/mangaEintragGenre/delete/:id', function(request, response) {
+    console.log('Service MangaGenre: Client requested deletion of record, id=' + request.params.id);
+
+    const mangaEintragGenreDao = new MangaGenreDao(request.app.locals.dbConnection);
+    try {
+        var obj = mangaEintragGenreDao.loadByMangaId(request.params.id);
+        mangaEintragGenreDao.deleteMangaEintragId(request.params.id);
+        console.log('Service MangaGenre: Deletion of record successfull, id=' + request.params.id);
+        response.status(200).json({ 'gelöscht': true, 'eintrag': obj });
+    } catch (ex) {
+        console.error('Service MangaGenre: Error deleting record. Exception occured: ' + ex.message);
+        response.status(400).json({ 'fehler': true, 'nachricht': ex.message });
+    }
+});
+
 module.exports = serviceRouter;

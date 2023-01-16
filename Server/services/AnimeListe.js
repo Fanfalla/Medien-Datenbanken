@@ -268,6 +268,9 @@ serviceRouter.delete('/animeListe/delete/:id', function(request, response) {
             animeListeDao.deleteAnimeId(request.params.id);
             console.log('Service AnimeListe: Deletion of record successfull, id=' + request.params.id);
             response.status(200).json({ 'gelöscht': true, 'eintrag': obj });
+        } else {
+            console.log('Service AnimeListe: No record with id=' + request.params.id);
+            response.status(200).json({'fehler': false,});
         }
     } catch (ex) {
         console.error('Service AnimeListe: Error deleting record. Exception occured: ' + ex.message);

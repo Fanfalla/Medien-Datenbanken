@@ -21,6 +21,17 @@ class MangaDao {
         return result;
     }
 
+    loadEintragId(id) {
+        var sql = 'SELECT eintragid FROM Manga WHERE id=?';
+        var statement = this._conn.prepare(sql);
+        var result = statement.get(id);
+
+        if (helper.isUndefined(result)) 
+            throw new Error('No Record found by id=' + id);
+
+        return result;
+    }
+
     MangaExists(romaji = '') {
         var sql = 'SELECT * FROM Manga INNER JOIN EintragInfo ON Manga.eintragid = EintragInfo.id WHERE romaji=?';
         var statement = this._conn.prepare(sql);
