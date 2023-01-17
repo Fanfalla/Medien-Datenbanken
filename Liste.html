@@ -123,7 +123,7 @@
 
 			<article class="hinterGrundBox" id="TransparentBox" onclick="HideEntry()">
 			</article>
-			<article class="eintragBox schatten" id="EintragInfoBox">
+			<article class="eintragBox schatten" id="AnimeEintragInfoBox">
 				<table class="eintragTable" >
 					<tr>
 						<td></td>
@@ -220,6 +220,94 @@
 					</tr>
 				</table>
 			</article>
+			<article class="eintragBox schatten" id="MangaEintragInfoBox">
+				<table class="eintragTable" >
+					<tr>
+						<td></td>
+						<td>
+							<section class="eintragRomaji">
+								<label id="MRomaji"></label>
+							</section>
+						</td>
+					</tr>
+					<tr>
+						<td class="alignTop">
+							<section class="eintragBildBox schatten ">
+								<image src="" width="215" height="300" id="MCover"></img>
+							</section>
+						</td>
+						<td>
+							<table>
+								<tr>
+									<td ><b><label>Englischer Titel:</label></b></td>
+									<td><label id="MEnglisch"></label></td>
+								</tr>
+								<tr>
+									<td><b><label>Deutscher Titel:</label></b></td>
+									<td><label id="MDeutsch"></label></td>
+								</tr>
+							</table>
+							<table class="alignTopText">
+								<tr>
+									<td class="alignTop"><b ><label>Beschreibung:</label></b></td>
+									<td><textbox id="MBeschreibung" maxlength="150"></textbox></td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2">
+							<section class="eintragAuswahlBox">
+								<select id="MListStatus" type="dropdownMenue" name="" onchange="AddMangaToList()">
+									<option value="0">---</option>
+								</select>
+							</section>
+						</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td>
+							<table>
+								<tr>
+									<td><b><label>Chapter:</label></b></td>
+									<td><label id="MChapter"></label></td>
+								</tr>
+								<tr>
+									<td><b><label>Volumes:</label></b></td>
+									<td><label id="MVolumes"></label></td>
+								</tr>
+							</table>
+							<table>
+								<tr>
+									<td><b><label>Status:</label></b></td>
+									<td><label id="MStatus"></label></td>
+								</tr>
+								<tr>
+									<td><b><label>Start:</label></b></td>
+									<td><label id="MStartDate"></label></td>
+								</tr>
+								<tr>
+									<td><b><label>End:</label></b></td>
+									<td><label id="MEndDate"></label></td>
+								</tr>
+							
+								<tr>
+									<td><b><label>Format:</label></b></td>
+									<td><label id="MFormatEintrag"></label></td>
+								</tr>
+								<tr>
+									<td><b><label>Source:</label></b></td>
+									<td><label id="MSourceEintrag"></label></td>
+								</tr>
+								<tr>
+									<td><b><label>Genres:</label></b></td>
+									<td><label id="MGenreEintrag"></label></td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</table>
 			
 		</main>
 		<Script>
@@ -490,6 +578,8 @@
 			}
 
 			function RenderManga(){
+
+				var acc = getJSONSessionItem("Account").id
 				
 				$.ajax({
 					url: 'http://localhost:8000/api/listStatus/alle/Manga',
@@ -506,7 +596,7 @@
 				})
 				
 				$.ajax({
-					url: 'http://localhost:8000/api/Manga/Alle',
+					url: 'http://localhost:8000/api/mangaListe/getReading/' + acc,
 					method: 'get',
 					contentType: 'application/json; charset=utf-8',
 					cache: false,
@@ -520,7 +610,7 @@
 				})
 				
 				$.ajax({
-					url: 'http://localhost:8000/api/Manga/Alle',
+					url: 'http://localhost:8000/api/mangaListe/getCompleted/' + acc,
 					method: 'get',
 					contentType: 'application/json; charset=utf-8',
 					cache: false,
@@ -534,7 +624,7 @@
 				})
 				
 				$.ajax({
-					url: 'http://localhost:8000/api/Manga/Alle',
+					url: 'http://localhost:8000/api/mangaListe/getPaused/' + acc,
 					method: 'get',
 					contentType: 'application/json; charset=utf-8',
 					cache: false,
@@ -548,7 +638,7 @@
 				})
 				
 				$.ajax({
-					url: 'http://localhost:8000/api/Manga/Alle',
+					url: 'http://localhost:8000/api/mangaListe/getDropped/' + acc,
 					method: 'get',
 					contentType: 'application/json; charset=utf-8',
 					cache: false,
@@ -562,7 +652,7 @@
 				})
 				
 				$.ajax({
-					url: 'http://localhost:8000/api/Manga/Alle',
+					url: 'http://localhost:8000/api/mangaListe/getPlanning/' + acc,
 					method: 'get',
 					contentType: 'application/json; charset=utf-8',
 					cache: false,
@@ -574,6 +664,76 @@
 					console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
 					$('#output').html('Ein Fehler ist aufgetreten');
 				})
+				
+				$.ajax({
+						url: 'http://localhost:8000/api/mangaListe/count/' + acc + '_' + 2,
+						method: 'get',
+						contentType: 'application/json; charset=utf-8',
+						cache: false,
+						dataType: 'json',
+					}).done(function (response) {
+						console.log(response);
+						countEntrys(response, 'LabelCurrent', 'Current (');
+					}).fail(function (jqXHR, statusText, error) {
+						console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+						$('#output').html('Ein Fehler ist aufgetreten');
+					})
+				
+				$.ajax({
+						url: 'http://localhost:8000/api/mangaListe/count/' + acc + '_' + 3,
+						method: 'get',
+						contentType: 'application/json; charset=utf-8',
+						cache: false,
+						dataType: 'json',
+					}).done(function (response) {
+						console.log(response);
+						countEntrys(response, 'LabelCompleted', 'Completed (');
+					}).fail(function (jqXHR, statusText, error) {
+						console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+						$('#output').html('Ein Fehler ist aufgetreten');
+					})
+				
+				$.ajax({
+						url: 'http://localhost:8000/api/mangaListe/count/' + acc + '_' + 4,
+						method: 'get',
+						contentType: 'application/json; charset=utf-8',
+						cache: false,
+						dataType: 'json',
+					}).done(function (response) {
+						console.log(response);
+						countEntrys(response, 'LabelPlanning', 'Planning (');
+					}).fail(function (jqXHR, statusText, error) {
+						console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+						$('#output').html('Ein Fehler ist aufgetreten');
+					})
+				
+				$.ajax({
+						url: 'http://localhost:8000/api/mangaListe/count/' + acc + '_' + 5,
+						method: 'get',
+						contentType: 'application/json; charset=utf-8',
+						cache: false,
+						dataType: 'json',
+					}).done(function (response) {
+						console.log(response);
+						countEntrys(response, 'LabelPaused', 'Paused (');
+					}).fail(function (jqXHR, statusText, error) {
+						console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+						$('#output').html('Ein Fehler ist aufgetreten');
+					})
+				
+				$.ajax({
+						url: 'http://localhost:8000/api/mangaListe/count/' + acc + '_' + 6,
+						method: 'get',
+						contentType: 'application/json; charset=utf-8',
+						cache: false,
+						dataType: 'json',
+					}).done(function (response) {
+						console.log(response);
+						countEntrys(response, 'LabelDropped', 'Dropped (');
+					}).fail(function (jqXHR, statusText, error) {
+						console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+						$('#output').html('Ein Fehler ist aufgetreten');
+					})
 			}
 
 			function countEntrys(result, id, text){
@@ -1119,18 +1279,36 @@
 						animeName = animeName.substr(0,95) + '...'
 					}
 					
-					row = table.insertRow();
-					A = row.insertCell(); //cover
-					B = row.insertCell(); //romaji
-					B.setAttribute("Width", "800px")
-					C = row.insertCell(); //progress
-					C.setAttribute("Width", "100px")
-					D = row.insertCell(); //format
+					if(item.format == 'TV' || item.format == 'TV Short' || item.format == 'Movie' || item.format == 'OVA' || item.format == 'Special' || item.format == 'ONA' || item.format == 'Music'){
+					
+						row = table.insertRow();
+						A = row.insertCell(); //cover
+						B = row.insertCell(); //romaji
+						B.setAttribute("Width", "800px")
+						C = row.insertCell(); //progress
+						C.setAttribute("Width", "100px")
+						D = row.insertCell(); //format
 
-					A.innerHTML = '<image class="schatten" src="' + item.cover + '" width="54" height="75" onclick="ShowEntry(' + item.id + ')" onmouseover="ChangeColorOver(' + item.id + ')" onmouseout="ChangeColorOut(' + item.id + ')"></image>'
-					B.innerHTML = '<label onclick="ShowEntry(' + item.id + ')" onmouseover="ChangeColorOver(' + item.id + ')" onmouseout="ChangeColorOut(' + item.id + ')" id="' + item.id + '1">' + animeName + '</label>';
-					C.innerHTML = '<label onclick="" onmouseover="ChangeColorOver(' + item.id + ')" onmouseout="ChangeColorOut(' + item.id + ')" id="' + item.id + '2">' + '<label id="+' + item.id + '" onclick="addFolge(' + item.id + ', ' + item.folgenanzahl + ')"> + </label> <label id="folgen' + item.id + '">' + item.folgen + '</label>/' + item.folgenanzahl + '</label>';
-					D.innerHTML = '<label onmouseover="ChangeColorOver(' + item.id + ')" onmouseout="ChangeColorOut(' + item.id + ')" id="' + item.id + '3">' + item.format + '</label>';
+						A.innerHTML = '<image class="schatten" src="' + item.cover + '" width="54" height="75" onclick="ShowEntry(' + item.id + ', 1)" onmouseover="ChangeColorOver(' + item.id + ')" onmouseout="ChangeColorOut(' + item.id + ')"></image>'
+						B.innerHTML = '<label onclick="ShowEntry(' + item.id + ', 1)" onmouseover="ChangeColorOver(' + item.id + ')" onmouseout="ChangeColorOut(' + item.id + ')" id="' + item.id + '1">' + animeName + '</label>';
+						C.innerHTML = '<label onmouseover="ChangeColorOver(' + item.id + ')" onmouseout="ChangeColorOut(' + item.id + ')" id="' + item.id + '2">' + '<label id="+' + item.id + '" onclick="addFolge(' + item.id + ', ' + item.folgenanzahl + ')"> + </label> <label id="folgen' + item.id + '">' + item.folgen + '</label>/' + item.folgenanzahl + '</label>';
+						D.innerHTML = '<label onmouseover="ChangeColorOver(' + item.id + ')" onmouseout="ChangeColorOut(' + item.id + ')" id="' + item.id + '3">' + item.format + '</label>';
+					}
+
+					if(item.format == 'Manga' || item.format == 'Light Novel' || item.format == 'One Shot'){
+						row = table.insertRow();
+						A = row.insertCell(); //cover
+						B = row.insertCell(); //romaji
+						B.setAttribute("Width", "800px")
+						C = row.insertCell(); //progress
+						C.setAttribute("Width", "100px")
+						D = row.insertCell(); //format
+
+						A.innerHTML = '<image class="schatten" src="' + item.cover + '" width="54" height="75" onclick="ShowEntry(' + item.id + ', 2)" onmouseover="ChangeColorOver(' + item.id + ')" onmouseout="ChangeColorOut(' + item.id + ')"></image>'
+						B.innerHTML = '<label onclick="ShowEntry(' + item.id + ', 2)" onmouseover="ChangeColorOver(' + item.id + ')" onmouseout="ChangeColorOut(' + item.id + ')" id="' + item.id + '1">' + animeName + '</label>';
+						C.innerHTML = '<label onmouseover="ChangeColorOver(' + item.id + ')" onmouseout="ChangeColorOut(' + item.id + ')" id="' + item.id + '2">' + '<label id="+' + item.id + '" onclick="addChapter(' + item.id + ', ' + item.chapteranzahl + ')"> + </label> <label id="folgen' + item.id + '">' + item.folgen + '</label>/' + item.chapteranzahl + '</label>';
+						D.innerHTML = '<label onmouseover="ChangeColorOver(' + item.id + ')" onmouseout="ChangeColorOut(' + item.id + ')" id="' + item.id + '3">' + item.format + '</label>';
+					}
 				})
 			}
 
@@ -1144,18 +1322,36 @@
 						animeName = animeName.substr(0,95) + '...'
 					}
 					
-					row = table.insertRow();
-					A = row.insertCell(); //cover
-					B = row.insertCell(); //romaji
-					B.setAttribute("Width", "800px")
-					C = row.insertCell(); //progress
-					C.setAttribute("Width", "100px")
-					D = row.insertCell(); //format
+					if(item.format == 'TV' || item.format == 'TV Short' || item.format == 'Movie' || item.format == 'OVA' || item.format == 'Special' || item.format == 'ONA' || item.format == 'Music'){
+					
+						row = table.insertRow();
+						A = row.insertCell(); //cover
+						B = row.insertCell(); //romaji
+						B.setAttribute("Width", "800px")
+						C = row.insertCell(); //progress
+						C.setAttribute("Width", "100px")
+						D = row.insertCell(); //format
 
-					A.innerHTML = '<image class="schatten" src="' + item.cover + '" width="54" height="75" onclick="ShowEntry(' + item.id + ')" onmouseover="ChangeColorOver(' + item.id + ')" onmouseout="ChangeColorOut(' + item.id + ')"></image>'
-					B.innerHTML = '<label onclick="ShowEntry(' + item.id + ')" onmouseover="ChangeColorOver(' + item.id + ')" onmouseout="ChangeColorOut(' + item.id + ')" id="' + item.id + '1">' + animeName + '</label>';
-					C.innerHTML = '<label onclick="" onmouseover="ChangeColorOver(' + item.id + ')" onmouseout="ChangeColorOut(' + item.id + ')" id="' + item.id + '2">' + '<label id="folgen' + item.id + '">' + item.folgen + '</label>/' + item.folgenanzahl + '</label>';
-					D.innerHTML = '<label onmouseover="ChangeColorOver(' + item.id + ')" onmouseout="ChangeColorOut(' + item.id + ')" id="' + item.id + '3">' + item.format + '</label>';
+						A.innerHTML = '<image class="schatten" src="' + item.cover + '" width="54" height="75" onclick="ShowEntry(' + item.id + ', 1)" onmouseover="ChangeColorOver(' + item.id + ')" onmouseout="ChangeColorOut(' + item.id + ')"></image>'
+						B.innerHTML = '<label onclick="ShowEntry(' + item.id + ', 1)" onmouseover="ChangeColorOver(' + item.id + ')" onmouseout="ChangeColorOut(' + item.id + ')" id="' + item.id + '1">' + animeName + '</label>';
+						C.innerHTML = '<label onclick="" onmouseover="ChangeColorOver(' + item.id + ')" onmouseout="ChangeColorOut(' + item.id + ')" id="' + item.id + '2">' + '<label id="folgen' + item.id + '">' + item.folgen + '</label>/' + item.folgenanzahl + '</label>';
+						D.innerHTML = '<label onmouseover="ChangeColorOver(' + item.id + ')" onmouseout="ChangeColorOut(' + item.id + ')" id="' + item.id + '3">' + item.format + '</label>';
+					}
+
+					if(item.format == 'Manga' || item.format == 'Light Novel' || item.format == 'One Shot'){
+						row = table.insertRow();
+						A = row.insertCell(); //cover
+						B = row.insertCell(); //romaji
+						B.setAttribute("Width", "800px")
+						C = row.insertCell(); //progress
+						C.setAttribute("Width", "100px")
+						D = row.insertCell(); //format
+
+						A.innerHTML = '<image class="schatten" src="' + item.cover + '" width="54" height="75" onclick="ShowEntry(' + item.id + ', 2)" onmouseover="ChangeColorOver(' + item.id + ')" onmouseout="ChangeColorOut(' + item.id + ')"></image>'
+						B.innerHTML = '<label onclick="ShowEntry(' + item.id + ', 2)" onmouseover="ChangeColorOver(' + item.id + ')" onmouseout="ChangeColorOut(' + item.id + ')" id="' + item.id + '1">' + animeName + '</label>';
+						C.innerHTML = '<label onclick="" onmouseover="ChangeColorOver(' + item.id + ')" onmouseout="ChangeColorOut(' + item.id + ')" id="' + item.id + '2">' + '<label id="folgen' + item.id + '">' + item.chapter + '</label>/' + item.chapteranzahl + '</label>';
+						D.innerHTML = '<label onmouseover="ChangeColorOver(' + item.id + ')" onmouseout="ChangeColorOut(' + item.id + ')" id="' + item.id + '3">' + item.format + '</label>';
+					}
 				})
 			}
 
@@ -1209,57 +1405,111 @@
 				document.getElementById(id3).style.color = "black"
 			}
 
-			function ShowEntry(id){
-					
-				$.ajax({
-					url: 'http://localhost:8000/api/Anime/gib/'+ id,
-					method: 'get',
-					contentType: 'application/json; charset=utf-8',
-					cache: false,
-					dataType: 'json',
-				}).done(function (response) {
-					console.log(response);
-					FillTableWithData(response);          
-				}).fail(function (jqXHR, statusText, error) {
-					console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
-					$('#output').html('Ein Fehler ist aufgetreten');
-				})
-
-				$.ajax({
-					url: 'http://localhost:8000/api/animeEintragGenre/animeGenre/'+ id,
-					method: 'get',
-					contentType: 'application/json; charset=utf-8',
-					cache: false,
-					dataType: 'json',
-				}).done(function (response) {
-					console.log(response);
-					FillGenreCell(response);          
-				}).fail(function (jqXHR, statusText, error) {
-					console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
-					$('#output').html('Ein Fehler ist aufgetreten');
-				})
-
-				EintragInfoBox.style.visibility="visible"
-				TransparentBox.style.visibility="visible"
-
-				if (getJSONSessionItem("Account").id){
-
-					user = getJSONSessionItem("Account").id
+			function ShowEntry(id, medium){
+				
+				if(medium == 1){
 
 					$.ajax({
-						url: 'http://localhost:8000/api/animeListe/gib/'+ id + '_' + user,
+						url: 'http://localhost:8000/api/Anime/gib/'+ id,
 						method: 'get',
 						contentType: 'application/json; charset=utf-8',
 						cache: false,
 						dataType: 'json',
 					}).done(function (response) {
 						console.log(response);
-						getAnimeListStatus(response);          
+						FillAnimeTableWithData(response);          
 					}).fail(function (jqXHR, statusText, error) {
 						console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
 						$('#output').html('Ein Fehler ist aufgetreten');
 					})
+
+					$.ajax({
+						url: 'http://localhost:8000/api/animeEintragGenre/animeGenre/'+ id,
+						method: 'get',
+						contentType: 'application/json; charset=utf-8',
+						cache: false,
+						dataType: 'json',
+					}).done(function (response) {
+						console.log(response);
+						FillGenreCell(response);          
+					}).fail(function (jqXHR, statusText, error) {
+						console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+						$('#output').html('Ein Fehler ist aufgetreten');
+					})
+
+					if (getJSONSessionItem("Account").id){
+
+						user = getJSONSessionItem("Account").id
+
+						$.ajax({
+							url: 'http://localhost:8000/api/animeListe/gib/'+ id + '_' + user,
+							method: 'get',
+							contentType: 'application/json; charset=utf-8',
+							cache: false,
+							dataType: 'json',
+						}).done(function (response) {
+							console.log(response);
+							getAnimeListStatus(response);          
+						}).fail(function (jqXHR, statusText, error) {
+							console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+							$('#output').html('Ein Fehler ist aufgetreten');
+						})
+					}
+					AnimeEintragInfoBox.style.visibility="visible"
 				}
+
+				if(medium == 2){
+
+					$.ajax({
+						url: 'http://localhost:8000/api/Manga/gib/'+ id,
+						method: 'get',
+						contentType: 'application/json; charset=utf-8',
+						cache: false,
+						dataType: 'json',
+					}).done(function (response) {
+						console.log(response);
+						FillMangaTableWithData(response);          
+					}).fail(function (jqXHR, statusText, error) {
+						console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+						$('#output').html('Ein Fehler ist aufgetreten');
+					})
+
+					$.ajax({
+						url: 'http://localhost:8000/api/mangaGenre/mangaGenre/'+ id,
+						method: 'get',
+						contentType: 'application/json; charset=utf-8',
+						cache: false,
+						dataType: 'json',
+					}).done(function (response) {
+						console.log(response);
+						FillGenreCell(response);          
+					}).fail(function (jqXHR, statusText, error) {
+						console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+						$('#output').html('Ein Fehler ist aufgetreten');
+					})
+
+					if (getJSONSessionItem("Account").id){
+
+						user = getJSONSessionItem("Account").id
+
+						$.ajax({
+							url: 'http://localhost:8000/api/mangaListe/gib/'+ id + '_' + user,
+							method: 'get',
+							contentType: 'application/json; charset=utf-8',
+							cache: false,
+							dataType: 'json',
+						}).done(function (response) {
+							console.log(response);
+							getAnimeListStatus(response);          
+						}).fail(function (jqXHR, statusText, error) {
+							console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+							$('#output').html('Ein Fehler ist aufgetreten');
+						})
+					}
+					MangaEintragInfoBox.style.visibility="visible"
+				}
+
+				TransparentBox.style.visibility="visible"
 			}
 
 			function getAnimeListStatus(id){
@@ -1268,7 +1518,8 @@
 
 			function HideEntry(){
 				
-				EintragInfoBox.style.visibility="hidden"
+				MangaEintragInfoBox.style.visibility="hidden"
+				AnimeEintragInfoBox.style.visibility="hidden"
 				TransparentBox.style.visibility="hidden"
 				
 				document.getElementById('Romaji').innerHTML = ''
@@ -1287,9 +1538,23 @@
 				document.getElementById('Cover').src = ''
 				document.getElementById('GenreEintrag').innerHTML = ''
 				document.getElementById('ListStatus').value = 0
+				
+				document.getElementById('MRomaji').innerHTML = ''
+				document.getElementById('MEnglisch').innerHTML = ''
+				document.getElementById('MDeutsch').innerHTML = ''
+				document.getElementById('MBeschreibung').innerHTML = ''
+				document.getElementById('MChapter').innerHTML = ''
+				document.getElementById('MVolumes').innerHTML = ''
+				document.getElementById('MStatus').innerHTML = ''
+				document.getElementById('MStartDate').innerHTML = ''
+				document.getElementById('MEndDate').innerHTML = ''
+				document.getElementById('MFormatEintrag').innerHTML = ''
+				document.getElementById('MSourceEintrag').innerHTML = ''
+				document.getElementById('MCover').src = ''
+				document.getElementById('MListStatus').value = 0
 			}
 
-			function FillTableWithData(item) {
+			function FillAnimeTableWithData(item) {
 
 				document.getElementById('Romaji').innerHTML = item.romaji
 				document.getElementById('Englisch').innerHTML = item.englisch
@@ -1306,6 +1571,23 @@
 				document.getElementById('SourceEintrag').innerHTML = item.source
 				document.getElementById('Cover').src = item.cover
 				document.getElementById('ListStatus').name = item.id
+			}
+
+			function FillMangaTableWithData(item) {
+
+				document.getElementById('MRomaji').innerHTML = item.romaji
+				document.getElementById('MEnglisch').innerHTML = item.englisch
+				document.getElementById('MDeutsch').innerHTML = item.deutsch
+				document.getElementById('MBeschreibung').innerHTML = item.beschreibung
+				document.getElementById('MChapter').innerHTML = item.chapteranzahl
+				document.getElementById('MVolumes').innerHTML = item.volumeanzahl
+				document.getElementById('MStatus').innerHTML = item.status
+				document.getElementById('MStartDate').innerHTML = item.startdatum
+				document.getElementById('MEndDate').innerHTML = item.enddatum
+				document.getElementById('MFormatEintrag').innerHTML = item.format
+				document.getElementById('MSourceEintrag').innerHTML = item.source
+				document.getElementById('MCover').src = item.cover
+				document.getElementById('MListStatus').name = item.id
 			}
 
 			function FillGenreCell(arr){
