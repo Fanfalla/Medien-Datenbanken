@@ -22,7 +22,7 @@ class AnimeListeDao {
         var a = Object.values(result);
 
         if (helper.isUndefined(result)) 
-            throw new Error('No Record found by id=' + ids[0]);
+            return false;
 
         return a;
     }
@@ -126,7 +126,7 @@ class AnimeListeDao {
         var result = statement.run(params);
 
         if (result.changes != 1) 
-            throw new Error('Could not update existing Record. Data: ' + params);
+            return false;
     }
 
     getFolge(arr) {
@@ -177,7 +177,7 @@ class AnimeListeDao {
         var result = statement.get(id);
 
         if (helper.isUndefined(result)) 
-            throw new Error('No Record found by id=' + id);
+            return false;
 
         return result;
     }
@@ -188,7 +188,7 @@ class AnimeListeDao {
         var result = statement.get(id);
 
         if (helper.isUndefined(result)) 
-            throw new Error('No Record found by mangaid=' + id);
+            return false;
 
         return result;
     }
@@ -265,9 +265,9 @@ class AnimeListeDao {
         var result = statement.run(params);
 
         if (result.changes != 1) 
-            throw new Error('Could not update existing Record. Data: ' + params);
+            return false;
 
-        return this.loadById(id);
+        return true;
     }
 
     editStatus(statusid, accountid, animeid) {
@@ -277,9 +277,9 @@ class AnimeListeDao {
         var result = statement.run(params);
 
         if (result.changes != 1) 
-            throw new Error('Could not update existing Record. Data: ' + params);
+            return false;
 
-        return this.loadById(id);
+        return true;
     }
 
     delete(userid, animeid) {
@@ -290,7 +290,7 @@ class AnimeListeDao {
             var result = statement.run(params);
 
             if (result.changes != 1) 
-                throw new Error('Could not delete anime= ' + animeid + ' from user= ' + userid);
+                return false;
 
             return true;
         } catch (ex) {
@@ -305,7 +305,7 @@ class AnimeListeDao {
             var result = statement.run(animeid);
 
             if (result.changes == 0) 
-                throw new Error('Could not delete anime= ' + animeid);
+                throw new Error('Could not delete anime = ' + animeid);
 
             return true;
         } catch (ex) {
