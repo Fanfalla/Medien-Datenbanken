@@ -62,7 +62,11 @@ class MangaListeDao {
     }
 
     loadReading(userid) {
+<<<<<<< HEAD
+        var sql = 'SELECT manga.id, romaji, chapteranzahl, format, chapter, cover FROM Mangaliste INNER JOIN Manga ON mangaid = manga.id INNER JOIN eintraginfo ON eintragid = eintraginfo.id INNER JOIN Format ON eintraginfo.formatid = Format.id WHERE accountid = ? AND liststatusid = 2 ORDER BY romaji';
+=======
         var sql = 'SELECT manga.id, romaji, chapteranzahl, format, volumeanzahl, cover FROM Mangaliste INNER JOIN Manga ON mangaid = manga.id INNER JOIN eintraginfo ON eintragid = eintraginfo.id INNER JOIN Format ON eintraginfo.formatid = Format.id WHERE accountid = ? AND liststatusid = 2 ORDER BY romaji';
+>>>>>>> eafa12e8baf44a6dcdded97df7716bcc6b517919
         var statement = this._conn.prepare(sql);
         var params = [userid];
         var result = statement.all(params);
@@ -74,7 +78,11 @@ class MangaListeDao {
     }
 
     loadCompleted(userid) {
+<<<<<<< HEAD
+        var sql = 'SELECT manga.id, romaji, chapteranzahl, format, chapter, cover FROM Mangaliste INNER JOIN Manga ON mangaid = manga.id INNER JOIN eintraginfo ON eintragid = eintraginfo.id INNER JOIN Format ON eintraginfo.formatid = Format.id WHERE accountid = ? AND liststatusid = 3 ORDER BY romaji';
+=======
         var sql = 'SELECT manga.id, romaji, chapteranzahl, format, volumeanzahl, cover FROM Mangaliste INNER JOIN Manga ON mangaid = manga.id INNER JOIN eintraginfo ON eintragid = eintraginfo.id INNER JOIN Format ON eintraginfo.formatid = Format.id WHERE accountid = ? AND liststatusid = 3 ORDER BY romaji';
+>>>>>>> eafa12e8baf44a6dcdded97df7716bcc6b517919
         var statement = this._conn.prepare(sql);
         var params = [userid];
         var result = statement.all(params);
@@ -86,7 +94,11 @@ class MangaListeDao {
     }
 
     loadPlanning(userid) {
+<<<<<<< HEAD
+        var sql = 'SELECT manga.id, romaji, chapteranzahl, format, chapter, cover FROM Mangaliste INNER JOIN Manga ON mangaid = manga.id INNER JOIN eintraginfo ON eintragid = eintraginfo.id INNER JOIN Format ON eintraginfo.formatid = Format.id WHERE accountid = ? AND liststatusid = 4 ORDER BY romaji';
+=======
         var sql = 'SELECT manga.id, romaji, chapteranzahl, format, volumeanzahl, cover FROM Mangaliste INNER JOIN Manga ON mangaid = manga.id INNER JOIN eintraginfo ON eintragid = eintraginfo.id INNER JOIN Format ON eintraginfo.formatid = Format.id WHERE accountid = ? AND liststatusid = 4 ORDER BY romaji';
+>>>>>>> eafa12e8baf44a6dcdded97df7716bcc6b517919
         var statement = this._conn.prepare(sql);
         var params = [userid];
         var result = statement.all(params);
@@ -98,7 +110,11 @@ class MangaListeDao {
     }
 
     loadPaused(userid) {
+<<<<<<< HEAD
+        var sql = 'SELECT manga.id, romaji, chapteranzahl, format, chapter, cover FROM Mangaliste INNER JOIN Manga ON mangaid = manga.id INNER JOIN eintraginfo ON eintragid = eintraginfo.id INNER JOIN Format ON eintraginfo.formatid = Format.id WHERE accountid = ? AND liststatusid = 5 ORDER BY romaji';
+=======
         var sql = 'SELECT manga.id, romaji, chapteranzahl, format, volumeanzahl, cover FROM Mangaliste INNER JOIN Manga ON mangaid = manga.id INNER JOIN eintraginfo ON eintragid = eintraginfo.id INNER JOIN Format ON eintraginfo.formatid = Format.id WHERE accountid = ? AND liststatusid = 5 ORDER BY romaji';
+>>>>>>> eafa12e8baf44a6dcdded97df7716bcc6b517919
         var statement = this._conn.prepare(sql);
         var params = [userid];
         var result = statement.all(params);
@@ -110,7 +126,11 @@ class MangaListeDao {
     }
 
     loadDropped(userid) {
+<<<<<<< HEAD
+        var sql = 'SELECT manga.id, romaji, chapteranzahl, format, chapter, cover FROM Mangaliste INNER JOIN Manga ON mangaid = manga.id INNER JOIN eintraginfo ON eintragid = eintraginfo.id INNER JOIN Format ON eintraginfo.formatid = Format.id WHERE accountid = ? AND liststatusid = 6 ORDER BY romaji';
+=======
         var sql = 'SELECT manga.id, romaji, chapteranzahl, format, volumeanzahl, cover FROM Mangaliste INNER JOIN Manga ON mangaid = manga.id INNER JOIN eintraginfo ON eintragid = eintraginfo.id INNER JOIN Format ON eintraginfo.formatid = Format.id WHERE accountid = ? AND liststatusid = 6 ORDER BY romaji';
+>>>>>>> eafa12e8baf44a6dcdded97df7716bcc6b517919
         var statement = this._conn.prepare(sql);
         var params = [userid];
         var result = statement.all(params);
@@ -136,6 +156,36 @@ class MangaListeDao {
         return a;
     }
 
+<<<<<<< HEAD
+    addChapter(arr) {
+
+        console.log(arr)
+        var folgen = parseInt(arr[0]) + 1
+        var mangaid = arr[1]
+        var userid = arr[2]
+        var sql = 'UPDATE mangaliste set chapter = ? WHERE mangaid = ? AND accountid = ?';
+        var statement = this._conn.prepare(sql);
+        var params = [folgen, mangaid, userid];
+        var result = statement.run(params);
+
+        if (result.changes != 1) 
+            throw new Error('Could not update existing Record. Data: ' + params);
+    }
+
+    getChapter(arr) {
+        var mangaid = arr[1]
+        var userid = arr[2]
+        var sql = 'SELECT chapter FROM mangaliste WHERE mangaid = ? AND accountid = ?';
+        var statement = this._conn.prepare(sql);
+        var params = [mangaid, userid];
+        var result = statement.get(params);
+        var a = Object.values(result);
+
+        return a;
+    }
+
+=======
+>>>>>>> eafa12e8baf44a6dcdded97df7716bcc6b517919
     loadAll() {
         var sql = 'SELECT * FROM MangaListe';
         var statement = this._conn.prepare(sql);
@@ -181,6 +231,19 @@ class MangaListeDao {
         return this.loadById(result.lastInsertRowid);
     }
 
+    setChapter(maxChapter, accountid, mangaid){
+        var sql = 'UPDATE mangaListe SET chapter= ? WHERE accountid = ? AND mangaid = ?';
+        var statement = this._conn.prepare(sql);
+        var params = [maxChapter, accountid, mangaid];
+        var result = statement.run(params);
+
+        if (result.changes != 1) 
+            throw new Error('Could not update existing Record. Data: ' + params);
+
+        return true;
+
+    }
+
     createC(accountid, mangaid, liststatusid, chapter) {
         var sql = 'INSERT INTO MangaListe (accountid, mangaid, liststatusid, chapter) VALUES (?,?,?,?)';
         var statement = this._conn.prepare(sql);
@@ -201,6 +264,36 @@ class MangaListeDao {
         return a;
     }
 
+    getListStatus(arr) {
+        var mangaid = arr[1]
+        var userid = arr[2]
+        var sql = 'SELECT liststatusid FROM mangaliste WHERE mangaid = ? AND accountid = ?';
+        var statement = this._conn.prepare(sql);
+        var params = [mangaid, userid];
+        var result = statement.get(params);
+        var a = Object.values(result);
+
+        return a;
+    }
+
+    updateListStatus(arr){
+        var mangaid = arr[1]
+        var userid = arr[2]
+        var sql = 'UPDATE mangaliste set liststatusid = 3 WHERE mangaid = ? AND accountid = ?';
+        var statement = this._conn.prepare(sql);
+        var params = [mangaid, userid];
+        statement.run(params);
+    }
+
+    updateListStatusOther(arr){
+        var mangaid = arr[1]
+        var userid = arr[2]
+        var sql = 'UPDATE mangaliste set liststatusid = 1 WHERE mangaid = ? AND accountid = ?';
+        var statement = this._conn.prepare(sql);
+        var params = [mangaid, userid];
+        statement.run(params);
+    }
+
     update(id, accountid, mangaid) {
         var sql = 'UPDATE MangaListe SET accountid=?, mangaid=? WHERE id=?';
         var statement = this._conn.prepare(sql);
@@ -210,7 +303,7 @@ class MangaListeDao {
         if (result.changes != 1) 
             throw new Error('Could not update existing Record. Data: ' + params);
 
-        return this.loadById(id);
+        return true;
     }
 
     editStatus(statusid, accountid, mangaid) {
@@ -222,7 +315,7 @@ class MangaListeDao {
         if (result.changes != 1) 
             throw new Error('Could not update existing Record. Data: ' + params);
 
-        return this.loadById(id);
+        return true;
     }
 
     delete(userid, mangaid) {

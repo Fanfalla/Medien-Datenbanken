@@ -430,7 +430,7 @@
 					dataType: 'json',
 				}).done(function (response) {
 					console.log(response);
-					RenderStatusListStatus(response);
+					RenderStatusListAnimeStatus(response);
 				}).fail(function (jqXHR, statusText, error) {
 					console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
 					$('#output').html('Ein Fehler ist aufgetreten');
@@ -589,7 +589,7 @@
 					dataType: 'json',
 				}).done(function (response) {
 					console.log(response);
-					RenderStatusListStatus(response);
+					RenderStatusListMangaStatus(response);
 				}).fail(function (jqXHR, statusText, error) {
 					console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
 					$('#output').html('Ein Fehler ist aufgetreten');
@@ -740,9 +740,21 @@
 				document.getElementById(id).innerHTML = text + result + ')'
 			}
 			
-			function RenderStatusListStatus(arr) {
+			function RenderStatusListAnimeStatus(arr) {
 				console.log(arr);
 				var select = document.getElementById("ListStatus");
+
+				for (var i = 0; i <arr.length; i++){
+					var opt = document.createElement("option");
+					opt.value = arr[i].id;
+					opt.innerHTML = arr[i].ListStatus;
+					select.appendChild(opt);
+				}
+			}
+			
+			function RenderStatusListMangaStatus(arr) {
+				console.log(arr);
+				var select = document.getElementById("MListStatus");
 
 				for (var i = 0; i <arr.length; i++){
 					var opt = document.createElement("option");
@@ -765,6 +777,37 @@
 
 					$.ajax({
 						url: 'http://localhost:8000/api/animeListe/status/add',
+						method: 'post',
+						contentType: 'application/json; charset=utf-8',
+						cache: false,
+						data: JSON.stringify(obj),
+					})
+					.done(function() {
+						consol.log('eintragInfo eingetragen')
+					})
+					.fail(function(xhr){
+						console.log('error recieved');
+						console.log(xhr);
+						console.log(xhr.status);
+						alert(xhr.responseText);
+					})
+				}
+
+			}
+
+			function AddMangaToList(){
+
+				var user = ""
+
+				if (user = getJSONSessionItem("Account").benutzername){
+
+					var listStatusUser = document.getElementById('MListStatus').value
+					var entryID = document.getElementById('MListStatus').name
+
+					var obj = { "User": user, "ListStatusUser": listStatusUser, "EntryID": entryID}
+
+					$.ajax({
+						url: 'http://localhost:8000/api/mangaListe/status/add',
 						method: 'post',
 						contentType: 'application/json; charset=utf-8',
 						cache: false,
@@ -1306,7 +1349,11 @@
 
 						A.innerHTML = '<image class="schatten" src="' + item.cover + '" width="54" height="75" onclick="ShowEntry(' + item.id + ', 2)" onmouseover="ChangeColorOver(' + item.id + ')" onmouseout="ChangeColorOut(' + item.id + ')"></image>'
 						B.innerHTML = '<label onclick="ShowEntry(' + item.id + ', 2)" onmouseover="ChangeColorOver(' + item.id + ')" onmouseout="ChangeColorOut(' + item.id + ')" id="' + item.id + '1">' + animeName + '</label>';
+<<<<<<< HEAD
+						C.innerHTML = '<label onmouseover="ChangeColorOver(' + item.id + ')" onmouseout="ChangeColorOut(' + item.id + ')" id="' + item.id + '2">' + '<label id="+' + item.id + '" onclick="addChapter(' + item.id + ', ' + item.chapteranzahl + ')"> + </label> <label id="chapter' + item.id + '">' + item.chapter + '</label>/' + item.chapteranzahl + '</label>';
+=======
 						C.innerHTML = '<label onmouseover="ChangeColorOver(' + item.id + ')" onmouseout="ChangeColorOut(' + item.id + ')" id="' + item.id + '2">' + '<label id="+' + item.id + '" onclick="addChapter(' + item.id + ', ' + item.chapteranzahl + ')"> + </label> <label id="folgen' + item.id + '">' + item.folgen + '</label>/' + item.chapteranzahl + '</label>';
+>>>>>>> eafa12e8baf44a6dcdded97df7716bcc6b517919
 						D.innerHTML = '<label onmouseover="ChangeColorOver(' + item.id + ')" onmouseout="ChangeColorOut(' + item.id + ')" id="' + item.id + '3">' + item.format + '</label>';
 					}
 				})
@@ -1349,7 +1396,11 @@
 
 						A.innerHTML = '<image class="schatten" src="' + item.cover + '" width="54" height="75" onclick="ShowEntry(' + item.id + ', 2)" onmouseover="ChangeColorOver(' + item.id + ')" onmouseout="ChangeColorOut(' + item.id + ')"></image>'
 						B.innerHTML = '<label onclick="ShowEntry(' + item.id + ', 2)" onmouseover="ChangeColorOver(' + item.id + ')" onmouseout="ChangeColorOut(' + item.id + ')" id="' + item.id + '1">' + animeName + '</label>';
+<<<<<<< HEAD
+						C.innerHTML = '<label onclick="" onmouseover="ChangeColorOver(' + item.id + ')" onmouseout="ChangeColorOut(' + item.id + ')" id="' + item.id + '2">' + '<label id="chapter' + item.id + '">' + item.chapter + '</label>/' + item.chapteranzahl + '</label>';
+=======
 						C.innerHTML = '<label onclick="" onmouseover="ChangeColorOver(' + item.id + ')" onmouseout="ChangeColorOut(' + item.id + ')" id="' + item.id + '2">' + '<label id="folgen' + item.id + '">' + item.chapter + '</label>/' + item.chapteranzahl + '</label>';
+>>>>>>> eafa12e8baf44a6dcdded97df7716bcc6b517919
 						D.innerHTML = '<label onmouseover="ChangeColorOver(' + item.id + ')" onmouseout="ChangeColorOut(' + item.id + ')" id="' + item.id + '3">' + item.format + '</label>';
 					}
 				})
@@ -1376,15 +1427,43 @@
 				})
 			}
 
+			function addChapter(mangaid, chapteranzahl) {
+
+				var userid = getJSONSessionItem("Account").id
+				var a = 'chapter' + mangaid
+				var chapter = document.getElementById(a).innerHTML
+
+				$.ajax({
+					url: 'http://localhost:8000/api/mangaListe/addChapter/' + chapter + '_' + mangaid + '_' + userid,
+					method: 'get',
+					contentType: 'application/json; charset=utf-8',
+					cache: false,
+					dataType: 'json',
+				}).done(function (response) {
+					console.log(response);
+					updateChapter(response, mangaid, chapteranzahl);
+				}).fail(function (jqXHR, statusText, error) {
+					console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+					$('#output').html('Ein Fehler ist aufgetreten');
+				})
+			}
+
 			function updateFolgen(newFolgen, animeid, folgenanzahl){
 				var a = 'folgen' + animeid
 				document.getElementById(a).innerHTML = newFolgen
 				if(newFolgen == folgenanzahl){
 					var b = '+' + animeid
 					document.getElementById(b).innerHTML = ''
-				}else{
+				}
+			}
+
+			function updateChapter(newChapter, animeid, chapteranzahl){
+				var a = 'chapter' + animeid
+				document.getElementById(a).innerHTML = newChapter
+				if(newChapter == chapteranzahl){
 					var b = '+' + animeid
-					document.getElementById(b).innerHTML = '+'}
+					document.getElementById(b).innerHTML = ''
+				}
 			}
 
 			function ChangeColorOver (id){
@@ -1405,6 +1484,8 @@
 				document.getElementById(id3).style.color = "black"
 			}
 
+<<<<<<< HEAD
+=======
 			function ChangeColorTitleOver (id) {
 				document.getElementById(id).style.color = "red"
 			}
@@ -1413,6 +1494,7 @@
 				document.getElementById(id).style.color = "black"
 			}
 
+>>>>>>> eafa12e8baf44a6dcdded97df7716bcc6b517919
 			function ShowEntry(id, medium){
 				
 				if(medium == 1){
@@ -1508,7 +1590,11 @@
 							dataType: 'json',
 						}).done(function (response) {
 							console.log(response);
+<<<<<<< HEAD
+							getMangaListStatus(response);          
+=======
 							getAnimeListStatus(response);          
+>>>>>>> eafa12e8baf44a6dcdded97df7716bcc6b517919
 						}).fail(function (jqXHR, statusText, error) {
 							console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
 							$('#output').html('Ein Fehler ist aufgetreten');
@@ -1522,6 +1608,10 @@
 
 			function getAnimeListStatus(id){
 				document.getElementById('ListStatus').value = id
+			}
+
+			function getMangaListStatus(id){
+				document.getElementById('MListStatus').value = id
 			}
 
 			function HideEntry(){

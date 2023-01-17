@@ -177,7 +177,11 @@ class AnimeListeDao {
         var result = statement.get(id);
 
         if (helper.isUndefined(result)) 
+<<<<<<< HEAD
+            return false
+=======
             return false;
+>>>>>>> eafa12e8baf44a6dcdded97df7716bcc6b517919
 
         return result;
     }
@@ -188,7 +192,11 @@ class AnimeListeDao {
         var result = statement.get(id);
 
         if (helper.isUndefined(result)) 
+<<<<<<< HEAD
+            return false
+=======
             return false;
+>>>>>>> eafa12e8baf44a6dcdded97df7716bcc6b517919
 
         return result;
     }
@@ -280,6 +288,22 @@ class AnimeListeDao {
             return false;
 
         return true;
+<<<<<<< HEAD
+    }
+
+    setEpisodes(maxfolgen, accountid, animeid){
+        var sql = 'UPDATE AnimeListe SET folgen= ? WHERE accountid = ? AND animeid = ?';
+        var statement = this._conn.prepare(sql);
+        var params = [maxfolgen, accountid, animeid];
+        var result = statement.run(params);
+
+        if (result.changes != 1) 
+            throw new Error('Could not update existing Record. Data: ' + params);
+
+        return true;
+
+=======
+>>>>>>> eafa12e8baf44a6dcdded97df7716bcc6b517919
     }
 
     delete(userid, animeid) {
