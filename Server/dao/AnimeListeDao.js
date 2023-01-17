@@ -22,7 +22,7 @@ class AnimeListeDao {
         var a = Object.values(result);
 
         if (helper.isUndefined(result)) 
-            throw new Error('No Record found by id=' + ids[0]);
+            return false;
 
         return a;
     }
@@ -126,7 +126,7 @@ class AnimeListeDao {
         var result = statement.run(params);
 
         if (result.changes != 1) 
-            throw new Error('Could not update existing Record. Data: ' + params);
+            return false;
     }
 
     getFolge(arr) {
@@ -177,7 +177,11 @@ class AnimeListeDao {
         var result = statement.get(id);
 
         if (helper.isUndefined(result)) 
+<<<<<<< HEAD
             return false
+=======
+            return false;
+>>>>>>> eafa12e8baf44a6dcdded97df7716bcc6b517919
 
         return result;
     }
@@ -188,7 +192,11 @@ class AnimeListeDao {
         var result = statement.get(id);
 
         if (helper.isUndefined(result)) 
+<<<<<<< HEAD
             return false
+=======
+            return false;
+>>>>>>> eafa12e8baf44a6dcdded97df7716bcc6b517919
 
         return result;
     }
@@ -265,7 +273,7 @@ class AnimeListeDao {
         var result = statement.run(params);
 
         if (result.changes != 1) 
-            throw new Error('Could not update existing Record. Data: ' + params);
+            return false;
 
         return true;
     }
@@ -277,9 +285,10 @@ class AnimeListeDao {
         var result = statement.run(params);
 
         if (result.changes != 1) 
-            throw new Error('Could not update existing Record. Data: ' + params);
+            return false;
 
         return true;
+<<<<<<< HEAD
     }
 
     setEpisodes(maxfolgen, accountid, animeid){
@@ -293,6 +302,8 @@ class AnimeListeDao {
 
         return true;
 
+=======
+>>>>>>> eafa12e8baf44a6dcdded97df7716bcc6b517919
     }
 
     delete(userid, animeid) {
@@ -303,7 +314,7 @@ class AnimeListeDao {
             var result = statement.run(params);
 
             if (result.changes != 1) 
-                throw new Error('Could not delete anime= ' + animeid + ' from user= ' + userid);
+                return false;
 
             return true;
         } catch (ex) {
@@ -318,7 +329,7 @@ class AnimeListeDao {
             var result = statement.run(animeid);
 
             if (result.changes == 0) 
-                throw new Error('Could not delete anime= ' + animeid);
+                throw new Error('Could not delete anime = ' + animeid);
 
             return true;
         } catch (ex) {

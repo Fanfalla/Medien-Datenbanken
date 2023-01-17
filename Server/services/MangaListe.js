@@ -118,7 +118,11 @@ serviceRouter.get('/mangaListe/getDropped/:id', function(request, response) {
     }
 });
 
+<<<<<<< HEAD
 serviceRouter.get('/mangaListe/count/:id', function(request, response) {
+=======
+serviceRouter.get('/animeListe/count/:id', function(request, response) {
+>>>>>>> eafa12e8baf44a6dcdded97df7716bcc6b517919
     console.log('Service AnimeListe: Client requested one record, id=' + request.params.id);
 
     var a = request.params.id

@@ -103,19 +103,19 @@
 					</ul>
 				</article>
 				<article class="sammlungBox">
-					<label class="textForList" id="LabelCurrent" onclick="showList('TablePlaceCurrent')" onmouseover="ChangeColorOver('LabelCurrent')" onmouseout="ChangeColorOut('LabelCurrent')"></label>
+					<label class="textForList" id="LabelCurrent" onclick="showList('TablePlaceCurrent')" onmouseover="ChangeColorTitleOver('LabelCurrent')" onmouseout="ChangeColorTitleOut('LabelCurrent')"></label>
 					<article id="TablePlaceCurrent" style="display: none">
 					</article><br><br>
-					<label class="textForList" id="LabelCompleted" onclick="showList('TablePlaceCompleted')" onmouseover="ChangeColorOver('LabelCompleted')" onmouseout="ChangeColorOut('LabelCompleted')"></label>
+					<label class="textForList" id="LabelCompleted" onclick="showList('TablePlaceCompleted')" onmouseover="ChangeColorTitleOver('LabelCompleted')" onmouseout="ChangeColorTitleOut('LabelCompleted')"></label>
 					<article id="TablePlaceCompleted" style="display: none">
 					</article><br><br>
-					<label class="textForList" id="LabelPaused" onclick="showList('TablePlacePaused')" onmouseover="ChangeColorOver('LabelPaused')" onmouseout="ChangeColorOut('LabelPaused')"></label>
+					<label class="textForList" id="LabelPaused" onclick="showList('TablePlacePaused')" onmouseover="ChangeColorTitleOver('LabelPaused')" onmouseout="ChangeColorTitleOut('LabelPaused')"></label>
 					<article id="TablePlacePaused" style="display: none">
 					</article><br><br>
-					<label class="textForList" id="LabelDropped" onclick="showList('TablePlaceDropped')" onmouseover="ChangeColorOver('LabelDropped')" onmouseout="ChangeColorOut('LabelDropped')"></label>
+					<label class="textForList" id="LabelDropped" onclick="showList('TablePlaceDropped')" onmouseover="ChangeColorTitleOver('LabelDropped')" onmouseout="ChangeColorTitleOut('LabelDropped')"></label>
 					<article id="TablePlaceDropped" style="display: none">
 					</article><br><br>
-					<label class="textForList" id="LabelPlanning" onclick="showList('TablePlacePlanning')" onmouseover="ChangeColorOver('LabelPlanning')" onmouseout="ChangeColorOut('LabelPlanning')"></label>
+					<label class="textForList" id="LabelPlanning" onclick="showList('TablePlacePlanning')" onmouseover="ChangeColorTitleOver('LabelPlanning')" onmouseout="ChangeColorTitleOut('LabelPlanning')"></label>
 					<article id="TablePlacePlanning" style="display: none">
 					</article>	<br><br>
 				</article>
@@ -1349,7 +1349,11 @@
 
 						A.innerHTML = '<image class="schatten" src="' + item.cover + '" width="54" height="75" onclick="ShowEntry(' + item.id + ', 2)" onmouseover="ChangeColorOver(' + item.id + ')" onmouseout="ChangeColorOut(' + item.id + ')"></image>'
 						B.innerHTML = '<label onclick="ShowEntry(' + item.id + ', 2)" onmouseover="ChangeColorOver(' + item.id + ')" onmouseout="ChangeColorOut(' + item.id + ')" id="' + item.id + '1">' + animeName + '</label>';
+<<<<<<< HEAD
 						C.innerHTML = '<label onmouseover="ChangeColorOver(' + item.id + ')" onmouseout="ChangeColorOut(' + item.id + ')" id="' + item.id + '2">' + '<label id="+' + item.id + '" onclick="addChapter(' + item.id + ', ' + item.chapteranzahl + ')"> + </label> <label id="chapter' + item.id + '">' + item.chapter + '</label>/' + item.chapteranzahl + '</label>';
+=======
+						C.innerHTML = '<label onmouseover="ChangeColorOver(' + item.id + ')" onmouseout="ChangeColorOut(' + item.id + ')" id="' + item.id + '2">' + '<label id="+' + item.id + '" onclick="addChapter(' + item.id + ', ' + item.chapteranzahl + ')"> + </label> <label id="folgen' + item.id + '">' + item.folgen + '</label>/' + item.chapteranzahl + '</label>';
+>>>>>>> eafa12e8baf44a6dcdded97df7716bcc6b517919
 						D.innerHTML = '<label onmouseover="ChangeColorOver(' + item.id + ')" onmouseout="ChangeColorOut(' + item.id + ')" id="' + item.id + '3">' + item.format + '</label>';
 					}
 				})
@@ -1392,7 +1396,11 @@
 
 						A.innerHTML = '<image class="schatten" src="' + item.cover + '" width="54" height="75" onclick="ShowEntry(' + item.id + ', 2)" onmouseover="ChangeColorOver(' + item.id + ')" onmouseout="ChangeColorOut(' + item.id + ')"></image>'
 						B.innerHTML = '<label onclick="ShowEntry(' + item.id + ', 2)" onmouseover="ChangeColorOver(' + item.id + ')" onmouseout="ChangeColorOut(' + item.id + ')" id="' + item.id + '1">' + animeName + '</label>';
+<<<<<<< HEAD
 						C.innerHTML = '<label onclick="" onmouseover="ChangeColorOver(' + item.id + ')" onmouseout="ChangeColorOut(' + item.id + ')" id="' + item.id + '2">' + '<label id="chapter' + item.id + '">' + item.chapter + '</label>/' + item.chapteranzahl + '</label>';
+=======
+						C.innerHTML = '<label onclick="" onmouseover="ChangeColorOver(' + item.id + ')" onmouseout="ChangeColorOut(' + item.id + ')" id="' + item.id + '2">' + '<label id="folgen' + item.id + '">' + item.chapter + '</label>/' + item.chapteranzahl + '</label>';
+>>>>>>> eafa12e8baf44a6dcdded97df7716bcc6b517919
 						D.innerHTML = '<label onmouseover="ChangeColorOver(' + item.id + ')" onmouseout="ChangeColorOut(' + item.id + ')" id="' + item.id + '3">' + item.format + '</label>';
 					}
 				})
@@ -1476,6 +1484,17 @@
 				document.getElementById(id3).style.color = "black"
 			}
 
+<<<<<<< HEAD
+=======
+			function ChangeColorTitleOver (id) {
+				document.getElementById(id).style.color = "red"
+			}
+
+			function ChangeColorTitleOut (id) {
+				document.getElementById(id).style.color = "black"
+			}
+
+>>>>>>> eafa12e8baf44a6dcdded97df7716bcc6b517919
 			function ShowEntry(id, medium){
 				
 				if(medium == 1){
@@ -1571,7 +1590,11 @@
 							dataType: 'json',
 						}).done(function (response) {
 							console.log(response);
+<<<<<<< HEAD
 							getMangaListStatus(response);          
+=======
+							getAnimeListStatus(response);          
+>>>>>>> eafa12e8baf44a6dcdded97df7716bcc6b517919
 						}).fail(function (jqXHR, statusText, error) {
 							console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
 							$('#output').html('Ein Fehler ist aufgetreten');
