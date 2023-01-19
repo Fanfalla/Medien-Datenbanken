@@ -194,6 +194,9 @@ serviceRouter.post('/animeListe/status/add', function(request, response) {
         
         if(animeListeDao.loadByUserAndName(parseInt(animeListeDao.getUserId(request.body.User)), request.body.EntryID) && request.body.ListStatusUser > 0){
             var obj = animeListeDao.editStatus(request.body.ListStatusUser, parseInt(animeListeDao.getUserId(request.body.User)), request.body.EntryID)
+            if(request.body.ListStatusUser == 3){
+                animeListeDao.setEpisodes(parseInt(animeDao.getFolgen(request.body.EntryID)), parseInt(animeListeDao.getUserId(request.body.User)), request.body.EntryID)
+            }
             console.log('Service AnimeListe: Record Updated');
             response.status(200).json(obj);
         }

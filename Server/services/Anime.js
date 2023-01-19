@@ -6,12 +6,40 @@ var serviceRouter = express.Router();
 
 console.log('- Service Anime');
 
+serviceRouter.get('/anime/getAll', function(request, response) {
+    console.log('Service Anime: Client requested one record, id=' + request.params.id);
+
+    const animeDao = new AnimeDao(request.app.locals.dbConnection);
+    try {
+        var obj = animeDao.loadAll(request.params.id);
+        console.log('Service Anime: Record loaded');
+        response.status(200).json(obj);
+    } catch (ex) {
+        console.error('Service Anime: Error loading record by id. Exception occured: ' + ex.message);
+        response.status(400).json({ 'fehler': true, 'nachricht': ex.message });
+    }
+});
+
 serviceRouter.get('/anime/gib/:id', function(request, response) {
     console.log('Service Anime: Client requested one record, id=' + request.params.id);
 
     const animeDao = new AnimeDao(request.app.locals.dbConnection);
     try {
         var obj = animeDao.loadById(request.params.id);
+        console.log('Service Anime: Record loaded');
+        response.status(200).json(obj);
+    } catch (ex) {
+        console.error('Service Anime: Error loading record by id. Exception occured: ' + ex.message);
+        response.status(400).json({ 'fehler': true, 'nachricht': ex.message });
+    }
+});
+
+serviceRouter.get('/anime/gib2/:id', function(request, response) {
+    console.log('Service Anime: Client requested one record, id=' + request.params.id);
+
+    const animeDao = new AnimeDao(request.app.locals.dbConnection);
+    try {
+        var obj = animeDao.loadById2(request.params.id);
         console.log('Service Anime: Record loaded');
         response.status(200).json(obj);
     } catch (ex) {
@@ -92,6 +120,8 @@ serviceRouter.put('/anime/edit', function(request, response) {
     console.log('Service Anime: Client requested update of existing record');
 
     var errorMsgs=[];
+    if (helper.isUndefined(request.body.Animes))
+        errorMsgs.push('Anime id fehlt');
     if (helper.isUndefined(request.body.FolgenAnzahl)) 
         errorMsgs.push('Folgen Anzahl fehlt');
     if (helper.isUndefined(request.body.FolgenDauer)) 
@@ -106,12 +136,13 @@ serviceRouter.put('/anime/edit', function(request, response) {
         response.status(400).json({ 'fehler': true, 'nachricht': 'Funktion nicht möglich. Fehlende Daten: ' + helper.concatArray(errorMsgs) });
         return;
     }
-
     const animeDao = new AnimeDao(request.app.locals.dbConnection);
+    const eintragInfoDao = new EintragInfoDao(request.app.locals.dbConnection);
+    console.log(animeDao.loadEintragId(request.body.Animes))
     try {
-        var obj = animeDao.update(request.body.FolgenAnzahl, request.body.FolgenDauer, request.body.latestid ,request.body.Season, request.body.Studio);
+        animeDao.update(request.body.Animes, request.body.FolgenAnzahl, request.body.FolgenDauer, request.body.Season, request.body.Studio);
+        eintragInfoDao.update(parseInt(animeDao.loadEintragId(request.body.Animes)), request.body.Romaji, request.body.Englisch, request.body.Deutsch, request.body.StartDate, request.body.EndDate, request.body.Cover, request.body.Diashow, request.body.Beschreibung, request.body.Format, request.body.Jahr, request.body.Source, request.body.Status)
         console.log('Service Anime: Record updated, id=' + request.body.id);
-        response.status(200).json(obj);
     } catch (ex) {
         console.error('Service Anime: Error updating record by id. Exception occured: ' + ex.message);
         response.status(400).json({ 'fehler': true, 'nachricht': ex.message });

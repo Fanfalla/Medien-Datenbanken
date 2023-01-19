@@ -62,7 +62,13 @@ class MangaListeDao {
     }
 
     loadReading(userid) {
+
         var sql = 'SELECT manga.id, romaji, chapteranzahl, format, chapter, cover FROM Mangaliste INNER JOIN Manga ON mangaid = manga.id INNER JOIN eintraginfo ON eintragid = eintraginfo.id INNER JOIN Format ON eintraginfo.formatid = Format.id WHERE accountid = ? AND liststatusid = 2 ORDER BY romaji';
+
+        var sql = 'SELECT manga.id, romaji, chapteranzahl, format, chapter, cover FROM Mangaliste INNER JOIN Manga ON mangaid = manga.id INNER JOIN eintraginfo ON eintragid = eintraginfo.id INNER JOIN Format ON eintraginfo.formatid = Format.id WHERE accountid = ? AND liststatusid = 2 ORDER BY romaji';
+
+        var sql = 'SELECT manga.id, romaji, chapteranzahl, format, volumeanzahl, cover FROM Mangaliste INNER JOIN Manga ON mangaid = manga.id INNER JOIN eintraginfo ON eintragid = eintraginfo.id INNER JOIN Format ON eintraginfo.formatid = Format.id WHERE accountid = ? AND liststatusid = 2 ORDER BY romaji';
+
         var statement = this._conn.prepare(sql);
         var params = [userid];
         var result = statement.all(params);
@@ -74,7 +80,13 @@ class MangaListeDao {
     }
 
     loadCompleted(userid) {
+
         var sql = 'SELECT manga.id, romaji, chapteranzahl, format, chapter, cover FROM Mangaliste INNER JOIN Manga ON mangaid = manga.id INNER JOIN eintraginfo ON eintragid = eintraginfo.id INNER JOIN Format ON eintraginfo.formatid = Format.id WHERE accountid = ? AND liststatusid = 3 ORDER BY romaji';
+
+        var sql = 'SELECT manga.id, romaji, chapteranzahl, format, chapter, cover FROM Mangaliste INNER JOIN Manga ON mangaid = manga.id INNER JOIN eintraginfo ON eintragid = eintraginfo.id INNER JOIN Format ON eintraginfo.formatid = Format.id WHERE accountid = ? AND liststatusid = 3 ORDER BY romaji';
+
+        var sql = 'SELECT manga.id, romaji, chapteranzahl, format, volumeanzahl, cover FROM Mangaliste INNER JOIN Manga ON mangaid = manga.id INNER JOIN eintraginfo ON eintragid = eintraginfo.id INNER JOIN Format ON eintraginfo.formatid = Format.id WHERE accountid = ? AND liststatusid = 3 ORDER BY romaji';
+
         var statement = this._conn.prepare(sql);
         var params = [userid];
         var result = statement.all(params);
@@ -86,7 +98,13 @@ class MangaListeDao {
     }
 
     loadPlanning(userid) {
+
         var sql = 'SELECT manga.id, romaji, chapteranzahl, format, chapter, cover FROM Mangaliste INNER JOIN Manga ON mangaid = manga.id INNER JOIN eintraginfo ON eintragid = eintraginfo.id INNER JOIN Format ON eintraginfo.formatid = Format.id WHERE accountid = ? AND liststatusid = 4 ORDER BY romaji';
+
+        var sql = 'SELECT manga.id, romaji, chapteranzahl, format, chapter, cover FROM Mangaliste INNER JOIN Manga ON mangaid = manga.id INNER JOIN eintraginfo ON eintragid = eintraginfo.id INNER JOIN Format ON eintraginfo.formatid = Format.id WHERE accountid = ? AND liststatusid = 4 ORDER BY romaji';
+
+        var sql = 'SELECT manga.id, romaji, chapteranzahl, format, volumeanzahl, cover FROM Mangaliste INNER JOIN Manga ON mangaid = manga.id INNER JOIN eintraginfo ON eintragid = eintraginfo.id INNER JOIN Format ON eintraginfo.formatid = Format.id WHERE accountid = ? AND liststatusid = 4 ORDER BY romaji';
+
         var statement = this._conn.prepare(sql);
         var params = [userid];
         var result = statement.all(params);
@@ -98,7 +116,13 @@ class MangaListeDao {
     }
 
     loadPaused(userid) {
+
         var sql = 'SELECT manga.id, romaji, chapteranzahl, format, chapter, cover FROM Mangaliste INNER JOIN Manga ON mangaid = manga.id INNER JOIN eintraginfo ON eintragid = eintraginfo.id INNER JOIN Format ON eintraginfo.formatid = Format.id WHERE accountid = ? AND liststatusid = 5 ORDER BY romaji';
+
+        var sql = 'SELECT manga.id, romaji, chapteranzahl, format, chapter, cover FROM Mangaliste INNER JOIN Manga ON mangaid = manga.id INNER JOIN eintraginfo ON eintragid = eintraginfo.id INNER JOIN Format ON eintraginfo.formatid = Format.id WHERE accountid = ? AND liststatusid = 5 ORDER BY romaji';
+
+        var sql = 'SELECT manga.id, romaji, chapteranzahl, format, volumeanzahl, cover FROM Mangaliste INNER JOIN Manga ON mangaid = manga.id INNER JOIN eintraginfo ON eintragid = eintraginfo.id INNER JOIN Format ON eintraginfo.formatid = Format.id WHERE accountid = ? AND liststatusid = 5 ORDER BY romaji';
+
         var statement = this._conn.prepare(sql);
         var params = [userid];
         var result = statement.all(params);
@@ -110,7 +134,13 @@ class MangaListeDao {
     }
 
     loadDropped(userid) {
+
         var sql = 'SELECT manga.id, romaji, chapteranzahl, format, chapter, cover FROM Mangaliste INNER JOIN Manga ON mangaid = manga.id INNER JOIN eintraginfo ON eintragid = eintraginfo.id INNER JOIN Format ON eintraginfo.formatid = Format.id WHERE accountid = ? AND liststatusid = 6 ORDER BY romaji';
+
+        var sql = 'SELECT manga.id, romaji, chapteranzahl, format, chapter, cover FROM Mangaliste INNER JOIN Manga ON mangaid = manga.id INNER JOIN eintraginfo ON eintragid = eintraginfo.id INNER JOIN Format ON eintraginfo.formatid = Format.id WHERE accountid = ? AND liststatusid = 6 ORDER BY romaji';
+
+        var sql = 'SELECT manga.id, romaji, chapteranzahl, format, volumeanzahl, cover FROM Mangaliste INNER JOIN Manga ON mangaid = manga.id INNER JOIN eintraginfo ON eintragid = eintraginfo.id INNER JOIN Format ON eintraginfo.formatid = Format.id WHERE accountid = ? AND liststatusid = 6 ORDER BY romaji';
+
         var statement = this._conn.prepare(sql);
         var params = [userid];
         var result = statement.all(params);
@@ -135,6 +165,7 @@ class MangaListeDao {
 
         return a;
     }
+
 
     addChapter(arr) {
 
@@ -162,6 +193,7 @@ class MangaListeDao {
 
         return a;
     }
+
 
     loadAll() {
         var sql = 'SELECT * FROM MangaListe';

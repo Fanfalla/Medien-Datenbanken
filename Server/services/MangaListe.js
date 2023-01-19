@@ -38,6 +38,108 @@ serviceRouter.get('/mangaListe/alle', function(request, response) {
     }
 });
 
+serviceRouter.get('/mangaListe/getReading/:id', function(request, response) {
+    console.log('Service AnimeListe: Client requested all records');
+
+    var a = request.params.id
+
+    const mangaListeDao = new MangaListeDao(request.app.locals.dbConnection);
+    try {
+        var arr = mangaListeDao.loadReading(a);
+        console.log('Service mangaListe: Records loaded, count=' + arr.length);
+        response.status(200).json(arr);
+    } catch (ex) {
+        console.error('Service AnimeListe: Error loading all records. Exception occured: ' + ex.message);
+        response.status(400).json({ 'fehler': true, 'nachricht': ex.message });
+    }
+});
+
+serviceRouter.get('/mangaListe/getCompleted/:id', function(request, response) {
+    console.log('Service AnimeListe: Client requested all records');
+
+    var a = request.params.id
+
+    const mangaListeDao = new MangaListeDao(request.app.locals.dbConnection);
+    try {
+        var arr = mangaListeDao.loadCompleted(a);
+        console.log('Service mangaListe: Records loaded, count=' + arr.length);
+        response.status(200).json(arr);
+    } catch (ex) {
+        console.error('Service AnimeListe: Error loading all records. Exception occured: ' + ex.message);
+        response.status(400).json({ 'fehler': true, 'nachricht': ex.message });
+    }
+});
+
+serviceRouter.get('/mangaListe/getPlanning/:id', function(request, response) {
+    console.log('Service AnimeListe: Client requested all records');
+
+    var a = request.params.id
+
+    const mangaListeDao = new MangaListeDao(request.app.locals.dbConnection);
+    try {
+        var arr = mangaListeDao.loadPlanning(a);
+        console.log('Service mangaListe: Records loaded, count=' + arr.length);
+        response.status(200).json(arr);
+    } catch (ex) {
+        console.error('Service AnimeListe: Error loading all records. Exception occured: ' + ex.message);
+        response.status(400).json({ 'fehler': true, 'nachricht': ex.message });
+    }
+});
+
+serviceRouter.get('/mangaListe/getPaused/:id', function(request, response) {
+    console.log('Service AnimeListe: Client requested all records');
+
+    var a = request.params.id
+
+    const mangaListeDao = new MangaListeDao(request.app.locals.dbConnection);
+    try {
+        var arr = mangaListeDao.loadPaused(a);
+        console.log('Service mangaListe: Records loaded, count=' + arr.length);
+        response.status(200).json(arr);
+    } catch (ex) {
+        console.error('Service AnimeListe: Error loading all records. Exception occured: ' + ex.message);
+        response.status(400).json({ 'fehler': true, 'nachricht': ex.message });
+    }
+});
+
+serviceRouter.get('/mangaListe/getDropped/:id', function(request, response) {
+    console.log('Service AnimeListe: Client requested all records');
+
+    var a = request.params.id
+
+    const mangaListeDao = new MangaListeDao(request.app.locals.dbConnection);
+    try {
+        var arr = mangaListeDao.loadDropped(a);
+        console.log('Service mangaListe: Records loaded, count=' + arr.length);
+        response.status(200).json(arr);
+    } catch (ex) {
+        console.error('Service AnimeListe: Error loading all records. Exception occured: ' + ex.message);
+        response.status(400).json({ 'fehler': true, 'nachricht': ex.message });
+    }
+});
+
+<<<<<<< HEAD
+serviceRouter.get('/mangaListe/count/:id', function(request, response) {
+=======
+serviceRouter.get('/animeListe/count/:id', function(request, response) {
+>>>>>>> eafa12e8baf44a6dcdded97df7716bcc6b517919
+    console.log('Service AnimeListe: Client requested one record, id=' + request.params.id);
+
+    var a = request.params.id
+    var b = a.split('_')
+    console.log(b)
+
+    const mangaListeDao = new MangaListeDao(request.app.locals.dbConnection);
+    try {
+        var obj = parseInt(mangaListeDao.count(b));
+        console.log('Service AnimeListe: Record loaded ' + obj);
+        response.status(200).json(obj);
+    } catch (ex) {
+        console.error('Service AnimeListe: Error loading record by id. Exception occured: ' + ex.message);
+        response.status(400).json({ 'fehler': true, 'nachricht': ex.message });
+    }
+});
+
 serviceRouter.get('/mangaListe/existiert/:id', function(request, response) {
     console.log('Service MangaListe: Client requested check, if record exists, id=' + request.params.id);
 
@@ -56,10 +158,6 @@ serviceRouter.get('/mangaListe/existiert/:id', function(request, response) {
 
 serviceRouter.post('/mangaListe/status/add', function(request, response) {
     console.log('Service MangaListe: Client requested creation of new record');
-
-    console.log('-------> User: ' + request.body.User)
-    console.log('-------> ListStatusUser: ' + request.body.ListStatusUser)
-    console.log('-------> EntryID: ' + request.body.EntryID)
 
     var errorMsgs=[];
     if (helper.isUndefined(request.body.User)) 
@@ -86,6 +184,9 @@ serviceRouter.post('/mangaListe/status/add', function(request, response) {
 
         if(mangaListeDao.loadByUserAndName(parseInt(mangaListeDao.getUserId(request.body.User)), request.body.EntryID) && request.body.ListStatusUser > 0){
             var obj = mangaListeDao.editStatus(request.body.ListStatusUser, parseInt(mangaListeDao.getUserId(request.body.User)), request.body.EntryID)
+            if(request.body.ListStatusUser == 3){
+                mangaListeDao.setChapter(parseInt(mangaDao.getChapters(request.body.EntryID)), parseInt(mangaListeDao.getUserId(request.body.User)), request.body.EntryID)
+            }
             console.log('Service MangaListe: Record Updated');
             response.status(200).json(obj);
         }
@@ -105,6 +206,34 @@ serviceRouter.post('/mangaListe/status/add', function(request, response) {
         console.error('Service MangaListe: Error creating new record. Exception occured: ' + ex.message);
         response.status(400).json({ 'fehler': true, 'nachricht': ex.message });
     }    
+});
+
+serviceRouter.get('/mangaListe/addChapter/:id', function(request, response) {
+    console.log('Service MangaListe: Client requested all records');
+
+    var a = request.params.id
+    var b = a.split('_')
+
+    const mangaListeDao = new MangaListeDao(request.app.locals.dbConnection);
+    const mangaDao = new MangaDao(request.app.locals.dbConnection);
+    try {
+        mangaListeDao.addChapter(b);
+        var obj = parseInt(mangaListeDao.getChapter(b))
+        if(parseInt(mangaListeDao.getListStatus(b)) != 1 && parseInt(mangaListeDao.getChapter(b)) != parseInt(mangaDao.getChapters(parseInt(b[1])))){
+            mangaListeDao.updateListStatusOther(b)
+        }
+        if(parseInt(mangaListeDao.getChapter(b)) == parseInt(mangaDao.getChapters(parseInt(b[1])))){
+            mangaListeDao.updateListStatus(b)
+        }
+        if(parseInt(mangaListeDao.getChapter(b)) == parseInt(mangaDao.getChapters(parseInt(b[1]))) && parseInt(mangaDao.getChapters(parseInt(b[1]))) == 1){
+            mangaListeDao.updateListStatus(b)
+        }
+        console.log('Service mangaListe: Records loaded = ' + obj);
+        response.status(200).json(obj);
+    } catch (ex) {
+        console.error('Service MangaListe: Error loading all records. Exception occured: ' + ex.message);
+        response.status(400).json({ 'fehler': true, 'nachricht': ex.message });
+    }
 });
 
 serviceRouter.put('/mangaListe', function(request, response) {
