@@ -10,6 +10,28 @@ class AnimeDao {
         return this._conn;
     }
 
+    loadall(id) {
+        var sql = 'SELECT Anime.id, romaji FROM Anime';
+        var statement = this._conn.prepare(sql);
+        var result = statement.get(id);
+
+        if (helper.isUndefined(result)) 
+            throw new Error('No Record found by id=' + id);
+
+        return result;
+    }
+
+    loadById2(id) {
+        var sql = 'SELECT Anime.id, folgenanzahl, dauer, romaji, englisch, deutsch, startdatum, enddatum, cover, diashow, beschreibung, formatid, jahrid, sourceid, statusid, seasonid, studioid FROM Anime INNER JOIN EintragInfo ON Anime.eintragid = EintragInfo.id INNER JOIN Studio ON Anime.studioid = Studio.id WHERE anime.id=?';
+        var statement = this._conn.prepare(sql);
+        var result = statement.get(id);
+
+        if (helper.isUndefined(result)) 
+            throw new Error('No Record found by id=' + id);
+
+        return result;
+    }
+
     loadById(id) {
         var sql = 'SELECT Anime.id, folgenanzahl, dauer, romaji, englisch, deutsch, startdatum, enddatum, cover, diashow, beschreibung, format, jahr, \'source\'.\'source\', status, season, studio FROM Anime INNER JOIN EintragInfo ON Anime.eintragid = EintragInfo.id INNER JOIN Season ON Anime.seasonid = Season.id INNER JOIN Studio ON Anime.studioid = Studio.id INNER JOIN Format ON EintragInfo.formatid = Format.id INNER JOIN Jahr ON EintragInfo.jahrid = Jahr.id INNER JOIN \'Source\' ON EintragInfo.sourceid = \'Source\'.id INNER JOIN Status ON EintragInfo.statusid = Status.id WHERE anime.id=?';
         var statement = this._conn.prepare(sql);
@@ -25,11 +47,12 @@ class AnimeDao {
         var sql = 'SELECT eintragid FROM Anime WHERE id=?';
         var statement = this._conn.prepare(sql);
         var result = statement.get(id);
+        var a = Object.values(result);
 
         if (helper.isUndefined(result)) 
             throw new Error('No Record found by id=' + id);
 
-        return result;
+        return a;
     }
 
     AnimeExists(romaji = '') {
@@ -94,10 +117,10 @@ class AnimeDao {
         return this.loadById(result.lastInsertRowid);
     }
 
-    update(id, folgenanzahl, dauer, eintragid, seasonid, studioid) {
-        var sql = 'UPDATE Anime SET folgenanzahl=?, dauer=?, eintragid=?, seasonid=?, studioid=?  WHERE id=?';
+    update(id, folgenanzahl, dauer, seasonid, studioid) {
+        var sql = 'UPDATE Anime SET folgenanzahl=?, dauer=?, seasonid=?, studioid=?  WHERE id=?';
         var statement = this._conn.prepare(sql);
-        var params = [folgenanzahl, dauer, id];
+        var params = [folgenanzahl, dauer, seasonid, studioid, id];
         var result = statement.run(params);
 
         if (result.changes != 1) 
@@ -116,6 +139,7 @@ class AnimeDao {
                 throw new Error('Could not delete Record by id=' + id);
 
             return true;
+            
         } catch (ex) {
             throw new Error('Could not delete Record by id=' + id + '. Reason: ' + ex.message);
         }

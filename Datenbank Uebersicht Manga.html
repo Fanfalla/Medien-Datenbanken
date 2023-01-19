@@ -3,7 +3,7 @@
 	<head>
 	<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>Home</title>
+		<title>Übersicht Manga</title>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 		<link rel="stylesheet" href="Css.css">
 		<script src="sessionHandling.js"></script>
@@ -14,7 +14,7 @@
 		<nav class="navigationBox schatten">
 			<ul class="navigationList">
 				<li class="navigationButton"><a href="Home.html" class="navigation">Startseite</a></li>
-				<li class="navigationButton"><a href="Datenbank Uebersicht Manga.html" class="navigation">Mangas</a></li>
+				<li class="navigationButton"><a href="Datenbank Uebersicht Anime.html" class="navigation">Animes</a></li>
 				<li class="navigationButton"><a href="Datenbank Uebersicht Manga.html" class="navigation">Mangas</a></li>
 				<li class="navigationButton"><a id="1" href="Registration.html" class="navigation">Registration</a></li>
 				<li class="navigationButton"><a id="2" href="Login.html" class="navigation">Log in</a></li>
@@ -700,8 +700,6 @@
 			}
 
 			function ShowEntry(id){
-
-				setSessionItem("id", id);
 					
 				$.ajax({
 					url: 'http://localhost:8000/api/Manga/gib/'+ id,
@@ -731,6 +729,9 @@
 					$('#output').html('Ein Fehler ist aufgetreten');
 				})
 
+				EintragInfoBox.style.visibility="visible"
+				TransparentBox.style.visibility="visible"
+				
 				if (user = getJSONSessionItem("Account").id){
 
 					$.ajax({
@@ -748,8 +749,6 @@
 					})
 				}
 
-				EintragInfoBox.style.visibility="visible"
-				TransparentBox.style.visibility="visible"
 				if (getJSONSessionItem("Account").adminid == 1) {
 						document.getElementById("delete").style.visibility = "visible";
 				}
