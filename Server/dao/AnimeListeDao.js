@@ -177,7 +177,7 @@ class AnimeListeDao {
         var result = statement.get(id);
 
         if (helper.isUndefined(result)) 
-            throw new Error('No Record found by id=' + id);
+            return false
 
         return result;
     }
@@ -188,7 +188,7 @@ class AnimeListeDao {
         var result = statement.get(id);
 
         if (helper.isUndefined(result)) 
-            throw new Error('No Record found by mangaid=' + id);
+            return false
 
         return result;
     }
@@ -267,7 +267,7 @@ class AnimeListeDao {
         if (result.changes != 1) 
             throw new Error('Could not update existing Record. Data: ' + params);
 
-        return this.loadById(id);
+        return true;
     }
 
     editStatus(statusid, accountid, animeid) {
@@ -279,7 +279,20 @@ class AnimeListeDao {
         if (result.changes != 1) 
             throw new Error('Could not update existing Record. Data: ' + params);
 
-        return this.loadById(id);
+        return true;
+    }
+
+    setEpisodes(maxfolgen, accountid, animeid){
+        var sql = 'UPDATE AnimeListe SET folgen= ? WHERE accountid = ? AND animeid = ?';
+        var statement = this._conn.prepare(sql);
+        var params = [maxfolgen, accountid, animeid];
+        var result = statement.run(params);
+
+        if (result.changes != 1) 
+            throw new Error('Could not update existing Record. Data: ' + params);
+
+        return true;
+
     }
 
     delete(userid, animeid) {

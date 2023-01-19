@@ -21,6 +21,15 @@ class MangaDao {
         return result;
     }
 
+    getChapters(id){
+        var sql = 'SELECT chapteranzahl FROM Manga WHERE manga.id = ?'
+        var statement = this._conn.prepare(sql);
+        var result = statement.get(id);
+        var a = Object.values(result);
+
+        return a;
+    }
+
     loadEintragId(id) {
         var sql = 'SELECT eintragid FROM Manga WHERE id=?';
         var statement = this._conn.prepare(sql);
