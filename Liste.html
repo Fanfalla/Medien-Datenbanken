@@ -86,7 +86,7 @@
 					<ul id="MangaFillter" class="filter2 filterManga">
 						<li class="filterMargin">Format:</li>
 						<li>
-							<select id="FormatManga" class="dropdownMenue dropdownMenueListe">
+							<select id="FormatManga" class="dropdownMenue dropdownMenueListe" onchange="BrowseFilter()">
 							</select>
 						</li>
 					</ul>
@@ -117,7 +117,7 @@
 					</article><br><br>
 					<label class="textForList" id="LabelPlanning" onclick="showList('TablePlacePlanning')" onmouseover="ChangeColorTitleOver('LabelPlanning')" onmouseout="ChangeColorTitleOut('LabelPlanning')"></label>
 					<article id="TablePlacePlanning" style="display: none">
-					</article>	<br><br>
+					</article><br><br>
 				</article>
 			</article>
 
@@ -927,12 +927,49 @@
 
 			function ClearDropdown(){
 
-				document.getElementById('Season').value = 0
-				document.getElementById('Jahr').value = 0
-				document.getElementById('FormatAnime').value = 0
-				document.getElementById('Source').value = 0
-				document.getElementById('Sort').value = 0
+				document.getElementById('Season').value = 1
+				document.getElementById('Jahr').value = 1
+				document.getElementById('FormatAnime').value = 1
+				document.getElementById('FormatManga').value = 1
+				document.getElementById('Source').value = 1
+				document.getElementById('Sort').value = 1
 				document.getElementById('Suche').value = ''
+				document.getElementById('Action').value = 0
+				document.getElementById('Action').style.display = "none"
+				document.getElementById('Adventure').value = 0
+				document.getElementById('Adventure').style.display = "none"
+				document.getElementById('Comedy').value = 0
+				document.getElementById('Comedy').style.display = "none"
+				document.getElementById('Drama').value = 0
+				document.getElementById('Drama').style.display = "none"
+				document.getElementById('Ecchi').value = 0
+				document.getElementById('Ecchi').style.display = "none"
+				document.getElementById('Fantasy').value = 0
+				document.getElementById('Fantasy').style.display = "none"
+				document.getElementById('Horror').value = 0
+				document.getElementById('Horror').style.display = "none"
+				document.getElementById('MahouShoujo').value = 0
+				document.getElementById('MahouShoujo').style.display = "none"
+				document.getElementById('Mecha').value = 0
+				document.getElementById('Mecha').style.display = "none"
+				document.getElementById('Music').value = 0
+				document.getElementById('Music').style.display = "none"
+				document.getElementById('Mystery').value = 0
+				document.getElementById('Mystery').style.display = "none"
+				document.getElementById('Psychological').value = 0
+				document.getElementById('Psychological').style.display = "none"
+				document.getElementById('Romance').value = 0
+				document.getElementById('Romance').style.display = "none"
+				document.getElementById('Sci-Fi').value = 0
+				document.getElementById('Sci-Fi').style.display = "none"
+				document.getElementById('SliceOfLife').value = 0
+				document.getElementById('SliceOfLife').style.display = "none"
+				document.getElementById('Sport').value = 0
+				document.getElementById('Sport').style.display = "none"
+				document.getElementById('Supernatural').value = 0
+				document.getElementById('Supernatural').style.display = "none"
+				document.getElementById('Thriller').value = 0
+				document.getElementById('Thriller').style.display = "none"
 			}
 
 			function hideLists(){
@@ -1140,8 +1177,8 @@
 			function BrowseFilter(){
 
 				var acc = getJSONSessionItem("Account").id
+				var medium = document.getElementById("Medium").value
 
-				var SelectedValueSeason = 1
 				var SelectedValueJahr = 1
 				var SelectedValueFormat = 1
 				var SelectedValueSource = 1
@@ -1167,9 +1204,7 @@
 				var SelectedValueGenre17 = 1
 				var SelectedValueGenre18 = 1
 
-				SelectedValueSeason = document.getElementById('Season').value
 				SelectedValueJahr = document.getElementById('Jahr').value
-				SelectedValueFormat = document.getElementById('FormatAnime').value
 				SelectedValueSource = document.getElementById('Source').value
 				SelectedValueOrder = document.getElementById('Sort').value
 				
@@ -1194,76 +1229,156 @@
 				SelectedText += document.getElementById('Suche').value
 				
 				clearTables()
+				
+				if(medium == 1){
+					var SelectedValueSeason = 1
+					SelectedValueSeason = document.getElementById('Season').value	
+					SelectedValueFormat = document.getElementById('FormatAnime').value
 
-				$.ajax({
-					url: 'http://localhost:8000/api/Fillter/SortGenreAnimeList/'+ SelectedValueSeason + '_' + SelectedValueJahr + '_' + SelectedValueFormat + '_' + SelectedValueSource + '_' + SelectedText + '_' +  SelectedValueGenre1 + '&' + SelectedValueGenre2 + '&' + SelectedValueGenre3 + '&' + SelectedValueGenre4 + '&' + SelectedValueGenre5 + '&' + SelectedValueGenre6 + '&' + SelectedValueGenre7 + '&' + SelectedValueGenre8 + '&' + SelectedValueGenre9 + '&' + SelectedValueGenre10 + '&'  + SelectedValueGenre11 + '&'  + SelectedValueGenre12 + '&'  + SelectedValueGenre13 + '&'  + SelectedValueGenre14 + '&'  + SelectedValueGenre15 + '&'  + SelectedValueGenre16 + '&'  + SelectedValueGenre17 + '&'  + SelectedValueGenre18 + '_' + SelectedValueOrder + '_' + acc + '_1',
-					method: 'get',
-					contentType: 'application/json; charset=utf-8',
-					cache: false,
-					dataType: 'json',
-				}).done(function (response) {
-					console.log(response);
-					RenderCurrent(response);          
-				}).fail(function (jqXHR, statusText, error) {
-					console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
-					$('#output').html('Ein Fehler ist aufgetreten');
-				})
+					$.ajax({
+						url: 'http://localhost:8000/api/Fillter/SortGenreAnimeList/' + SelectedValueSeason + '_' + SelectedValueJahr + '_' + SelectedValueFormat + '_' + SelectedValueSource + '_' + SelectedText + '_' +  SelectedValueGenre1 + '&' + SelectedValueGenre2 + '&' + SelectedValueGenre3 + '&' + SelectedValueGenre4 + '&' + SelectedValueGenre5 + '&' + SelectedValueGenre6 + '&' + SelectedValueGenre7 + '&' + SelectedValueGenre8 + '&' + SelectedValueGenre9 + '&' + SelectedValueGenre10 + '&'  + SelectedValueGenre11 + '&'  + SelectedValueGenre12 + '&'  + SelectedValueGenre13 + '&'  + SelectedValueGenre14 + '&'  + SelectedValueGenre15 + '&'  + SelectedValueGenre16 + '&'  + SelectedValueGenre17 + '&'  + SelectedValueGenre18 + '_' + SelectedValueOrder + '_' + acc + '_1',
+						method: 'get',
+						contentType: 'application/json; charset=utf-8',
+						cache: false,
+						dataType: 'json',
+					}).done(function (response) {
+						console.log(response);
+						RenderCurrent(response);          
+					}).fail(function (jqXHR, statusText, error) {
+						console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+						$('#output').html('Ein Fehler ist aufgetreten');
+					})
 
-				$.ajax({
-					url: 'http://localhost:8000/api/Fillter/SortGenreAnimeList/'+ SelectedValueSeason + '_' + SelectedValueJahr + '_' + SelectedValueFormat + '_' + SelectedValueSource + '_' + SelectedText + '_' +  SelectedValueGenre1 + '&' + SelectedValueGenre2 + '&' + SelectedValueGenre3 + '&' + SelectedValueGenre4 + '&' + SelectedValueGenre5 + '&' + SelectedValueGenre6 + '&' + SelectedValueGenre7 + '&' + SelectedValueGenre8 + '&' + SelectedValueGenre9 + '&' + SelectedValueGenre10 + '&'  + SelectedValueGenre11 + '&'  + SelectedValueGenre12 + '&'  + SelectedValueGenre13 + '&'  + SelectedValueGenre14 + '&'  + SelectedValueGenre15 + '&'  + SelectedValueGenre16 + '&'  + SelectedValueGenre17 + '&'  + SelectedValueGenre18 + '_' + SelectedValueOrder + '_' + acc + '_3',
-					method: 'get',
-					contentType: 'application/json; charset=utf-8',
-					cache: false,
-					dataType: 'json',
-				}).done(function (response) {
-					console.log(response);
-					RenderCompleted(response);          
-				}).fail(function (jqXHR, statusText, error) {
-					console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
-					$('#output').html('Ein Fehler ist aufgetreten');
-				})
+					$.ajax({
+						url: 'http://localhost:8000/api/Fillter/SortGenreAnimeList/' + SelectedValueSeason + '_' + SelectedValueJahr + '_' + SelectedValueFormat + '_' + SelectedValueSource + '_' + SelectedText + '_' +  SelectedValueGenre1 + '&' + SelectedValueGenre2 + '&' + SelectedValueGenre3 + '&' + SelectedValueGenre4 + '&' + SelectedValueGenre5 + '&' + SelectedValueGenre6 + '&' + SelectedValueGenre7 + '&' + SelectedValueGenre8 + '&' + SelectedValueGenre9 + '&' + SelectedValueGenre10 + '&'  + SelectedValueGenre11 + '&'  + SelectedValueGenre12 + '&'  + SelectedValueGenre13 + '&'  + SelectedValueGenre14 + '&'  + SelectedValueGenre15 + '&'  + SelectedValueGenre16 + '&'  + SelectedValueGenre17 + '&'  + SelectedValueGenre18 + '_' + SelectedValueOrder + '_' + acc + '_3',
+						method: 'get',
+						contentType: 'application/json; charset=utf-8',
+						cache: false,
+						dataType: 'json',
+					}).done(function (response) {
+						console.log(response);
+						RenderCompleted(response);          
+					}).fail(function (jqXHR, statusText, error) {
+						console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+						$('#output').html('Ein Fehler ist aufgetreten');
+					})
 
-				$.ajax({
-					url: 'http://localhost:8000/api/Fillter/SortGenreAnimeList/'+ SelectedValueSeason + '_' + SelectedValueJahr + '_' + SelectedValueFormat + '_' + SelectedValueSource + '_' + SelectedText + '_' +  SelectedValueGenre1 + '&' + SelectedValueGenre2 + '&' + SelectedValueGenre3 + '&' + SelectedValueGenre4 + '&' + SelectedValueGenre5 + '&' + SelectedValueGenre6 + '&' + SelectedValueGenre7 + '&' + SelectedValueGenre8 + '&' + SelectedValueGenre9 + '&' + SelectedValueGenre10 + '&'  + SelectedValueGenre11 + '&'  + SelectedValueGenre12 + '&'  + SelectedValueGenre13 + '&'  + SelectedValueGenre14 + '&'  + SelectedValueGenre15 + '&'  + SelectedValueGenre16 + '&'  + SelectedValueGenre17 + '&'  + SelectedValueGenre18 + '_' + SelectedValueOrder + '_' + acc + '_4',
-					method: 'get',
-					contentType: 'application/json; charset=utf-8',
-					cache: false,
-					dataType: 'json',
-				}).done(function (response) {
-					console.log(response);
-					RenderPaused(response);          
-				}).fail(function (jqXHR, statusText, error) {
-					console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
-					$('#output').html('Ein Fehler ist aufgetreten');
-				})
+					$.ajax({
+						url: 'http://localhost:8000/api/Fillter/SortGenreAnimeList/' + SelectedValueSeason + '_' + SelectedValueJahr + '_' + SelectedValueFormat + '_' + SelectedValueSource + '_' + SelectedText + '_' +  SelectedValueGenre1 + '&' + SelectedValueGenre2 + '&' + SelectedValueGenre3 + '&' + SelectedValueGenre4 + '&' + SelectedValueGenre5 + '&' + SelectedValueGenre6 + '&' + SelectedValueGenre7 + '&' + SelectedValueGenre8 + '&' + SelectedValueGenre9 + '&' + SelectedValueGenre10 + '&'  + SelectedValueGenre11 + '&'  + SelectedValueGenre12 + '&'  + SelectedValueGenre13 + '&'  + SelectedValueGenre14 + '&'  + SelectedValueGenre15 + '&'  + SelectedValueGenre16 + '&'  + SelectedValueGenre17 + '&'  + SelectedValueGenre18 + '_' + SelectedValueOrder + '_' + acc + '_4',
+						method: 'get',
+						contentType: 'application/json; charset=utf-8',
+						cache: false,
+						dataType: 'json',
+					}).done(function (response) {
+						console.log(response);
+						RenderPaused(response);          
+					}).fail(function (jqXHR, statusText, error) {
+						console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+						$('#output').html('Ein Fehler ist aufgetreten');
+					})
 
-				$.ajax({
-					url: 'http://localhost:8000/api/Fillter/SortGenreAnimeList/'+ SelectedValueSeason + '_' + SelectedValueJahr + '_' + SelectedValueFormat + '_' + SelectedValueSource + '_' + SelectedText + '_' +  SelectedValueGenre1 + '&' + SelectedValueGenre2 + '&' + SelectedValueGenre3 + '&' + SelectedValueGenre4 + '&' + SelectedValueGenre5 + '&' + SelectedValueGenre6 + '&' + SelectedValueGenre7 + '&' + SelectedValueGenre8 + '&' + SelectedValueGenre9 + '&' + SelectedValueGenre10 + '&'  + SelectedValueGenre11 + '&'  + SelectedValueGenre12 + '&'  + SelectedValueGenre13 + '&'  + SelectedValueGenre14 + '&'  + SelectedValueGenre15 + '&'  + SelectedValueGenre16 + '&'  + SelectedValueGenre17 + '&'  + SelectedValueGenre18 + '_' + SelectedValueOrder + '_' + acc + '_5',
-					method: 'get',
-					contentType: 'application/json; charset=utf-8',
-					cache: false,
-					dataType: 'json',
-				}).done(function (response) {
-					console.log(response);
-					RenderDropped(response);          
-				}).fail(function (jqXHR, statusText, error) {
-					console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
-					$('#output').html('Ein Fehler ist aufgetreten');
-				})
+					$.ajax({
+						url: 'http://localhost:8000/api/Fillter/SortGenreAnimeList/' + SelectedValueSeason + '_' + SelectedValueJahr + '_' + SelectedValueFormat + '_' + SelectedValueSource + '_' + SelectedText + '_' +  SelectedValueGenre1 + '&' + SelectedValueGenre2 + '&' + SelectedValueGenre3 + '&' + SelectedValueGenre4 + '&' + SelectedValueGenre5 + '&' + SelectedValueGenre6 + '&' + SelectedValueGenre7 + '&' + SelectedValueGenre8 + '&' + SelectedValueGenre9 + '&' + SelectedValueGenre10 + '&'  + SelectedValueGenre11 + '&'  + SelectedValueGenre12 + '&'  + SelectedValueGenre13 + '&'  + SelectedValueGenre14 + '&'  + SelectedValueGenre15 + '&'  + SelectedValueGenre16 + '&'  + SelectedValueGenre17 + '&'  + SelectedValueGenre18 + '_' + SelectedValueOrder + '_' + acc + '_5',
+						method: 'get',
+						contentType: 'application/json; charset=utf-8',
+						cache: false,
+						dataType: 'json',
+					}).done(function (response) {
+						console.log(response);
+						RenderDropped(response);          
+					}).fail(function (jqXHR, statusText, error) {
+						console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+						$('#output').html('Ein Fehler ist aufgetreten');
+					})
 
-				$.ajax({
-					url: 'http://localhost:8000/api/Fillter/SortGenreAnimeList/'+ SelectedValueSeason + '_' + SelectedValueJahr + '_' + SelectedValueFormat + '_' + SelectedValueSource + '_' + SelectedText + '_' +  SelectedValueGenre1 + '&' + SelectedValueGenre2 + '&' + SelectedValueGenre3 + '&' + SelectedValueGenre4 + '&' + SelectedValueGenre5 + '&' + SelectedValueGenre6 + '&' + SelectedValueGenre7 + '&' + SelectedValueGenre8 + '&' + SelectedValueGenre9 + '&' + SelectedValueGenre10 + '&'  + SelectedValueGenre11 + '&'  + SelectedValueGenre12 + '&'  + SelectedValueGenre13 + '&'  + SelectedValueGenre14 + '&'  + SelectedValueGenre15 + '&'  + SelectedValueGenre16 + '&'  + SelectedValueGenre17 + '&'  + SelectedValueGenre18 + '_' + SelectedValueOrder + '_' + acc + '_6',
-					method: 'get',
-					contentType: 'application/json; charset=utf-8',
-					cache: false,
-					dataType: 'json',
-				}).done(function (response) {
-					console.log(response);
-					RenderPlanning(response);          
-				}).fail(function (jqXHR, statusText, error) {
-					console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
-					$('#output').html('Ein Fehler ist aufgetreten');
-				})
+					$.ajax({
+						url: 'http://localhost:8000/api/Fillter/SortGenreAnimeList/' + SelectedValueSeason + '_' + SelectedValueJahr + '_' + SelectedValueFormat + '_' + SelectedValueSource + '_' + SelectedText + '_' +  SelectedValueGenre1 + '&' + SelectedValueGenre2 + '&' + SelectedValueGenre3 + '&' + SelectedValueGenre4 + '&' + SelectedValueGenre5 + '&' + SelectedValueGenre6 + '&' + SelectedValueGenre7 + '&' + SelectedValueGenre8 + '&' + SelectedValueGenre9 + '&' + SelectedValueGenre10 + '&'  + SelectedValueGenre11 + '&'  + SelectedValueGenre12 + '&'  + SelectedValueGenre13 + '&'  + SelectedValueGenre14 + '&'  + SelectedValueGenre15 + '&'  + SelectedValueGenre16 + '&'  + SelectedValueGenre17 + '&'  + SelectedValueGenre18 + '_' + SelectedValueOrder + '_' + acc + '_6',
+						method: 'get',
+						contentType: 'application/json; charset=utf-8',
+						cache: false,
+						dataType: 'json',
+					}).done(function (response) {
+						console.log(response);
+						RenderPlanning(response);          
+					}).fail(function (jqXHR, statusText, error) {
+						console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+						$('#output').html('Ein Fehler ist aufgetreten');
+					})
+				}
+				
+				if(medium == 2){
+					SelectedValueFormat = document.getElementById('FormatManga').value
+
+					$.ajax({
+						url: 'http://localhost:8000/api/Fillter/SortGenreMangaList/' + SelectedValueJahr + '_' + SelectedValueFormat + '_' + SelectedValueSource + '_' + SelectedText + '_' +  SelectedValueGenre1 + '&' + SelectedValueGenre2 + '&' + SelectedValueGenre3 + '&' + SelectedValueGenre4 + '&' + SelectedValueGenre5 + '&' + SelectedValueGenre6 + '&' + SelectedValueGenre7 + '&' + SelectedValueGenre8 + '&' + SelectedValueGenre9 + '&' + SelectedValueGenre10 + '&'  + SelectedValueGenre11 + '&'  + SelectedValueGenre12 + '&'  + SelectedValueGenre13 + '&'  + SelectedValueGenre14 + '&'  + SelectedValueGenre15 + '&'  + SelectedValueGenre16 + '&'  + SelectedValueGenre17 + '&'  + SelectedValueGenre18 + '_' + SelectedValueOrder + '_' + acc + '_2',
+						method: 'get',
+						contentType: 'application/json; charset=utf-8',
+						cache: false,
+						dataType: 'json',
+					}).done(function (response) {
+						console.log(response);
+						RenderCurrent(response);          
+					}).fail(function (jqXHR, statusText, error) {
+						console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+						$('#output').html('Ein Fehler ist aufgetreten');
+					})
+
+					$.ajax({
+						url: 'http://localhost:8000/api/Fillter/SortGenreMangaList/' + SelectedValueJahr + '_' + SelectedValueFormat + '_' + SelectedValueSource + '_' + SelectedText + '_' +  SelectedValueGenre1 + '&' + SelectedValueGenre2 + '&' + SelectedValueGenre3 + '&' + SelectedValueGenre4 + '&' + SelectedValueGenre5 + '&' + SelectedValueGenre6 + '&' + SelectedValueGenre7 + '&' + SelectedValueGenre8 + '&' + SelectedValueGenre9 + '&' + SelectedValueGenre10 + '&'  + SelectedValueGenre11 + '&'  + SelectedValueGenre12 + '&'  + SelectedValueGenre13 + '&'  + SelectedValueGenre14 + '&'  + SelectedValueGenre15 + '&'  + SelectedValueGenre16 + '&'  + SelectedValueGenre17 + '&'  + SelectedValueGenre18 + '_' + SelectedValueOrder + '_' + acc + '_3',
+						method: 'get',
+						contentType: 'application/json; charset=utf-8',
+						cache: false,
+						dataType: 'json',
+					}).done(function (response) {
+						console.log(response);
+						RenderCompleted(response);          
+					}).fail(function (jqXHR, statusText, error) {
+						console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+						$('#output').html('Ein Fehler ist aufgetreten');
+					})
+
+					$.ajax({
+						url: 'http://localhost:8000/api/Fillter/SortGenreMangaList/' + SelectedValueJahr + '_' + SelectedValueFormat + '_' + SelectedValueSource + '_' + SelectedText + '_' +  SelectedValueGenre1 + '&' + SelectedValueGenre2 + '&' + SelectedValueGenre3 + '&' + SelectedValueGenre4 + '&' + SelectedValueGenre5 + '&' + SelectedValueGenre6 + '&' + SelectedValueGenre7 + '&' + SelectedValueGenre8 + '&' + SelectedValueGenre9 + '&' + SelectedValueGenre10 + '&'  + SelectedValueGenre11 + '&'  + SelectedValueGenre12 + '&'  + SelectedValueGenre13 + '&'  + SelectedValueGenre14 + '&'  + SelectedValueGenre15 + '&'  + SelectedValueGenre16 + '&'  + SelectedValueGenre17 + '&'  + SelectedValueGenre18 + '_' + SelectedValueOrder + '_' + acc + '_4',
+						method: 'get',
+						contentType: 'application/json; charset=utf-8',
+						cache: false,
+						dataType: 'json',
+					}).done(function (response) {
+						console.log(response);
+						RenderPaused(response);          
+					}).fail(function (jqXHR, statusText, error) {
+						console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+						$('#output').html('Ein Fehler ist aufgetreten');
+					})
+
+					$.ajax({
+						url: 'http://localhost:8000/api/Fillter/SortGenreMangaList/' + SelectedValueJahr + '_' + SelectedValueFormat + '_' + SelectedValueSource + '_' + SelectedText + '_' +  SelectedValueGenre1 + '&' + SelectedValueGenre2 + '&' + SelectedValueGenre3 + '&' + SelectedValueGenre4 + '&' + SelectedValueGenre5 + '&' + SelectedValueGenre6 + '&' + SelectedValueGenre7 + '&' + SelectedValueGenre8 + '&' + SelectedValueGenre9 + '&' + SelectedValueGenre10 + '&'  + SelectedValueGenre11 + '&'  + SelectedValueGenre12 + '&'  + SelectedValueGenre13 + '&'  + SelectedValueGenre14 + '&'  + SelectedValueGenre15 + '&'  + SelectedValueGenre16 + '&'  + SelectedValueGenre17 + '&'  + SelectedValueGenre18 + '_' + SelectedValueOrder + '_' + acc + '_5',
+						method: 'get',
+						contentType: 'application/json; charset=utf-8',
+						cache: false,
+						dataType: 'json',
+					}).done(function (response) {
+						console.log(response);
+						RenderDropped(response);          
+					}).fail(function (jqXHR, statusText, error) {
+						console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+						$('#output').html('Ein Fehler ist aufgetreten');
+					})
+
+					$.ajax({
+						url: 'http://localhost:8000/api/Fillter/SortGenreMangaList/' + SelectedValueJahr + '_' + SelectedValueFormat + '_' + SelectedValueSource + '_' + SelectedText + '_' +  SelectedValueGenre1 + '&' + SelectedValueGenre2 + '&' + SelectedValueGenre3 + '&' + SelectedValueGenre4 + '&' + SelectedValueGenre5 + '&' + SelectedValueGenre6 + '&' + SelectedValueGenre7 + '&' + SelectedValueGenre8 + '&' + SelectedValueGenre9 + '&' + SelectedValueGenre10 + '&'  + SelectedValueGenre11 + '&'  + SelectedValueGenre12 + '&'  + SelectedValueGenre13 + '&'  + SelectedValueGenre14 + '&'  + SelectedValueGenre15 + '&'  + SelectedValueGenre16 + '&'  + SelectedValueGenre17 + '&'  + SelectedValueGenre18 + '_' + SelectedValueOrder + '_' + acc + '_6',
+						method: 'get',
+						contentType: 'application/json; charset=utf-8',
+						cache: false,
+						dataType: 'json',
+					}).done(function (response) {
+						console.log(response);
+						RenderPlanning(response);          
+					}).fail(function (jqXHR, statusText, error) {
+						console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+						$('#output').html('Ein Fehler ist aufgetreten');
+					})
+				}
 
 			}
 
@@ -1464,6 +1579,13 @@
 					var b = '+' + animeid
 					document.getElementById(b).innerHTML = ''
 				}
+			}
+			function ChangeColorTitleOver (id) {
+				document.getElementById(id).style.color = "red"
+			}
+
+			function ChangeColorTitleOut (id) {
+				document.getElementById(id).style.color = "black"
 			}
 
 			function ChangeColorOver (id){

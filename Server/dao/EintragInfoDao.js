@@ -60,10 +60,10 @@ class EintragInfoDao {
         if (result.changes != 1) 
             throw new Error('Could not insert new Record. Data: ' + params);
 
-        return this.loadById(result.lastInsertRowid);
+        return true;
     }
 
-    update(id, romaji = '', englisch = '', deutsch = '', startdatum, enddatum, cover = '', diashow = '', beschreibung = '', formatid, jahrid, sourceid, statusid) {
+    update(id, romaji, englisch, deutsch, startdatum, enddatum, cover, diashow, beschreibung, formatid, jahrid, sourceid, statusid) {
         var sql = 'UPDATE EintragInfo SET romaji=?, englisch=?, deutsch=?, startDatum=?, endDatum=?, cover=?, diashow=?, beschreibung=?, formatid=?, jahrid=?, sourceid=?, statusid=? WHERE id=?';
         var statement = this._conn.prepare(sql);
         var params = [romaji, englisch, deutsch, startdatum, enddatum, cover, diashow, beschreibung, formatid, jahrid, sourceid, statusid, id];
@@ -72,7 +72,7 @@ class EintragInfoDao {
         if (result.changes != 1) 
             throw new Error('Could not update existing Record. Data: ' + params);
 
-        return this.loadById(id);
+        return true;
     }
 
     delete(id) {
