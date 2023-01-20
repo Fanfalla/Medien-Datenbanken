@@ -29,14 +29,12 @@
 						<tr class="tableTDerw2">
 							<td colspan="2" class="tdHinzufuegen"><b>Eintrag Hinzuf&uuml;gen</b></td>
 						</tr>
-						
 						<tr>
 							<td class="tdHinzufuegen">Titel</td>
-							
 						</tr>
 						<tr>
-						<td><select id="Animes" class="dropdownMenue" name="Animes" onchange="FillWithAnimeData()">
-								<option value="0">---</option></select></td>
+							<td><select id="Mangas" class="dropdownMenue" name="Mangas" onchange="FillWithMangaData()">
+								<option value="0">---</option></td>
 						</tr>
 						<tr>
 							<td class="tdHinzufuegen" colspan="2">*Romaji</td>
@@ -50,15 +48,15 @@
 						</tr>
 						<tr>
 							<td class="tdHinzufuegen" colspan="2">Beschreibung</td>
-							<td class="tdHinzufuegen" colspan="2">Chapter</td>
-							<td class="tdHinzufuegen">Volume</td>
+							<td class="tdHinzufuegen" colspan="2">Insgesamte Chapter Anzahl</td>
+							<td class="tdHinzufuegen">Chapter Anzahl</td>
 						</tr>
 						<tr>
 							<td class="tdHinzufuegen"><input type="text" id="Beschreibung" placeholder="Beschreibung" name="Beschreibung"></td>
 							<td></td>
-							<td class="tdHinzufuegen"><input type="text" id="Chapter" placeholder="Chapter" name="Chapter"></td>
+							<td class="tdHinzufuegen"><input type="text" id="ChapterAnzahl" placeholder="Anzahl der Chapter" name="ChapterAnzahl"></td>
 							<td></td>
-							<td class="tdHinzufuegen"><input type="text" id="Volume" placeholder="Volume" name="Volume"></input></td>
+							<td class="tdHinzufuegen"><input type="text" id="VolumeAnzahl" placeholder="Volume Anzahl" name="VolumeAnzahl"></input></td>
 						</tr>
 						<tr>
 							<td class="tdHinzufuegen">Format</td>
@@ -83,9 +81,6 @@
 						</tr>
 						<tr>
 							<td class="tdHinzufuegen">
-								<select id="Studio" class="dropdownMenue" name="Studio"></select>
-							</td>
-							<td class="tdHinzufuegen">
 								<select id="Source" class="dropdownMenue" name="Source"></select>
 							</td>
 							<td class="tdHinzufuegen">
@@ -97,7 +92,7 @@
 							<td colspan="2" class="tdHinzufuegen">Diashow Bild</td>
 						</tr>
 						<tr>
-	
+							
 							<td colspan="2" class="tdHinzufuegen"><input type="url" id="Cover" placeholder="Cover" name="Cover"></input></td>
 							<td colspan="2" class="tdHinzufuegen"><input type="url" id="Diashow" placeholder="Diashow Bild f&uuml;r die Startseite" name="Diashow"></input></td>
 						</tr>
@@ -122,7 +117,7 @@
 			function LoadAndDisplayDropDownMenues(){
 
 				$.ajax({
-					url: 'http://localhost:8000/api/format/alle/Anime',
+					url: 'http://localhost:8000/api/format/alle/Manga',
 					method: 'get',
                 	contentType: 'application/json; charset=utf-8',
                 	cache: false,
@@ -136,20 +131,6 @@
 				})
 
 				$.ajax({
-					url: 'http://localhost:8000/api/season/alle',
-					method: 'get',
-					contentType: 'application/json; charset=utf-8',
-					cache: false,
-					dataType: 'json',
-				}).done(function (response) {
-					console.log(response);
-					RenderSeasonOptions(response);                
-				}).fail(function (jqXHR, statusText, error) {
-					console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
-					$('#output').html('Ein Fehler ist aufgetreten');
-				})
-
-				$.ajax({
 					url: 'http://localhost:8000/api/jahr/alle',
 					method: 'get',
 					contentType: 'application/json; charset=utf-8',
@@ -158,20 +139,6 @@
 				}).done(function (response) {
 					console.log(response);
 					RenderJahrOptions(response);                
-				}).fail(function (jqXHR, statusText, error) {
-					console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
-					$('#output').html('Ein Fehler ist aufgetreten');
-				})
-
-				$.ajax({
-					url: 'http://localhost:8000/api/studio/alle',
-					method: 'get',
-					contentType: 'application/json; charset=utf-8',
-					cache: false,
-					dataType: 'json',
-				}).done(function (response) {
-					console.log(response);
-					RenderStudioOptions(response);                
 				}).fail(function (jqXHR, statusText, error) {
 					console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
 					$('#output').html('Ein Fehler ist aufgetreten');
@@ -206,14 +173,14 @@
 				})
 
 				$.ajax({
-					url: 'http://localhost:8000/api/anime/getAll',
+					url: 'http://localhost:8000/api/manga/getAll',
 					method: 'get',
 					contentType: 'application/json; charset=utf-8',
 					cache: false,
 					dataType: 'json',
 				}).done(function (response) {
 					console.log(response);
-					RenderAnimeOptions(response);                
+					RenderMangaOptions(response);                
 				}).fail(function (jqXHR, statusText, error) {
 					console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
 					$('#output').html('Ein Fehler ist aufgetreten');
@@ -232,18 +199,6 @@
     			}
 			}
 
-			function RenderSeasonOptions(arr) {
-				console.log(arr);
-				var select = document.getElementById("Season");
-
-				for (var i = 0; i < arr.length; i++){
-					var opt = document.createElement("option");
-					opt.value = arr[i].id;
-					opt.innerHTML = arr[i].season;
-					select.appendChild(opt);
-				}
-			}
-
 			function RenderJahrOptions(arr) {
 				console.log(arr);
 				var select = document.getElementById("Jahr");
@@ -252,18 +207,6 @@
 					var opt = document.createElement("option");
 					opt.value = arr[i].id;
 					opt.innerHTML = arr[i].jahr;
-					select.appendChild(opt);
-				}
-			}
-
-			function RenderStudioOptions(arr) {
-				console.log(arr);
-				var select = document.getElementById("Studio");
-
-				for (var i = 0; i <arr.length; i++){
-					var opt = document.createElement("option");
-					opt.value = arr[i].id;
-					opt.innerHTML = arr[i].studio;
 					select.appendChild(opt);
 				}
 			}
@@ -292,10 +235,10 @@
 				}
 			}
 
-			function RenderAnimeOptions(arr){
+			function RenderMangaOptions(arr){
 			
 				console.log(arr);
-				var select = document.getElementById("Animes");
+				var select = document.getElementById("Mangas");
 
 				for (var i = 0; i <arr.length; i++){
 					var opt = document.createElement("option");
@@ -306,16 +249,16 @@
 			
 			}
 
-			function FillWithAnimeData(){
+			function FillWithMangaData(){
 
 				Emptyoptions()
 
-				id = document.getElementById('Animes').value
+				id = document.getElementById('Mangas').value
 
 				if(id > 0){
 
 					$.ajax({
-						url: 'http://localhost:8000/api/anime/gib2/' + id,
+						url: 'http://localhost:8000/api/manga/gib2/' + id,
 						method: 'get',
 						contentType: 'application/json; charset=utf-8',
 						cache: false,
@@ -336,14 +279,12 @@
 				document.getElementById('Englisch').value = item.englisch
 				document.getElementById('Deutsch').value = item.deutsch
 				document.getElementById('Beschreibung').value = item.beschreibung
-				document.getElementById('FolgenAnzahl').value = item.folgenanzahl
-				document.getElementById('FolgenDauer').value = item.dauer
+				document.getElementById('ChapterAnzahl').value = item.chapteranzahl
+				document.getElementById('VolumeAnzahl').value = item.volumeanzahl
 				document.getElementById('Format').value = item.formatid
-				document.getElementById('Season').value = item.seasonid
 				document.getElementById('Jahr').value = item.jahrid
 				document.getElementById('StartDate').value = item.startdatum
 				document.getElementById('EndDate').value = item.enddatum
-				document.getElementById('Studio').value = item.studioid
 				document.getElementById('Source').value = item.sourceid
 				document.getElementById('Status').value = item.statusid
 				document.getElementById('Cover').value = item.cover
@@ -356,14 +297,12 @@
 				document.getElementById('Englisch').value = ''
 				document.getElementById('Deutsch').value =  ''
 				document.getElementById('Beschreibung').value =  ''
-				document.getElementById('FolgenAnzahl').value =  ''
-				document.getElementById('FolgenDauer').value =  ''
+				document.getElementById('ChapterAnzahl').value =  ''
+				document.getElementById('VolumeAnzahl').value =  ''
 				document.getElementById('Format').value = 1
-				document.getElementById('Season').value = 1
 				document.getElementById('Jahr').value = 1
 				document.getElementById('StartDate').value =  ''
 				document.getElementById('EndDate').value =  ''
-				document.getElementById('Studio').value = 1
 				document.getElementById('Source').value = 1
 				document.getElementById('Status').value = 1
 				document.getElementById('Cover').value =  ''
@@ -378,7 +317,7 @@
 				
 
 				$.ajax({
-					url: 'http://localhost:8000/api/anime/edit',
+					url: 'http://localhost:8000/api/manga/edit',
 					type: 'PUT',
 					data: formData,
 					contentType: false,

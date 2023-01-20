@@ -94,7 +94,6 @@ serviceRouter.post('/animeEintragGenre/add', function(request, response) {
 
     const animeEintragGenreDao = new AnimeEintragGenreDao(request.app.locals.dbConnection);
     latestAnimeID = parseInt(animeDao.latestID());
-    console.log('---'+latestAnimeID+'---');
     try {
         for(var i = 0; i < request.body.Genre.length; i++){
             var obj = animeEintragGenreDao.create(latestAnimeID, request.body.Genre[i]);
