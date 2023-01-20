@@ -6,12 +6,40 @@ var serviceRouter = express.Router();
 
 console.log('- Service Manga');
 
+serviceRouter.get('/manga/getAll', function(request, response) {
+    console.log('Service Manga: Client requested one record, id=' + request.params.id);
+
+    const mangaDao = new MangaDao(request.app.locals.dbConnection);
+    try {
+        var obj = mangaDao.loadAll(request.params.id);
+        console.log('Service Manga: Record loaded');
+        response.status(200).json(obj);
+    } catch (ex) {
+        console.error('Service Manga: Error loading record by id. Exception occured: ' + ex.message);
+        response.status(400).json({ 'fehler': true, 'nachricht': ex.message });
+    }
+});
+
 serviceRouter.get('/manga/gib/:id', function(request, response) {
     console.log('Service Manga: Client requested one record, id=' + request.params.id);
 
     const mangaDao = new MangaDao(request.app.locals.dbConnection);
     try {
         var obj = mangaDao.loadById(request.params.id);
+        console.log('Service Manga: Record loaded');
+        response.status(200).json(obj);
+    } catch (ex) {
+        console.error('Service Manga: Error loading record by id. Exception occured: ' + ex.message);
+        response.status(400).json({ 'fehler': true, 'nachricht': ex.message });
+    }
+});
+
+serviceRouter.get('/manga/gib2/:id', function(request, response) {
+    console.log('Service Manga: Client requested one record, id=' + request.params.id);
+
+    const mangaDao = new MangaDao(request.app.locals.dbConnection);
+    try {
+        var obj = mangaDao.loadById2(request.params.id);
         console.log('Service Manga: Record loaded');
         response.status(200).json(obj);
     } catch (ex) {
@@ -68,42 +96,36 @@ serviceRouter.post('/manga/add', function(request, response) {
     const mangaDao = new MangaDao(request.app.locals.dbConnection);
     const eintragInfoDao = new EintragInfoDao(request.app.locals.dbConnection);
     try {
-        if(!mangaDao.MangaExists(request.body.romaji)){
-            var obj = mangaDao.create(request.body.ChapterAnzahl, request.body.VolumeAnzahl, parseInt(eintragInfoDao.latestID()));
-            console.log('Service Manga: Record inserted');
-            response.status(200).json(obj);
-        }else{
-            console.log('Manga Existiert bereits')
-            response.json({'nachricht': 'Manga Existiert bereits'})
-        }
+        var obj = mangaDao.create(request.body.ChapterAnzahl, request.body.VolumeAnzahl, parseInt(eintragInfoDao.latestID()));
+        console.log('Service Manga: Record inserted');
+        response.status(200).json(obj);
+        
     } catch (ex) {
         console.error('Service Manga: Error creating new record. Exception occured: ' + ex.message);
         response.status(400).json({ 'fehler': true, 'nachricht': ex.message });
     }    
 });
 
-serviceRouter.put('/manga', function(request, response) {
+serviceRouter.put('/manga/edit', function(request, response) {
     console.log('Service Manga: Client requested update of existing record');
 
     var errorMsgs=[];
-    if (helper.isUndefined(request.body.id)) 
-        errorMsgs.push('id fehlt');
-    if (helper.isUndefined(request.body.kennzeichnung)) 
-        errorMsgs.push('kennzeichnung fehlt');
-    if (helper.isUndefined(request.body.bezeichnung)) 
-        errorMsgs.push('bezeichnung fehlt');
+    if (helper.isUndefined(request.body.Mangas))
+        errorMsgs.push('Manga id fehlt');
 
     if (errorMsgs.length > 0) {
         console.log('Service Manga: Update not possible, data missing');
         response.status(400).json({ 'fehler': true, 'nachricht': 'Funktion nicht möglich. Fehlende Daten: ' + helper.concatArray(errorMsgs) });
         return;
     }
-
     const mangaDao = new MangaDao(request.app.locals.dbConnection);
+    const eintragInfoDao = new EintragInfoDao(request.app.locals.dbConnection);
+    console.log(mangaDao.loadEintragId(request.body.Mangas))
     try {
-        var obj = mangaDao.update(request.body.id, request.body.kennzeichnung, request.body.bezeichnung);
+        console.log(request.body.Status)
+        mangaDao.update(request.body.Mangas, request.body.ChapterAnzahl, request.body.VolumeAnzahl);
+        eintragInfoDao.update(parseInt(mangaDao.loadEintragId(request.body.Mangas)), request.body.Romaji, request.body.Englisch, request.body.Deutsch, request.body.StartDate, request.body.EndDate, request.body.Cover, request.body.Diashow, request.body.Beschreibung, request.body.Format, request.body.Jahr, request.body.Source, request.body.Status)
         console.log('Service Manga: Record updated, id=' + request.body.id);
-        response.status(200).json(obj);
     } catch (ex) {
         console.error('Service Manga: Error updating record by id. Exception occured: ' + ex.message);
         response.status(400).json({ 'fehler': true, 'nachricht': ex.message });

@@ -55,15 +55,15 @@ class AnimeDao {
         return a;
     }
 
-    AnimeExists(romaji = '') {
+    AnimeExists(romaji) {
         var sql = 'SELECT * FROM Anime INNER JOIN EintragInfo ON Anime.eintragid = EintragInfo.id  WHERE romaji=?';
         var statement = this._conn.prepare(sql);
         var result = statement.get(romaji);
 
-        if (result === undefined) 
+        if (result === undefined)
             return false;
 
-        return result;
+        return true;
     }
 
     getFolgen(id){

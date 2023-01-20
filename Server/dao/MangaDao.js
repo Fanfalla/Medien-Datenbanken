@@ -21,6 +21,17 @@ class MangaDao {
         return result;
     }
 
+    loadById2(id) {
+        var sql = 'SELECT Manga.id, chapteranzahl, volumeanzahl, romaji, englisch, deutsch, startdatum, enddatum, cover, diashow, beschreibung, formatid, jahrid, sourceid, statusid FROM Manga INNER JOIN EintragInfo ON Manga.eintragid = EintragInfo.id WHERE Manga.id=?';
+        var statement = this._conn.prepare(sql);
+        var result = statement.get(id);
+
+        if (helper.isUndefined(result)) 
+            throw new Error('No Record found by id=' + id);
+
+        return result;
+    }
+
     getChapters(id){
         var sql = 'SELECT chapteranzahl FROM Manga WHERE manga.id = ?'
         var statement = this._conn.prepare(sql);
@@ -34,11 +45,12 @@ class MangaDao {
         var sql = 'SELECT eintragid FROM Manga WHERE id=?';
         var statement = this._conn.prepare(sql);
         var result = statement.get(id);
+        var a = Object.values(result);
 
         if (helper.isUndefined(result)) 
             throw new Error('No Record found by id=' + id);
 
-        return result;
+        return a;
     }
 
     MangaExists(romaji = '') {
@@ -47,7 +59,7 @@ class MangaDao {
         var result = statement.get(romaji);
 
         if (result === undefined) 
-            return false;
+            return 'false';
 
         return result;
     }
@@ -102,10 +114,10 @@ class MangaDao {
         return this.loadById(result.lastInsertRowid);
     }
 
-    update(id, chapteranzahl, volumeanzahl, eintragid) {
-        var sql = 'UPDATE Manga SET chapteranzahl=?, volumeanzahl=?, eintragid=? WHERE id=?';
+    update(id, chapteranzahl, volumeanzahl) {
+        var sql = 'UPDATE Manga SET chapteranzahl=?, volumeanzahl=? WHERE id=?';
         var statement = this._conn.prepare(sql);
-        var params = [chapteranzahl, volumeanzahl, eintragid, id];
+        var params = [chapteranzahl, volumeanzahl, id];
         var result = statement.run(params);
 
         if (result.changes != 1) 

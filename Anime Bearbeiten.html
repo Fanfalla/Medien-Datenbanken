@@ -3,7 +3,7 @@
 	<head>
 	<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>Anime Bearbeiten</title>
+		<title>Manga Bearbeiten</title>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 		<link rel="stylesheet" href="Css.css">
 	</head>
@@ -21,7 +21,7 @@
 		</section>
 		
 		<main>
-			<h1 class="startseiteH1">Anime Bearbeiten</h1>
+			<h1 class="startseiteH1">Manga Bearbeiten</h1>
 			<article class="AnimeUebersichtBox">
 				
 				<form id="uploadForm" method="post" enctype="multipart/form-data">
@@ -29,12 +29,14 @@
 						<tr class="tableTDerw2">
 							<td colspan="2" class="tdHinzufuegen"><b>Eintrag Hinzuf&uuml;gen</b></td>
 						</tr>
+						
 						<tr>
 							<td class="tdHinzufuegen">Titel</td>
+							
 						</tr>
 						<tr>
-							<td><select id="Animes" class="dropdownMenue" name="Animes" onchange="FillWithAnimeData()">
-								<option value="0">---</option></td>
+						<td><select id="Animes" class="dropdownMenue" name="Animes" onchange="FillWithAnimeData()">
+								<option value="0">---</option></select></td>
 						</tr>
 						<tr>
 							<td class="tdHinzufuegen" colspan="2">*Romaji</td>
@@ -48,19 +50,18 @@
 						</tr>
 						<tr>
 							<td class="tdHinzufuegen" colspan="2">Beschreibung</td>
-							<td class="tdHinzufuegen" colspan="2">Insgesamte Folgen Anzahl</td>
-							<td class="tdHinzufuegen">Folgen Länge in Minuten</td>
+							<td class="tdHinzufuegen" colspan="2">Chapter</td>
+							<td class="tdHinzufuegen">Volume</td>
 						</tr>
 						<tr>
 							<td class="tdHinzufuegen"><input type="text" id="Beschreibung" placeholder="Beschreibung" name="Beschreibung"></td>
 							<td></td>
-							<td class="tdHinzufuegen"><input type="text" id="FolgenAnzahl" placeholder="Anzahl der Folgen" name="FolgenAnzahl"></td>
+							<td class="tdHinzufuegen"><input type="text" id="Chapter" placeholder="Chapter" name="Chapter"></td>
 							<td></td>
-							<td class="tdHinzufuegen"><input type="text" id="FolgenDauer" placeholder="Dauer der Folgen" name="FolgenDauer"></input></td>
+							<td class="tdHinzufuegen"><input type="text" id="Volume" placeholder="Volume" name="Volume"></input></td>
 						</tr>
 						<tr>
 							<td class="tdHinzufuegen">Format</td>
-							<td class="tdHinzufuegen">Season</td>
 							<td class="tdHinzufuegen">Jahr</td>
 							<td class="tdHinzufuegen">Start Datum</td>
 							<td class="tdHinzufuegen">End Datum</td>
@@ -68,9 +69,6 @@
 						<tr>
 							<td class="tdHinzufuegen">
 								<select id="Format" class="dropdownMenue" name="Format"></select>
-							</td>
-							<td>
-								<select id="Season" class="dropdownMenue" name="Season"></select>
 							</td>
 							<td class="tdHinzufuegen">
 								<select id="Jahr" class="dropdownMenue" name="Jahr"></select>
@@ -80,7 +78,6 @@
 							<td class="tdHinzufuegen"></td>
 						</tr>
 						<tr>
-							<td class="tdHinzufuegen">Studio</td>
 							<td class="tdHinzufuegen">Source</td>
 							<td class="tdHinzufuegen">Status</td>
 						</tr>
@@ -100,7 +97,7 @@
 							<td colspan="2" class="tdHinzufuegen">Diashow Bild</td>
 						</tr>
 						<tr>
-							
+	
 							<td colspan="2" class="tdHinzufuegen"><input type="url" id="Cover" placeholder="Cover" name="Cover"></input></td>
 							<td colspan="2" class="tdHinzufuegen"><input type="url" id="Diashow" placeholder="Diashow Bild f&uuml;r die Startseite" name="Diashow"></input></td>
 						</tr>
