@@ -1,0 +1,771 @@
+body{
+	background-color: #151515;
+	padding-bottom: 10px;
+	overflow-x: hidden;
+	font-family: Arial, sans-serif;
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+	overflow-y: scroll;
+	display:flex;
+	
+}
+body::-webkit-scrollbar {
+	display: none;
+}
+
+footer {
+	display: block;
+}
+
+nav {
+	display: block;
+}
+
+.startseiteH1 {
+	text-align: center;
+	color:rgb(143, 16, 16);
+	margin-top: 1%;
+	position: absolute;
+}
+
+.startseiteH2 {
+	font-size: 50px;
+	text-align: center;
+	margin-top: 1%;
+}
+
+.schatten{
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
+}
+
+ /* Navigaion */
+ 
+.navigation{
+	display: block;
+	color: #fafafaa9;
+	text-align: center;
+	text-decoration: none;
+	padding-bottom: 5%;
+	padding-top: 5%;
+	background-color: rgb(143, 16, 16);
+}
+
+.navigationBox{
+	position: absolute;
+	width: 100%;
+	top: 10%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-color: rgb(143, 16, 16);
+	border: 3px solid black;
+}
+
+.navigationBox2{
+	position: absolute;
+	width: 100%;
+	top: 103%;
+	left: 50%;
+	background-color: rgb(143, 16, 16);;
+	transform: translate(-50%, -50%);
+	border: 3px solid black;
+	margin-top: 2%;
+}
+
+.navigationButton {
+	float: left;
+	width: 10%;
+	height: 100%;
+	padding-right: 3%;
+	padding-left: 3%;
+	font-size: 18px;
+}
+
+.navigationButton2 {
+	float: right;
+	}
+
+.navigationList {
+	list-style: none;
+	margin-top: 0px;
+	margin-bottom: 0px;
+
+}
+
+.navigation:hover{
+	color: #fafafaea;
+}
+
+
+.searchBar {
+	margin-top: 0.4%;
+	margin-left: 5%;
+}
+	/* Home */
+	
+.mainBox {
+	position: Absolute;
+	width: 100%;
+	top: 15%;
+	left: 50%;
+	transform: translate(-50%, 0%);
+	background-color: #606060;
+	border: 3px solid black;
+}
+
+.mainBoxExtra{
+	min-height: 80%;
+}
+
+.pictureDia {
+	width: 100%;
+	border: 3px solid black;
+	float: left;
+	margin-bottom: 50px;
+	margin-left: 50px;
+	margin-top: 50px;
+}
+
+.DiashowExtra {
+	width: 100%;
+	background-color: #767676;
+	border: 3px solid black;
+	font-size: 20px;
+	float: right;
+	margin-bottom: 50px;
+	margin-right: 50px;
+	margin-top: 50px;
+	
+}
+.row{
+	display: flex;
+}
+
+.tableHome {
+	position: absolute;
+	text-align: center;
+	bottom: 5%;
+}
+
+.tableTDList {
+	list-style: none;
+	margin-right: 5px;
+}
+
+.tableTD {
+	width: 100px;
+}
+
+	/* Datenbank Übersicht*/
+	
+.genreAuswahlBox {
+	position: relative;
+	left: 3%;
+	display: inline;
+}
+
+.genreAuswahl1 {
+	width: 70px;
+	height: 30px;
+	display: none;
+}
+
+.genreAuswahl2 {
+	width: 70px;
+	height: 30px;
+	display: none;
+}
+
+.genreAuswahl3 {
+	width: 70px;
+	height: 30px;
+	display: none;
+}
+
+.genreAuswahl4 {
+	width: 70px;
+	height: 30px;
+	display: none;
+}
+
+.genreAuswahl5 {
+	width: 70px;
+	height: 30px;
+	display: none;
+}
+
+.genreAuswahl6 {
+	width: 70px;
+	height: 30px;
+	display: none;
+}
+
+.genreAuswahl7 {
+	width: 70px;
+	height: 30px;
+	display: none;
+}
+
+.genreAuswahl8 {
+	width: 70px;
+	height: 30px;
+	display: none;
+}
+
+.genreAuswahl9 {
+	width: 70px;
+	height: 30px;
+	display: none;
+}
+
+.genreAuswahl10 {
+	width: 70px;
+	height: 30px;
+	display: none;
+}
+
+.genreAuswahl11 {
+	width: 70px;
+	height: 30px;
+	display: none;
+}
+
+.genreAuswahl12 {
+	width: 70px;
+	height: 30px;
+	display: none;
+}
+
+.genreAuswahl13 {
+	width: 70px;
+	height: 30px;
+	display: none;
+}
+
+.genreAuswahl14 {
+	width: 70px;
+	height: 30px;
+	display: none;
+}
+
+.genreAuswahl15 {
+	width: 70px;
+	height: 30px;
+	display: none;
+}
+
+.genreAuswahl16 {
+	width: 70px;
+	height: 30px;
+	display: none;
+}
+
+.genreAuswahl17 {
+	width: 70px;
+	height: 30px;
+	display: none;
+}
+
+.genreAuswahl18 {
+	width: 70px;
+	height: 30px;
+	display: none;
+}
+	
+.labelSpaceLeft {
+	margin-left: 20px;
+}
+
+.labelSpaceRight {
+	margin-right: 7px;
+}
+
+.filter {
+	margin: 1%;
+	left: 5%;
+}
+
+.dropdownMenue {
+	width: 100px;
+	
+}
+.dropdowngenre {
+	height: 150px;
+}
+
+.pictureTable {
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+	border-spacing: 5px;
+}
+
+.picture {
+	height:75%;
+	width: 70%;
+	margin-top: 2%;
+	background-color: #b1b1b1;
+}
+
+.datenbankBox {
+	position: absolute;
+	transform: translate(-50%, 0%);
+	top: 27%;
+	right: 2%;
+}
+	/* Datenbank Eintrag */
+	
+.hinterGrundBox {
+	position: fixed;
+	width: 200%;
+	height: 200%;
+	background-color: #000000;
+	transform: translate(-1%, -10%);
+	opacity: 40%;
+	visibility: hidden;
+}
+
+.eintragTable{
+	margin-left: 35px;
+	margin-top: 55px;
+	position:fixed;
+}
+.eintragRomaji{
+	text-align: center;
+	font-size:40px;
+	padding-bottom:30px;
+}
+.eintragBox {
+	position: fixed;
+	width: 85%;
+	height: 90%;
+	top: 5%;
+	left: 10%;
+	background-color: #606060;
+	border: 5px solid black;
+	visibility: hidden;
+}
+
+.eintragBild{
+	width: 100%;
+	height: 100%;
+	
+}
+.alignTopText{
+	padding-top:25px;
+	vertical-align:top;
+}
+.alignTop{
+	vertical-align:top;
+}
+.eintragBildBox {
+	height: 300px;
+	width: 215px;
+	background-color: #767676;
+	border: 3px solid Black;
+}
+
+.eintragAuswahlBox {
+	padding-left: 5%;
+}
+
+.eintragLoeschen {
+	position: absolute;
+	height: 50px;
+	width: 120px;
+	bottom: 0px;
+	background-color: red;
+	border: 3px solid black;
+	text-align: center;
+	margin: 0.5%;
+	visibility: hidden;
+}
+
+
+
+.eintragInfoBox {
+	top: 80px;
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+	
+}
+
+.eintragTable {
+	font-size: 20px;
+	margin-right: 5%;
+	margin-top: 1%;
+}
+
+.eintragTableTD {
+	padding-right: 20px;
+}
+
+.eintragTableTD3 {
+	padding-bottom: 20%;
+}
+
+	/* Datenbank Eintrag Tabelle */
+
+.animeEintragTabelleTD{
+	position: relative;
+	/*transform: translate(-50%, 0%);*/
+	background-color: white;
+	vertical-align: top;
+	padding: 0px;
+	/*background-color: #606060;*/
+	
+}
+
+	/* Registration */
+
+.tableRegistration {
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+	width: 150px;
+}
+
+.rot{
+	color: red;
+	text-shadow: 0 0 5px #000000;
+}
+.groesse {
+	width: 265px;
+}
+
+/* Login */
+.loginBox {
+	position: absolute;
+	text-align: center;
+	margin-top: 20%;
+	margin-right: 50%;
+	margin-left: 50%;
+	background-color: #2E2E2E;
+	transform: translate(-50%, -50%);
+	border: 3px solid black;
+}
+
+.loginButton {
+	visibility: visible;
+}
+
+.logoutButton {
+	visibility: hidden;
+	right: 0%;
+}
+
+	/* Liste */
+
+.filter2Box {
+	position: fixed;
+	width: 10%;
+	border: 3px solid black;
+	background-color: #606060;
+	left: 2%;
+	top: 5px;
+	margin-top: 1%;
+}
+
+.filter2 {
+	list-style: none;
+	display: flex;
+	flex-direction: column;
+	flex: 1 1 auto;
+	overflow-y: auto;
+}
+
+.filterMargin {
+	margin-top: 10px;
+	display:flex;
+}
+
+.dropdownMenueListe {
+	position: relative;
+	width: 80%;
+}
+
+.filterAnime {
+	display: block;
+}
+
+.filterManga {
+	position: relative;
+	display: none;
+}
+
+.genreAuswahlListe {
+	list-style: none;
+	width: 50px;
+	height: 22px;
+}
+
+.genreAuswahlListeV {
+	margin-top: 2px;
+}
+
+.genreAuswahlListeV1 {
+	display: none;
+}
+
+.genreAuswahlListeV2 {
+	display: none;
+}
+
+.sammlungBoxP {
+	position: static;
+	display:relative;
+	
+}
+
+.sammlungWatching {
+	display: block;
+}
+
+.sammlungCompleted {
+	display: block;
+}
+
+.sammlungPaused {
+	display: none;
+}
+
+.sammlungDropped {
+	display: none;
+}
+
+.sammlungPlanning {
+	display: block;
+}
+
+.sammlungBox {
+	position: relative;
+	background-color: #606060;
+	border: 3px solid black;
+	top: 5px;
+	left: 15%;
+	width: 80%;
+	margin-top: 1%;
+	margin-bottom: 1%;
+}
+
+.sammlungTable {
+	text-align: left;
+	font-size: 30px;
+}
+
+.sammlungTableEX {
+	padding-left: 3%;
+	padding-top: 1%;
+	padding-bottom: 1%;
+}
+
+.sammlungTableTD {
+	width: 290px;
+}
+
+	/* Admin */
+
+.adminNavigation{
+	display: block;
+	color: #FAFAFA;
+	text-align: center;
+	text-decoration: none;
+	padding-bottom: 5%;
+	padding-top: 5%;
+	background-color: #000000;
+}
+.adminBox{
+	position: absolute;
+	width: 20%;
+	height: 75%;
+	margin-top: 5%;
+	background-color: #2E2E2E;
+	border: 3px solid black;
+}
+
+.adminBoxMain1 {
+	position: absolute;
+	width: 50%;
+	height: 75%;
+	margin-Top: 5%;
+	margin-left: 22%;
+	background-color: #767676;
+	border: 3px solid black;
+}
+.adminNavigationButton {
+	margin-top: 5%;
+	width: 100%;
+	height: 100%;
+	font-size: 18px;
+}
+
+
+.adminNavigationButton2 {
+	width: 50%;
+	font-size: 15px;
+	text-align: center;
+	float:left;
+	
+}
+
+.adminNavigationButton3 {
+	width: 50%;
+	font-size: 15px;
+	text-align: center;
+	float:left;
+
+	
+}
+
+.adminNavigationList {
+	list-style: none;
+	margin-top: 0px;
+	margin-left: 0px;
+	padding-left: 0px;
+	padding-top: 0%;
+}
+
+.adminNavigation:hover{
+	background-color: #FAFAFA;
+	color: black;
+}
+
+.list {
+	width: 70%;
+	height: 20%;
+	list-style: none;
+}
+	/* Anime/Manga Hinzufügen */
+	
+.AnimeUebersichtBox {
+	position: absolute;
+	width: 50%;
+	height: 75%;
+	margin-Top: 5%;
+	margin-left: 22%;
+	background-color: #2E2E2E;
+	border: 3px solid black;
+}
+
+.tableAnimeHinzufuegen {
+	margin: 3%;
+	border: 3px solid black;
+}
+
+.tableTDAnimeHinzufuegen {
+	width: 200px;
+  }
+
+.tableTDerw {
+	text-align: center;
+}
+
+.tableTDerw2 {
+	font-size: 25px;
+}
+
+.tableTDerw3 {
+	font-size: 17px;
+}
+
+.tableHinzufuegen{
+	padding: 0.5%;
+}
+
+.tdHinzufuegen {
+	padding: 0.5%;
+	width: 250px;
+}
+
+
+	/*Impressum*/
+	
+.impressum{
+	color: #FAFAFA;
+	position: Absolute;
+	width: 100%;
+	top: 15%;
+	left: 5%;
+}
+
+
+.mainBox2 {
+	position: Absolute;
+	width: 100%;
+	top: 15%;
+	left: 50%;
+	transform: translate(-50%, 0%);
+	background-color: #2E2E2E;
+	border: 3px solid black;
+}
+
+/* Profil */
+
+.bildLinks{
+	border-bottom-right-radius: 25px;
+	border-top-right-radius: 25px;
+    height:auto;
+    padding: 70px;
+    top: 100px;
+    width: 250px;
+	position: fixed;
+	top: 15%;
+	background-color: #2E2E2E;
+	border: 3px solid black;
+	float:right;
+}
+
+
+.profil{
+    margin-bottom: 20px;
+    margin-top: -12px;
+   
+}
+
+.angabe{
+	position: fixed;
+	width: 30%;
+	height:auto;
+	margin-top: 7%;
+	margin-left: 25%;
+	background-color: #2E2E2E;
+	border: 3px solid black;
+	float:right;
+	border-radius: 25px;
+	padding: 50px;
+}
+.daten{
+	font-size:25px;
+	color: black;
+	padding-bottom:10px;
+	text-align:center;
+	
+}
+
+.tableProfil{
+	color: #FFFFFF;
+	width: 420px;
+	
+}
+.trPadding{
+	padding-bottom: 45px;
+}
+
+.trabgabe{
+	text-align:right;
+	padding-top: 25px;
+}
+
+.textForList{
+	position: relative;
+	margin-left: 5%;
+	font-size: 50px;
+}
+
+.pictureTableList {
+	text-align: left;
+	margin-left: 1%;
+	border-spacing: 5px;
+	font-size: 20px;
+}
+
