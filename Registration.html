@@ -161,7 +161,7 @@
             			}).done(function (response) {
                 			console.log(response);
                 			$('#output').html(JSON.stringify(response));
-							window.location.href = "Registration.html";
+							window.location.href = "Login.html";
             			}).fail(function (jqXHR, statusText, error) {
                 			console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
                 			$('#output').html('Ein Fehler ist aufgetreten');

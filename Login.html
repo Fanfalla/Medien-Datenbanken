@@ -77,9 +77,15 @@
 							window.location.href = "Profil.html";
 							setJSONSessionItem("Account", arr[i]);
 						}
+						if ((Bname != arr[i].benutzername || PW != arr[i].passwort) && ((i + 1) == arr.length)) {
+							setTimeout(wrong, 50);
+						}
 					}
-					BNcell.innerHTML = "Benutzername oder Passwort stimmen nicht überein";
-					BNcell.style.color = "red";
+
+					function wrong() {
+						BNcell.innerHTML = "Benutzername oder Passwort stimmen nicht überein";
+						BNcell.style.color = "red";
+					}
 				}
 			}
 		</script>
