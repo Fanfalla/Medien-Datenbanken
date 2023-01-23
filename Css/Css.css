@@ -605,7 +605,6 @@ nav {
 	font-size: 15px;
 	text-align: center;
 	float:left;
-	
 }
 
 .adminNavigationButton3 {
@@ -613,8 +612,6 @@ nav {
 	font-size: 15px;
 	text-align: center;
 	float:left;
-
-	
 }
 
 .adminNavigationList {
@@ -769,3 +766,13 @@ nav {
 	font-size: 20px;
 }
 
+.DiaBild {
+	width: 800px;
+	height: 500px;
+	position: static;
+}
+
+.marginLeft{
+	margin-left: auto;
+	margin-right: auto;
+}

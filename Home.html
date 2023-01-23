@@ -5,8 +5,8 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>Startseite</title>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-		<link rel="stylesheet" href="Css.css">
-		<script src="sessionHandling.js"></script>
+		<link rel="stylesheet" href="Css/Css.css">
+		<script src="Jscript/sessionHandling.js"></script>
 	</head>
 	
 	<body>
@@ -25,35 +25,40 @@
 		</header>
 		<main class="mainBox row">
 		
-				<article class="">
-					<image src="" class="pictureDia" id="pDia"></image>
-				</article>
-			
-				<td><aside class="DiashowExtra ">
-				<h2 class="startseiteH2 " id="name"></h2>
-				<label class="labelSpaceLeft" id="des"></label>
-				<table class="padding">
-					<tr>
-						 <td class="tableTD tableTDList">Jahr:</td>
-						 <td id="year"></td>
-					</tr>
-					<tr>
-						 <td class="tableTD tableTDList">Format:</td>
-						 <td id="format"></td>
-					</tr>
-					<tr>
-						 <td class="tableTD tableTDList">Status:</td>
-						 <td id="status"></td>
-					</tr>
-					<tr>
-						 <td class="tableTD tableTDList">Folgen:</td>
-						 <td id="episode"></td>
-					</tr>
-					<tr>
-						 <td class="tableTD tableTDList">Studio:</td>
-						 <td id="studio"></td>
-					</tr>
-				</table>
+				<section class="marginLeft">
+				
+					<table border="2px solid">
+					
+						<tr>
+							<td><image src="" class="DiaBild " id="pDia"></image></td>
+								<td>
+									<table>
+										<tr>
+											<td ><h2 class="startseiteH2" id="name"></h2></td>
+										</tr>
+										<tr>
+											<td Width="900px"><label id="des"></label></td>
+										</tr>
+										<tr>
+											<td class="tableTD tableTDList">Jahr: <a id="year"></a></td> 
+										</tr>
+										<tr>
+											<td class="tableTD tableTDList">Format: <a id="format"></a></td>
+										</tr>
+										<tr>
+											<td class="tableTD tableTDList">Status: <a id="status"></a></td>
+										</tr>
+										<tr>
+											<td class="tableTD tableTDList">Folgen: <a id="episode"></a></td>
+										</tr>
+										<tr>
+											<td class="tableTD tableTDList">Studio: <a id="studio"></a></td>
+										</tr>
+									</table>
+								</td>
+						</tr>
+					</table>
+				</section>
 				<footer class="navigationBox2 schatten">
 						<ul class="navigationList">
 							<li class="navigationButton"><a href="Impressum.html" class="navigation">Impressum</a></li>
@@ -127,14 +132,20 @@
 			}
 
 			function putIntoTable(item) {
+					var animeName = item.deutsch;
+
+						if(animeName.length > 50){
+							animeName = animeName.substr(0,5) + '...'
+						}
 				document.getElementById("pDia").src = item.diashow;
-				document.getElementById("name").innerHTML = item.deutsch;
+				document.getElementById("name").innerHTML = animeName;
 				document.getElementById("des").innerHTML = item.beschreibung;
 				document.getElementById("year").innerHTML  = item.jahr;
 				document.getElementById("format").innerHTML  = item.format;
 				document.getElementById("status").innerHTML  = item.status;
 				document.getElementById("episode").innerHTML  = item.folgenanzahl;
 				document.getElementById("studio").innerHTML  = item.studio;
+				
 			}
 
 			function Logout() {
