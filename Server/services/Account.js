@@ -113,6 +113,32 @@ serviceRouter.put('/account', function(request, response) {
     }    
 });
 
+serviceRouter.put('/account/pw', function(request, response) {
+    console.log('Service Account: Client requested update of existing record');
+
+    var errorMsgs=[];
+    if (helper.isUndefined(request.body.id)) 
+        errorMsgs.push('id fehlt');
+    if (helper.isUndefined(request.body.passwort)) 
+        errorMsgs.push('passwort fehlt');
+
+    if (errorMsgs.length > 0) {
+        console.log('Service Account: Update not possible, data missing');
+        response.status(400).json({ 'fehler': true, 'nachricht': 'Funktion nicht möglich. Fehlende Daten: ' + helper.concatArray(errorMsgs) });
+        return;
+    }
+
+    const accountDao = new AccountDao(request.app.locals.dbConnection);
+    try {
+        var obj = accountDao.updatePW(request.body.id, request.body.passwort);
+        console.log('Service Account: Record updated, id=' + request.body.id);
+        response.status(200).json(obj);
+    } catch (ex) {
+        console.error('Service Account: Error updating record by id. Exception occured: ' + ex.message);
+        response.status(400).json({ 'fehler': true, 'nachricht': ex.message });
+    }    
+});
+
 serviceRouter.delete('/account/:id', function(request, response) {
     console.log('Service Account: Client requested deletion of record, id=' + request.params.id);
 

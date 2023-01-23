@@ -67,6 +67,18 @@ class AccountDao {
         return this.loadById(id);
     }
 
+    updatePW(id, passwort='') {
+        var sql = 'UPDATE Account SET passwort=? WHERE id=?';
+        var statement = this._conn.prepare(sql);
+        var params = [passwort, id];
+        var result = statement.run(params);
+
+        if (result.changes != 1) 
+            throw new Error('Could not update existing Record. Data: ' + params);
+
+        return this.loadById(id);
+    }
+
     delete(id) {
         try {
             var sql = 'DELETE FROM Account WHERE id=?';

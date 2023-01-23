@@ -33,7 +33,7 @@
 			</article>
 		</main>
 		<aside class ="angabe">
-					<table class="tableProfil" >
+					<table class="tableProfil" id="tP">
 						<tr>
 							<td class="trPadding tableProfil">Benutzername:</td>
 							<td class="trPadding" id="Bname"></td>
@@ -45,21 +45,21 @@
 					
 						<tr>
 							<td>Altes Passwort:</td>
-							<td><input type="password" placeholder="Altes Passwort"></td>
+							<td><input type="password" placeholder="Altes Passwort" id="oldPW"></td>
 						</tr>
 						
 						<tr>
 							<td>Neues Passwort:</td>
-							<td><input type="password" placeholder="Neues Passwort"></td>
+							<td><input type="password" placeholder="Neues Passwort" id="newPW"></td>
 						</tr>
 						<tr>
 							<td>Neues Passwort (wiederholen):</td>
-							<td ><input type="password" placeholder="Passwort wiederholen"></td>
+							<td ><input type="password" placeholder="Passwort wiederholen" id="newPW2"></td>
 						</tr>
 					
 						<tr>
 							<td></td>
-							<td class="trabgabe"><button>Passwort &Auml;ndern</button></td>
+							<td class="trabgabe" onClick="getPW()"><button>Passwort &Auml;ndern</button></td>
 						</tr>
 					</table>
 					
@@ -70,6 +70,9 @@
 				document.getElementById("Bname").innerHTML = getJSONSessionItem('Account').benutzername;
 				document.getElementById("1").innerHTML = getJSONSessionItem("Account").benutzername;
         	});
+			var select = document.getElementById("tP");
+			var BNcell = select.insertRow(5);
+			BNcell.innerHTML = "";
 
 			function Logout() {
 				removeSessionItem("Account");
@@ -77,7 +80,7 @@
 			}
 			
 			$(document).ready(function() {
-
+				
     
 			var readURL = function(input) {
 				if (input.files && input.files[0]) {
@@ -100,6 +103,56 @@
 			   $(".bild-upload").click();
 			});
 		});
+
+			function getPW() {
+
+				var id = getJSONSessionItem('Account').id;
+				$.ajax({
+                	url: 'http://localhost:8000/api/account/gib/' + id,
+                	method: 'get',
+					contentType: 'application/json; charset=utf-8',
+                	cache: false,
+					dataType : 'json'
+            	}).done(function (response) {
+                	console.log(response);
+					pwChange(response);
+            	}).fail(function (jqXHR, statusText, error) {
+                	console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+                	$('#output').html('Ein Fehler ist aufgetreten');
+            	});
+			}
+			
+			function pwChange(arr) {
+				
+				var id = getJSONSessionItem('Account').id;
+				var oPW1 = arr.passwort;
+				var oPW2 = document.getElementById("oldPW").value;
+				var newPW = document.getElementById("newPW").value;
+				var newPW2 = document.getElementById("newPW2").value;
+				if ((oPW1 != oPW2) ||(newPW != newPW2)) {
+					BNcell.innerHTML = "Altes Passwort stimmt nicht oder die neues Passwort stimmt nicht überein";
+					BNcell.style.color = "red";
+				}
+				else {
+					var obj = {"id": id,
+								"passwort": newPW };
+					$.ajax({
+                		url: 'http://localhost:8000/api/account/pw',
+                		method: 'put',
+						contentType: 'application/json; charset=utf-8',
+                		cache: false,
+						data: JSON.stringify(obj)
+            		}).done(function (response) {
+                		console.log(response);
+                		$('#output').html(JSON.stringify(response));
+						BNcell.innerHTML = "Passwort wurde erfolgreich geändert";
+						BNcell.style.color = "green";
+            		}).fail(function (jqXHR, statusText, error) {
+                		console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+                		$('#output').html('Ein Fehler ist aufgetreten');
+            		});
+				}
+			}
 		</script>
 	</body>
 </html>
