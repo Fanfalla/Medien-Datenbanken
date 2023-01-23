@@ -20,6 +20,20 @@ serviceRouter.get('/anime/getAll', function(request, response) {
     }
 });
 
+serviceRouter.get('/anime/getAllId', function(request, response) {
+    console.log('Service Anime: Client requested all records' + request.params.id);
+
+    const animeDao = new AnimeDao(request.app.locals.dbConnection);
+    try {
+        var obj = animeDao.loadAllId(request.params.id);
+        console.log('Service Anime: Record loaded');
+        response.status(200).json(obj);
+    } catch (ex) {
+        console.error('Service Anime: Error loading record by id. Exception occured: ' + ex.message);
+        response.status(400).json({ 'fehler': true, 'nachricht': ex.message });
+    }
+});
+
 serviceRouter.get('/anime/gib/:id', function(request, response) {
     console.log('Service Anime: Client requested one record, id=' + request.params.id);
 
