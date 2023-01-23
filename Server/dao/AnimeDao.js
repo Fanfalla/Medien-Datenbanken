@@ -21,6 +21,17 @@ class AnimeDao {
         return result;
     }
 
+    loadAllId() {
+        var sql = 'SELECT Anime.id FROM Anime';
+        var statement = this._conn.prepare(sql);
+        var result = statement.all();
+
+        if (helper.isUndefined(result)) 
+            throw new Error('No Record found');
+
+        return result;
+    }
+
     loadById2(id) {
         var sql = 'SELECT Anime.id, folgenanzahl, dauer, romaji, englisch, deutsch, startdatum, enddatum, cover, diashow, beschreibung, formatid, jahrid, sourceid, statusid, seasonid, studioid FROM Anime INNER JOIN EintragInfo ON Anime.eintragid = EintragInfo.id INNER JOIN Studio ON Anime.studioid = Studio.id WHERE anime.id=?';
         var statement = this._conn.prepare(sql);
