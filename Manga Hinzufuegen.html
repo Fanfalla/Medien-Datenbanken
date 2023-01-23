@@ -22,7 +22,7 @@
 			<h1 class="startseiteH1">Manga Hinzuf&uuml;gen</h1>
 			<article class="AnimeUebersichtBox">
 				<form id="uploadForm" method="post" enctype="multipart/form-data">
-					<table class="tableAnimeHinzufuegen tableTDerw3 tableHinzufuegen">
+					<table class="tableAnimeHinzufuegen tableTDerw3 tableHinzufuegen" >
 						<tr class="tableTDerw2">
 							<td colspan="2" class="tdHinzufuegen"><b>Eintrag Hinzuf&uuml;gen</b></td>
 						</tr>
@@ -40,18 +40,20 @@
 							<td class="tdHinzufuegen"><input type="text" id="Deutsch" placeholder="Deutscher Titel" name="Deutsch"></td>
 						</tr>
 						<tr>
-							<td class="tdHinzufuegen">*Beschreibung</td>
-						</tr>
-						<tr>
-							<td class="tdHinzufuegen"><input type="text" id="Beschreibung" placeholder="Beschreibung" name="Beschreibung"></input></td>
-						</tr>
-						<tr>
+							<td class="tdHinzufuegen">Beschreibung</td>
 							<td class="tdHinzufuegen">Chapter</td>
 							<td class="tdHinzufuegen">Volume</td>
 						</tr>
 						<tr>
+							<td class="tdHinzufuegen"><input type="text" id="Beschreibung" placeholder="Beschreibung" name="Beschreibung"></input></td>
 							<td class="tdHinzufuegen"><input type="text" id="ChapterAnzahl" placeholder="Anzahl der Chapter" name="ChapterAnzahl"></td>
 							<td class="tdHinzufuegen"><input type="text" id="VolumeAnzahl" placeholder="Anzahl der Volume" name="VolumeAnzahl"></td>
+						</tr>
+						<tr>
+							
+						</tr>
+						<tr>
+							
 						</tr>
 						<tr>
 							<td class="tdHinzufuegen">Format</td>
@@ -81,6 +83,7 @@
 								<select id="Genre" class="dropdownMenue dropdowngenre" multiple name="Genre">
 								</select>
 							</td>
+							
 							<td class="tdHinzufuegen">
 								<select id="Source" class="dropdownMenue" name="Source">
 								</select>
@@ -91,15 +94,16 @@
 							</td>
 						</tr>
 						<tr>
-							<td colspan="2" class="tdHinzufuegen">Bild Cover</td>
-							<td colspan="2" class="tdHinzufuegen">Diashow Bild</td>
+							<td></td>
+							<td  class="tdHinzufuegen">Bild Cover</td>
+							<td  class="tdHinzufuegen">Diashow Bild</td>
 						</tr>
 						<tr>
-							<td colspan="2" class="tdHinzufuegen"><input type="url" id="Cover" placeholder="Cover" name="Cover"></input></td>
-							<td colspan="2" class="tdHinzufuegen"><input type="url" id="Diashow" placeholder="Diashow Bild f&uuml;r die Startseite" name="Diashow"></input></td>
+							<td>presst ctr to select more than 1</td>
+							<td class="tdHinzufuegen"><input type="url" id="Cover" placeholder="Cover" name="Cover"></input></td>
+							<td class="tdHinzufuegen"><input type="url" id="Diashow" placeholder="Diashow Bild f&uuml;r die Startseite" name="Diashow"></input></td>
 						</tr>
 						<tr class="tableTDerw">
-							<td></td>
 							<td></td>
 							<td></td>
 							<td></td>
@@ -192,7 +196,7 @@
 			function RenderFormatOptions(arr) {
 				console.log(arr);
     			var select = document.getElementById("Format");
-
+																					/*Gleiche Wie im Anime Hinzufügen*/
     			for (var i = 0; i < arr.length; i++){
         			var opt = document.createElement("option");
         			opt.value = arr[i].id;
@@ -306,7 +310,7 @@
 				.done(function(){
 					consol.log('genres eingetragen');
 				})
-				.fail(function(xhr){
+				.fail(function(xhr){					/*Schaut nach ob man Genres eingetragen hat*/
 					console.log('error recieved');
 					console.log(xhr);
 					console.log(xhr.status);

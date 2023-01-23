@@ -23,7 +23,7 @@
 			<h1 class="startseiteH1">Anime Hinzuf&uuml;gen</h1>
 			<article class="AnimeUebersichtBox">
 				<form id="uploadForm" method="post" enctype="multipart/form-data">
-					<table class="tableAnimeHinzufuegen tableTDerw3 tableHinzufuegen">
+					<table class="tableAnimeHinzufuegen tableTDerw3 tableHinzufuegen" >
 						<tr class="tableTDerw2">
 							<td colspan="2" class="tdHinzufuegen"><b>Eintrag Hinzuf&uuml;gen</b></td>
 						</tr>
@@ -74,16 +74,14 @@
 							</td>
 							<td class="tdHinzufuegen"><input type="date" id="StartDate" min="1997-01-01" name="StartDate"></input></td>
 							<td class="tdHinzufuegen"><input type="date" id="EndDate" min="1997-01-01" name="EndDate"></input></td>
-							<td class="tdHinzufuegen">
-								
-							</td class="tdHinzufuegen">
 						</tr>
 						<tr>
-							<td class="tdHinzufuegen">Genres <br> presst ctr to select more than 1</td>
+							<td class="tdHinzufuegen">Genres</td>
 							<td class="tdHinzufuegen">Studio</td>
 							<td class="tdHinzufuegen">Source</td>
 							<td class="tdHinzufuegen">Status</td>
 						</tr>
+						
 						<tr>
 							<td class="tdHinzufuegen" rowspan="2">
 								<select id="Genre" class="dropdownMenue dropdowngenre" multiple name="Genre">
@@ -107,7 +105,7 @@
 							<td colspan="2" class="tdHinzufuegen">Diashow Bild</td>
 						</tr>
 						<tr>
-							<td></td>
+							<td>presst ctr to select more than 1</td>
 							<td colspan="2" class="tdHinzufuegen"><input type="url" id="Cover" placeholder="Cover" name="Cover"></input></td>
 							<td colspan="2" class="tdHinzufuegen"><input type="url" id="Diashow" placeholder="Diashow Bild f&uuml;r die Startseite" name="Diashow"></input></td>
 						</tr>
@@ -232,7 +230,7 @@
 			function RenderFormatOptions(arr) {
 				console.log(arr);
     			var select = document.getElementById("Format");
-
+																								/*Zeigt die möglichen Formate an*/
     			for (var i = 0; i < arr.length; i++){
         			var opt = document.createElement("option");
         			opt.value =  arr[i].id;
@@ -244,7 +242,7 @@
 			function RenderSeasonOptions(arr) {
 				console.log(arr);
 				var select = document.getElementById("Season");
-
+																								/*Zeigt die möglichen Seasons an*/
 				for (var i = 0; i < arr.length; i++){
 					var opt = document.createElement("option");
 					opt.value = arr[i].id;
@@ -256,7 +254,7 @@
 			function RenderJahrOptions(arr) {
 				console.log(arr);
 				var select = document.getElementById("Jahr");
-
+																							/*Zeigt die möglichen Jahre an*/
 				for (var i = 0; i < arr.length; i++){
 					var opt = document.createElement("option");
 					opt.value = arr[i].id;
@@ -268,7 +266,7 @@
 			function RenderGenreOptions(arr) {
 				console.log(arr);
 				var select = document.getElementById("Genre");
-
+																						/*Zeigt die möglichen Genres an*/
 				for (var i = 0; i < arr.length; i++){
 					var opt = document.createElement("option");
 					opt.value = arr[i].id;
@@ -280,7 +278,7 @@
 			function RenderStudioOptions(arr) {
 				console.log(arr);
 				var select = document.getElementById("Studio");
-
+																					/*Zeigt die möglichen Studios an*/
 				for (var i = 0; i <arr.length; i++){
 					var opt = document.createElement("option");
 					opt.value = arr[i].id;
@@ -292,7 +290,7 @@
 			function RenderSourceOptions(arr) {
 				console.log(arr);
 				var select = document.getElementById("Source");
-
+																				/*Zeigt die möglichen Quelle an*/
 				for (var i = 0; i <arr.length; i++){
 					var opt = document.createElement("option");
 					opt.value = arr[i].id;
@@ -304,7 +302,7 @@
 			function RenderStatusOptions(arr) {
 				console.log(arr);
 				var select = document.getElementById("Status");
-
+																				/*Zeigt die möglichen Status an*/
 				for (var i = 0; i <arr.length; i++){
 					var opt = document.createElement("option");
 					opt.value = arr[i].id;
