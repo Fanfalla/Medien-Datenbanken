@@ -53,7 +53,7 @@ class EintragInfoDao {
 
     create(romaji, englisch, deutsch, startdatum, enddatum, cover , diashow, beschreibung, formatid, jahrid, sourceid, statusid) {
         var sql = 'INSERT INTO EintragInfo (romaji, englisch, deutsch, startDatum, endDatum, cover, diashow, beschreibung, formatid, jahrid, sourceid, statusid) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)';
-        var statement = this._conn.prepare(sql); /*Soll Alles in die Tabellen hinzufügen*/
+        var statement = this._conn.prepare(sql); /*fügt den eintrag in die daternbank Tabellen hinzu*/
         var params = [romaji, englisch, deutsch, startdatum, enddatum, cover, diashow, beschreibung, formatid, jahrid, sourceid, statusid];
         var result = statement.run(params);
 

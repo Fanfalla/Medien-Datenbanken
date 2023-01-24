@@ -20,7 +20,7 @@ serviceRouter.get('/eintragInfo/gib/:id', function(request, response) {
 });
 
 serviceRouter.get('/eintragInfo/alle', function(request, response) {
-    console.log('Service EintragInfo: Client requested all records'); /*Wiedergabe wievielte wurde hinzugefügt*/
+    console.log('Service EintragInfo: Client requested all records'); /*Einträge von der eintragInfo werden geladen*/
 
     const eintragInfoDao = new EintragInfoDao(request.app.locals.dbConnection);
     try {
@@ -42,7 +42,7 @@ serviceRouter.get('/eintragInfo/existiert/:id', function(request, response) {
     try {
         var exists = eintragInfoDao.exists(request.params.id);
         console.log('Service EintragInfo: Check if record exists by id=' + request.params.id + ', exists=' + exists);
-        response.status(200).json({'id': request.params.id, 'existiert': exists}); /*Wedergabe ob schon existiert*/
+        response.status(200).json({'id': request.params.id, 'existiert': exists});
     } catch (ex) {
         console.error('Service EintragInfo: Error checking if record exists. Exception occured: ' + ex.message);
         response.status(400).json({ 'fehler': true, 'nachricht': ex.message });

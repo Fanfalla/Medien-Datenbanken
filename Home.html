@@ -66,93 +66,93 @@
 						</ul>
 				</footer>
 		</main>
-	</body>
-	<script>
-		$(document).ready(function() {
-			if (existsSessionItem("Account")) {
-				document.getElementById("1").innerHTML = "Meine Liste";
-				document.getElementById("1").href = "Liste.html";
-				document.getElementById("2").innerHTML = getJSONSessionItem("Account").benutzername;
-				document.getElementById("2").href = "Profil.html";
-				document.getElementById("3").innerHTML = "Logout";
-				if (getJSONSessionItem("Account").adminid == 1) {
-					document.getElementById("admin").innerHTML = "Admin Ansicht";
-					document.getElementById("admin").href = "Admin Ansicht.html";
-				}
-			}
-			getAllIds();
-		});
-
-		setInterval(getAllIds, 15000);
-
-		function getAllIds() {
-			$.ajax({
-				url: 'http://localhost:8000/api/Anime/getAllId',
-				method: 'get',
-				contentType: 'application/json; charset=utf-8',
-				cache: false,
-				dataType: 'json',
-			}).done(function (response) {
-				console.log(response);
-				ArrayId(response);          
-			}).fail(function (jqXHR, statusText, error) {
-				console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
-				$('#output').html('Ein Fehler ist aufgetreten');
-			})
-		}
-
-		function ArrayId(arr) {
-			var ArrayId = [];
-			for (var i = 0; i < arr.length; i++) {
-				ArrayId.push(arr[i].id);
-			}
-			randomId(ArrayId);
-		}
-
-		function randomId(ArrayId) {
-			var randomNum = Math.floor(Math.random() * ArrayId.length);
-			var randomId = ArrayId[randomNum];
-			getRandomIdInfo(randomId);
-		}
-
-		function getRandomIdInfo(randomId) {
-
-			$.ajax({
-				url: 'http://localhost:8000/api/anime/gib/' + randomId,
-				method: 'get',
-				contentType: 'application/json; charset=utf-8',
-				cache: false,
-				dataType: 'json',
-			}).done(function (response) {
-				console.log(response);
-				putIntoTable(response);          
-			}).fail(function (jqXHR, statusText, error) {
-				console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
-				$('#output').html('Ein Fehler ist aufgetreten');
-			})
-		}
-
-		function putIntoTable(item) {
-				var animeName = item.deutsch;
-
-					if(animeName.length > 50){
-						animeName = animeName.substr(0,5) + '...'
+		<script>
+			$(document).ready(function() {
+            	if (existsSessionItem("Account")) {
+					document.getElementById("1").innerHTML = "Meine Liste";
+					document.getElementById("1").href = "Liste.html";
+					document.getElementById("2").innerHTML = getJSONSessionItem("Account").benutzername;
+					document.getElementById("2").href = "Profil.html";
+					document.getElementById("3").innerHTML = "Logout";
+					if (getJSONSessionItem("Account").adminid == 1) {
+						document.getElementById("admin").innerHTML = "Admin Ansicht";
+						document.getElementById("admin").href = "Admin Ansicht.html";
 					}
-			document.getElementById("pDia").src = item.diashow;
-			document.getElementById("name").innerHTML = animeName;
-			document.getElementById("des").innerHTML = item.beschreibung;
-			document.getElementById("year").innerHTML  = item.jahr;
-			document.getElementById("format").innerHTML  = item.format;
-			document.getElementById("status").innerHTML  = item.status;
-			document.getElementById("episode").innerHTML  = item.folgenanzahl;
-			document.getElementById("studio").innerHTML  = item.studio;
-			
-		}
+				}
+				getAllIds();
+			});
 
-		function Logout() {
-			removeSessionItem("Account");
-			window.location.href = "Login.html";
-		}
-	</script>
+			setInterval(getAllIds, 15000);
+
+			function getAllIds() {
+				$.ajax({
+					url: 'http://localhost:8000/api/Anime/getAllId',
+					method: 'get',
+					contentType: 'application/json; charset=utf-8',
+					cache: false,
+					dataType: 'json',
+				}).done(function (response) {
+					console.log(response);
+					ArrayId(response);          
+				}).fail(function (jqXHR, statusText, error) {
+					console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+					$('#output').html('Ein Fehler ist aufgetreten');
+				})
+			}
+
+			function ArrayId(arr) {
+				var ArrayId = [];
+				for (var i = 0; i < arr.length; i++) {
+					ArrayId.push(arr[i].id);
+				}
+				randomId(ArrayId);
+			}
+
+			function randomId(ArrayId) {
+				var randomNum = Math.floor(Math.random() * ArrayId.length);
+				var randomId = ArrayId[randomNum];
+				getRandomIdInfo(randomId);
+			}
+
+			function getRandomIdInfo(randomId) {
+
+				$.ajax({
+					url: 'http://localhost:8000/api/anime/gib/' + randomId,
+					method: 'get',
+					contentType: 'application/json; charset=utf-8',
+					cache: false,
+					dataType: 'json',
+				}).done(function (response) {
+					console.log(response);
+					putIntoTable(response);          
+				}).fail(function (jqXHR, statusText, error) {
+					console.log('Response Code: ' + jqXHR.status + ' - Fehlermeldung: ' + jqXHR.responseText);
+					$('#output').html('Ein Fehler ist aufgetreten');
+				})
+			}
+
+			function putIntoTable(item) {
+					var animeName = item.deutsch;
+
+						if(animeName.length > 50){
+							animeName = animeName.substr(0,5) + '...'
+						}
+				document.getElementById("pDia").src = item.diashow;
+				document.getElementById("name").innerHTML = animeName;
+				document.getElementById("des").innerHTML = item.beschreibung;
+				document.getElementById("year").innerHTML  = item.jahr;
+				document.getElementById("format").innerHTML  = item.format;
+				document.getElementById("status").innerHTML  = item.status;
+				document.getElementById("episode").innerHTML  = item.folgenanzahl;
+				document.getElementById("studio").innerHTML  = item.studio;
+				
+			}
+
+			function Logout() {
+				removeSessionItem("Account");
+				window.location.href = "Login.html";
+			}
+		</script>
+	</body>
 	
 </html>
