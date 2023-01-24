@@ -309,7 +309,8 @@
 			function FillWithAnimeData(){
 
 				Emptyoptions()
-
+																/*Soll Die ganzen Animes anzeigen die es gibt
+																wenn keine gibt Fehlermeldung*/
 				id = document.getElementById('Animes').value
 
 				if(id > 0){
@@ -331,7 +332,7 @@
 			}
 
 			function Filloptions(item){
-
+															/*Soll alles automatisch ausfüllen*/
 				document.getElementById('Romaji').value = item.romaji
 				document.getElementById('Englisch').value = item.englisch
 				document.getElementById('Deutsch').value = item.deutsch
@@ -388,7 +389,7 @@
 				})
 				.done(function() {
 					consol.log('eintragInfo eingetragen')
-				})
+				})																/*Wenn man hochlädt soll man eine Bestätigung erhalten*/
 				.fail(function(xhr){
 					console.log('error recieved');
 					console.log(xhr);

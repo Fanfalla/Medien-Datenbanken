@@ -11,7 +11,7 @@ class EintragInfoDao {
     }
 
     loadById(id) {
-        var sql = 'SELECT * FROM EintragInfo WHERE id=?';
+        var sql = 'SELECT * FROM EintragInfo WHERE id=?'; /*Soll die ID des Animes/mangas zurück schicken*/
         var statement = this._conn.prepare(sql);
         var result = statement.get(id);
 
@@ -22,7 +22,7 @@ class EintragInfoDao {
     }
 
     loadAll() {
-        var sql = 'SELECT * FROM EintragInfo';
+        var sql = 'SELECT * FROM EintragInfo'; /*Wiedergabe ALLES von EintragInfo*/
         var statement = this._conn.prepare(sql);
         var result = statement.all();
 
@@ -37,7 +37,7 @@ class EintragInfoDao {
         var statement = this._conn.prepare(sql);
         var result = statement.get(id);
 
-        if (result.cnt == 1) 
+        if (result.cnt == 1)  /*Übrprüfung ob die gleiche ID schon existiert*/
             return true;
 
         return false;
@@ -53,7 +53,7 @@ class EintragInfoDao {
 
     create(romaji, englisch, deutsch, startdatum, enddatum, cover , diashow, beschreibung, formatid, jahrid, sourceid, statusid) {
         var sql = 'INSERT INTO EintragInfo (romaji, englisch, deutsch, startDatum, endDatum, cover, diashow, beschreibung, formatid, jahrid, sourceid, statusid) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)';
-        var statement = this._conn.prepare(sql);
+        var statement = this._conn.prepare(sql); /*Soll Alles in die Tabellen hinzufügen*/
         var params = [romaji, englisch, deutsch, startdatum, enddatum, cover, diashow, beschreibung, formatid, jahrid, sourceid, statusid];
         var result = statement.run(params);
 
@@ -65,7 +65,7 @@ class EintragInfoDao {
 
     update(id, romaji, englisch, deutsch, startdatum, enddatum, cover, diashow, beschreibung, formatid, jahrid, sourceid, statusid) {
         var sql = 'UPDATE EintragInfo SET romaji=?, englisch=?, deutsch=?, startDatum=?, endDatum=?, cover=?, diashow=?, beschreibung=?, formatid=?, jahrid=?, sourceid=?, statusid=? WHERE id=?';
-        var statement = this._conn.prepare(sql);
+        var statement = this._conn.prepare(sql); /*Bei Bearbeitung soll es von der datei die Namen aus der Datenbank nehmen*/
         var params = [romaji, englisch, deutsch, startdatum, enddatum, cover, diashow, beschreibung, formatid, jahrid, sourceid, statusid, id];
         var result = statement.run(params);
 
@@ -79,7 +79,7 @@ class EintragInfoDao {
         try {
             var sql = 'DELETE FROM EintragInfo WHERE id=?';
             var statement = this._conn.prepare(sql);
-            var result = statement.run(id);
+            var result = statement.run(id); /*Soll die ID die ausgewählt ist komplett löschen*/
 
             if (result.changes != 1) 
                 throw new Error('Could not delete Record by id=' + id);
