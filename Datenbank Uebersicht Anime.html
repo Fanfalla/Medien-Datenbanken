@@ -920,7 +920,8 @@
 					})
 					.done(function(response) {
 						console.log('EintragId erhalten');
-						setJSONSessionItem("EintragId", response);
+						console.log(response);
+						setJSONSessionItem("EintragId", response)
 						DeleteAnime(id);
 					})
 					.fail(function(xhr){
@@ -952,8 +953,7 @@
 
 				/*Delete Eintrag aus EintragInfo*/
 				function DeleteEintragInfo() {
-					var JSONEintragId = getJSONSessionItem("EintragId");
-					var EintragId = JSONEintragId.eintragid;
+					var EintragId = getJSONSessionItem("EintragId");
 
 					$.ajax({
 						url: 'http://localhost:8000/api/eintragInfo/' + EintragId,
