@@ -3,14 +3,14 @@ const EintragInfoDao = require('../dao/EintragInfoDao.js');
 const express = require('express');
 var serviceRouter = express.Router();
 
-console.log('- Service EintragInfo');
+console.log('- Service EintragInfo'); /*Wiedergabe welcher Service genutzt wird*/
 
 serviceRouter.get('/eintragInfo/gib/:id', function(request, response) {
     console.log('Service EintragInfo: Client requested one record, id=' + request.params.id);
 
     const eintragInfoDao = new EintragInfoDao(request.app.locals.dbConnection);
     try {
-        var obj = eintragInfoDao.loadById(request.params.id);
+        var obj = eintragInfoDao.loadById(request.params.id); 
         console.log('Service EintragInfo: Record loaded');
         response.status(200).json(obj);
     } catch (ex) {
@@ -20,7 +20,7 @@ serviceRouter.get('/eintragInfo/gib/:id', function(request, response) {
 });
 
 serviceRouter.get('/eintragInfo/alle', function(request, response) {
-    console.log('Service EintragInfo: Client requested all records');
+    console.log('Service EintragInfo: Client requested all records'); /*Wiedergabe wievielte wurde hinzugefügt*/
 
     const eintragInfoDao = new EintragInfoDao(request.app.locals.dbConnection);
     try {
@@ -42,7 +42,7 @@ serviceRouter.get('/eintragInfo/existiert/:id', function(request, response) {
     try {
         var exists = eintragInfoDao.exists(request.params.id);
         console.log('Service EintragInfo: Check if record exists by id=' + request.params.id + ', exists=' + exists);
-        response.status(200).json({'id': request.params.id, 'existiert': exists});
+        response.status(200).json({'id': request.params.id, 'existiert': exists}); /*Wedergabe ob schon existiert*/
     } catch (ex) {
         console.error('Service EintragInfo: Error checking if record exists. Exception occured: ' + ex.message);
         response.status(400).json({ 'fehler': true, 'nachricht': ex.message });
@@ -53,7 +53,7 @@ serviceRouter.post('/EintragInfo/add', function(request, response) {
     console.log('Service EintragInfo: Client requested creation of new record');
 
     var errorMsgs=[];
-    if (helper.isUndefined(request.body.Romaji)) 
+    if (helper.isUndefined(request.body.Romaji)) 	/*Fehlermeldung wenn etwas fehlt*/
         errorMsgs.push('Romaji fehlt');
     if (helper.isUndefined(request.body.Englisch)) 
         errorMsgs.push('English fehlt');
@@ -82,13 +82,13 @@ serviceRouter.post('/EintragInfo/add', function(request, response) {
         console.log('Service EintragInfo: Creation not possible, data missing');
         response.status(400).json({ 'fehler': true, 'nachricht': 'Funktion nicht möglich. Fehlende Daten: ' + helper.concatArray(errorMsgs) });
         return;
-    }
+    } /*Soll nicht ausgeführt werden wenn etwas fehlt*/
 
     const eintragInfoDao = new EintragInfoDao(request.app.locals.dbConnection);
     try {
         var obj = eintragInfoDao.create(request.body.Romaji, request.body.Englisch, request.body.Deutsch, request.body.StartDate, request.body.EndDate, request.body.Cover, request.body.Diashow, request.body.Beschreibung, request.body.Format, request.body.Jahr, request.body.Source, request.body.Status);
         console.log('Service EintragInfo: Record inserted');
-        response.status(200).json(obj);
+        response.status(200).json(obj); /*Wiedergabe was hinzugefügt wurde*/
     } catch (ex) {
         console.error('Service EintragInfo: Error creating new record. Exception occured: ' + ex.message);
         response.status(400).json({ 'fehler': true, 'nachricht': ex.message });
