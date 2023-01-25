@@ -3,7 +3,7 @@
 	<head>
 	<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>Manga Bearbeiten</title>
+		<title>Anime Bearbeiten</title>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 		<link rel="stylesheet" href="Css/Css.css">
 	</head>
@@ -21,7 +21,7 @@
 		</section>
 		
 		<main>
-			<h1 class="startseiteH1">Manga Bearbeiten</h1>
+			<h1 class="startseiteH1">Anime Bearbeiten</h1>
 			<article class="AnimeUebersichtBox">
 				
 				<form id="uploadForm" method="post" enctype="multipart/form-data">
@@ -50,18 +50,19 @@
 						</tr>
 						<tr>
 							<td class="tdHinzufuegen" colspan="2">Beschreibung</td>
-							<td class="tdHinzufuegen" colspan="2">Chapter</td>
-							<td class="tdHinzufuegen">Volume</td>
+							<td class="tdHinzufuegen" colspan="2">Folgen Anzahl</td>
+							<td class="tdHinzufuegen">Folgen Dauer</td>
 						</tr>
 						<tr>
 							<td class="tdHinzufuegen"><input type="text" id="Beschreibung" placeholder="Beschreibung" name="Beschreibung"></td>
 							<td></td>
-							<td class="tdHinzufuegen"><input type="text" id="Chapter" placeholder="Chapter" name="Chapter"></td>
+							<td class="tdHinzufuegen"><input type="text" id="FolgenAnzahl" placeholder="Folgen Anzahl" name="FolgenAnzahl"></td>
 							<td></td>
-							<td class="tdHinzufuegen"><input type="text" id="Volume" placeholder="Volume" name="Volume"></input></td>
+							<td class="tdHinzufuegen"><input type="text" id="FolgenDauer" placeholder="Folgen Dauer" name="FolgenDauer"></input></td>
 						</tr>
 						<tr>
 							<td class="tdHinzufuegen">Format</td>
+							<td class="tdHinzufuegen">Season</td>
 							<td class="tdHinzufuegen">Jahr</td>
 							<td class="tdHinzufuegen">Start Datum</td>
 							<td class="tdHinzufuegen">End Datum</td>
@@ -69,6 +70,10 @@
 						<tr>
 							<td class="tdHinzufuegen">
 								<select id="Format" class="dropdownMenue" name="Format"></select>
+							</td>
+							<td>
+								<select id="Season" class="dropdownMenue" name="Season">
+								</select>
 							</td>
 							<td class="tdHinzufuegen">
 								<select id="Jahr" class="dropdownMenue" name="Jahr"></select>
@@ -310,6 +315,7 @@
 
 				Emptyoptions()
 				id = document.getElementById('Animes').value
+				alert(id)
 
 				if(id > 0){
 
